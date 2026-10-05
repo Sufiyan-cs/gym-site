@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-TIPPU FITNESS // PROGRESS &amp; METRICS</title>
+<!-- Google Fonts: Barlow Condensed & Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined (Literal Icon Transcription Requirement) -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim from Design System -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#1d1b1a",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "on-background": "#e6e1df",
+            "inverse-surface": "#e6e1df",
+            "inverse-on-surface": "#32302f",
+            "surface-variant": "#363433",
+            "surface-container-high": "#2b2a28",
+            "on-secondary-fixed": "#002109",
+            "on-surface-variant": "#dbc2af",
+            "tertiary-container": "#b8b1a9",
+            "on-secondary": "#003915",
+            "on-primary-fixed-variant": "#6c3a00",
+            "error": "#ffb4ab",
+            "secondary": "#4ae176",
+            "primary": "#ffc18c",
+            "on-secondary-fixed-variant": "#005321",
+            "secondary-fixed-dim": "#4ae176",
+            "on-tertiary": "#34302a",
+            "surface-bright": "#3b3937",
+            "on-primary-fixed": "#2e1500",
+            "tertiary-fixed": "#e9e1d9",
+            "surface-container-lowest": "#0f0e0d",
+            "secondary-container": "#00b954",
+            "surface-container": "#211f1e",
+            "on-primary": "#4c2700",
+            "on-error-container": "#ffdad6",
+            "surface": "#141312",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "on-tertiary-container": "#48443e",
+            "on-error": "#690005",
+            "on-primary-container": "#693900",
+            "surface-dim": "#141312",
+            "primary-fixed": "#ffdcc1",
+            "outline-variant": "#554335",
+            "surface-tint": "#ffb877",
+            "outline": "#a28d7c",
+            "error-container": "#93000a",
+            "tertiary": "#d4ccc4",
+            "on-surface": "#e6e1df",
+            "secondary-fixed": "#6bff8f",
+            "background": "#141312",
+            "inverse-primary": "#8e4f00",
+            "primary-fixed-dim": "#ffb877",
+            "surface-container-highest": "#363433",
+            "primary-container": "#ff9a2e",
+            "on-secondary-container": "#004119",
+            "on-tertiary-fixed": "#1e1b16"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.25rem",
+            "gutter-desktop": "1.25rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "gutter": "0.75rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Barlow Condensed"],
+            "headline-lg-mobile": ["Barlow Condensed"],
+            "body-md": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-sm": ["Barlow Condensed"],
+            "body-sm": ["Space Grotesk"],
+            "telemetry-digit": ["JetBrains Mono"],
+            "display-lg-mobile": ["Barlow Condensed"],
+            "display-lg": ["Barlow Condensed"],
+            "label-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Subtle carbon crosshatch grid for athletic data aesthetic */
+    .carbon-mesh {
+      background-image: radial-gradient(rgba(85, 67, 53, 0.15) 1px, transparent 0);
+      background-size: 16px 16px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen selection:bg-primary-container selection:text-on-primary carbon-mesh flex flex-col justify-between">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#FF9A2E; font-weight:700; text-decoration:underline; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:none; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- ================= TOP APP BAR (Shared Components JSON Anchor) ================= -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-margin py-space-sm max-w-md mx-auto">
+<!-- Leading: Avatar + Athlete Unit Code -->
+<div class="flex items-center space-x-space-sm">
+<div class="relative w-8 h-8 rounded-DEFAULT bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Close up athletic portrait of Sufiyan in high contrast dramatic gym rim-lighting, wearing dark athletic gear, hyper-focused gaze, carbon obsidian background with molten amber tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDC-6NzepeRuWisAMiSXyMS1Lxf7JFo180OB9zBuJGVGtLk5u1WJoxaKBZvaQF_Ahgbbo2AUd7Dzrn7LlTa0Px_Jexj6EHM8C1l5V2_3sc-sLtza2-4rHyCgtgcSEIoYRYEQjibWG9MHgnpw2aOfAYxS9dvW-BDd4X5ltCkzUrd7QKVA0zWCF0QrC_1wIanrkodnCFdunm8cTAdY8tHFFTWRktc_y46ST181DvtiCJe6EjEn0JRaM38OT-00jEkAAd8HrzWGkIFnw"/>
+<div class="absolute bottom-0 right-0 w-2 h-2 bg-secondary rounded-full border border-surface"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold tracking-wider text-primary dark:text-primary uppercase leading-tight">
+            AM-TIPPU FITNESS
+          </span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">
+            UNIT // ATHLETE #094
+          </span>
+</div>
+</div>
+<!-- Trailing: Notifications Icon with Micro Live Indicator -->
+<div class="relative flex items-center">
+<button aria-label="Notifications" class="w-9 h-9 flex items-center justify-center rounded-DEFAULT bg-surface-container-low border border-outline-variant text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high active:scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+</div>
+</div>
+</header>
+<!-- ================= MAIN CONTENT CANVAS ================= -->
+<main class="w-full max-w-md mx-auto px-margin pt-space-md pb-28 space-y-space-lg flex-1">
+<!-- Screen Title & Tactical Quick Action CTA -->
+<section class="space-y-space-sm">
+<div class="flex items-end justify-between">
+<div>
+<div class="flex items-center space-x-space-xs mb-1">
+<span class="w-2 h-2 bg-secondary rounded-full animate-ping"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">LIVE TELEMETRY SYNC</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold uppercase tracking-wide">
+            PROGRESS &amp; METRICS
+          </h1>
+<p class="font-body-sm text-body-sm text-outline">Physique Analytics &amp; Strength Records</p>
+</div>
+</div>
+<!-- Quick Action CTA Button -->
+<button class="w-full h-[52px] bg-primary-container text-on-primary font-headline-sm text-headline-sm uppercase tracking-wider font-bold rounded-DEFAULT flex items-center justify-center space-x-space-sm shadow-sm active:scale-[0.98] transition-all duration-100 border border-primary">
+<span class="material-symbols-outlined text-[22px]" data-icon="scale">scale</span>
+<span>LOG TODAY'S WEIGH-IN</span>
+</button>
+</section>
+<!-- SECTION 1: BODYWEIGHT & TRANSFORMATION CURVE -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-space-md space-y-space-md relative overflow-hidden">
+<!-- Top Interval Toggle Bar -->
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">BODYWEIGHT MATRIX</span>
+<div class="flex items-center bg-surface-container p-1 rounded-DEFAULT border border-outline-variant">
+<button class="px-space-sm py-0.5 font-label-sm text-label-sm text-outline rounded-DEFAULT hover:text-on-surface transition-colors">1W</button>
+<button class="px-space-sm py-0.5 font-label-sm text-label-sm bg-primary-container text-on-primary font-bold rounded-DEFAULT shadow-xs">1M</button>
+<button class="px-space-sm py-0.5 font-label-sm text-label-sm text-outline rounded-DEFAULT hover:text-on-surface transition-colors">3M</button>
+<button class="px-space-sm py-0.5 font-label-sm text-label-sm text-outline rounded-DEFAULT hover:text-on-surface transition-colors">6M</button>
+<button class="px-space-sm py-0.5 font-label-sm text-label-sm text-outline rounded-DEFAULT hover:text-on-surface transition-colors">1Y</button>
+</div>
+</div>
+<!-- Big Stat Display & Telemetry Deltas -->
+<div class="flex flex-wrap items-baseline justify-between gap-y-space-xs pt-1">
+<div>
+<span class="font-headline-lg text-headline-lg font-black text-on-surface tracking-tight leading-none">
+            74.2
+          </span>
+<span class="font-label-md text-label-md text-primary font-bold ml-1 uppercase">KG</span>
+</div>
+<div class="flex items-center space-x-space-xs">
+<!-- Green Delta Chip -->
+<div class="bg-surface-container-low border border-secondary text-secondary px-space-xs py-0.5 rounded-DEFAULT flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_down">trending_down</span>
+<span class="font-label-sm text-label-sm font-bold">-3.8 KG TOTAL</span>
+</div>
+<!-- Secondary BF% Chip -->
+<div class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-space-xs py-0.5 rounded-DEFAULT flex items-center space-x-1">
+<span class="font-label-sm text-label-sm">BF% EST: <span class="text-primary font-bold">14.1%</span> (-1.8%)</span>
+</div>
+</div>
+</div>
+<!-- Minimalist Dark Telemetry SVG Graph Chart -->
+<div class="relative w-full h-36 bg-surface-container-low/60 rounded-DEFAULT border border-outline-variant/60 p-2 overflow-hidden flex flex-col justify-end">
+<!-- SVG Vector Path -->
+<svg class="w-full h-28 overflow-visible" fill="none" viewbox="0 0 340 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Shaded Area Gradient -->
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="curveGradient" x1="0" x2="0" y1="0" y2="100">
+<stop offset="0%" stop-color="#FF9A2E" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#FF9A2E" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="strokeGradient" x1="0" x2="340" y1="0" y2="0">
+<stop offset="0%" stop-color="#FF9A2E"></stop>
+<stop offset="70%" stop-color="#FFC18C"></stop>
+<stop offset="100%" stop-color="#4AE176"></stop>
+</lineargradient>
+</defs>
+<!-- Target Guideline (73.0 KG dashed) -->
+<line stroke="#554335" stroke-dasharray="4 4" stroke-width="1.5" x1="0" x2="340" y1="75" y2="75"></line>
+<text class="font-label-sm text-[9px] tracking-wider uppercase font-semibold" fill="#A28D7C" x="4" y="71">TARGET 73.0 KG</text>
+<!-- Area Fill Under Weight Curve -->
+<path d="M 10,25 C 60,32 100,18 160,42 C 210,58 260,50 330,68 L 330,100 L 10,100 Z" fill="url(#curveGradient)"></path>
+<!-- Main Weight Trajectory Stroke -->
+<path d="M 10,25 C 60,32 100,18 160,42 C 210,58 260,50 330,68" stroke="url(#strokeGradient)" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Data Points -->
+<circle class="stroke-surface stroke-2" cx="10" cy="25" fill="#FF9A2E" r="3.5"></circle>
+<circle cx="85" cy="28" fill="#FF9A2E" r="2.5"></circle>
+<circle class="stroke-surface stroke-2" cx="160" cy="42" fill="#FFC18C" r="3.5"></circle>
+<circle cx="240" cy="52" fill="#FFC18C" r="2.5"></circle>
+<!-- Active Current Live Node -->
+<circle class="stroke-surface stroke-2" cx="330" cy="68" fill="#4AE176" r="4.5"></circle>
+<circle class="animate-ping" cx="330" cy="68" fill="#4AE176" fill-opacity="0.3" r="7.5"></circle>
+</svg>
+<!-- X-Axis Timestamp Ticks -->
+<div class="flex justify-between items-center pt-2 font-label-sm text-label-sm text-outline">
+<span>SEP 04</span>
+<span>SEP 12</span>
+<span>SEP 20</span>
+<span>OCT 01</span>
+<span class="text-secondary font-bold">TODAY</span>
+</div>
+</div>
+<!-- Quick Stepper Input Bar -->
+<div class="bg-surface-container p-space-sm rounded-DEFAULT border border-outline-variant flex items-center justify-between gap-space-sm">
+<button class="h-10 px-3 bg-surface-container-high border border-outline-variant text-on-surface rounded-DEFAULT flex items-center justify-center font-label-md text-label-md active:scale-95 transition-transform" id="step-minus">
+          -0.1kg
+        </button>
+<div class="flex-1 flex flex-col items-center justify-center">
+<span class="font-label-sm text-[9px] text-outline uppercase tracking-wider">LOGGED INPUT</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight font-bold">74.2 <span class="text-sm font-normal text-on-surface-variant">kg</span></span>
+</div>
+<button class="h-10 px-3 bg-surface-container-high border border-outline-variant text-on-surface rounded-DEFAULT flex items-center justify-center font-label-md text-label-md active:scale-95 transition-transform" id="step-plus">
+          +0.1kg
+        </button>
+<button class="h-10 px-4 bg-primary text-on-primary font-headline-sm text-headline-sm uppercase tracking-wider font-bold rounded-DEFAULT active:scale-95 transition-transform shadow-sm">
+          Save
+        </button>
+</div>
+</section>
+<!-- SECTION 2: THE 'BIG 3' PERSONAL RECORDS (PR) HALL OF FAME -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="trophy" style="font-variation-settings: 'FILL' 1;">trophy</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-wide text-on-surface">THE 'BIG 3' PR HALL OF FAME</h2>
+</div>
+<button class="flex items-center space-x-1 font-label-sm text-label-sm text-primary hover:underline">
+<span class="material-symbols-outlined text-[14px]" data-icon="calculate">calculate</span>
+<span>1RM CALC</span>
+</button>
+</div>
+<!-- Tactical 3-Column Shelf -->
+<div class="grid grid-cols-3 gap-space-xs">
+<!-- PR 1: Bench Press -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-space-sm flex flex-col justify-between relative group hover:border-primary-container transition-colors">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-[9px] text-outline uppercase font-semibold">CHEST</span>
+<span class="font-label-sm text-[8px] bg-primary-container text-on-primary font-extrabold px-1 py-0.2 rounded-DEFAULT uppercase">PR</span>
+</div>
+<div class="py-1">
+<span class="font-headline-sm text-[11px] block uppercase text-on-surface-variant font-bold leading-none mb-1">BENCH PRESS</span>
+<span class="font-telemetry-digit text-telemetry-digit font-extrabold text-primary leading-tight block">105.0</span>
+<span class="font-label-sm text-[9px] text-outline font-bold uppercase">KG / 231 LB</span>
+</div>
+<div class="border-t border-outline-variant/60 pt-1 flex items-center justify-between">
+<span class="font-label-sm text-[8px] text-outline">Oct 2</span>
+<span class="font-label-sm text-[8px] text-secondary font-bold">+5.0kg</span>
+</div>
+</div>
+<!-- PR 2: Back Squat -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-space-sm flex flex-col justify-between relative group hover:border-primary-container transition-colors">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-[9px] text-outline uppercase font-semibold">LEGS</span>
+<span class="font-label-sm text-[8px] bg-surface-container-high text-on-surface-variant font-extrabold px-1 py-0.2 rounded-DEFAULT uppercase">PR</span>
+</div>
+<div class="py-1">
+<span class="font-headline-sm text-[11px] block uppercase text-on-surface-variant font-bold leading-none mb-1">BACK SQUAT</span>
+<span class="font-telemetry-digit text-telemetry-digit font-extrabold text-on-surface leading-tight block">145.0</span>
+<span class="font-label-sm text-[9px] text-outline font-bold uppercase">KG / 319 LB</span>
+</div>
+<div class="border-t border-outline-variant/60 pt-1 flex items-center justify-between">
+<span class="font-label-sm text-[8px] text-outline">Sep 18</span>
+<span class="font-label-sm text-[8px] text-secondary font-bold">+2.5kg</span>
+</div>
+</div>
+<!-- PR 3: Deadlift -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-space-sm flex flex-col justify-between relative group hover:border-primary-container transition-colors">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-[9px] text-outline uppercase font-semibold">POSTERIOR</span>
+<span class="font-label-sm text-[8px] bg-surface-container-high text-on-surface-variant font-extrabold px-1 py-0.2 rounded-DEFAULT uppercase">PR</span>
+</div>
+<div class="py-1">
+<span class="font-headline-sm text-[11px] block uppercase text-on-surface-variant font-bold leading-none mb-1">DEADLIFT</span>
+<span class="font-telemetry-digit text-telemetry-digit font-extrabold text-on-surface leading-tight block">185.0</span>
+<span class="font-label-sm text-[9px] text-outline font-bold uppercase">KG / 407 LB</span>
+</div>
+<div class="border-t border-outline-variant/60 pt-1 flex items-center justify-between">
+<span class="font-label-sm text-[8px] text-outline">Aug 29</span>
+<span class="font-label-sm text-[8px] text-secondary font-bold">+10kg</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: TAPE MEASUREMENTS GRID (CIRCUMFERENCE) -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="straighten">straighten</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-wide text-on-surface">TAPE MEASUREMENTS (CIRCUMFERENCE)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">CYCLE 04</span>
+</div>
+<!-- 4-Grid Telemetry Cards -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Measurement Card 1: Chest -->
+<div class="bg-surface-container-lowest border border-outline-variant p-space-sm rounded-DEFAULT flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[9px] text-outline uppercase tracking-wider block">CHEST</span>
+<span class="font-telemetry-digit text-[20px] font-bold text-on-surface block leading-tight">41.5 <span class="font-label-sm text-[10px] text-outline font-normal">IN</span></span>
+</div>
+<div class="bg-surface-container-low border border-secondary text-secondary px-space-xs py-0.5 rounded-DEFAULT text-right">
+<span class="font-label-sm text-[10px] font-bold block">+0.5 in</span>
+<span class="font-label-sm text-[8px] text-outline block uppercase">GAIN</span>
+</div>
+</div>
+<!-- Measurement Card 2: Biceps -->
+<div class="bg-surface-container-lowest border border-outline-variant p-space-sm rounded-DEFAULT flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[9px] text-outline uppercase tracking-wider block">BICEPS (R)</span>
+<span class="font-telemetry-digit text-[20px] font-bold text-on-surface block leading-tight">15.8 <span class="font-label-sm text-[10px] text-outline font-normal">IN</span></span>
+</div>
+<div class="bg-surface-container-low border border-secondary text-secondary px-space-xs py-0.5 rounded-DEFAULT text-right">
+<span class="font-label-sm text-[10px] font-bold block">+0.3 in</span>
+<span class="font-label-sm text-[8px] text-outline block uppercase">GAIN</span>
+</div>
+</div>
+<!-- Measurement Card 3: Waist (Cut) -->
+<div class="bg-surface-container-lowest border border-outline-variant p-space-sm rounded-DEFAULT flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[9px] text-outline uppercase tracking-wider block">WAIST (NAVEL)</span>
+<span class="font-telemetry-digit text-[20px] font-bold text-primary block leading-tight">31.2 <span class="font-label-sm text-[10px] text-outline font-normal">IN</span></span>
+</div>
+<div class="bg-surface-container-low border border-secondary text-secondary px-space-xs py-0.5 rounded-DEFAULT text-right">
+<span class="font-label-sm text-[10px] font-bold block">-1.6 in</span>
+<span class="font-label-sm text-[8px] text-secondary font-bold uppercase">CUT</span>
+</div>
+</div>
+<!-- Measurement Card 4: Shoulders -->
+<div class="bg-surface-container-lowest border border-outline-variant p-space-sm rounded-DEFAULT flex items-center justify-between">
+<div>
+<span class="font-label-sm text-[9px] text-outline uppercase tracking-wider block">SHOULDERS</span>
+<span class="font-telemetry-digit text-[20px] font-bold text-on-surface block leading-tight">48.2 <span class="font-label-sm text-[10px] text-outline font-normal">IN</span></span>
+</div>
+<div class="bg-surface-container-low border border-secondary text-secondary px-space-xs py-0.5 rounded-DEFAULT text-right">
+<span class="font-label-sm text-[10px] font-bold block">+0.8 in</span>
+<span class="font-label-sm text-[8px] text-outline block uppercase">GAIN</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: MACRO & TDEE CALORIE BLUEPRINT -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-space-md space-y-space-md">
+<!-- Header & Calorie Target Gauge -->
+<div class="flex items-center justify-between border-b border-outline-variant pb-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest block">DAILY NUTRITION PROTOCOL</span>
+<div class="flex items-baseline space-x-2">
+<span class="font-headline-sm text-[26px] font-black text-on-surface leading-tight">2,450</span>
+<span class="font-label-md text-label-md text-primary font-bold">KCAL TARGET</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-primary-container px-2 py-1 rounded-DEFAULT text-right">
+<span class="font-label-sm text-[9px] text-primary font-extrabold uppercase block">-300 KCAL</span>
+<span class="font-label-sm text-[8px] text-outline uppercase block">DEFICIT MODE</span>
+</div>
+</div>
+<!-- Macro Progress Breakdown Bars -->
+<div class="space-y-space-sm">
+<!-- Protein Bar -->
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-bold uppercase tracking-wider">PROTEIN</span>
+<span class="text-on-surface"><span class="text-primary font-bold">185g</span> / 190g <span class="text-outline">(97%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden p-0.5 border border-outline-variant/60">
+<div class="h-full bg-primary-container rounded-full" style="width: 97%;"></div>
+</div>
+</div>
+<!-- Carbs Bar -->
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-bold uppercase tracking-wider">CARBOHYDRATES</span>
+<span class="text-on-surface"><span class="text-secondary font-bold">210g</span> / 260g <span class="text-outline">(80%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden p-0.5 border border-outline-variant/60">
+<div class="h-full bg-secondary-container rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Fats Bar -->
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-bold uppercase tracking-wider">FATS</span>
+<span class="text-on-surface"><span class="text-tertiary-fixed-dim font-bold">52g</span> / 65g <span class="text-outline">(80%)</span></span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden p-0.5 border border-outline-variant/60">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+</div>
+<!-- Hydration Sub-Tracker -->
+<div class="pt-space-xs border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-space-sm">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container border border-outline-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="water_drop" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<span class="font-label-sm text-[9px] text-outline uppercase block">HYDRATION STATUS</span>
+<span class="font-telemetry-digit text-[16px] text-on-surface font-bold">3.2L <span class="text-outline font-normal text-[12px]">/ 4.0L</span></span>
+</div>
+</div>
+<button class="h-8 px-space-sm bg-surface-container-high border border-outline-variant hover:border-secondary text-on-surface font-label-sm text-label-sm font-semibold rounded-DEFAULT flex items-center space-x-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[14px]" data-icon="add">add</span>
+<span>250ML</span>
+</button>
+</div>
+</section>
+</main>
+<!-- ================= BOTTOM NAVIGATION BAR (Shared Components JSON Anchor) ================= -->
+<!-- 
+    Destination Rule: This screen is 'Analytics / Progress' top-level ecosystem page.
+    Active Semantic Mapping: The JSON label "Analytics" maps directly to this analytics & metrics screen.
+    Style Execution: Using exact tokens & classes from JSON style_* attributes:
+      bg-surface-container-lowest, border-t border-outline-variant, label-sm uppercase, active amber highlight.
+  -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm safe-area-bottom bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant">
+<!-- Item 1: Home -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="index.html">
+<span class="material-symbols-outlined text-[22px]" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Home</span>
+</a>
+<!-- Item 2: Workouts -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="workouts.html">
+<span class="material-symbols-outlined text-[22px]" data-icon="sports_gymnastics">sports_gymnastics</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Workouts</span>
+</a>
+<!-- Item 3: Check In -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="checkin.html">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container border border-outline-variant flex items-center justify-center -mt-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="qr_code_scanner">qr_code_scanner</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Check In</span>
+</a>
+<!-- Item 4: Analytics (ACTIVE DESTINATION) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold active:scale-95 duration-100 flex-1 py-1 relative" href="progress.html">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="monitoring" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+<span class="absolute -top-0.5 -right-1 w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1 tracking-wider">Analytics</span>
+</a>
+<!-- Item 5: Profile -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="profile.html">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Profile</span>
+</a>
+</nav>
+<!-- Inline Lightweight Micro-Interactivity -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let currentWeight = 74.2;
+      const weightDisplay = document.querySelector('.font-telemetry-digit');
+      const stepMinus = document.getElementById('step-minus');
+      const stepPlus = document.getElementById('step-plus');
+
+      if (stepMinus && stepPlus && weightDisplay) {
+        stepMinus.addEventListener('click', () => {
+          currentWeight = Math.max(40.0, (currentWeight - 0.1));
+          weightDisplay.innerHTML = `${currentWeight.toFixed(1)} <span class="text-sm font-normal text-on-surface-variant">kg</span>`;
+        });
+
+        stepPlus.addEventListener('click', () => {
+          currentWeight = Math.min(200.0, (currentWeight + 0.1));
+          weightDisplay.innerHTML = `${currentWeight.toFixed(1)} <span class="text-sm font-normal text-on-surface-variant">kg</span>`;
+        });
+      }
+    });
+  </script>
+</body></html>

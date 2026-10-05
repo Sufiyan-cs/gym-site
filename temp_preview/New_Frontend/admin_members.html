@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Athlete Roster &amp; Ops | AM-Tippu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#93000a",
+            "outline": "#a28d7c",
+            "on-background": "#e6e1df",
+            "secondary-fixed-dim": "#45dfa4",
+            "on-surface": "#e6e1df",
+            "on-tertiary-fixed": "#001e2b",
+            "on-secondary-fixed-variant": "#005137",
+            "tertiary-fixed": "#c2e8ff",
+            "inverse-on-surface": "#32302f",
+            "on-primary-fixed-variant": "#6c3a00",
+            "surface-dim": "#141312",
+            "surface-container-low": "#1d1b1a",
+            "tertiary-container": "#00c0fd",
+            "primary-fixed-dim": "#ffb877",
+            "surface-container-high": "#2b2a28",
+            "primary": "#ffc18c",
+            "surface-container-highest": "#363433",
+            "on-tertiary": "#003548",
+            "on-surface-variant": "#dbc2af",
+            "secondary-fixed": "#68fcbf",
+            "on-secondary": "#003825",
+            "on-error-container": "#ffdad6",
+            "surface": "#141312",
+            "secondary-container": "#00bd85",
+            "tertiary": "#8dd7ff",
+            "background": "#141312",
+            "inverse-surface": "#e6e1df",
+            "surface-container-lowest": "#0f0e0d",
+            "inverse-primary": "#8e4f00",
+            "surface-variant": "#363433",
+            "secondary": "#45dfa4",
+            "surface-tint": "#ffb877",
+            "on-tertiary-fixed-variant": "#004d67",
+            "on-error": "#690005",
+            "on-primary-container": "#693900",
+            "tertiary-fixed-dim": "#76d1ff",
+            "primary-fixed": "#ffdcc1",
+            "on-secondary-fixed": "#002114",
+            "on-secondary-container": "#00452e",
+            "surface-bright": "#3b3937",
+            "primary-container": "#ff9a2e",
+            "error": "#ffb4ab",
+            "on-tertiary-container": "#004a65",
+            "on-primary": "#4c2700",
+            "surface-container": "#211f1e",
+            "on-primary-fixed": "#2e1500",
+            "outline-variant": "#554335"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "margin": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-tablet": "2rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display-metric": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-metric": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .glow-amber {
+      box-shadow: 0px 12px 32px rgba(255, 154, 46, 0.15);
+    }
+    .micro-border {
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased font-body-md selection:bg-primary-container selection:text-surface-container-lowest">
+<!-- Outer Mobile Shell -->
+<div class="relative w-full max-w-[390px] mx-auto min-h-screen bg-surface-container-lowest flex flex-col pb-28 select-none">
+<!-- Top System Bar -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin pt-4 pb-3 flex flex-col gap-3">
+<!-- Top Row Navigation & App Brand -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<a href="admin_dashboard.html" aria-label="Back to Ops Command" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors active:scale-95" style="text-decoration:none">
+<span class="material-symbols-outlined text-lg" data-icon="arrow_back">arrow_back</span>
+</a>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Athlete Roster &amp; Ops</h1>
+<p class="font-label-md text-label-md text-outline mt-0.5">312 Enrolled Members</p>
+</div>
+</div>
+<a href="register.html" class="bg-primary-container text-black font-label-lg text-label-lg px-3 py-1.5 rounded-full flex items-center gap-1.5 active:scale-95 transition-transform glow-amber font-bold" style="text-decoration:none">
+<span class="material-symbols-outlined text-base" data-icon="person_add">person_add</span>
+<span>+ Register</span>
+</a>
+</div>
+<!-- Quick Search & Scanner Bar -->
+<div class="flex items-center gap-2 mt-1">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container text-on-surface placeholder:text-outline font-body-md text-body-md pl-9 pr-3 py-2 rounded-xl border border-transparent focus:border-outline-variant focus:outline-none focus:ring-0 transition-colors" placeholder="Search athlete, phone, #AMT ID..." type="text"/>
+</div>
+<button aria-label="RFID Scanner" class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary-fixed-dim hover:text-primary-container micro-border active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="qr_code_scanner">qr_code_scanner</span>
+</button>
+</div>
+<!-- Horizontal Filter Pills -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar -mx-margin px-margin pt-1 pb-1">
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high text-on-surface border border-primary-container/40 font-semibold shadow-sm" type="button">
+          All (312)
+        </button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-outline hover:text-on-surface transition-colors" type="button">
+          Active (298)
+        </button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-primary-fixed-dim border border-primary-container/20 flex items-center gap-1" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+          Expiring Soon (7)
+        </button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-outline hover:text-on-surface transition-colors" type="button">
+          Expired (3)
+        </button>
+<button class="whitespace-nowrap px-3.5 py-1.5 rounded-full font-label-md text-label-md bg-surface-container text-secondary flex items-center gap-1" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+          On Floor Now (18)
+        </button>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 px-margin pt-3 flex flex-col gap-4">
+<!-- High-Priority Alert Banner -->
+<section class="bg-gradient-to-r from-surface-container to-surface-container-high micro-border rounded-xl p-3.5 relative overflow-hidden flex flex-col gap-2.5">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-primary-container/20 text-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="notifications_active">notifications_active</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface text-[15px] leading-tight">Weekly Renewals at Risk</h2>
+<p class="font-label-md text-label-md text-outline">7 athlete memberships expire within 7 days</p>
+</div>
+</div>
+<span class="font-label-caps text-label-caps bg-primary-container/10 text-primary-fixed-dim px-2 py-0.5 rounded-full uppercase tracking-wider">High Alert</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-outline-variant/30">
+<div class="flex items-center gap-1.5 text-secondary text-label-md font-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="security_update_good">security_update_good</span>
+<span>Turnstile Auto-Lock Armed</span>
+</div>
+<button class="bg-primary-container/20 hover:bg-primary-container/30 text-primary-fixed font-label-md text-label-md px-3 py-1.5 rounded-lg flex items-center gap-1.5 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+<span>Batch WhatsApp Nudges</span>
+</button>
+</div>
+</section>
+<!-- Athlete Cards Roster -->
+<div class="flex flex-col gap-3.5">
+<!-- CARD 1: Mohammed Zishan -->
+<article class="bg-surface-container rounded-2xl p-4 micro-border flex flex-col gap-3 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center font-headline-sm text-on-surface font-bold border border-white/5">
+                MZ
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[16px]">Mohammed Zishan</h3>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-primary-container/15 text-primary-fixed-dim">PRO ANNUAL</span>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md mt-0.5">
+<span>#AMT-104</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="badge">badge</span>
+                    RFID Key Fob: AMT-FOB-8819
+                  </span>
+</div>
+</div>
+</div>
+<button aria-label="More options" class="text-outline hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Status & Badges Metric Strip -->
+<div class="grid grid-cols-3 gap-2 py-2 px-2.5 rounded-xl bg-surface-container-lowest/60 micro-border">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STATUS</span>
+<span class="font-label-md text-label-md text-primary-container font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+                Expires Today (23:59)
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STREAK</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+                28 Days <span class="text-xs">🔥</span>
+</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">HEALTH CLEARANCE</span>
+<span class="font-label-md text-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+                PAR-Q Cleared
+              </span>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-2 pt-0.5">
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 micro-border active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="chat">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+<button class="flex-1 bg-primary-container text-surface-container-lowest font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1 font-bold active:scale-95 transition-all glow-amber" type="button">
+<span class="material-symbols-outlined text-base" data-icon="currency_rupee">currency_rupee</span>
+<span>Renew Counter</span>
+</button>
+<button aria-label="Manual Gate Pass" class="w-9 h-9 rounded-xl bg-surface-container-high flex items-center justify-center text-outline hover:text-on-surface micro-border active:scale-95 transition-all" title="Manual Gate Pass" type="button">
+<span class="material-symbols-outlined text-base" data-icon="lock_open">lock_open</span>
+</button>
+</div>
+</article>
+<!-- CARD 2: Sufiyan Khan -->
+<article class="bg-surface-container rounded-2xl p-4 micro-border flex flex-col gap-3 relative overflow-hidden">
+<!-- Ambient Glow for Active State -->
+<div class="absolute -top-12 -right-12 w-28 h-28 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center font-headline-sm text-secondary font-bold border border-secondary-container/20">
+                SK
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[16px]">Sufiyan Khan</h3>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-secondary/15 text-secondary">ELITE ANNUAL</span>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md mt-0.5">
+<span>#AMT-9842</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="badge">badge</span>
+                    RFID Key Fob: AMT-FOB-9842
+                  </span>
+</div>
+</div>
+</div>
+<button aria-label="More options" class="text-outline hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Live Floor Indicator -->
+<div class="flex items-center justify-between px-3 py-1.5 rounded-lg bg-secondary/10 border border-secondary/20 text-secondary">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md font-semibold">On Floor Now</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface/80">Turnstile In: 07:15 AM</span>
+</div>
+<!-- Status & Badges Metric Strip -->
+<div class="grid grid-cols-3 gap-2 py-2 px-2.5 rounded-xl bg-surface-container-lowest/60 micro-border">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STATUS</span>
+<span class="font-label-md text-label-md text-secondary font-medium">Active • 24d Left</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STREAK</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+                14 Days <span class="text-xs">🔥</span>
+</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">HEALTH CLEARANCE</span>
+<span class="font-label-md text-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                PAR-Q Cleared
+              </span>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-2 pt-0.5">
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 micro-border active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="lock_open">lock_open</span>
+<span>Manual Gate Pass</span>
+</button>
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-outline hover:text-on-surface font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 micro-border active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="chat">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+</div>
+</article>
+<!-- CARD 3: Rahul Sharma -->
+<article class="bg-surface-container rounded-2xl p-4 micro-border flex flex-col gap-3 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center font-headline-sm text-on-surface font-bold border border-white/5">
+                RS
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[16px]">Rahul Sharma</h3>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-primary-container/15 text-primary-fixed-dim">ELITE ANNUAL</span>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md mt-0.5">
+<span>#AMT-4102</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="badge">badge</span>
+                    RFID Key Fob: AMT-FOB-4102
+                  </span>
+</div>
+</div>
+</div>
+<button aria-label="More options" class="text-outline hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Status & Badges Metric Strip -->
+<div class="grid grid-cols-3 gap-2 py-2 px-2.5 rounded-xl bg-surface-container-lowest/60 micro-border">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STATUS</span>
+<span class="font-label-md text-label-md text-primary-container font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs text-primary-container" data-icon="warning">warning</span>
+                Expires in 2 days
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STREAK</span>
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-0.5">
+                22 Days <span class="text-xs">🔥</span>
+</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">HEALTH CLEARANCE</span>
+<span class="font-label-md text-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+                PAR-Q Cleared
+              </span>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-2 pt-0.5">
+<button class="flex-1 bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 micro-border active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base text-secondary" data-icon="chat">chat</span>
+<span>WhatsApp Nudge</span>
+</button>
+<button class="flex-1 bg-primary-container text-surface-container-lowest font-label-md text-label-md py-2 px-2 rounded-xl flex items-center justify-center gap-1 font-bold active:scale-95 transition-all glow-amber" type="button">
+<span class="material-symbols-outlined text-base" data-icon="currency_rupee">currency_rupee</span>
+<span>Renew at Counter</span>
+</button>
+</div>
+</article>
+<!-- CARD 4: Ayesha Patel -->
+<article class="bg-surface-container/60 rounded-2xl p-4 micro-border flex flex-col gap-3 relative overflow-hidden opacity-90">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center font-headline-sm text-outline font-bold border border-white/5">
+                AP
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[16px]">Ayesha Patel</h3>
+<span class="font-label-caps text-label-caps px-1.5 py-0.5 rounded bg-surface-container-highest text-outline">PRO MONTHLY</span>
+</div>
+<div class="flex items-center gap-2 text-outline font-label-md text-label-md mt-0.5">
+<span>#AMT-3310</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="badge">badge</span>
+                    RFID Key Fob: AMT-FOB-3310
+                  </span>
+</div>
+</div>
+</div>
+<button aria-label="More options" class="text-outline hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Status & Badges Metric Strip -->
+<div class="grid grid-cols-3 gap-2 py-2 px-2.5 rounded-xl bg-surface-container-lowest/60 micro-border">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STATUS</span>
+<span class="font-label-md text-label-md text-error flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Expired (2d ago)
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">STREAK</span>
+<span class="font-label-md text-label-md text-on-surface">38 Days</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">HEALTH CLEARANCE</span>
+<span class="font-label-md text-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                PAR-Q Cleared
+              </span>
+</div>
+</div>
+<!-- Turnstile Access Barred Warning -->
+<div class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-error-container/20 text-error font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="block">block</span>
+<span>Turnstile RFID Fob Auto-Locked</span>
+</div>
+<!-- Action Cluster -->
+<div class="pt-0.5">
+<button class="w-full bg-surface-bright hover:bg-surface-container-highest text-primary-fixed-dim font-label-md text-label-md py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 border border-primary-container/30 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base" data-icon="sync">sync</span>
+<span>Renew &amp; Reactivate Gate Pass</span>
+</button>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Admin Navigation Dock (Shared Component Layout Token Execution) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-high/90 backdrop-blur-xl rounded-full mx-auto mb-4 w-[calc(100%-2.5rem)] max-w-md shadow-[0px_12px_32px_rgba(255,154,46,0.2)] border border-white/10">
+<!-- Floor Ops -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface transition-colors active:scale-90 duration-200" href="admin_dashboard.html">
+<span class="material-symbols-outlined text-xl" data-icon="fitness_center">fitness_center</span>
+<span class="text-[9px] font-semibold mt-0.5">Floor</span>
+</a>
+<!-- Members (Active Tab) -->
+<a class="flex flex-col items-center justify-center text-on-surface p-2 after:content-[''] after:w-1 after:h-1 after:bg-primary-container after:rounded-full after:mt-1 active:scale-90 duration-200" href="admin_members.html">
+<span class="material-symbols-outlined text-xl text-primary-container" data-icon="badge">badge</span>
+<span class="text-[9px] text-primary-container font-bold mt-0.5">Members</span>
+</a>
+<!-- Billing / POS -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface transition-colors active:scale-90 duration-200" href="admin_subscriptions.html">
+<span class="material-symbols-outlined text-xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-[9px] font-semibold mt-0.5">Billing</span>
+</a>
+<!-- Inventory -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface transition-colors active:scale-90 duration-200" href="admin_inventory.html">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="text-[9px] font-semibold mt-0.5">Stock</span>
+</a>
+</nav>
+
+<script>
+  // Filter pills interactive toggle
+  document.querySelectorAll('header button.rounded-full').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('header button.rounded-full').forEach(p => {
+        p.classList.remove('bg-surface-container-high', 'text-on-surface', 'border', 'border-primary-container/40', 'font-semibold', 'shadow-sm');
+        p.classList.add('bg-surface-container', 'text-outline');
+      });
+      pill.classList.remove('bg-surface-container', 'text-outline');
+      pill.classList.add('bg-surface-container-high', 'text-on-surface', 'border', 'border-primary-container/40', 'font-semibold', 'shadow-sm');
+    });
+  });
+
+  // Action buttons
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.includes('WhatsApp Nudge') || btn.textContent.includes('Batch WhatsApp')) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alert('✓ Dispatched WhatsApp UPI payment gateway nudge.');
+      });
+    } else if (btn.textContent.includes('Manual Gate Pass')) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alert('✓ Optical Turnstile Gate 01 barrier opened for athlete.');
+      });
+    }
+  });
+</script>
+</div>
+</body></html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-TIPPU FITNESS — Mobile Athlete Dashboard</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Barlow Condensed & Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom theme config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#004119",
+            "tertiary-container": "#b8b1a9",
+            "inverse-on-surface": "#32302f",
+            "on-background": "#e6e1df",
+            "on-tertiary": "#34302a",
+            "on-error-container": "#ffdad6",
+            "surface-container": "#211f1e",
+            "surface-container-high": "#2b2a28",
+            "secondary-container": "#00b954",
+            "surface-container-lowest": "#0f0e0d",
+            "secondary-fixed-dim": "#4ae176",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "surface": "#141312",
+            "tertiary-fixed": "#e9e1d9",
+            "error": "#ffb4ab",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "on-primary-container": "#693900",
+            "secondary-fixed": "#6bff8f",
+            "primary-container": "#ff9a2e",
+            "primary-fixed": "#ffdcc1",
+            "inverse-surface": "#e6e1df",
+            "surface-tint": "#ffb877",
+            "tertiary": "#d4ccc4",
+            "outline": "#a28d7c",
+            "surface-container-highest": "#363433",
+            "secondary": "#4ae176",
+            "on-error": "#690005",
+            "surface-bright": "#3b3937",
+            "outline-variant": "#554335",
+            "on-secondary-fixed": "#002109",
+            "on-primary": "#4c2700",
+            "background": "#141312",
+            "surface-container-low": "#1d1b1a",
+            "inverse-primary": "#8e4f00",
+            "on-tertiary-container": "#48443e",
+            "primary-fixed-dim": "#ffb877",
+            "error-container": "#93000a",
+            "on-secondary": "#003915",
+            "on-primary-fixed": "#2e1500",
+            "on-surface-variant": "#dbc2af",
+            "surface-variant": "#363433",
+            "on-surface": "#e6e1df",
+            "on-secondary-fixed-variant": "#005321",
+            "on-primary-fixed-variant": "#6c3a00",
+            "on-tertiary-fixed": "#1e1b16",
+            "surface-dim": "#141312",
+            "primary": "#ffc18c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "0.75rem",
+            "gutter-desktop": "1.25rem",
+            "margin-desktop": "2rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "telemetry-digit": ["JetBrains Mono"],
+            "label-sm": ["JetBrains Mono"],
+            "body-sm": ["Space Grotesk"],
+            "headline-lg-mobile": ["Barlow Condensed"],
+            "headline-lg": ["Barlow Condensed"],
+            "headline-sm": ["Barlow Condensed"],
+            "display-lg-mobile": ["Barlow Condensed"],
+            "body-lg": ["Space Grotesk"],
+            "display-lg": ["Barlow Condensed"],
+            "body-md": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Mechanical scanline texture and utility rules */
+    body {
+      background-color: #0A0908;
+      color: #e6e1df;
+      font-family: 'Space Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      touch-action: manipulation;
+    }
+    .carbon-card {
+      background: #141210;
+      border: 1px solid #2C261F;
+    }
+    .carbon-card-interactive {
+      background: #1A1712;
+      border: 1px solid #2C261F;
+      transition: border-color 0.15s ease, transform 0.1s ease;
+    }
+    .carbon-card-interactive:active {
+      border-color: #FF9A2E;
+      transform: scale(0.985);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .safe-bottom {
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 16px));
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-dim min-h-screen text-on-surface">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#FF9A2E; font-weight:700; text-decoration:underline; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:none; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- Outer Mobile Viewport Frame (Constraint to standard mobile layout) -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col relative bg-surface-dim safe-bottom">
+<!-- TopAppBar Shared Component (Anchored & Executed) -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant docked full-width top-0 sticky z-40">
+
+    
+  
+<div class="flex justify-between items-center w-full px-margin py-space-sm max-w-md mx-auto">
+<!-- Leading Avatar -->
+<div class="flex items-center gap-space-sm">
+<div class="relative w-10 h-10 rounded-DEFAULT overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Intense high-contrast portrait of an athletic male gym member named Sufiyan in low-key dramatic studio lighting against a textured matte black carbon wall. Focused resolute expression, beads of sweat on the temple, illuminated by a warm molten amber rim light. Dark high-performance athletic fitness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnbkbaY-NhjAJJ5r1LylsCrUR3fiwZptUUX67SXKYeO9x6syslAhP_1vA0us-JT8VgiBlOotO06rU10a7-3M5q_R6GchCE1eOe4lnLYYpdMNolSbBS4jYhvi8NRx8pIqIEbu6d197viO8sSj-NyZUH10fmzB-_YlHQ22fy3bIVivWW7wsGOk3yEvRWg0oOauMOz0bENySCVvb22gmGnpZsyxuUv0Pa3vrzdCbrwqDiNRp9SY-TXqN8SNLLeDx3NnXkJSonR7Xybow"/>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary border border-surface rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold tracking-wider text-primary dark:text-primary uppercase">AM-TIPPU FITNESS</span>
+<div class="flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Live System • PRO ATHLETE</span>
+</div>
+</div>
+</div>
+<!-- Trailing Action: Notification Bell -->
+<button aria-label="Notifications" class="relative w-10 h-10 flex items-center justify-center rounded-DEFAULT bg-surface-container-high dark:bg-surface-container-high border border-outline-variant hover:bg-surface-container transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary text-xl">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface"></span>
+</button>
+</div>
+</header>
+<!-- Sub-Header Status & Facility Beacon -->
+<div class="px-margin pt-space-md pb-space-xs flex justify-between items-center">
+<div>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase block">ATHLETE BRIEFING</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface tracking-tight">GOOD MORNING, SUFIYAN</h1>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-DEFAULT border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase font-bold">VIP</span>
+</div>
+</div>
+<!-- Gym Location / Operating Status Chip Strip -->
+<div class="px-margin mb-space-md">
+<div class="flex items-center justify-between bg-surface-container-lowest px-3 py-2 rounded-DEFAULT border border-outline-variant text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<span class="font-label-md text-label-md text-on-surface uppercase font-semibold">Shampura Branch</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase">GYM OPEN: 5:30 AM - 10:00 PM</span>
+</div>
+</div>
+</div>
+<!-- MAIN SCROLLABLE CONTENT BODY -->
+<main class="px-margin flex flex-col gap-space-lg">
+<!-- SECTION 1: DAILY FIRE STREAK & MOTIVATION BENTO -->
+<section class="carbon-card rounded-DEFAULT p-space-md relative overflow-hidden">
+<!-- Technical Ambient Accent Edge -->
+<div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-container via-secondary to-primary-container"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-sm text-label-sm text-primary-container uppercase font-bold tracking-widest">DISCIPLINE LOG</span>
+</div>
+<div class="flex items-baseline gap-2 mt-0.5">
+<span class="font-display-lg-mobile text-display-lg-mobile font-extrabold text-on-surface leading-none">4-DAY STREAK</span>
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">ON FIRE</span>
+</div>
+</div>
+<div class="bg-surface-container-high px-2.5 py-1 rounded-DEFAULT border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-outline text-sm">schedule</span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase font-semibold">WEEK 14</span>
+</div>
+</div>
+<!-- 7-Day Flame Tracker Row -->
+<div class="grid grid-cols-7 gap-1.5 my-space-sm">
+<!-- Mon: Completed -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-primary-container text-on-primary-container rounded-DEFAULT flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">M</span>
+</div>
+<!-- Tue: Completed -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-primary-container text-on-primary-container rounded-DEFAULT flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">T</span>
+</div>
+<!-- Wed: Completed -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-primary-container text-on-primary-container rounded-DEFAULT flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">W</span>
+</div>
+<!-- Thu: Today / Completed -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-primary-container text-on-primary-container rounded-DEFAULT flex items-center justify-center ring-2 ring-primary ring-offset-2 ring-offset-surface">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">T</span>
+</div>
+<!-- Fri: Upcoming -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-surface-container-high border border-outline-variant rounded-DEFAULT flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">F</span>
+</div>
+<!-- Sat: Upcoming -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-surface-container-high border border-outline-variant rounded-DEFAULT flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">S</span>
+</div>
+<!-- Sun: Rest -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-full aspect-square bg-surface-container-high border border-outline-variant rounded-DEFAULT flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-xs">bed</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">S</span>
+</div>
+</div>
+<!-- Split focus & Motivational micro-copy banner -->
+<div class="mt-space-sm pt-space-sm border-t border-outline-variant flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="bg-surface-container-highest px-2 py-0.5 rounded-DEFAULT text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              TODAY: PUSH (CHEST &amp; TRICEPS)
+            </span>
+<span class="font-label-sm text-label-sm text-secondary font-mono uppercase">RPE 8.5 TARGET</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Consistency is king. Hit your chest volume today with controlled tempo and full contraction.
+          </p>
+</div>
+</section>
+<!-- SECTION 2: TACTICAL QUICK ACTION GRID & PRIMARY HERO CTA -->
+<section class="flex flex-col gap-space-sm">
+<!-- High-Impact Primary Hero Action Button -->
+<button aria-label="Start workout" class="w-full bg-primary-container text-on-primary-container h-14 rounded-DEFAULT flex items-center justify-between px-space-md font-headline-sm text-headline-sm uppercase font-extrabold tracking-wider shadow-lg active:scale-95 transition-transform duration-100 group">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-45 transition-transform" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>START TODAY'S WORKOUT</span><span class="material-symbols-outlined">arrow_forward</span></button>
+<!-- 3-Column / Asymmetric Tactical Telemetry Grid -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Quick Action 1: QR Check-In -->
+<div onclick="window.location.href='checkin.html'" style="cursor:pointer;" <div class="carbon-card-interactive rounded-DEFAULT p-space-sm flex flex-col justify-between cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-xl group-hover:scale-110 transition-transform">qr_code_scanner</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="mt-space-sm">
+<span class="font-label-sm text-label-sm text-outline block uppercase">FACILITY</span>
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase block tracking-wider mt-0.5 leading-tight">QR CHECK-IN</span>
+</div>
+</div>
+<!-- Quick Action 2: Body Weight Metric -->
+<div class="carbon-card-interactive rounded-DEFAULT p-space-sm flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-outline text-xl">scale</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container bg-opacity-20 px-1 py-0.5 rounded-DEFAULT font-bold">-0.4kg</span>
+</div>
+<div class="mt-space-sm">
+<span class="font-label-sm text-label-sm text-outline block uppercase">CURRENT</span>
+<div class="flex items-baseline gap-0.5">
+<span class="font-telemetry-digit text-telemetry-digit text-on-surface font-bold leading-none">74.2</span>
+<span class="font-label-sm text-label-sm text-outline">KG</span>
+</div>
+</div>
+</div>
+<!-- Quick Action 3: Calorie & Macro Target -->
+<div class="carbon-card-interactive rounded-DEFAULT p-space-sm flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary-container text-xl">nutrition</span>
+<div class="w-4 h-4 rounded-full border-2 border-primary-container border-t-transparent animate-spin"></div>
+</div>
+<div class="mt-space-sm">
+<span class="font-label-sm text-label-sm text-outline block uppercase">TDEE GOAL</span>
+<div class="flex items-baseline gap-0.5">
+<span class="font-telemetry-digit text-telemetry-digit text-on-surface font-bold leading-none">2,450</span>
+<span class="font-label-sm text-label-sm text-outline">KCAL</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Macro Breakdown Bar Mini-Tray -->
+<div class="carbon-card rounded-DEFAULT px-3 py-2 flex items-center justify-between text-label-sm font-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-on-surface uppercase font-bold">P: 180g</span>
+</div>
+<div class="h-3 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface uppercase font-bold">C: 260g</span>
+</div>
+<div class="h-3 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface uppercase font-bold">F: 65g</span>
+</div>
+<div class="h-3 w-px bg-outline-variant"></div>
+<span class="text-outline uppercase">62% MET</span>
+</div>
+</section>
+<!-- SECTION 3: TODAY'S SCHEDULED ROUTINE PREVIEW -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">TRAINING BLUEPRINT</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wider font-extrabold">TODAY'S ROUTINE</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline-variant font-mono">4 EXERCISES • 13 SETS</span>
+<button class="font-label-sm text-label-sm text-primary font-bold uppercase hover:underline">View Plan</button>
+</div>
+</div>
+<!-- Routine Exercise Cards Stack -->
+<div class="flex flex-col gap-2">
+<!-- Exercise 1: Incline Dumbbell Press -->
+<div class="carbon-card p-3 rounded-DEFAULT flex items-center justify-between hover:border-outline-variant transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center font-telemetry-digit text-base text-primary font-bold">
+                01
+              </div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Incline Dumbbell Press</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-outline uppercase font-mono">4 SETS × 10 REPS</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded-DEFAULT text-on-surface-variant font-bold">32 KG</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container bg-opacity-10 px-1 rounded-DEFAULT font-mono">Upper Chest</span>
+</div>
+</div>
+</div>
+<button aria-label="Start Exercise 1" class="w-9 h-9 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary hover:border-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</button>
+</div>
+<!-- Exercise 2: Barbell Flat Bench -->
+<div class="carbon-card p-3 rounded-DEFAULT flex items-center justify-between hover:border-outline-variant transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center font-telemetry-digit text-base text-primary font-bold">
+                02
+              </div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Barbell Flat Bench</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-outline uppercase font-mono">3 SETS × 8 REPS</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded-DEFAULT text-on-surface-variant font-bold">85 KG</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container bg-opacity-10 px-1 rounded-DEFAULT font-mono">Mid Chest</span>
+</div>
+</div>
+</div>
+<button aria-label="Start Exercise 2" class="w-9 h-9 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary hover:border-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</button>
+</div>
+<!-- Exercise 3: Cable Flyes -->
+<div class="carbon-card p-3 rounded-DEFAULT flex items-center justify-between hover:border-outline-variant transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center font-telemetry-digit text-base text-primary font-bold">
+                03
+              </div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Cable Flyes</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-outline uppercase font-mono">3 SETS × 12 REPS</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded-DEFAULT text-on-surface-variant font-bold">15 KG</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container bg-opacity-10 px-1 rounded-DEFAULT font-mono">Chest Isolation</span>
+</div>
+</div>
+</div>
+<button aria-label="Start Exercise 3" class="w-9 h-9 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary hover:border-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</button>
+</div>
+<!-- Exercise 4: Skull Crushers -->
+<div class="carbon-card p-3 rounded-DEFAULT flex items-center justify-between hover:border-outline-variant transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center font-telemetry-digit text-base text-primary font-bold">
+                04
+              </div>
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Skull Crushers</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-outline uppercase font-mono">3 SETS × 12 REPS</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-1.5 py-0.5 rounded-DEFAULT text-on-surface-variant font-bold">28 KG</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container bg-opacity-10 px-1 rounded-DEFAULT font-mono">Triceps Long Head</span>
+</div>
+</div>
+</div>
+<button aria-label="Start Exercise 4" class="w-9 h-9 rounded-DEFAULT bg-surface-container-high border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary hover:border-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 4: GYM COUNTER & COMMUNITY BROADCAST -->
+<section class="carbon-card rounded-DEFAULT p-space-md border border-primary-container relative overflow-hidden bg-gradient-to-br from-surface-container to-surface">
+<div class="flex items-center justify-between mb-2">
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold uppercase px-2 py-0.5 rounded-DEFAULT tracking-wider">
+            GYM STORE • RESTOCK ALERT
+          </span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">IN STOCK AT FRONT DESK</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-20 h-20 bg-surface-container-highest rounded-DEFAULT overflow-hidden border border-outline-variant shrink-0">
+<img class="w-full h-full object-cover" data-alt="Matte black cylindrical container tub of premium whey isolate protein powder on an industrial brushed iron gym counter surface. Harsh directional sports lighting casting rim reflections with subtle molten amber backlighting and high contrast athletic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsV-2i-jt5YIPpp30-8yMBCQQicoVp_39ajwwq7MupuSAscJduAQjWGtrRY8aOjLFFJiKgk6hWORKWVHDR340gZpiRN8uj8EPr3BHD1yaev4h8XRADc9ntc8kRJFxcDXymn3hsh7jsN83WWZrdc3JnJqxZIySjxx9x2EyY4HPN3-Eg_aSARmhwdOughH3ccpFtrobKjFlNuOyO8KOU2M4-dhFxKXDerEB2Fg-fb8PymXdJHFXPCOGe4xL2MUruDNuDsjtJoHDpAw8"/>
+</div>
+<div class="flex flex-col justify-between flex-1">
+<div>
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface leading-tight font-bold">Fresh Whey Isolate Restocked</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">High-bioavailability Belgian chocolate &amp; nitro strawberry.</p>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant">
+<span class="font-telemetry-digit text-base text-primary font-bold">₹2,400 <span class="font-label-sm text-label-sm text-outline font-normal">/ 1kg tub</span></span>
+<button class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface font-label-sm text-label-sm font-bold uppercase px-3 py-1.5 rounded-DEFAULT border border-outline-variant transition-colors">
+                Reserve Now
+              </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shared Component (Anchored & Executed) -->
+<!-- Active selection determined autonomously: Screen represents the Home dashboard -> "Home" is active -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant docked full-width bottom-0 fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm safe-area-bottom">
+<!-- Nav Item 1: Home (ACTIVE) -->
+<a aria-label="Home" class="flex flex-col items-center justify-center text-primary dark:text-primary active:scale-95 transition-transform duration-100" href="index.html">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Home</span>
+</a>
+<!-- Nav Item 2: Workouts (INACTIVE) -->
+<a aria-label="Workouts" class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100" href="workouts.html">
+<span class="material-symbols-outlined text-2xl">sports_gymnastics</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Workouts</span>
+</a>
+<!-- Nav Item 3: Check In (Special Floating/Hero treatment from Shared Component) -->
+<a aria-label="Check In" class="flex flex-col items-center justify-center text-primary dark:text-primary -mt-5 active:scale-95 transition-transform duration-100 group" href="checkin.html">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg border-2 border-surface group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1 text-primary">Check In</span>
+</a>
+<!-- Nav Item 4: Analytics (INACTIVE) -->
+<a aria-label="Analytics" class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100" href="progress.html">
+<span class="material-symbols-outlined text-2xl">monitoring</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Analytics</span>
+</a>
+<!-- Nav Item 5: Profile (INACTIVE) -->
+<a aria-label="Profile" class="flex flex-col items-center justify-center text-outline dark:text-outline hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95 duration-100" href="profile.html">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AM-Tippu Fitness - Athlete Profile &amp; Subscription Renewal</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts for Design Tokens -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#d4ccc4",
+            "on-secondary-container": "#004119",
+            "on-primary-container": "#693900",
+            "surface": "#141312",
+            "primary-fixed": "#ffdcc1",
+            "primary-container": "#ff9a2e",
+            "secondary-fixed-dim": "#4ae176",
+            "on-tertiary-fixed": "#1e1b16",
+            "surface-container-highest": "#363433",
+            "secondary-container": "#00b954",
+            "inverse-primary": "#8e4f00",
+            "surface-container-lowest": "#0f0e0d",
+            "surface-container-low": "#1d1b1a",
+            "secondary-fixed": "#6bff8f",
+            "surface-dim": "#141312",
+            "primary-fixed-dim": "#ffb877",
+            "error-container": "#93000a",
+            "outline-variant": "#554335",
+            "secondary": "#4ae176",
+            "on-primary-fixed": "#2e1500",
+            "tertiary-container": "#b8b1a9",
+            "outline": "#a28d7c",
+            "surface-tint": "#ffb877",
+            "surface-container": "#211f1e",
+            "inverse-on-surface": "#32302f",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#002109",
+            "on-error": "#690005",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "on-surface-variant": "#dbc2af",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "on-primary-fixed-variant": "#6c3a00",
+            "on-secondary-fixed-variant": "#005321",
+            "on-tertiary-container": "#48443e",
+            "on-primary": "#4c2700",
+            "primary": "#ffc18c",
+            "on-background": "#e6e1df",
+            "on-secondary": "#003915",
+            "surface-bright": "#3b3937",
+            "on-surface": "#e6e1df",
+            "on-tertiary": "#34302a",
+            "background": "#141312",
+            "tertiary-fixed": "#e9e1d9",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#363433",
+            "surface-container-high": "#2b2a28",
+            "inverse-surface": "#e6e1df"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "gutter": "0.75rem",
+            "space-xl": "2.25rem",
+            "gutter-desktop": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Barlow Condensed", "sans-serif"],
+            "display-lg-mobile": ["Barlow Condensed", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Space Grotesk", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "telemetry-digit": ["JetBrains Mono", "monospace"],
+            "display-lg": ["Barlow Condensed", "sans-serif"],
+            "body-md": ["Space Grotesk", "sans-serif"],
+            "body-lg": ["Space Grotesk", "sans-serif"],
+            "headline-lg": ["Barlow Condensed", "sans-serif"],
+            "headline-lg-mobile": ["Barlow Condensed", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom scanline atmospheric background styling */
+    .obsidian-mesh {
+      background-color: #0A0908;
+      background-image: radial-gradient(circle at 50% 0%, rgba(255, 154, 46, 0.08) 0%, transparent 60%),
+                        linear-gradient(180deg, rgba(20, 19, 18, 0.6) 0%, #0A0908 100%);
+    }
+    .carbon-texture {
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.015) 25%, transparent 25%), 
+                        linear-gradient(225deg, rgba(255,255,255,0.015) 25%, transparent 25%), 
+                        linear-gradient(45deg, rgba(255,255,255,0.015) 25%, transparent 25%), 
+                        linear-gradient(315deg, rgba(255,255,255,0.015) 25%, transparent 25%);
+      background-position: 4px 0, 4px 0, 0 0, 0 0;
+      background-size: 8px 8px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-container selection:text-surface-container-lowest">
+<!-- Mobile Viewport Container (390px Max) -->
+<main class="w-full max-w-[390px] min-h-screen obsidian-mesh flex flex-col pb-28 relative shadow-2xl overflow-x-hidden border-x border-surface-container-high/40">
+<!-- Top Navigation Header -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin py-space-sm flex justify-between items-center shadow-lg border-b border-surface-container-high/60">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-3.5 bg-primary-container inline-block"></span>
+<h1 class="font-headline-sm text-headline-sm uppercase text-primary tracking-wider">ATHLETE PROFILE</h1>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 pl-2.5">Account &amp; Membership Management</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button aria-label="Settings" class="w-9 h-9 rounded bg-surface-container-low border border-outline-variant/50 flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<button aria-label="Sign Out" class="w-9 h-9 rounded bg-surface-container-low border border-outline-variant/50 flex items-center justify-center text-on-surface-variant hover:text-error active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Tactical Canvas -->
+<div class="flex flex-col gap-space-md px-margin pt-space-sm">
+<!-- Section 1: Member Identity Card -->
+<section class="relative bg-surface-container-low/90 rounded border border-outline-variant/60 p-space-md carbon-texture overflow-hidden">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start gap-space-md mb-space-md">
+<!-- Portrait Avatar -->
+<div class="relative flex-shrink-0">
+<div class="w-20 h-20 rounded border-2 border-primary-container/80 p-0.5 bg-surface-container-lowest overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="Intense high-contrast portrait of Sufiyan, an athletic South Asian male in his late twenties wearing a charcoal compression gym shirt inside a modern dark gym. Dramatic side-lighting cuts across chiseled athletic features, emphasizing sheer focus. Deep charcoal shadows and subtle golden amber ambient highlights create a forged athletic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJb4PfzmScWqhHozdbfKZhr3T3KALk5jqCym1vd8q7cxRrAd8vKLAIlB8EXeoEWz9mNu6jO6k56vHChvwQN5sQa42uqVSAfGvAivZ8jD8g5QVQVEdbkX4T48sLnwcGeXpI3shMzLZJbKLzVucsbp-lubHz9kRnBMnIWDCPAcderkBI8aW62O3FJD40VNoACn5Nu18ijdI3fWN0d91JMJXMv59zj6AEKxaiYuaQQXVoQQxYEJQGIpAqe5vD7WS8zxDUsCHA5ihuRe4"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-surface-container-lowest px-1 rounded border border-secondary/50 flex items-center gap-1 shadow">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-secondary">LIVE</span>
+</div>
+</div>
+<!-- Bio & Tags -->
+<div class="flex flex-col flex-grow">
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface leading-tight">Sufiyan A.</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/15 border border-primary-container/60 text-primary-fixed text-[9px] font-label-sm font-bold tracking-widest uppercase">
+                VIP ATHLETE
+              </span>
+</div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="font-label-sm text-label-sm text-primary tracking-wider bg-surface-container-highest px-1.5 py-0.5 rounded border border-outline-variant/40">
+                #AMT-8821
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Joined Jan 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="schedule">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Morning Batch: 06:00 AM - 07:30 AM</span>
+</div>
+</div>
+</div>
+<!-- Assigned Trainer Component -->
+<div class="bg-surface-container/90 rounded border border-outline-variant/40 p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="sports">sports</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant">Assigned Coach</p>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Coach Imran <span class="text-outline font-normal">(Head Strength)</span></p>
+</div>
+</div>
+<button class="px-2.5 py-1.5 rounded bg-surface-container-highest hover:bg-surface-bright border border-secondary/40 text-secondary hover:text-secondary-fixed flex items-center gap-1 active:scale-95 transition-all" onclick="window.open('https://wa.me/919845012345', '_blank')">
+<span class="material-symbols-outlined text-[14px]" data-icon="chat">chat</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold">WhatsApp</span>
+</button>
+</div>
+</section>
+<!-- Section 2: Active Plan & UPI Renewal Hub (Hero Feature) -->
+<section class="bg-surface-container-low/95 rounded border-2 border-primary-container/50 p-space-md relative overflow-hidden shadow-xl">
+<!-- High Voltage Ambient Corner Accent -->
+<div class="absolute top-0 right-0 w-28 h-28 bg-gradient-to-br from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Current Membership</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface tracking-wide">GOLD 3-MONTH PLAN</h2>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-outline uppercase block">Subscription</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight">₹1,500</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">/ term</span>
+</div>
+</div>
+<!-- Telemetry Pill & Countdown Strip -->
+<div class="bg-surface-container-lowest/80 rounded border border-secondary/40 px-space-sm py-2 flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">ACTIVE • 48 DAYS REMAINING</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Due: 28 Nov 2026</span>
+</div>
+<!-- Molten Amber Primary Action Button (Tactical CTA) -->
+<div class="flex flex-col gap-space-sm">
+<button class="w-full min-h-[52px] bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-headline-sm text-headline-sm uppercase tracking-wider rounded font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-[0_4px_16px_rgba(255,154,46,0.35)]">
+<span class="material-symbols-outlined text-[22px]" data-icon="bolt">bolt</span>
+<span>RENEW PLAN VIA UPI</span>
+</button>
+<!-- Instant Tap Payment Providers -->
+<div class="grid grid-cols-3 gap-space-xs pt-1">
+<div class="h-10 bg-surface-container rounded border border-outline-variant/60 flex items-center justify-center gap-1.5 hover:border-primary-container/80 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase">GPay</span>
+</div>
+<div class="h-10 bg-surface-container rounded border border-outline-variant/60 flex items-center justify-center gap-1.5 hover:border-primary-container/80 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="smartphone">smartphone</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase">PhonePe</span>
+</div>
+<div class="h-10 bg-surface-container rounded border border-outline-variant/60 flex items-center justify-center gap-1.5 hover:border-primary-container/80 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="qr_code">qr_code</span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase">Paytm</span>
+</div>
+</div>
+</div>
+<!-- Official VPA / UPI Container -->
+<div class="mt-space-md pt-space-sm border-t border-outline-variant/30 flex items-center justify-between bg-surface-container-high/40 px-space-sm py-2 rounded">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Gym VPA:</span>
+<span class="font-label-md text-label-md text-primary font-bold tracking-tight" id="vpa-text">amtippufitness@upi</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary active:scale-90 flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-surface-container-highest transition-colors" onclick="navigator.clipboard.writeText('amtippufitness@upi'); alert('UPI ID copied to clipboard');">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold">Copy</span>
+</button>
+</div>
+</section>
+<!-- Section 3: Gym Counter Purchases & Supplement Tab -->
+<section class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between px-0.5">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-3 bg-secondary inline-block"></span>
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">GYM COUNTER PURCHASES</h3>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed uppercase tracking-wider font-semibold flex items-center gap-0.5" href="#invoices">
+<span>VIEW INVOICES</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<!-- Item 1 -->
+<div class="bg-surface-container-low rounded border border-outline-variant/40 p-space-sm flex items-center justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded bg-surface-container-high flex items-center justify-center text-primary-container border border-outline-variant/40">
+<span class="material-symbols-outlined text-[20px]" data-icon="nutrition">nutrition</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">ON Gold Standard Whey 1kg</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Paid via UPI • Oct 1, 2026 • Front Desk</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<span class="font-telemetry-digit text-[16px] text-on-surface font-bold">₹2,400</span>
+<button aria-label="View receipt" class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-low rounded border border-outline-variant/40 p-space-sm flex items-center justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded bg-surface-container-high flex items-center justify-center text-secondary border border-outline-variant/40">
+<span class="material-symbols-outlined text-[20px]" data-icon="science">science</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Micronized Creatine 250g</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Paid via GPay • Sep 22, 2026</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<span class="font-telemetry-digit text-[16px] text-on-surface font-bold">₹850</span>
+<button aria-label="View receipt" class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-low rounded border border-outline-variant/40 p-space-sm flex items-center justify-between hover:border-outline-variant transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded bg-surface-container-high flex items-center justify-center text-primary border border-outline-variant/40">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_drink">local_drink</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">AM-Tippu Stainless Steel Shaker</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Paid • Sep 10, 2026</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<span class="font-telemetry-digit text-[16px] text-on-surface font-bold">₹350</span>
+<button aria-label="View receipt" class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: App, Locker & Facility Credentials -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-1.5 px-0.5">
+<span class="w-1.5 h-3 bg-outline inline-block"></span>
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">FACILITY CREDENTIALS &amp; ALARMS</h3>
+</div>
+<!-- Locker Assignment Status -->
+<div class="bg-surface-container-low rounded border border-outline-variant/50 p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-primary-container/40 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]" data-icon="lock">lock</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm uppercase text-on-surface">LOCKER #42 (ASSIGNED)</p>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<p class="font-label-sm text-label-sm text-secondary uppercase font-semibold">RFID Keycard: SYNCED WITH APP</p>
+</div>
+</div>
+</div>
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface border border-outline-variant/60 font-label-sm text-label-sm uppercase active:scale-95">
+            Keypass
+          </button>
+</div>
+<!-- Notification & Workflow Preferences -->
+<div class="bg-surface-container-low rounded border border-outline-variant/40 divide-y divide-outline-variant/30">
+<!-- Toggle 1: Daily Workout Alarm -->
+<div class="p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="alarm">alarm</span>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Daily Workout Alarm (05:45 AM)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pre-batch tactical call to iron</p>
+</div>
+</div>
+<!-- Custom Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary-container after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 2: Subscription Expiry Nudge -->
+<div class="p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary" data-icon="notifications_active">notifications_active</span>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Subscription Expiry Nudge</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">7-day advance UPI renewal reminder</p>
+</div>
+</div>
+<!-- Custom Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-secondary-container after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Direct Facility Support Card -->
+<div class="bg-surface-container-low rounded border border-outline-variant/60 p-space-sm">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md text-on-surface uppercase font-semibold">HQ Front Desk</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded border border-secondary/30">OPEN NOW</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm pl-0.5">
+            Shampura Main Road Front Desk: <span class="text-on-surface font-semibold">+91 98450 12345</span>
+</p>
+<div class="grid grid-cols-2 gap-space-xs">
+<a class="h-9 rounded bg-surface-container-high hover:bg-surface-bright border border-outline-variant/60 flex items-center justify-center gap-1.5 text-on-surface font-label-sm text-label-sm uppercase font-semibold active:scale-95 transition-all" href="tel:+919845012345">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="call">call</span>
+<span>Call Now</span>
+</a>
+<button class="h-9 rounded bg-surface-container-high hover:bg-surface-bright border border-outline-variant/60 flex items-center justify-center gap-1.5 text-on-surface font-label-sm text-label-sm uppercase font-semibold active:scale-95 transition-all" onclick="alert('Launching Gym Navigation Map...')">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="directions">directions</span>
+<span>Directions</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Fixed 5-Tab Docked Bottom Navigation Bar (Shared Component Execution) -->
+<!-- Destination count: 5 | Active: Profile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm safe-area-bottom bg-surface-container-lowest shadow-2xl">
+<!-- Tab 1: Home -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 min-w-[56px] py-1" href="#home">
+<span class="material-symbols-outlined text-[22px]" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Home</span>
+</a>
+<!-- Tab 2: Workouts -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 min-w-[56px] py-1" href="#workouts">
+<span class="material-symbols-outlined text-[22px]" data-icon="sports_gymnastics">sports_gymnastics</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Workouts</span>
+</a>
+<!-- Tab 3: Check In -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 min-w-[56px] py-1" href="#checkin">
+<span class="material-symbols-outlined text-[22px]" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Check In</span>
+</a>
+<!-- Tab 4: Analytics -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 min-w-[56px] py-1" href="#analytics">
+<span class="material-symbols-outlined text-[22px]" data-icon="monitoring">monitoring</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Analytics</span>
+</a>
+<!-- Tab 5: Profile (ACTIVE STATE) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-95 min-w-[56px] py-1 relative" href="#profile">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container absolute -top-0.5 -right-0.5"></span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5 text-primary">Profile</span>
+</a>
+</nav>
+</main>
+</body></html>

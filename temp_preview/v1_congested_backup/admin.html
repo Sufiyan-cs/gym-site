@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-TIPPU FITNESS - Ops Command</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Barlow Condensed & Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#141312",
+            "tertiary": "#d4ccc4",
+            "secondary-fixed-dim": "#4ae176",
+            "error": "#ffb4ab",
+            "tertiary-fixed": "#e9e1d9",
+            "secondary-fixed": "#6bff8f",
+            "background": "#141312",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "primary-fixed-dim": "#ffb877",
+            "on-primary-container": "#693900",
+            "surface-container-highest": "#363433",
+            "primary": "#ffc18c",
+            "surface-variant": "#363433",
+            "error-container": "#93000a",
+            "surface-container-low": "#1d1b1a",
+            "on-surface": "#e6e1df",
+            "primary-container": "#ff9a2e",
+            "on-primary-fixed": "#2e1500",
+            "tertiary-container": "#b8b1a9",
+            "surface": "#141312",
+            "on-tertiary-container": "#48443e",
+            "inverse-primary": "#8e4f00",
+            "surface-container": "#211f1e",
+            "secondary": "#4ae176",
+            "inverse-surface": "#e6e1df",
+            "surface-container-high": "#2b2a28",
+            "on-surface-variant": "#dbc2af",
+            "primary-fixed": "#ffdcc1",
+            "inverse-on-surface": "#32302f",
+            "on-tertiary": "#34302a",
+            "outline": "#a28d7c",
+            "on-background": "#e6e1df",
+            "on-primary-fixed-variant": "#6c3a00",
+            "secondary-container": "#00b954",
+            "on-secondary-fixed": "#002109",
+            "surface-container-lowest": "#0f0e0d",
+            "on-tertiary-fixed": "#1e1b16",
+            "surface-bright": "#3b3937",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "on-error": "#690005",
+            "on-secondary-container": "#004119",
+            "surface-tint": "#ffb877",
+            "outline-variant": "#554335",
+            "on-secondary-fixed-variant": "#005321",
+            "on-secondary": "#003915",
+            "on-primary": "#4c2700",
+            "on-error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xl": "2.25rem",
+            "margin-desktop": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "0.75rem",
+            "gutter-desktop": "1.25rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Barlow Condensed"],
+            "display-lg": ["Barlow Condensed"],
+            "telemetry-digit": ["JetBrains Mono"],
+            "display-lg-mobile": ["Barlow Condensed"],
+            "headline-lg-mobile": ["Barlow Condensed"],
+            "body-md": ["Space Grotesk"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-sm": ["Barlow Condensed"],
+            "body-sm": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"],
+            "label-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Tactical grid scanlines subtle atmospheric touch */
+    .bg-scanline {
+      background: linear-gradient(180deg, rgba(20, 19, 18, 0.98) 0%, rgba(15, 14, 13, 0.99) 100%);
+    }
+    @keyframes tacticalPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(1.15); }
+    }
+    .live-beacon {
+      animation: tacticalPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary min-h-screen pb-28">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:underline; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- COMMAND TOP BAR (Mobile Sticky Header) -->
+<header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant shadow-sm px-margin py-space-sm">
+<div class="max-w-md mx-auto flex items-center justify-between">
+<!-- Gym Brand & Unit Node -->
+<div class="flex items-center space-x-space-sm">
+<div class="w-9 h-9 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary-container shadow-inner">
+<span class="material-symbols-outlined text-primary-container text-headline-sm" data-icon="fitness_center">fitness_center</span>
+</div>
+<div>
+<div class="flex items-center space-x-space-xs">
+<span class="font-headline-sm text-headline-sm uppercase text-primary font-bold tracking-wider">AM-TIPPU OPS COMMAND</span>
+</div>
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant flex items-center gap-1">
+<span>Shampura Branch • Unit 01</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</p>
+</div>
+</div>
+<!-- Quick Switch to Member View -->
+<button class="flex items-center space-x-1 px-2.5 py-1.5 rounded bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high active:scale-95 transition-all" onclick="alert('Switching profile to Member Experience preview...')" onclick="window.location.href='index.html'">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="sync_alt">sync_alt</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Member View</span>
+</button>
+</div>
+<!-- Sub-status Strip: Coach Mode Active -->
+<div class="max-w-md mx-auto mt-2 pt-1.5 border-t border-outline-variant/40 flex items-center justify-between">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-primary-container text-xs" data-icon="shield_person">shield_person</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">HEAD COACH MODE</span>
+</div>
+<div class="font-label-sm text-label-sm uppercase text-outline">
+        STATION #04 TURNSTILE SYNCED
+      </div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE OPERATIONS CANVAS -->
+<main class="max-w-md mx-auto px-margin pt-space-md space-y-space-md">
+<!-- SECTION 1: LIVE FLOOR RADAR & CAPACITY TELEMETRY -->
+<section class="rounded-lg bg-surface-container-low border border-outline-variant p-space-md relative overflow-hidden shadow-2xl">
+<!-- Tactical corner accent -->
+<div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary-container/10 via-transparent to-transparent pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-2">
+<span class="relative flex h-2.5 w-2.5">
+<span class="live-beacon absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-widest">LIVE FLOOR RADAR</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface mt-1 tracking-tight">
+            CURRENT OCCUPANCY
+          </h2>
+</div>
+<div class="px-2 py-1 rounded bg-secondary-container/20 border border-secondary text-right">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">OPTIMAL LOAD</span>
+</div>
+</div>
+<!-- Telemetry Large Digits -->
+<div class="mt-3 flex items-baseline space-x-2">
+<span class="font-telemetry-digit text-display-lg-mobile text-primary tracking-tight font-extrabold">42</span>
+<span class="font-telemetry-digit text-headline-sm text-outline font-medium">/ 65 ATHLETES</span>
+<span class="ml-auto font-label-md text-label-md text-primary-container font-semibold uppercase">64% CAPACITY</span>
+</div>
+<!-- High-Precision Gradient Progress Bar -->
+<div class="mt-2.5 w-full bg-surface-container-highest h-2 rounded overflow-hidden p-0.5 border border-outline-variant/60">
+<div class="h-full rounded bg-gradient-to-r from-secondary via-primary-container to-primary transition-all duration-500" style="width: 64.6%;"></div>
+</div>
+<!-- Shift & Clearing Diagnostics -->
+<div class="mt-3.5 pt-3 border-t border-outline-variant/50 grid grid-cols-2 gap-2 text-left">
+<div class="bg-surface-container rounded p-2 border border-outline-variant/30">
+<div class="font-label-sm text-label-sm uppercase text-outline">CURRENT WAVE</div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface mt-0.5">Morning Strength (06:00 - 08:30)</div>
+</div>
+<div class="bg-surface-container rounded p-2 border border-outline-variant/30">
+<div class="font-label-sm text-label-sm uppercase text-outline">EST. TURNOVER</div>
+<div class="font-body-sm text-body-sm font-semibold text-secondary mt-0.5">Peak Load Clearing in 22m</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: DAILY OPERATIONS & REVENUE METRICS (TODAY'S TELEMETRY) -->
+<section>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-lg" data-icon="monitoring">monitoring</span>
+          TODAY'S OPERATIONS METRICS
+        </h3>
+<span class="font-label-sm text-label-sm uppercase text-outline">UPDATED 2M AGO</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Tile 1: Check-Ins -->
+<div class="bg-surface-container-low border border-outline-variant rounded p-2.5 flex flex-col justify-between">
+<div>
+<div class="font-label-sm text-label-sm uppercase text-outline">CHECK-INS</div>
+<div class="font-telemetry-digit text-telemetry-digit text-on-surface font-bold mt-1">148</div>
+</div>
+<div class="mt-2 inline-flex items-center text-secondary font-label-sm text-label-sm font-bold bg-secondary-container/10 px-1 py-0.5 rounded border border-secondary/30">
+<span class="material-symbols-outlined text-xs mr-0.5" data-icon="arrow_upward">arrow_upward</span>
+            +18% WK
+          </div>
+</div>
+<!-- Tile 2: Day Revenue -->
+<div class="bg-surface-container-low border border-outline-variant rounded p-2.5 flex flex-col justify-between">
+<div>
+<div class="font-label-sm text-label-sm uppercase text-outline">REVENUE</div>
+<div class="font-telemetry-digit text-telemetry-digit text-primary-container font-bold mt-1">₹14.5K</div>
+</div>
+<div class="mt-2 text-outline font-label-sm text-label-sm truncate">
+            ₹11K UPI / ₹3.5K
+          </div>
+</div>
+<!-- Tile 3: Active Members -->
+<div class="bg-surface-container-low border border-outline-variant rounded p-2.5 flex flex-col justify-between">
+<div>
+<div class="font-label-sm text-label-sm uppercase text-outline">ACTIVE PAID</div>
+<div class="font-telemetry-digit text-telemetry-digit text-on-surface font-bold mt-1">312</div>
+</div>
+<div class="mt-2 text-secondary font-label-sm text-label-sm font-semibold">
+            94% RETENTION
+          </div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: PRIORITY RENEWAL ALERTS (ACTIONABLE MEMBER NUDGES) -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">
+            EXPIRING MEMBERSHIPS
+          </h3>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold tracking-wider">
+            7 URGENT
+          </span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline underline cursor-pointer">View All</span>
+</div>
+<!-- Member Card 1: Rahul S -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 space-y-2.5">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">Rahul S.</span>
+<span class="font-label-sm text-label-sm text-outline px-1.5 py-0.2 rounded bg-surface-container">#AMT-302</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gold 3-Month Plan</p>
+</div>
+<div class="px-2 py-1 rounded bg-primary-container/15 border border-primary-container text-right">
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold">Expires in 2 Days</span>
+</div>
+</div>
+<button class="w-full flex items-center justify-center space-x-2 bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container py-2.5 px-3 rounded font-headline-sm text-headline-sm uppercase tracking-wider font-bold active:scale-95 transition-transform" onclick="alert('Triggering WhatsApp UPI payment gateway nudge to Rahul S. (+91 98450 XXXXX)')">
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+<span>WHATSAPP UPI NUDGE</span>
+</button>
+</div>
+<!-- Member Card 2: Mohammed Zishan -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 space-y-2.5">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">Mohammed Zishan</span>
+<span class="font-label-sm text-label-sm text-outline px-1.5 py-0.2 rounded bg-surface-container">#AMT-481</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Monthly Iron Pass</p>
+</div>
+<div class="px-2 py-1 rounded bg-primary-container/20 border border-primary text-right animate-pulse">
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold">Expires Tomorrow</span>
+</div>
+</div>
+<button class="w-full flex items-center justify-center space-x-2 bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container py-2.5 px-3 rounded font-headline-sm text-headline-sm uppercase tracking-wider font-bold active:scale-95 transition-transform" onclick="alert('Triggering WhatsApp UPI payment gateway nudge to Mohammed Zishan (+91 97312 XXXXX)')">
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+<span>WHATSAPP UPI NUDGE</span>
+</button>
+</div>
+<!-- Member Card 3: Kiran Kumar (EXPIRED) -->
+<div class="bg-surface-container-low border border-error/50 rounded-lg p-3 space-y-2.5">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">Kiran Kumar</span>
+<span class="font-label-sm text-label-sm text-outline px-1.5 py-0.2 rounded bg-surface-container">#AMT-194</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gold 6-Month Plan</p>
+</div>
+<div class="px-2 py-1 rounded bg-error-container text-on-error-container border border-error text-right">
+<span class="font-label-sm text-label-sm uppercase font-bold">EXPIRED 1 DAY AGO</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 flex items-center justify-center space-x-1.5 bg-surface-container-high border border-outline text-on-surface py-2.5 px-2 rounded font-headline-sm text-headline-sm uppercase font-bold hover:bg-surface-bright active:scale-95 transition-all" onclick="alert('Opening POS desk counter checkout for #AMT-194')">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="point_of_sale">point_of_sale</span>
+<span>RENEW AT COUNTER</span>
+</button>
+<button class="px-3 bg-surface-container border border-outline-variant rounded text-on-surface-variant hover:text-primary active:scale-95" onclick="alert('Calling Kiran Kumar...')">
+<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 4: FAST MEMBER LOOKUP & GATE OVERRIDE -->
+<section class="rounded-lg bg-surface-container-low border border-outline-variant p-space-md space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="search">search</span>
+          FAST ACCESS &amp; ROSTER SEARCH
+        </span>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold">GATE ACTIVE</span>
+</div>
+<!-- Search Input Container -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none" data-icon="person_search">person_search</span>
+<input class="w-full bg-surface-container border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded py-2.5 pl-10 pr-12 text-body-sm text-on-surface placeholder:text-outline font-body-sm transition-colors outline-none" placeholder="Search member by name, phone, or #AMT ID..." type="text"/>
+<button class="absolute right-2 p-1.5 rounded bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant transition-colors" onclick="alert('Activating Camera QR Scanner for fast gate match...')" title="Scan QR Badge">
+<span class="material-symbols-outlined text-lg" data-icon="qr_code_scanner">qr_code_scanner</span>
+</button>
+</div>
+<!-- Gate Pulse / Manual Turnstile Override Button -->
+<button class="w-full py-3 px-4 rounded bg-surface-container-high border-2 border-primary-container/80 hover:border-primary-container hover:bg-surface-bright flex items-center justify-between text-on-surface group active:scale-98 transition-all" id="gatePulseBtn" onclick="triggerGateOverride()">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-primary-container text-xl group-hover:scale-110 transition-transform" data-icon="lock_open">lock_open</span>
+<div class="text-left">
+<div class="font-headline-sm text-headline-sm uppercase text-primary font-bold">MANUAL TURNSTILE OVERRIDE</div>
+<div class="font-label-sm text-label-sm text-outline">EMIT 5-SECOND RFID PULSE TO GATE 01</div>
+</div>
+</div>
+<span class="px-2 py-1 bg-primary-container/20 rounded font-label-sm text-label-sm uppercase text-primary font-bold">PULSE</span>
+</button>
+</section>
+<!-- SECTION 5: FRONT DESK SUPPLEMENT STOCK STATUS -->
+<section class="rounded-lg bg-surface-container-low border border-outline-variant p-space-md space-y-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-lg" data-icon="inventory_2">inventory_2</span>
+          COUNTER INVENTORY MONITOR
+        </h3>
+<span class="font-label-sm text-label-sm uppercase text-outline">DESK SHELF A</span>
+</div>
+<div class="space-y-2">
+<!-- Stock 1: ON Whey Isolate (Low Stock Alert) -->
+<div class="p-2.5 bg-surface-container rounded border border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-base" data-icon="nutrition">nutrition</span>
+</div>
+<div>
+<div class="font-body-md text-body-md font-bold text-on-surface">ON Whey Isolate (1kg)</div>
+<div class="font-label-sm text-label-sm text-outline">Double Rich Chocolate</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-telemetry-digit text-label-md text-primary font-bold block">4 TUBS LEFT</span>
+<span class="inline-block px-1.5 py-0.2 rounded bg-primary-container/20 text-primary-container font-label-sm text-label-sm uppercase font-bold">LOW STOCK</span>
+</div>
+</div>
+<!-- Stock 2: Micronized Creatine -->
+<div class="p-2.5 bg-surface-container rounded border border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-base" data-icon="science">science</span>
+</div>
+<div>
+<div class="font-body-md text-body-md font-bold text-on-surface">Micronized Creatine 250g</div>
+<div class="font-label-sm text-label-sm text-outline">Creapure Grade</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-telemetry-digit text-label-md text-secondary font-bold block">12 IN STOCK</span>
+<span class="inline-block px-1.5 py-0.2 rounded bg-secondary-container/20 text-secondary font-label-sm text-label-sm uppercase font-semibold">SUFFICIENT</span>
+</div>
+</div>
+<!-- Stock 3: Pre-Workout Explosive -->
+<div class="p-2.5 bg-surface-container rounded border border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-base" data-icon="bolt">bolt</span>
+</div>
+<div>
+<div class="font-body-md text-body-md font-bold text-on-surface">Pre-Workout Explosive</div>
+<div class="font-label-sm text-label-sm text-outline">Sour Apple Fusion</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-telemetry-digit text-label-md text-on-surface font-bold block">8 CANS REMAINING</span>
+<span class="inline-block px-1.5 py-0.2 rounded bg-surface-container-highest text-tertiary font-label-sm text-label-sm uppercase">STABLE</span>
+</div>
+</div>
+</div>
+<!-- Quick Action link -->
+<div class="pt-2 text-center">
+<a class="font-label-sm text-label-sm uppercase text-primary hover:text-primary-container tracking-wider font-semibold inline-flex items-center gap-1" href="#inventory">
+          Update Counter Stock Inventory
+          <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+<!-- BOTTOM NAVIGATION: MANAGER COMMAND DOCK -->
+<!-- Anchored via Shared Components JSON directives with tactical Manager Mode styling -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant px-space-xs py-space-sm safe-area-bottom shadow-2xl">
+<div class="max-w-md mx-auto grid grid-cols-4 items-center">
+<!-- Tab 1: Floor Ops (Active) -->
+<button class="flex flex-col items-center justify-center text-primary-container active:scale-95 transition-transform duration-100 py-1" onclick="switchTab(this, 'Floor Ops')">
+<span class="material-symbols-outlined text-2xl font-bold" data-icon="monitoring">monitoring</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider mt-0.5 text-primary">Floor Ops</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Tab 2: Members -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary active:scale-95 transition-transform duration-100 py-1" onclick="switchTab(this, 'Members')">
+<span class="material-symbols-outlined text-2xl" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold tracking-wider mt-0.5">Members</span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+<!-- Tab 3: Inventory -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary active:scale-95 transition-transform duration-100 py-1" onclick="switchTab(this, 'Inventory')">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold tracking-wider mt-0.5">Inventory</span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+<!-- Tab 4: Gate Control -->
+<button class="flex flex-col items-center justify-center text-outline hover:text-primary active:scale-95 transition-transform duration-100 py-1" onclick="switchTab(this, 'Gate Control')">
+<span class="material-symbols-outlined text-2xl" data-icon="sensor_door">sensor_door</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold tracking-wider mt-0.5">Gate Control</span>
+<span class="w-1.5 h-1.5 rounded-full bg-transparent mt-0.5"></span>
+</button>
+</div>
+</nav>
+<!-- Interactive script for feedback and tactile controls -->
+<script>
+    function triggerGateOverride() {
+      const btn = document.getElementById('gatePulseBtn');
+      const originalHtml = btn.innerHTML;
+      
+      btn.classList.add('bg-secondary-container/20', 'border-secondary');
+      btn.innerHTML = `
+        <div class="flex items-center space-x-2.5">
+          <span class="material-symbols-outlined text-secondary text-xl animate-spin" data-icon="sync">sync</span>
+          <div class="text-left">
+            <div class="font-headline-sm text-headline-sm uppercase text-secondary font-bold">TURNSTILE UNLOCKED (5S PULSE)</div>
+            <div class="font-label-sm text-label-sm text-secondary">BEACON BROADCASTING TO UNIT 01...</div>
+          </div>
+        </div>
+        <span class="px-2 py-1 bg-secondary-container text-on-secondary rounded font-label-sm text-label-sm uppercase font-bold">OPEN</span>
+      `;
+
+      setTimeout(() => {
+        btn.classList.remove('bg-secondary-container/20', 'border-secondary');
+        btn.innerHTML = originalHtml;
+      }, 5000);
+    }
+
+    function switchTab(elem, tabName) {
+      const buttons = elem.parentElement.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.classList.remove('text-primary-container');
+        btn.classList.add('text-outline');
+        const textSpan = btn.querySelector('span:nth-child(2)');
+        if (textSpan) textSpan.classList.remove('text-primary', 'font-bold');
+        const dot = btn.querySelector('span:last-child');
+        if (dot) dot.classList.replace('bg-primary-container', 'bg-transparent');
+      });
+
+      elem.classList.remove('text-outline');
+      elem.classList.add('text-primary-container');
+      const activeText = elem.querySelector('span:nth-child(2)');
+      if (activeText) activeText.classList.add('text-primary', 'font-bold');
+      const activeDot = elem.querySelector('span:last-child');
+      if (activeDot) activeDot.classList.replace('bg-transparent', 'bg-primary-container');
+    }
+  </script>
+</body></html>

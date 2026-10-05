@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Warm Volumetric Ambient Glow */
+.glow-amber-atmospheric {
+  box-shadow: 0px 12px 32px rgba(255, 154, 46, 0.18);
+}
+.glow-amber-button {
+  box-shadow: 0px 8px 24px rgba(255, 154, 46, 0.35);
+}
+.glow-inner-subtle {
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle background mesh */
+.subtle-mesh {
+  background-image: radial-gradient(circle at 50% 0%, rgba(255, 154, 46, 0.08) 0%, transparent 60%),
+                    radial-gradient(circle at 10% 40%, rgba(69, 223, 164, 0.03) 0%, transparent 40%);
+}
+
+/* Custom Amber Glow for Spotlight */
+.amber-glow {
+  box-shadow: 0 0 60px rgba(255, 154, 46, 0.15), 0 0 30px rgba(255, 154, 46, 0.08);
+}
+
+/* Hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tier card selection */
+.tier-input:checked + .tier-card {
+  border-color: rgba(255, 154, 46, 0.6);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 154, 46, 0.08), transparent 60%);
+  box-shadow: 0px 0px 20px rgba(255, 154, 46, 0.12);
+}

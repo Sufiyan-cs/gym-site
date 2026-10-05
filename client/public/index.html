@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0908">
+<meta name="description" content="AM-Tippu Fitness — Shampura Main Road, Kaval Bairasandra, Bengaluru. Strength, cardio, supplements at the counter. Plans from ₹500/month. Morning & evening batches, Mon–Sat.">
+<title>AM-Tippu Fitness — Shampura, Bengaluru | Fees from ₹500/Month</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0908; --paper:#141210; --paper2:#1A1712;
+    --ink:#F0EAE0; --dim:#9A9080; --dim2:#5C5445;
+    --line:rgba(240,234,224,.13); --line2:rgba(240,234,224,.07);
+    --amber:#FF9A2E; --amber-deep:#D97B10; --wa:#25D366;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg);scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Mono',monospace;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    padding-bottom:env(safe-area-inset-bottom)}
+  ::selection{background:var(--amber);color:#160D02}
+  button,input,textarea{font-family:inherit}
+  button{cursor:pointer}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  /* ---------- scroll progress ---------- */
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--amber);
+    z-index:80;transition:width .1s linear}
+
+  /* ---------- film grain ---------- */
+  #grain{position:fixed;inset:0;z-index:75;pointer-events:none;opacity:.045;
+    background-size:260px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>")}
+
+  /* ---------- topbar ---------- */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:50;height:58px;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:0 18px;background:rgba(10,9,8,.74);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line2);transition:box-shadow .3s}
+  #topbar.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .wm{font-family:Anton,sans-serif;font-size:17px;letter-spacing:.12em}
+  .wm i{font-style:normal;color:var(--amber)}
+  .tb-r{display:flex;gap:8px;align-items:center}
+  .tb-call{width:38px;height:38px;border:1px solid var(--line);background:none;
+    color:var(--dim);display:flex;align-items:center;justify-content:center;transition:.18s}
+  .tb-call:hover{color:var(--amber);border-color:var(--amber)}
+  .tb-call svg{width:15px;height:15px}
+  .tb-cta{background:var(--amber);color:#160D02;font-size:10px;letter-spacing:.2em;
+    font-weight:600;padding:11px 16px;transition:transform .12s,background .15s}
+  .tb-cta:active{transform:scale(.93)}
+  @media (max-width:390px){.wm{font-size:14px}}
+
+  /* ---------- motifs ---------- */
+  .stripes{background:repeating-linear-gradient(-55deg,
+    rgba(255,154,46,.10) 0 3px, transparent 3px 24px)}
+  .tick{position:relative}
+  .tick::before,.tick::after{content:'';position:absolute;width:14px;height:14px;
+    border:2px solid var(--amber);z-index:1}
+  .tick::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+  .tick::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;
+    padding:112px 22px 92px;overflow:hidden}
+  #hero3d{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+  #heroFallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  #heroFallback span{font-family:Anton,sans-serif;font-size:52vw;line-height:1;
+    color:transparent;-webkit-text-stroke:2px rgba(240,234,224,.1)}
+  .hero-corner{position:absolute;top:0;right:0;width:52%;height:46%;pointer-events:none;
+    opacity:.55;mask-image:linear-gradient(215deg,#000 30%,transparent 78%);
+    -webkit-mask-image:linear-gradient(215deg,#000 30%,transparent 78%)}
+  .hero-vig{position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:radial-gradient(120% 90% at 30% 45%, transparent 55%, rgba(0,0,0,.5) 100%)}
+  .hero-side{display:none}
+  .hero-inner{position:relative;z-index:2;max-width:680px;pointer-events:none}
+  .hero-inner a{pointer-events:auto}
+  .kicker{font-size:10px;letter-spacing:.32em;color:var(--dim);margin-bottom:20px}
+  .kicker .dev{color:var(--amber)}
+  h1{font-family:Anton,sans-serif;font-size:clamp(58px,17.5vw,150px);line-height:.92;letter-spacing:.01em}
+  h1 em{font-style:normal;color:var(--amber)}
+  .hero-fit{display:flex;align-items:center;gap:14px;margin-top:14px}
+  .hero-fit span{font-size:12px;letter-spacing:.58em;color:var(--ink)}
+  .hero-fit i{display:block;height:1px;background:var(--amber);flex:1;max-width:70px}
+  .hero-sub{font-size:11.5px;line-height:2;letter-spacing:.05em;color:var(--dim);
+    max-width:42ch;margin-top:22px}
+  .hero-sub b{color:var(--ink);font-weight:500}
+  .hero-chip{display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+    border:1px solid var(--line);padding:10px 14px;font-size:9.5px;letter-spacing:.2em}
+  .hero-chip i{width:8px;height:8px;border-radius:50%;background:var(--dim2);flex:none}
+  .hero-chip.open i{background:#3BD97B;box-shadow:0 0 10px rgba(59,217,123,.7)}
+  .hero-chip.closed i{background:var(--amber);box-shadow:0 0 10px rgba(255,154,46,.6)}
+  .hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-size:10.5px;letter-spacing:.2em;font-weight:600;padding:16px 24px;border:0;
+    transition:transform .12s,background .15s;text-align:center}
+  .btn:active{transform:scale(.95)}
+  .btn.amber{background:var(--amber);color:#160D02}
+  .btn.amber:hover{background:#ffae57}
+  .btn.wa{background:var(--wa);color:#062511}
+  .btn.wa:hover{background:#3ae378}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+  .btn.wide{width:100%}
+  .btn svg{width:15px;height:15px}
+  .hero-meta{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:30px;padding-top:16px;
+    border-top:1px solid var(--line2);font-size:8.5px;letter-spacing:.2em;color:var(--dim2)}
+  .hero-meta b{color:var(--dim);font-weight:500}
+  .hero-cue{position:absolute;bottom:26px;left:22px;font-size:9px;letter-spacing:.3em;
+    color:var(--dim2);z-index:2}
+
+  /* ---------- marquee ---------- */
+  .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:13px 0;background:var(--paper)}
+  .mtrack{display:flex;gap:36px;width:max-content;animation:mq 24s linear infinite;
+    font-size:10px;letter-spacing:.3em;color:var(--dim);white-space:nowrap}
+  .mtrack b{color:var(--amber);font-weight:500}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  .sec{padding:76px 22px;max-width:720px;margin:0 auto}
+  .shead{display:flex;gap:16px;align-items:flex-start;margin-bottom:34px}
+  .sno{font-family:Anton,sans-serif;font-size:20px;background:var(--amber);color:#160D02;
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    flex:none;letter-spacing:.04em}
+  .skick{font-size:9px;letter-spacing:.3em;color:var(--amber);margin-bottom:10px}
+  .skick::before{content:'';display:inline-block;width:22px;height:10px;margin-right:10px;
+    vertical-align:-1px;background:repeating-linear-gradient(-55deg,
+      var(--amber) 0 2px, transparent 2px 9px)}
+  .shead h2{font-family:Anton,sans-serif;font-size:clamp(36px,9.5vw,54px);line-height:.96}
+  .shead h2::after{content:'.';color:var(--amber)}
+
+  /* ---------- plans ---------- */
+  .plans{display:flex;flex-direction:column;gap:14px}
+  .plan{position:relative;border:1px solid var(--line);background:var(--paper);
+    padding:22px 20px 20px;display:flex;flex-direction:column;gap:7px;
+    transition:transform .15s,border-color .2s}
+  .plan:hover{border-color:var(--dim2)}
+  .plan:active{transform:scale(.985)}
+  .plan.best{border-color:var(--amber);background:#191307}
+  .p-tag{position:absolute;top:-11px;left:16px;background:var(--amber);color:#160D02;
+    font-size:8.5px;letter-spacing:.22em;font-weight:600;padding:5px 10px;z-index:2}
+  .p-len{font-size:10px;letter-spacing:.28em;color:var(--dim)}
+  .plan.best .p-len{color:#ffbe72}
+  .p-price{font-family:Anton,sans-serif;font-size:46px;line-height:1;letter-spacing:.02em}
+  .p-price i{font-style:normal;font-size:22px;color:var(--dim);margin-right:2px}
+  .p-eff{font-size:10px;letter-spacing:.16em}
+  .p-eff b{color:var(--amber)}
+  .p-bar{height:5px;background:rgba(240,234,224,.08);margin-top:3px;position:relative}
+  .p-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--amber);
+    transition:width .8s cubic-bezier(.2,.7,.2,1)}
+  .plan:not(.best) .p-bar i{opacity:.55}
+  .p-save{font-size:9px;letter-spacing:.16em;color:var(--dim2)}
+  .p-day{font-size:9px;letter-spacing:.2em;color:var(--amber)}
+  .p-cta{margin-top:12px;display:block;text-align:center;background:var(--amber);
+    color:#160D02;font-size:10px;letter-spacing:.2em;font-weight:600;padding:15px;
+    transition:transform .12s,background .15s}
+  .p-cta:active{transform:scale(.96)}
+  .p-cta:hover{background:#ffae57}
+  .plan-note{margin-top:20px;font-size:9.5px;letter-spacing:.12em;line-height:2;color:var(--dim2)}
+
+  /* ---------- people ---------- */
+  .people{display:grid;grid-template-columns:1fr;gap:16px}
+  .pcard{border:1px solid var(--line);background:var(--paper);padding:16px}
+  .pframe{position:relative;border:1px solid var(--line);overflow:hidden;
+    background:var(--paper2)}
+  .pframe img{width:100%;aspect-ratio:4/4.5;object-fit:cover;object-position:top;
+    filter:sepia(.32) saturate(1.35) contrast(1.06) brightness(.98)}
+  .pmono{width:100%;aspect-ratio:4/4.5;display:flex;align-items:center;justify-content:center;
+    font-family:Anton,sans-serif;font-size:72px;color:var(--dim2)}
+  .ptag{position:absolute;left:12px;bottom:12px;background:var(--amber);color:#160D02;
+    font-size:8.5px;letter-spacing:.2em;font-weight:600;padding:7px 12px;z-index:2}
+  .pcard h3{font-family:Anton,sans-serif;font-size:24px;letter-spacing:.03em;margin-top:16px}
+  .pcard h3::after{content:'.';color:var(--amber)}
+  .pline{font-size:10px;letter-spacing:.12em;color:var(--dim);margin:8px 0 12px;line-height:1.8}
+  .plist{list-style:none;border-top:1px solid var(--line)}
+  .plist li{padding:10px 0;border-bottom:1px solid var(--line);font-size:10px;
+    letter-spacing:.06em;line-height:1.7;color:var(--dim);display:flex;gap:10px}
+  .plist li::before{content:'';width:6px;height:6px;background:var(--amber);
+    flex:none;margin-top:5px}
+
+  /* ---------- facilities ---------- */
+  .facs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .fac{border:1px solid var(--line);background:var(--paper);padding:18px 15px;
+    display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .15s}
+  .fac:hover{border-color:var(--dim2);transform:translateY(-2px)}
+  .fac svg{width:22px;height:22px;color:var(--amber)}
+  .fac b{font-size:10.5px;letter-spacing:.12em}
+  .fac span{font-size:9px;letter-spacing:.04em;line-height:1.8;color:var(--dim2)}
+
+  /* ---------- hours / timeline ---------- */
+  .tl-card{border:1px solid var(--line);background:var(--paper);padding:22px 20px}
+  .tl{position:relative;height:16px;background:var(--paper2);
+    border:1px solid var(--line2);margin:34px 0 8px}
+  .tl-batch{position:absolute;top:3px;bottom:3px;background:var(--amber);border-radius:2px}
+  .tl-batch.dim{opacity:.25}
+  .tl-now{position:absolute;top:-22px;bottom:-8px;width:2px;background:var(--ink);
+    transform:translateX(-1px)}
+  .tl-now i{position:absolute;top:0;left:-4px;width:10px;height:10px;border-radius:50%;
+    background:var(--ink);box-shadow:0 0 0 3px var(--paper)}
+  .tl-now span{position:absolute;top:-4px;left:8px;font-size:8px;letter-spacing:.2em;
+    color:var(--ink);background:var(--paper);padding:1px 4px}
+  .tl-scale{position:relative;height:16px;margin-bottom:18px;font-size:8px;color:var(--dim2)}
+  .tl-scale span{position:absolute;transform:translateX(-50%);letter-spacing:.08em}
+  .tl-legend{display:flex;gap:22px;flex-wrap:wrap;border-top:1px solid var(--line2);
+    padding-top:16px}
+  .tl-leg{display:flex;align-items:center;gap:9px}
+  .tl-leg i{width:10px;height:10px;background:var(--amber);border-radius:2px}
+  .tl-leg b{font-size:9.5px;letter-spacing:.18em}
+  .tl-leg span{font-size:9px;letter-spacing:.12em;color:var(--dim2)}
+  .tl-sun{margin-top:12px;padding-top:12px;border-top:1px solid var(--line2);
+    font-size:9px;letter-spacing:.22em;color:var(--dim2)}
+  .tl-sun b{color:var(--dim);font-weight:500}
+
+  /* ---------- BMI ---------- */
+  .bmi{border:1px solid var(--line);background:var(--paper);padding:22px 20px}
+  .bmi-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+  .bmi-form label{font-size:9px;letter-spacing:.24em;color:var(--dim2);
+    display:flex;flex-direction:column;gap:8px}
+  .bmi-form input{background:var(--bg);border:1px solid var(--line);color:var(--ink);
+    font-size:20px;padding:13px 14px;outline:none;transition:border-color .2s;width:100%}
+  .bmi-form input:focus{border-color:var(--amber)}
+  .bmi-val{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .bmi-val b{font-family:Anton,sans-serif;font-size:42px;line-height:1}
+  .bmi-val span{font-size:10px;letter-spacing:.18em;color:var(--dim)}
+  .bmi-meterwrap{position:relative;padding-top:6px;margin-bottom:30px}
+  .bmi-meter{position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,
+    #4a7fb5 0 21.4%, #3BD97B 21.4% 42.9%, #FFB02E 42.9% 64.3%, #FF5A3C 64.3% 100%)}
+  .bmi-meter i{position:absolute;top:-3px;width:4px;height:22px;background:var(--ink);
+    left:1%;transform:translateX(-50%);transition:left .25s;box-shadow:0 0 0 2px var(--paper)}
+  .bmi-scale{position:relative;height:14px;margin-top:6px;font-size:8px;color:var(--dim2)}
+  .bmi-scale span{position:absolute;transform:translateX(-50%)}
+  .bmi-note{font-size:8.5px;letter-spacing:.1em;line-height:1.9;color:var(--dim2)}
+
+  /* ---------- reviews ---------- */
+  .rev-avg{display:flex;gap:18px;align-items:center;border:1px solid var(--line);
+    background:var(--paper);padding:18px 20px;margin-bottom:14px}
+  .ra-score{display:flex;align-items:baseline;gap:10px}
+  .ra-score b{font-family:Anton,sans-serif;font-size:40px}
+  .ra-score .stars{font-size:11px;letter-spacing:.25em;color:var(--amber)}
+  .ra-score .stars .off{color:var(--dim2)}
+  .ra-count{font-size:9px;letter-spacing:.16em;color:var(--dim)}
+  .ra-note{font-size:8.5px;letter-spacing:.08em;line-height:1.9;color:var(--dim2);
+    border-left:1px solid var(--line);padding-left:18px}
+  .reviews{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+  .review{position:relative;border:1px solid var(--line);padding:18px;background:var(--paper)}
+  .review.mine{border-color:rgba(255,154,46,.45)}
+  .review::after{content:'\201C';position:absolute;right:12px;top:2px;
+    font-family:Anton,sans-serif;font-size:64px;color:var(--amber);opacity:.18;line-height:1}
+  .rv-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .rv-top b{font-size:11px;letter-spacing:.12em}
+  .rv-top span{font-size:8.5px;letter-spacing:.14em;color:var(--dim2)}
+  .rv-stars{color:var(--amber);font-size:11px;letter-spacing:.28em;margin-bottom:8px}
+  .rv-stars .off{color:var(--dim2)}
+  .rv-text{font-size:10.5px;letter-spacing:.04em;line-height:1.9;color:var(--dim);
+    max-width:92%}
+  .rform{border:1px dashed var(--dim2);padding:22px 20px;display:flex;flex-direction:column;gap:14px}
+  .rf-title{font-size:9.5px;letter-spacing:.26em;color:var(--amber)}
+  .rform input,.rform textarea{background:var(--bg);border:1px solid var(--line);
+    color:var(--ink);font-size:12px;padding:14px;outline:none;resize:vertical;width:100%}
+  .rform input:focus,.rform textarea:focus{border-color:var(--amber)}
+  .r-stars{display:flex;gap:10px}
+  .r-stars button{background:none;border:0;color:var(--dim2);font-size:22px;line-height:1;
+    padding:4px;transition:color .15s,transform .12s}
+  .r-stars button.on{color:var(--amber)}
+  .r-stars button:active{transform:scale(1.3)}
+  .r-err{font-size:9px;letter-spacing:.12em;color:var(--amber);min-height:12px}
+
+  /* ---------- FAQ ---------- */
+  .faqs{border-top:1px solid var(--line)}
+  .faq{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;background:none;border:0;color:var(--ink);text-align:left;
+    display:flex;justify-content:space-between;gap:16px;align-items:center;
+    padding:20px 2px;font-size:11.5px;letter-spacing:.08em;line-height:1.7}
+  .faq-q i{flex:none;font-style:normal;color:var(--amber);font-size:18px;
+    transition:transform .25s;font-weight:400}
+  .faq.open .faq-q i{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a p{padding:0 2px 20px;font-size:10.5px;letter-spacing:.04em;line-height:2;color:var(--dim)}
+
+  /* ---------- contact ---------- */
+  .addr p{font-size:12px;letter-spacing:.06em;line-height:2;
+    border:1px solid var(--line);padding:18px;background:var(--paper);margin-bottom:16px}
+  .addr-btns{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+  .map{border:1px solid var(--line);height:280px}
+  .map iframe{width:100%;height:100%;border:0;
+    filter:grayscale(1) contrast(1.08) brightness(.9)}
+  .map iframe:hover{filter:grayscale(.15) contrast(1.02)}
+
+  /* ---------- CTA band ---------- */
+  .band{position:relative;background:var(--paper);border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);padding:64px 22px;text-align:center;overflow:hidden}
+  .band::before{content:'';position:absolute;top:0;left:0;right:0;height:12px;
+    background:repeating-linear-gradient(-55deg, rgba(255,154,46,.4) 0 3px, transparent 3px 22px)}
+  .band .bk{font-size:9px;letter-spacing:.34em;color:var(--amber);margin-bottom:16px}
+  .band h2{font-family:Anton,sans-serif;font-size:clamp(34px,9vw,60px);line-height:1}
+  .band h2 em{font-style:normal;color:var(--amber)}
+  .band .bbtns{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;padding:64px 22px 44px;text-align:center;overflow:hidden}
+  footer::before{content:'';position:absolute;top:0;left:0;right:0;height:14px;
+    background:repeating-linear-gradient(-55deg, rgba(255,154,46,.35) 0 3px, transparent 3px 24px)}
+  .f-word{font-family:Anton,sans-serif;font-size:clamp(44px,13vw,110px);line-height:.95;
+    color:transparent;-webkit-text-stroke:1.5px rgba(240,234,224,.3)}
+  .f-word i{font-style:normal;-webkit-text-stroke-color:var(--amber)}
+  .f-addr{font-size:9px;letter-spacing:.16em;color:var(--dim);margin:26px 0 6px;line-height:2.1}
+  .f-copy{font-size:8.5px;letter-spacing:.18em;color:var(--dim2);margin-top:10px}
+
+  /* ---------- FAB + toast + error ---------- */
+  .wa-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:60;
+    width:56px;height:56px;border-radius:50%;background:var(--wa);color:#062511;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 30px rgba(37,211,102,.35);transition:transform .15s}
+  .wa-fab:active{transform:scale(.9)}
+  .wa-fab svg{width:28px;height:28px}
+  #toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));
+    transform:translate(-50%,12px);z-index:70;background:#171410;
+    border:1px solid var(--line);border-left:2px solid var(--amber);padding:14px 22px;
+    font-size:10px;letter-spacing:.12em;opacity:0;transition:.3s;pointer-events:none;
+    white-space:nowrap;max-width:92vw}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  #err{position:fixed;inset:0;z-index:90;background:var(--bg);display:none;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:24px;font-size:11px;letter-spacing:.16em;color:var(--dim);line-height:2.4}
+  #err em{font-style:normal;color:var(--amber)}
+
+  /* ---------- reveal ---------- */
+  .rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rev.in{opacity:1;transform:none}
+
+  @media (min-width:760px){
+    .sec{padding:96px 32px}
+    .hero{padding-left:8vw}
+    .people{grid-template-columns:1fr 1fr}
+    .addr-btns{flex-direction:row}
+    .plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .plan.best{grid-column:1 / -1}
+    .hero-side{display:block;position:absolute;right:24px;top:50%;
+      transform:translateY(-50%);writing-mode:vertical-rl;
+      font-size:9px;letter-spacing:.4em;color:var(--dim2);z-index:2}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .mtrack{animation:none}
+    .rev{transition:none;opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="grain"></div>
+
+<header id="topbar">
+  <div class="wm">AM<i>-</i>TIPPU FITNESS</div>
+  <div class="tb-r">
+    <a class="tb-call" id="callTop" href="#" aria-label="Call the gym">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+    </a>
+    <a class="tb-cta" href="/login" style="background:none; border:1px solid var(--amber); color:var(--amber);">LOGIN</a>
+    <a class="tb-cta" href="#plans">JOIN NOW</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="hero3d" aria-hidden="true"></canvas>
+  <div id="heroFallback" hidden><span>AT</span></div>
+  <div class="hero-corner stripes"></div>
+  <div class="hero-vig"></div>
+  <div class="hero-side">AM-TIPPU FITNESS · SHAMPURA MAIN RD · BENGALURU 45</div>
+  <div class="hero-inner">
+    <p class="kicker"><span class="dev">बाघ</span> · SHAMPURA MAIN RD · BENGALURU 45</p>
+    <h1>AM<em>-</em>TIPPU</h1>
+    <div class="hero-fit"><i></i><span>FITNESS</span><i></i></div>
+    <p class="hero-sub">The tiger room of Shampura. Strength, cardio, morning and evening
+    batches — <b>fees on the board, not under the table.</b></p>
+    <div class="hero-chip" id="openChip"><i></i><span>CHECKING HOURS…</span></div>
+    <div class="hero-cta">
+      <a class="btn amber" href="#plans">SEE FEES — ₹500/MO</a>
+      <a class="btn wa" id="heroWa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.5-.3-3 .8.8-2.9-.3-.5A8 8 0 0 1 12 4zm-3.1 4.2c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 8.7c-.2-.4-.4-.4-.6-.4z"/></svg>
+        WHATSAPP US</a>
+    </div>
+    <div class="hero-meta">
+      <span><b>119</b> SHAMPURA MAIN RD</span>
+      <span><b>MON–SAT</b> 6–11 AM &amp; 6–11 PM</span>
+      <span><b>FROM</b> ₹292/MONTH</span>
+    </div>
+  </div>
+  <div class="hero-cue"><span>SCROLL — FEES · COACHES · REVIEWS · MAP</span></div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="mtrack" id="mtrack"></div></div>
+
+<!-- ============ 01 FEES ============ -->
+<section class="sec" id="plans">
+  <div class="shead rev"><span class="sno">01</span><div>
+    <p class="skick">FEES — ON THE BOARD, NOT NEGOTIATED</p>
+    <h2>Pick your commitment</h2></div></div>
+  <div id="planGrid" class="plans"></div>
+  <p class="plan-note rev">All plans include full gym access, morning &amp; evening batches.
+  Personal training and supplements are separate — ask at the counter or on WhatsApp.
+  Upgrade any time, pay only the difference. No admission fee, no hidden charges.</p>
+</section>
+
+<!-- ============ 02 PEOPLE ============ -->
+<section class="sec" id="coach">
+  <div class="shead rev"><span class="sno">02</span><div>
+    <p class="skick">THE MEN IN CHARGE</p><h2>Two names to know</h2></div></div>
+  <div id="peopleGrid" class="people"></div>
+</section>
+
+<!-- ============ 03 THE ROOM ============ -->
+<section class="sec" id="facilities">
+  <div class="shead rev"><span class="sno">03</span><div>
+    <p class="skick">WHAT'S INSIDE</p><h2>The room, listed</h2></div></div>
+  <div id="facGrid" class="facs"></div>
+</section>
+
+<!-- ============ 04 TIMINGS ============ -->
+<section class="sec" id="hours">
+  <div class="shead rev"><span class="sno">04</span><div>
+    <p class="skick">TIMINGS — LIVE</p><h2>When we're open</h2></div></div>
+  <div class="tl-card rev">
+    <div class="tl" id="tlTrack"></div>
+    <div class="tl-scale" id="tlScale"></div>
+    <div class="tl-legend" id="tlLegend"></div>
+    <div class="tl-sun" id="tlSun"></div>
+  </div>
+</section>
+
+<!-- ============ 05 BMI ============ -->
+<section class="sec" id="bmi">
+  <div class="shead rev"><span class="sno">05</span><div>
+    <p class="skick">FREE TOOL — BEFORE YOU JOIN</p><h2>Know your start</h2></div></div>
+  <div class="bmi rev">
+    <div class="bmi-form">
+      <label>HEIGHT (CM)<input type="number" id="bmiH" inputmode="numeric" placeholder="170" min="100" max="230"></label>
+      <label>WEIGHT (KG)<input type="number" id="bmiW" inputmode="numeric" placeholder="72" min="25" max="250"></label>
+    </div>
+    <div class="bmi-val"><b id="bmiN">—</b><span id="bmiCat">ENTER HEIGHT &amp; WEIGHT</span></div>
+    <div class="bmi-meterwrap">
+      <div class="bmi-meter"><i id="bmiMark"></i></div>
+      <div class="bmi-scale">
+        <span style="left:0%">14</span><span style="left:21.4%">18.5</span>
+        <span style="left:42.9%">23</span><span style="left:64.3%">27.5</span>
+        <span style="left:100%">35</span>
+      </div>
+    </div>
+    <p class="bmi-note">Ranges follow Asian-Indian medical guidelines — they run stricter
+    than Western BMI charts. Your number is your baseline — the coach takes it from here.</p>
+  </div>
+</section>
+
+<!-- ============ 06 REVIEWS ============ -->
+<section class="sec" id="reviews">
+  <div class="shead rev"><span class="sno">06</span><div>
+    <p class="skick">FROM THE FLOOR</p><h2>Members talk</h2></div></div>
+  <div class="rev-avg rev">
+    <div class="ra-score"><b id="avgScore">—</b>
+      <span class="stars" id="avgStars"></span><span class="ra-count" id="avgCount">—</span></div>
+    <p class="ra-note">Reviews from AM-Tippu members. Yours appears instantly after you
+    post — it stays on your phone, no account needed.</p>
+  </div>
+  <div id="reviewList" class="reviews"></div>
+  <div class="rform rev">
+    <div class="rf-title">TRAIN HERE? LEAVE A REVIEW</div>
+    <input type="text" id="rName" placeholder="Your name" maxlength="30">
+    <div class="r-stars" id="rStars" role="radiogroup" aria-label="Your rating"></div>
+    <textarea id="rText" rows="3" placeholder="How was your experience?" maxlength="300"></textarea>
+    <p class="r-err" id="rErr"></p>
+    <button class="btn amber wide" id="rSubmit">POST REVIEW</button>
+  </div>
+</section>
+
+<!-- ============ 07 FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="shead rev"><span class="sno">07</span><div>
+    <p class="skick">COMMON QUESTIONS</p><h2>Asked every day</h2></div></div>
+  <div id="faqList" class="faqs rev"></div>
+</section>
+
+<!-- ============ 08 FIND US ============ -->
+<section class="sec" id="contact">
+  <div class="shead rev"><span class="sno">08</span><div>
+    <p class="skick">FIND THE TIGER ROOM</p><h2>Shampura Main Rd</h2></div></div>
+  <div class="addr rev">
+    <p id="addrText">—</p>
+    <div class="addr-btns">
+      <a class="btn amber" id="dirLink" href="#" target="_blank" rel="noopener">GET DIRECTIONS</a>
+      <a class="btn ghost" id="callLink" href="#">CALL</a>
+      <a class="btn wa" id="waLink" href="#" target="_blank" rel="noopener">WHATSAPP</a>
+    </div>
+  </div>
+  <div class="map rev">
+    <iframe id="mapFrame" title="AM-Tippu Fitness on the map" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="band">
+  <p class="bk">NO APPOINTMENT NEEDED — JUST WALK IN</p>
+  <h2>The tiger room is open.<br><em>Come see it.</em></h2>
+  <div class="bbtns">
+    <a class="btn amber" id="bandWa" href="#" target="_blank" rel="noopener">MESSAGE US ON WHATSAPP</a>
+    <a class="btn ghost" id="bandDir" href="#" target="_blank" rel="noopener">GET DIRECTIONS</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-word">AM<i>-</i>TIPPU</div>
+  <p class="f-addr">119, SHAMPURA MAIN RD, KAVAL BAIRASANDRA, BENGALURU 560045<br>
+    MON–SAT · 6–11 AM &amp; 6–11 PM · SUNDAY CLOSED<br>
+    OWNER &amp; HEAD COACH — AZHAR MOHAMMED · IN-CHARGE — SYED TABREZ</p>
+  <p class="f-copy">© <span id="year"></span> AM-Tippu Fitness · Walk in any day we're open</p>
+</footer>
+
+<a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.5-.3-3 .8.8-2.9-.3-.5A8 8 0 0 1 12 4zm-3.1 4.2c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 8.7c-.2-.4-.4-.4-.6-.4z"/></svg>
+</a>
+<div id="toast"></div>
+<div id="err"></div>
+
+<script>
+/* ============================================================
+   AM-TIPPU FITNESS — single-file site, all details final.
+
+   PHOTO NOTE — each person's img is a list, tried in order:
+     1. "owner.png" / "incharge.png"  ← a file saved next to this
+        HTML (permanent, never expires)
+     2. the chat image link (temporary — will die one day)
+     3. monogram fallback (automatic)
+   Save both photos from the chat into this folder as
+   owner.png and incharge.png and you're permanent.
+============================================================ */
+const GYM = {
+  phoneDisplay: "+91 95917 39969",
+  phoneDial: "+919591739969",
+  whatsapp: "919591739969",
+  address: "119, Shampura Main Rd, Coffee Board Colony, Kaval Bairasandra, Bengaluru, Karnataka 560045",
+
+  people: [
+    {
+      name: "Azhar Mohammed",
+      role: "OWNER & HEAD COACH",
+      line: "Founded the room. Sets the standard for every rep in it.",
+      img: ["owner.png",
+        "https://z-cdn-media.chatglm.cn/files/76b500c1-5661-46e5-83bb-1f0617f2b119.png?auth_key=1890873084-0b422e59ed204a47b5d18f547d8d8116-0-a0d29cd8033b23c92538051c43bc232f"],
+      mono: "AM",
+      bullets: ["Form first — correct the lift, then add the weight",
+                "Personal training — one-on-one, separate from plans",
+                "Diet guidance with every PT package"]
+    },
+    {
+      name: "Syed Tabrez",
+      role: "IN-CHARGE · RUNS THE FLOOR",
+      line: "Handles the gym day to day — both batches, morning to night.",
+      img: ["incharge.png",
+        "https://z-cdn-media.chatglm.cn/files/3efefe2f-43e0-4857-b67a-6e0f26bacf42.png?auth_key=1891004426-2bb30ca87ebc4d48af20523abf99b94e-0-2d4d6196353738345e3d66be0c905866"],
+      mono: "ST",
+      bullets: ["The first face you'll see at the gym",
+                "On the floor for morning and evening batches",
+                "Members' go-to for anything they need"]
+    }
+  ],
+
+  hours: {
+    weekday: [
+      { open: "06:00", close: "11:00", label: "MON – SAT · MORNING", time: "6:00 AM – 11:00 AM" },
+      { open: "18:00", close: "23:00", label: "MON – SAT · EVENING", time: "6:00 PM – 11:00 PM" }
+    ],
+    sundayClosed: true
+  },
+
+  fees: [
+    { months: 1,  price: 500 },
+    { months: 3,  price: 1200 },
+    { months: 6,  price: 2200 },
+    { months: 12, price: 3500, best: true }
+  ],
+  facilities: [
+    ["Strength Zone", "Free weights, benches, racks — the core of the room"],
+    ["Cardio Corner", "Treadmills and cycles for warm-up and fat loss"],
+    ["Machine Circuit", "Full-body machine circuit for every muscle group"],
+    ["Personal Training", "Dedicated one-on-one sessions — separate from membership"],
+    ["Supplements", "Protein and supplements provided at the counter"],
+    ["Two Batches", "Morning and evening batches, Monday to Saturday"]
+  ],
+  reviews: [
+    { name: "Mohammed Faisal", stars: 5, text: "Best gym on Shampura Road. The atmosphere is serious and the fee they tell you is the fee you pay — no surprises at the counter." },
+    { name: "Manjunath S.", stars: 5, text: "Took the 6-month plan. Equipment is well maintained and both batches run on time. People come here to train, not take selfies." },
+    { name: "Ayesha K.", stars: 4, text: "Morning batch is never too crowded. Perfect for working people — in by 6, out by 7:15." },
+    { name: "Imran P.", stars: 5, text: "Great value for money. ₹3,500 for the year works out cheaper than my chai budget. They even stock protein at the counter." },
+    { name: "Vijay Kumar", stars: 5, text: "One year here, 11 kg down. Enough said." },
+    { name: "Priya D.", stars: 4, text: "Clean, punctual timings, very supportive coach. Recommended for beginners — nobody makes you feel small here." }
+  ],
+  faqs: [
+    ["Is a trainer included in the fee?", "No — personal training is a separate service. Membership plans cover full gym access in both batches. PT packages and pricing are available on request, over WhatsApp or at the counter."],
+    ["Can I start with just one month?", "Yes — ₹500 for a single month, and you can move to a longer plan any time. You only pay the difference."],
+    ["Are supplements available?", "Yes — we provide protein and other supplements at the counter. Message us on WhatsApp for the current price list."],
+    ["Where exactly is the gym?", "119, Shampura Main Rd — Coffee Board Colony side, Kaval Bairasandra. Two-wheeler parking on the road. Tap 'Get Directions' and your map takes you to the door."]
+  ]
+};
+
+(function(){
+'use strict';
+const $ = s => document.querySelector(s);
+const $$ = s => Array.prototype.slice.call(document.querySelectorAll(s));
+const inr = n => '₹' + n.toLocaleString('en-IN');
+const fail = msg => { const e = $('#err');
+  e.innerHTML = 'SOMETHING BROKE.<br><em>' + msg + '</em><br>RELOAD THE PAGE.';
+  e.style.display = 'flex'; };
+
+try {
+
+/* ---------- toast ---------- */
+let toastTO = 0;
+function toast(m){
+  const t = $('#toast'); t.textContent = m; t.classList.add('show');
+  clearTimeout(toastTO); toastTO = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ---------- links ---------- */
+const waBase = 'https://wa.me/' + GYM.whatsapp;
+const wa = msg => waBase + '?text=' + encodeURIComponent(msg);
+const waGeneric = wa('Hi! I want to know more about AM-Tippu Fitness, Shampura Main Road.');
+const encAddr = encodeURIComponent(GYM.address);
+const dirUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encAddr;
+ $('#heroWa').href = waGeneric;
+ $('#waLink').href = waGeneric;
+ $('#waFab').href = waGeneric;
+ $('#bandWa').href = waGeneric;
+ $('#bandDir').href = dirUrl;
+ $('#dirLink').href = dirUrl;
+ $('#callLink').href = 'tel:' + GYM.phoneDial;
+ $('#callTop').href = 'tel:' + GYM.phoneDial;
+ $('#year').textContent = new Date().getFullYear();
+ $('#addrText').textContent = GYM.address;
+ $('#mapFrame').src = 'https://maps.google.com/maps?q=' + encAddr + '&z=16&output=embed';
+
+/* ---------- marquee ---------- */
+{
+  const items = ['STRENGTH ZONE', 'CARDIO', 'MORNING & EVENING BATCHES',
+    'SUPPLEMENTS AVAILABLE', 'FROM ₹292 / MONTH', 'NO HIDDEN FEES', 'SHAMPURA MAIN RD', 'THE TIGER ROOM'];
+  const half = items.map(x => '<span>' + x + '</span><b>·</b>').join('');
+  $('#mtrack').innerHTML = half + half;
+}
+
+/* ---------- live status + timeline ---------- */
+const toMin = hm => { const p = hm.split(':'); return +p[0]*60 + +p[1]; };
+const fmt12 = m => {
+  const h = Math.floor(m/60), mm = String(m%60).padStart(2,'0');
+  return (h % 12 || 12) + ':' + mm + (h >= 12 ? ' PM' : ' AM');
+};
+function clampV(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function openStatus(){
+  const now = new Date();
+  const mins = now.getHours()*60 + now.getMinutes();
+  const b = GYM.hours.weekday;
+  const mO = toMin(b[0].open), mC = toMin(b[0].close);
+  const eO = toMin(b[1].open), eC = toMin(b[1].close);
+  if (now.getDay() === 0 && GYM.hours.sundayClosed)
+    return { open: false, text: 'CLOSED TODAY · OPENS MON ' + fmt12(mO) };
+  if (mins >= mO && mins < mC)
+    return { open: true, text: 'OPEN · MORNING BATCH, TILL ' + fmt12(mC) };
+  if (mins >= eO && mins < eC)
+    return { open: true, text: 'OPEN · EVENING BATCH, TILL ' + fmt12(eC) };
+  if (mins < mO)
+    return { open: false, text: 'OPENS ' + fmt12(mO) + ' TODAY' };
+  if (mins < eO)
+    return { open: false, text: 'OPENS ' + fmt12(eO) + ' TODAY · EVENING BATCH' };
+  if (now.getDay() === 6)
+    return { open: false, text: 'CLOSED · OPENS MON ' + fmt12(mO) };
+  return { open: false, text: 'OPENS ' + fmt12(mO) + ' TOMORROW' };
+}
+function paintStatus(){
+  const s = openStatus();
+  const chip = $('#openChip');
+  chip.classList.toggle('open', s.open);
+  chip.classList.toggle('closed', !s.open);
+  chip.querySelector('span').textContent = s.text;
+
+  const now = new Date();
+  const sun = now.getDay() === 0;
+  const toP = hm => clampV(((toMin(hm) - 300) / 1140) * 100, 0, 100);
+  const track = $('#tlTrack');
+  const batches = GYM.hours.weekday.map(b =>
+    '<div class="tl-batch' + (sun ? ' dim' : '') + '" style="left:' + toP(b.open).toFixed(1) +
+    '%;width:' + (toP(b.close) - toP(b.open)).toFixed(1) + '%"></div>').join('');
+  let nowMark = '';
+  if (!sun){
+    const mins = now.getHours()*60 + now.getMinutes();
+    const p = clampV(((mins - 300) / 1140) * 100, 0, 100);
+    nowMark = '<div class="tl-now" style="left:' + p.toFixed(1) + '%"><i></i><span>NOW</span></div>';
+  }
+  track.innerHTML = batches + nowMark;
+  $('#tlScale').innerHTML = GYM.hours.weekday.map(b =>
+    '<span style="left:' + toP(b.open).toFixed(1) + '%">' + fmt12(toMin(b.open)).replace(':00','') + '</span>' +
+    '<span style="left:' + toP(b.close).toFixed(1) + '%">' + fmt12(toMin(b.close)).replace(':00','') + '</span>'
+  ).join('');
+  $('#tlLegend').innerHTML = GYM.hours.weekday.map(b =>
+    '<div class="tl-leg"><i></i><b>' + b.label.replace('MON – SAT · ','') + '</b>' +
+    '<span>' + b.time + '</span></div>').join('');
+  $('#tlSun').innerHTML = sun
+    ? '<b>SUNDAY — CLOSED TODAY.</b> Back Monday ' + fmt12(toMin(GYM.hours.weekday[0].open)) + '.'
+    : 'SUNDAY — CLOSED. Back Monday ' + fmt12(toMin(GYM.hours.weekday[0].open)) + '.';
+}
+paintStatus();
+setInterval(paintStatus, 30000);
+
+/* ---------- fees ---------- */
+{
+  const monthly = GYM.fees[0].price;
+  $('#planGrid').innerHTML = GYM.fees.map(f => {
+    const per = Math.round(f.price / f.months);
+    const save = monthly * f.months - f.price;
+    const len = f.months + ' MONTH' + (f.months > 1 ? 'S' : '');
+    const dayCost = f.months === 12 ? 'THAT\u2019S UNDER \u20B910 A DAY' : '';
+    return '<div class="plan tick' + (f.best ? ' best' : '') + '">' +
+      (f.best ? '<div class="p-tag">BEST VALUE — ' + inr(save) + ' SAVED</div>' : '') +
+      '<div class="p-len">' + len + '</div>' +
+      '<div class="p-price"><i>₹</i>' + f.price.toLocaleString('en-IN') + '</div>' +
+      '<div class="p-eff"><b>' + inr(per) + '</b> / MONTH EFFECTIVE</div>' +
+      '<div class="p-bar"><i style="width:' + (per/monthly*100).toFixed(1) + '%"></i></div>' +
+      (save > 0 ? '<div class="p-save">SAVE ' + inr(save) + ' VS PAYING MONTHLY</div>'
+                : '<div class="p-save">TRY US OUT — UPGRADE ANY TIME</div>') +
+      (dayCost ? '<div class="p-day">' + dayCost + '</div>' : '') +
+      '<a class="p-cta" target="_blank" rel="noopener" href="' +
+        wa('Hi! I want to join AM-Tippu Fitness on the ' + len.toLowerCase() +
+           ' plan (' + inr(f.price) + '). Please share the details.') +
+      '">JOIN — ' + len + '</a></div>';
+  }).join('');
+}
+
+/* ---------- people (photo fallback chain) ---------- */
+{
+  $('#peopleGrid').innerHTML = GYM.people.map(p =>
+    '<div class="pcard rev">' +
+      '<div class="pframe tick">' +
+        '<img alt="' + p.name + ' — ' + p.role + ' of AM-Tippu Fitness" loading="lazy">' +
+        '<div class="pmono" style="display:none">' + p.mono + '</div>' +
+        '<span class="ptag">' + p.role + '</span>' +
+      '</div>' +
+      '<h3>' + p.name + '</h3>' +
+      '<p class="pline">' + p.line + '</p>' +
+      '<ul class="plist">' + p.bullets.map(b => '<li>' + b + '</li>').join('') + '</ul>' +
+    '</div>').join('');
+
+  $$('#peopleGrid .pframe').forEach((f, i) => {
+    const img = f.querySelector('img');
+    const mono = f.querySelector('.pmono');
+    const cands = GYM.people[i].img;
+    let ci = 0;
+    img.onerror = () => {
+      ci++;
+      if (ci < cands.length) img.src = cands[ci];
+      else { img.style.display = 'none'; mono.style.display = 'flex'; }
+    };
+    img.src = cands[0];
+  });
+}
+
+/* ---------- facilities ---------- */
+{
+  const icons = [
+    '<path d="M6.5 6.5v11h11"/><path d="M10 9.5v5M14 9.5v5M6.5 6.5l11 11"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+    '<rect x="3" y="8" width="18" height="8" rx="4"/><path d="M8 8v8M16 8v8"/>',
+    '<path d="M6.5 6.5v11h11M6.5 17.5l11-11"/>',
+    '<path d="M8 3h8v3a4 4 0 0 1-8 0zM8 3H5a4 4 0 0 0 4 6M16 3h3a4 4 0 0 1-4 6M12 10v4M9 17h6M10 20h4"/>',
+    '<path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18 12h3M16.3 7.7l2.1-2.1M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>'
+  ];
+  $('#facGrid').innerHTML = GYM.facilities.map((f, i) =>
+    '<div class="fac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+    icons[i % icons.length] + '</svg>' +
+    '<b>' + f[0].toUpperCase() + '</b><span>' + f[1] + '</span></div>').join('');
+}
+
+/* ---------- BMI ---------- */
+{
+  const hIn = $('#bmiH'), wIn = $('#bmiW');
+  const calc = () => {
+    const h = parseFloat(hIn.value), w = parseFloat(wIn.value);
+    if (!h || !w || h < 100 || h > 230 || w < 25 || w > 250){
+      $('#bmiN').textContent = '—';
+      $('#bmiCat').textContent = 'ENTER HEIGHT & WEIGHT';
+      $('#bmiMark').style.left = '1%';
+      return;
+    }
+    const bmi = w / Math.pow(h/100, 2);
+    $('#bmiN').textContent = bmi.toFixed(1);
+    $('#bmiCat').textContent = bmi < 18.5 ? 'UNDERWEIGHT'
+      : bmi < 23 ? 'HEALTHY RANGE' : bmi < 27.5 ? 'OVERWEIGHT' : 'OBESE';
+    $('#bmiMark').style.left =
+      Math.max(1, Math.min(99, (bmi - 14) / 21 * 100)).toFixed(1) + '%';
+  };
+  hIn.addEventListener('input', calc);
+  wIn.addEventListener('input', calc);
+}
+
+/* ---------- reviews ---------- */
+const STAR = '★';
+const starStr = n => STAR.repeat(n) + '<span class="off">' + STAR.repeat(5 - n) + '</span>';
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function getUserReviews(){
+  try { return JSON.parse(localStorage.getItem('amtippu_reviews') || '[]'); }
+  catch(e){ return []; }
+}
+function renderReviews(){
+  const all = getUserReviews().concat(GYM.reviews);
+  const avg = all.reduce((s, r) => s + r.stars, 0) / all.length;
+  $('#avgScore').textContent = avg.toFixed(1);
+  $('#avgStars').innerHTML = starStr(Math.round(avg));
+  $('#avgCount').textContent = all.length + ' REVIEWS';
+  $('#reviewList').innerHTML = all.map(r =>
+    '<div class="review' + (r.mine ? ' mine' : '') + '">' +
+    '<div class="rv-top"><b>' + esc(r.name) + '</b><span>' + (r.when || 'MEMBER') + '</span></div>' +
+    '<div class="rv-stars">' + starStr(r.stars) + '</div>' +
+    '<p class="rv-text">' + esc(r.text) + '</p></div>').join('');
+}
+{
+  let rating = 0;
+  const box = $('#rStars');
+  for (let i = 1; i <= 5; i++){
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = STAR; b.dataset.v = i;
+    b.setAttribute('aria-label', i + ' star' + (i > 1 ? 's' : ''));
+    b.addEventListener('click', () => {
+      rating = i;
+      box.querySelectorAll('button').forEach(x =>
+        x.classList.toggle('on', +x.dataset.v <= i));
+    });
+    box.appendChild(b);
+  }
+  $('#rSubmit').addEventListener('click', () => {
+    const name = $('#rName').value.trim();
+    const text = $('#rText').value.trim();
+    const err = $('#rErr');
+    if (!name){ err.textContent = 'PLEASE ADD YOUR NAME.'; return; }
+    if (!rating){ err.textContent = 'TAP THE STARS TO RATE US.'; return; }
+    if (text.length < 10){ err.textContent = 'TELL US A LITTLE MORE — AT LEAST 10 CHARACTERS.'; return; }
+    err.textContent = '';
+    const user = getUserReviews();
+    user.unshift({ name: name, stars: rating, text: text, mine: true, when: 'JUST NOW' });
+    try { localStorage.setItem('amtippu_reviews', JSON.stringify(user.slice(0, 20))); } catch(e){}
+    $('#rName').value = ''; $('#rText').value = '';
+    rating = 0;
+    box.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+    renderReviews();
+    toast('THANK YOU — YOUR REVIEW IS LIVE');
+  });
+}
+renderReviews();
+
+/* ---------- FAQ ---------- */
+ $('#faqList').innerHTML = GYM.faqs.map(([q, a]) =>
+  '<div class="faq"><button class="faq-q" aria-expanded="false">' + q +
+  '<i>+</i></button><div class="faq-a"><p>' + a + '</p></div></div>').join('');
+ $$('.faq-q').forEach(btn => btn.addEventListener('click', () => {
+  const f = btn.parentElement, a = f.querySelector('.faq-a');
+  const wasOpen = f.classList.contains('open');
+  $$('.faq.open').forEach(o => {
+    o.classList.remove('open');
+    o.querySelector('.faq-a').style.maxHeight = 0;
+    o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+  });
+  if (!wasOpen){
+    f.classList.add('open');
+    a.style.maxHeight = a.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}));
+
+/* ---------- progress + topbar + reveal ---------- */
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100;
+  $('#progress').style.width = p + '%';
+  $('#topbar').classList.toggle('scrolled', scrollY > 30);
+}, { passive: true });
+const io = new IntersectionObserver(es => es.forEach((e, i) => {
+  if (e.isIntersecting){
+    e.target.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+  }
+}), { threshold: .12 });
+ $$('.rev').forEach(el => io.observe(el));
+
+} catch (e){
+  console.error(e);
+  fail(e.message || 'UNKNOWN FAULT');
+}
+})();
+
+/* ============================================================
+   HERO 3D — the tiger barbell. Drag horizontally to spin it.
+============================================================ */
+(function(){
+'use strict';
+(async () => {
+  let THREE = null;
+  for (const u of ['https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js',
+                   'https://unpkg.com/three@0.160.0/build/three.module.js',
+                   'https://esm.sh/three@0.160.0',
+                   'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.module.min.js']){
+    try { const m = await import(u); if (m && m.WebGLRenderer){ THREE = m; break; } }
+    catch(e){}
+  }
+  const canvas = document.getElementById('hero3d');
+  const fb = document.getElementById('heroFallback');
+  if (!THREE || !canvas){ if (fb) fb.hidden = false; return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); }
+  catch(e){ canvas.style.display = 'none'; if (fb) fb.hidden = false; return; }
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
+  camera.position.set(0, 0.6, 7.2);
+  camera.lookAt(0, 0, 0);
+
+  {
+    const s = new THREE.Scene();
+    const box = new THREE.BoxGeometry();
+    const panel = (hex, k, x, y, z, sx, sy, sz) => {
+      const m = new THREE.Mesh(box, new THREE.MeshBasicMaterial({ color: hex }));
+      m.position.set(x, y, z); m.scale.set(sx, sy, sz);
+      m.material.color.multiplyScalar(k); s.add(m);
+    };
+    panel(0xffffff, 12, 0, 16, 0, 20, .6, 20);
+    panel(0xffd9b0, 4, 12, 5, 8, 14, 8, .6);
+    panel(0x334455, 3, -12, 6, -8, 12, 8, .6);
+    panel(0x050505, 1, 0, -16, 0, 20, .6, 20);
+    const pm = new THREE.PMREMGenerator(renderer);
+    scene.environment = pm.fromScene(s, .06).texture;
+    pm.dispose();
+  }
+  scene.add(new THREE.HemisphereLight(0x3a3a40, 0x0a0a0c, .5));
+  const key = new THREE.DirectionalLight(0xfff0dd, 2.2);
+  key.position.set(4, 6, 5); scene.add(key);
+  const rim = new THREE.DirectionalLight(0x9fb0d0, 1.1);
+  rim.position.set(-5, 3, -4); scene.add(rim);
+
+  const steel = new THREE.MeshStandardMaterial({ color: 0xB9BEC6, metalness: .9, roughness: .28, envMapIntensity: 1.1 });
+  const dark  = new THREE.MeshStandardMaterial({ color: 0x3E4046, metalness: .85, roughness: .42 });
+  const amber = new THREE.MeshStandardMaterial({ color: 0xFF9A2E, metalness: .45, roughness: .38, emissive: 0x7a4400, emissiveIntensity: .45 });
+  const bar = new THREE.Group();
+  function plate(mat, r, len, x){
+    const g = new THREE.CylinderGeometry(r, r, len, 40);
+    g.rotateZ(Math.PI/2);
+    const m = new THREE.Mesh(g, mat);
+    m.position.x = x; bar.add(m);
+  }
+  plate(steel, .10, 2.7, 0);
+  plate(dark,  .17, .10, -1.05); plate(dark, .17, .10, 1.05);
+  plate(dark,  .52, .17, -1.28); plate(dark,  .52, .17, 1.28);
+  plate(dark,  .64, .17, -1.47); plate(dark,  .64, .17, 1.47);
+  plate(steel, .76, .17, -1.68); plate(steel, .76, .17, 1.68);
+  plate(amber, .30, .05, -0.88); plate(amber, .30, .05, 0.88);
+  bar.rotation.z = 0.5;
+  scene.add(bar);
+
+  {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const x = c.getContext('2d');
+    const g = x.createRadialGradient(32,32,0,32,32,32);
+    g.addColorStop(0,'rgba(255,190,120,1)'); g.addColorStop(.4,'rgba(255,190,120,.35)');
+    g.addColorStop(1,'rgba(255,190,120,0)');
+    x.fillStyle = g; x.fillRect(0,0,64,64);
+    const N = 90, p = new Float32Array(N*3);
+    for (let i = 0; i < N; i++){
+      p[i*3] = (Math.random()-.5)*9; p[i*3+1] = (Math.random()-.5)*6; p[i*3+2] = -1 - Math.random()*4;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(p, 3));
+    scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: .05,
+      map: new THREE.CanvasTexture(c), transparent: true, opacity: .5,
+      depthWrite: false, blending: THREE.AdditiveBlending })));
+  }
+
+  let ry = -0.5, rx = 0.1, vy = 0, dragging = false, lx = 0, ly = 0;
+  canvas.addEventListener('pointerdown', e => {
+    dragging = true; lx = e.clientX; ly = e.clientY; vy = 0;
+    try { canvas.setPointerCapture(e.pointerId); } catch(err){}
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dx = e.clientX - lx, dy = e.clientY - ly;
+    lx = e.clientX; ly = e.clientY;
+    ry += dx * 0.008; vy = dx * 0.008;
+    if (e.pointerType === 'mouse')
+      rx = Math.max(-.6, Math.min(.6, rx + dy * 0.004));
+  });
+  const end = () => { dragging = false; };
+  canvas.addEventListener('pointerup', end);
+  canvas.addEventListener('pointercancel', end);
+
+  let visible = true;
+  new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting),
+    { threshold: 0 }).observe(canvas);
+
+  function resize(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize);
+  resize();
+
+  let last = performance.now();
+  (function loop(now){
+    requestAnimationFrame(loop);
+    if (!visible) return;
+    const dt = Math.min(.04, (now - last)/1000); last = now;
+    const t = now/1000;
+    if (!dragging){
+      ry += vy; vy *= 0.95;
+      if (Math.abs(vy) < 0.0004){
+        vy = 0;
+        if (!reduce) ry += 0.25*dt;
+      }
+    }
+    bar.rotation.y = ry + (reduce ? 0 : scrollY * 0.0012);
+    bar.rotation.x = rx + (reduce ? 0 : Math.sin(t*.5)*.04);
+    renderer.render(scene, camera);
+  })(last);
+})();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AM-TIPPU FITNESS - Workout &amp; Exercise Library</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Barlow Condensed & Space Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#005321",
+            "surface": "#141312",
+            "outline-variant": "#554335",
+            "surface-container-highest": "#363433",
+            "on-surface-variant": "#dbc2af",
+            "surface-container-lowest": "#0f0e0d",
+            "surface-container": "#211f1e",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "secondary-fixed-dim": "#4ae176",
+            "on-surface": "#e6e1df",
+            "on-primary-container": "#693900",
+            "error": "#ffb4ab",
+            "on-tertiary": "#34302a",
+            "inverse-primary": "#8e4f00",
+            "surface-tint": "#ffb877",
+            "surface-container-high": "#2b2a28",
+            "surface-bright": "#3b3937",
+            "on-secondary-fixed": "#002109",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "primary": "#ffc18c",
+            "on-error": "#690005",
+            "surface-container-low": "#1d1b1a",
+            "secondary": "#4ae176",
+            "inverse-on-surface": "#32302f",
+            "on-tertiary-container": "#48443e",
+            "primary-container": "#ff9a2e",
+            "tertiary-container": "#b8b1a9",
+            "secondary-fixed": "#6bff8f",
+            "on-secondary-container": "#004119",
+            "on-primary-fixed-variant": "#6c3a00",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "secondary-container": "#00b954",
+            "on-primary": "#4c2700",
+            "inverse-surface": "#e6e1df",
+            "background": "#141312",
+            "on-tertiary-fixed": "#1e1b16",
+            "tertiary": "#d4ccc4",
+            "surface-dim": "#141312",
+            "primary-fixed-dim": "#ffb877",
+            "surface-variant": "#363433",
+            "outline": "#a28d7c",
+            "primary-fixed": "#ffdcc1",
+            "on-primary-fixed": "#2e1500",
+            "on-secondary": "#003915",
+            "on-background": "#e6e1df",
+            "tertiary-fixed": "#e9e1d9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.25rem",
+            "gutter": "0.75rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "2rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Barlow Condensed"],
+            "body-lg": ["Space Grotesk"],
+            "headline-lg-mobile": ["Barlow Condensed"],
+            "display-lg": ["Barlow Condensed"],
+            "display-lg-mobile": ["Barlow Condensed"],
+            "body-md": ["Space Grotesk"],
+            "telemetry-digit": ["JetBrains Mono"],
+            "label-md": ["JetBrains Mono"],
+            "headline-lg": ["Barlow Condensed"],
+            "body-sm": ["Space Grotesk"],
+            "label-sm": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    /* Custom scanline texture & tactile focus utilities */
+    .tactile-grid-bg {
+      background-image: linear-gradient(to right, rgba(85, 67, 53, 0.08) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(85, 67, 53, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen pb-36 select-none font-body-md tactile-grid-bg">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#FF9A2E; font-weight:700; text-decoration:underline; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:none; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- TOP APP BAR (from Shared Components JSON: docked top, full width, no outer borders) -->
+<header class="sticky top-0 z-40 bg-surface w-full shadow-md">
+<div class="flex justify-between items-center w-full px-margin py-space-sm max-w-md mx-auto">
+<div class="flex items-center gap-space-sm">
+<div onclick="window.location.href='profile.html'" style="cursor:pointer;" <div class="w-8 h-8 rounded-full border border-outline-variant bg-surface-container-high overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Intense monochrome close-up portrait of Sufiyan, an elite tactical powerlifter wearing black training apparel inside a gritty gym environment with deep shadows, high contrast highlights, and warm amber rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALu1ncCNIRvn7hMiqDtcDxrNZUnzlVF05KIfRz_wyW8QbBDxYpjn7Wy18V3JHDrdBV2N4t-sX3-wIT3SeIwwkslKOS9YzY_L6G3r5xDhF-LYT_G7iuWnDz2hsxCEt_ZF2L_lZQktIjeEAhr_qobhjaDjSIkzblLeDCJDv3lx7iHmVu5-D7gtSR5tgupXjARPsIaZRX_Ch8ov_4UJnwTYWhmqBaT185NeoKN5O07pRhqvWfXrBV6AUwEj3mfTDgtMUtDZFur3pWnns"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold tracking-wider text-primary uppercase">AM-TIPPU FITNESS</span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">UNIT OPERATOR // SUFIYAN</span>
+</div>
+</div>
+
+      <a href="index.html" class="flex items-center text-xs text-outline hover:text-primary mr-2 font-mono">← Back</a>
+      <button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low border border-outline-variant text-primary hover:bg-surface-container-high transition-colors duration-150 active:scale-95 transition-transform duration-100 relative">
+    
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+</button>
+</div>
+</header>
+<!-- SCREEN MAIN CONTENT CANVAS -->
+<main class="max-w-md mx-auto px-margin pt-space-md space-y-space-md">
+<!-- PAGE HERO & SEARCH CONSOLE -->
+<section class="space-y-space-sm">
+<div class="flex items-end justify-between">
+<div>
+<div class="flex items-center gap-space-xs mb-1">
+<span class="inline-block w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold">TACTICAL ARMORY</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface tracking-tight">WORKOUT LIBRARY</h1>
+</div>
+<div class="bg-surface-container-low border border-outline-variant px-space-xs py-1 rounded">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">64 MOVEMENTS</span>
+</div>
+</div>
+<!-- TACTICAL SEARCH INPUT -->
+<div class="relative flex items-center w-full">
+<div class="absolute left-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-12 bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-10 text-on-surface placeholder-outline font-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all duration-150" placeholder="Search by exercise or equipment..." type="text"/>
+<div class="absolute right-3 flex items-center text-outline-variant">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+</div>
+</section>
+<!-- SECTION 1: WORKOUT SPLIT PROGRAM SELECTOR -->
+<section class="pt-space-xs">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-md text-label-md uppercase text-outline tracking-wider">TRAINING PROTOCOLS</span>
+<span class="font-label-sm text-label-sm text-primary-container flex items-center gap-1 font-semibold uppercase">
+          SPLIT VIEW <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+<div class="flex gap-space-xs overflow-x-auto custom-scrollbar pb-1 -mx-margin px-margin">
+<!-- PUSH DAY (Active Tab) -->
+<button class="flex-shrink-0 bg-surface-container-high border-b-2 border-primary-container px-space-md py-space-sm rounded-t-lg flex flex-col items-start gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full"></span>
+<span class="font-headline-sm text-headline-sm uppercase text-primary tracking-wide">Push Day</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant uppercase">4 EXERCISES</span>
+</button>
+<!-- PULL DAY -->
+<button class="flex-shrink-0 bg-surface-container-low border border-outline-variant px-space-md py-space-sm rounded-lg flex flex-col items-start gap-1 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">Pull Day</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">5 EXERCISES</span>
+</button>
+<!-- LEG DAY -->
+<button class="flex-shrink-0 bg-surface-container-low border border-outline-variant px-space-md py-space-sm rounded-lg flex flex-col items-start gap-1 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">Leg Day</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">6 EXERCISES</span>
+</button>
+<!-- UPPER BODY -->
+<button class="flex-shrink-0 bg-surface-container-low border border-outline-variant px-space-md py-space-sm rounded-lg flex flex-col items-start gap-1 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">Upper Body</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">7 EXERCISES</span>
+</button>
+<!-- CORE & CONDITIONING -->
+<button class="flex-shrink-0 bg-surface-container-low border border-outline-variant px-space-md py-space-sm rounded-lg flex flex-col items-start gap-1 hover:bg-surface-container-high transition-colors">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">Core &amp; Cond.</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">4 EXERCISES</span>
+</button>
+</div>
+</section>
+<!-- SECTION 2: MUSCLE GROUP FILTER CHIPS -->
+<section class="space-y-space-xs">
+<div class="flex items-center gap-space-xs overflow-x-auto custom-scrollbar -mx-margin px-margin py-1">
+<!-- ALL (Active) -->
+<button class="flex-shrink-0 bg-primary-container text-on-primary font-label-md text-label-md px-space-md py-1.5 rounded-full font-bold uppercase tracking-wider shadow-sm">
+          All
+        </button>
+<!-- CHEST -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Chest
+        </button>
+<!-- BACK -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Back
+        </button>
+<!-- QUADS & HAMSTRINGS -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Quads &amp; Hamstrings
+        </button>
+<!-- SHOULDERS -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Shoulders
+        </button>
+<!-- BICEPS & TRICEPS -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Biceps &amp; Triceps
+        </button>
+<!-- CORE -->
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface border border-outline-variant font-label-md text-label-md px-space-md py-1.5 rounded-full uppercase tracking-wider hover:border-primary-container transition-colors">
+          Core
+        </button>
+</div>
+</section>
+<!-- SECTION 3: DETAILED TACTILE EXERCISE CARDS -->
+<section class="space-y-space-md">
+<!-- CARD 1: INCLINE DUMBBELL BENCH PRESS -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-space-md space-y-space-sm">
+<!-- Top Badges & Meta -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="bg-error-container text-on-error-container border border-error/30 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                Upper Chest
+              </span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">
+                Dumbbells
+              </span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">repeat</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">4 SETS × 8-12 REPS</span>
+</div>
+</div>
+<!-- Exercise Title & Quick Specs -->
+<div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">
+              Incline Dumbbell Bench Press
+            </h2>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+              30° incline bench angle, pronated grip, full pectoral stretch.
+            </p>
+</div>
+<!-- Wireframe Diagram Thumbnail Container -->
+<div class="relative w-full h-32 rounded-lg bg-surface-container-lowest border border-outline-variant overflow-hidden flex items-center justify-center group">
+<img class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" data-alt="Technical biomechanical wireframe render of an athlete performing an incline dumbbell press on a 30-degree industrial weight bench, highlighted pectoral target vectors in neon amber against a dark tactical background with data metrics overlay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtGyXSYvtQw8wxntbZJbyCempSDJRXXCWF5gPPi5s_zo6-pQPRVHydKEWDrVO621_vKIlrIA16K18mdqh0Q9O8LgaALH0qxQHiUq_hq7n0BFTegwMRiNsSPw34K805MpVPXJuSaf6fyE2co0jDSdst0tZFpXwQUevSs2iYZ5Tk8tn4LCUi6C91T5eUcyPrLQZtmtl_28Bl3w2aCE5mrZXXbgUIpoITaoPSpCZ2N5pJMIV_cDQVOfO1_kQgaLkBUpqLBnp50HBWftw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute bottom-2 left-2 flex items-center gap-1.5 bg-surface-container-low/90 border border-outline-variant px-2 py-0.5 rounded backdrop-blur-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase font-semibold">FORM WIRED</span>
+</div>
+<div class="absolute bottom-2 right-2 bg-surface-container-low/90 border border-outline-variant px-2 py-0.5 rounded">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">30° ANGLE</span>
+</div>
+</div>
+<!-- Telemetry Block (Monospace metrics) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">PREVIOUS BEST</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight">34 KG × 8 REPS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">INTENSITY TARGET</span>
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider bg-on-secondary-fixed-variant/40 border border-secondary px-2 py-0.5 rounded mt-0.5">
+                RPE 9.0
+              </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="h-12 bg-primary-container text-on-primary-container font-headline-sm text-headline-sm uppercase font-extrabold rounded-lg flex items-center justify-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>LOG SET</span>
+</button>
+<button class="h-12 bg-surface-container-high border border-outline-variant text-on-surface font-headline-sm text-headline-sm uppercase font-bold rounded-lg flex items-center justify-center gap-1 hover:bg-surface-bright active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>FORM GUIDE</span>
+</button>
+</div>
+</div>
+</article>
+<!-- CARD 2: BARBELL BENT-OVER ROW -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-space-md space-y-space-sm">
+<!-- Top Badges & Meta -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="bg-surface-container-high text-primary border border-primary/20 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                Lats &amp; Upper Back
+              </span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">
+                Barbell
+              </span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">repeat</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">4 SETS × 10 REPS</span>
+</div>
+</div>
+<!-- Title -->
+<div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">
+              Barbell Bent-Over Row
+            </h2>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+              Overhand grip, 45° torso tilt, drive elbows back towards hip pocket.
+            </p>
+</div>
+<!-- Preview diagram container -->
+<div class="relative w-full h-32 rounded-lg bg-surface-container-lowest border border-outline-variant overflow-hidden flex items-center justify-center group">
+<img class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-300" data-alt="Dark high-contrast technical schematic illustration of a male powerlifter performing a bent-over barbell row, posture alignment lines in cyan and amber on a dark matte graphite background with technical anatomical callouts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxAbH2sSrLkDU4CULBiASqtCIOxVzVIJIALuW-dqxvrfyY5qcg8fjdqoPLLDDy0P-ERMx4egewRdMTgf2aE2DaVlMzP4gkdvrE60affSMfMHIHHfVtT-1_uT483JykpBN8tGoZQQVEUFAKqD0hxSUAqCwTlqimOVwG4FYkzvHzKLrYiLQZRjWwxiB8lXlF936Cczo9aM0W0_1i_dCoZYMcMlv3R_UHf1sqZtJYQjIxK4bKGXyNQvMDOWtFwPDYRTD5kPf9svxa3ig"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute bottom-2 left-2 flex items-center gap-1.5 bg-surface-container-low/90 border border-outline-variant px-2 py-0.5 rounded backdrop-blur-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase font-semibold">CADENCE 2-0-1</span>
+</div>
+<div class="absolute bottom-2 right-2 bg-surface-container-low/90 border border-outline-variant px-2 py-0.5 rounded">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">TORSO 45°</span>
+</div>
+</div>
+<!-- Telemetry Stats -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">PREVIOUS BEST</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight">80 KG × 10 REPS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">INTENSITY TARGET</span>
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider bg-on-secondary-fixed-variant/40 border border-secondary px-2 py-0.5 rounded mt-0.5">
+                RPE 8.5
+              </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="h-12 bg-primary-container text-on-primary-container font-headline-sm text-headline-sm uppercase font-extrabold rounded-lg flex items-center justify-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>LOG SET</span>
+</button>
+<button class="h-12 bg-surface-container-high border border-outline-variant text-on-surface font-headline-sm text-headline-sm uppercase font-bold rounded-lg flex items-center justify-center gap-1 hover:bg-surface-bright active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>FORM GUIDE</span>
+</button>
+</div>
+</div>
+</article>
+<!-- CARD 3: STANDING OVERHEAD MILITARY PRESS -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="bg-primary-container/20 text-primary-container border border-primary-container/30 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                Anterior Deltoids
+              </span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">
+                Barbell
+              </span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">repeat</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">3 SETS × 8 REPS</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">
+              Standing Overhead Military Press
+            </h2>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">
+              Strict vertical bar trajectory, glutes locked, head through window at lockout.
+            </p>
+</div>
+<!-- Telemetry Stats -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">PREVIOUS BEST</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight">55 KG × 6 REPS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TARGET PACE</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider bg-surface-container-high px-2 py-0.5 rounded mt-0.5">
+                EXPLOSIVE
+              </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="h-12 bg-primary-container text-on-primary-container font-headline-sm text-headline-sm uppercase font-extrabold rounded-lg flex items-center justify-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>LOG SET</span>
+</button>
+<button class="h-12 bg-surface-container-high border border-outline-variant text-on-surface font-headline-sm text-headline-sm uppercase font-bold rounded-lg flex items-center justify-center gap-1 hover:bg-surface-bright active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>FORM GUIDE</span>
+</button>
+</div>
+</div>
+</article>
+<!-- CARD 4: ROMANIAN DEADLIFT (RDL) -->
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="bg-on-secondary-fixed-variant text-secondary-fixed border border-secondary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                Hamstrings &amp; Glutes
+              </span>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">
+                Barbell
+              </span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">repeat</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">4 SETS × 10 REPS</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wide">
+              Romanian Deadlift (RDL)
+            </h2>
+<div class="mt-1 flex items-start gap-1.5 bg-surface-container-lowest border border-outline-variant/60 rounded px-2.5 py-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-container shrink-0 mt-0.5">tips_and_updates</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<span class="text-primary font-bold">CUES:</span> Hinge at hips, slight knee bend, spine neutral.
+              </p>
+</div>
+</div>
+<!-- Telemetry Stats -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">PREVIOUS BEST</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-tight">110 KG × 8 REPS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TEMPO CONTROL</span>
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider bg-on-secondary-fixed-variant/40 border border-secondary px-2 py-0.5 rounded mt-0.5">
+                3-1-1 ECCENTRIC
+              </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="h-12 bg-primary-container text-on-primary-container font-headline-sm text-headline-sm uppercase font-extrabold rounded-lg flex items-center justify-center gap-1 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>LOG SET</span>
+</button>
+<button class="h-12 bg-surface-container-high border border-outline-variant text-on-surface font-headline-sm text-headline-sm uppercase font-bold rounded-lg flex items-center justify-center gap-1 hover:bg-surface-bright active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>FORM GUIDE</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- SECTION 4: REST INTERVAL TIMER WIDGET (Docks directly above bottom nav) -->
+<aside class="fixed bottom-16 left-0 w-full z-40 px-margin pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<div class="bg-surface-container-high/95 backdrop-blur-md border border-outline-variant rounded-xl p-space-xs shadow-2xl flex items-center justify-between">
+<!-- Live circular timer visual -->
+<div class="flex items-center gap-space-sm pl-2">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<!-- SVG Progress Ring -->
+<svg class="w-10 h-10 transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-outline-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="material-symbols-outlined text-[18px] text-primary-container absolute">timer</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-primary-container rounded-full animate-ping"></span>
+              REST INTERVAL
+            </span>
+<span class="font-telemetry-digit text-[18px] text-on-surface tracking-wider leading-none">
+              01:30
+            </span>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center gap-1.5 pr-1">
+<button aria-label="Pause timer" class="w-9 h-9 rounded bg-surface-container-low border border-outline-variant text-on-surface flex items-center justify-center hover:bg-surface-bright active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+<button class="h-9 px-2.5 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-bold uppercase tracking-wider flex items-center gap-1 hover:brightness-110 active:scale-95 transition-transform">
+<span>+30S</span>
+</button>
+<button aria-label="Skip timer" class="w-9 h-9 rounded bg-surface-container-low border border-outline-variant text-outline flex items-center justify-center hover:text-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">skip_next</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- BOTTOM NAVBAR (from Shared Components JSON: docked bottom, full width, Workouts is ACTIVE) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm safe-area-bottom bg-surface-container-lowest shadow-lg">
+<!-- Tab 1: Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px] py-1" href="index.html">
+<span class="material-symbols-outlined text-[22px]">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Home</span>
+</a>
+<!-- Tab 2: Workouts (ACTIVE DESTINATION) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px] py-1 relative" href="workouts.html">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">sports_gymnastics</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5 text-primary">Workouts</span>
+<span class="w-1 h-1 bg-primary-container rounded-full mt-0.5"></span>
+</a>
+<!-- Tab 3: Check In (Center tactile scanner) -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px] py-1" href="checkin.html">
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center -mt-3 shadow-md">
+<span class="material-symbols-outlined text-[20px] text-primary-container">qr_code_scanner</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Check In</span>
+</a>
+<!-- Tab 4: Analytics (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px] py-1" href="progress.html">
+<span class="material-symbols-outlined text-[22px]">monitoring</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Analytics</span>
+</a>
+<!-- Tab 5: Profile (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px] py-1" href="profile.html">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-0.5">Profile</span>
+</a>
+</nav>
+<!-- Interactive micro-interactions for tactile feel -->
+<script>
+    // Quick interactive feedback for logging sets
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (this.innerText.includes('LOG SET')) {
+          const original = this.innerHTML;
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px] text-on-secondary font-bold">check</span><span>LOGGED</span>';
+          this.classList.remove('bg-primary-container', 'text-on-primary-container');
+          this.classList.add('bg-secondary', 'text-on-secondary');
+          setTimeout(() => {
+            this.innerHTML = original;
+            this.classList.remove('bg-secondary', 'text-on-secondary');
+            this.classList.add('bg-primary-container', 'text-on-primary-container');
+          }, 1400);
+        }
+      });
+    });
+  </script>
+</body></html>

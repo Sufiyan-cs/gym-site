@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Athlete Profile, Community & Settings - AM-Tippu Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-lowest": "#0C0B0A",
+            "surface-low": "#141312",
+            "surface-card": "#181716",
+            "surface-elevated": "#21201E",
+            "surface-high": "#2A2826",
+            "primary": "#FF9A2E",
+            "primary-container": "#FF9A2E",
+            "secondary": "#34D399",
+            "on-surface": "#FFFFFF",
+            "outline": "#8E8D8A"
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0C0B0A;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .amber-glow {
+      box-shadow: 0px 10px 28px rgba(255, 154, 46, 0.2);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-surface-lowest min-h-screen text-on-surface antialiased pb-28">
+
+  <!-- TOP APP BAR -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-surface-low/90 backdrop-blur-md border-b border-white/[0.04]">
+    <div class="max-w-md mx-auto px-5 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="dashboard.html" class="w-9 h-9 rounded-full bg-surface-elevated border border-white/5 flex items-center justify-center text-outline hover:text-white">
+          <span class="material-symbols-outlined text-[19px]">arrow_back</span>
+        </a>
+        <h1 class="text-base font-bold text-white tracking-tight">Athlete Profile & Hub</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="checkin.html" class="w-9 h-9 rounded-full bg-surface-elevated border border-white/5 flex items-center justify-center text-outline hover:text-secondary active:scale-95 transition-all" title="View Athletes On Floor (Check-in)">
+          <span class="material-symbols-outlined text-[19px]">groups</span>
+        </a>
+        <button onclick="openEditProfileModal()" class="w-9 h-9 rounded-full bg-surface-elevated border border-white/5 flex items-center justify-center text-outline hover:text-primary active:scale-95 transition-all" title="Edit Profile & Configurations">
+          <span class="material-symbols-outlined text-[19px]">settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLLABLE CONTAINER -->
+  <main class="max-w-md mx-auto pt-20 px-5 space-y-5">
+
+    <!-- ATHLETE IDENTITY SECTION (Clickable to Edit) -->
+    <section class="flex flex-col items-center text-center pt-1">
+      <div class="relative mb-3 cursor-pointer group" onclick="openEditProfileModal()" title="Tap to upload your real photo">
+        <div class="w-24 h-24 rounded-full p-[2.5px] bg-gradient-to-b from-primary to-surface-card shadow-[0_0_24px_rgba(255,154,46,0.3)]">
+          <img id="profile-avatar-img" class="w-full h-full rounded-full object-cover bg-surface-card group-hover:opacity-90 transition-opacity" 
+               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" 
+               alt="Athlete Profile"/>
+        </div>
+        <div class="absolute bottom-0 right-1 w-6 h-6 rounded-full bg-surface-high border-2 border-surface-lowest flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-colors shadow-sm">
+          <span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+        </div>
+      </div>
+
+      <h2 id="profile-display-name" class="text-2xl font-extrabold text-white tracking-tight">Sufiyan Khan</h2>
+      <p id="profile-display-handle" class="text-xs text-outline mt-0.5">@sufiyan.fit • Member ID: #TK-9842</p>
+
+      <div class="mt-2 flex items-center gap-2">
+        <span id="profile-display-tier" class="px-3 py-1 rounded-full bg-primary/15 border border-primary/40 text-[10px] font-bold text-primary tracking-wider">
+          ELITE ANNUAL ATHLETE
+        </span>
+        <span id="profile-display-since" class="px-3 py-1 rounded-full bg-surface-card border border-white/5 text-[10px] text-outline font-semibold">
+          Member since Nov 2024
+        </span>
+      </div>
+
+      <!-- USER'S REAL SOCIAL MEDIA LINKS BAR -->
+      <div id="profile-social-links-bar" class="mt-3 flex items-center justify-center gap-2 flex-wrap">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <!-- Prominent Edit Button -->
+      <button onclick="openEditProfileModal()" class="mt-3 px-4 py-2 rounded-full bg-surface-card hover:bg-surface-elevated border border-white/10 text-xs font-bold text-white flex items-center gap-2 shadow-sm active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-[16px] text-primary">manage_accounts</span>
+        <span>Edit Profile, Photo & Socials</span>
+      </button>
+    </section>
+
+    <!-- ALL-ACCESS PASS HERO CARD WITH UPI RENEWAL -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.06] amber-glow space-y-4 relative overflow-hidden">
+      <div class="flex items-start justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-outline tracking-wider uppercase block">MEMBERSHIP ACCESS</span>
+          <h3 id="profile-membership-name" class="text-lg font-bold text-white mt-0.5">AM-Tippu All-Access Unlimited</h3>
+        </div>
+        <div class="w-9 h-9 rounded-xl bg-surface-elevated border border-white/5 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+        </div>
+      </div>
+
+      <!-- Live Validity Status -->
+      <div class="p-3 rounded-2xl bg-surface-low border border-white/5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          <div>
+            <span class="text-xs font-bold text-white block">Active • 24 Days Remaining</span>
+            <span class="text-[10px] text-outline">Renews on 28 Nov 2026</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold text-secondary bg-secondary/15 px-2 py-0.5 rounded-full">VALID</span>
+      </div>
+
+      <!-- Privileges Checklist -->
+      <div class="space-y-2 text-xs text-outline/90">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+          <span class="text-white">24/7 Optical Turnstile Access (Door & Gate)</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+          <span class="text-white">Coach Tippu 1-on-1 Guidance & Programming</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+          <span id="profile-privilege-fob" class="text-white">RFID Key Fob & Dynamic Turnstile QR Synced</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+          <span class="text-white">Recovery Spa, Sauna & 2 Guest Passes Remaining</span>
+        </div>
+      </div>
+
+      <!-- UPI RENEW BUTTON -->
+      <button onclick="openUpiModal()" class="w-full py-3.5 rounded-full bg-primary text-black font-bold text-sm flex items-center justify-center gap-2 active:scale-98 transition-all shadow-md">
+        <span class="material-symbols-outlined text-[18px]">bolt</span>
+        <span>Renew via UPI (GPay / PhonePe / Paytm) • ₹14,999</span>
+      </button>
+    </section>
+
+    <!-- ATTENDANCE & ACTIVITY TELEMETRY (4-BENTO METRIC GRID) -->
+    <section class="space-y-2.5">
+      <h3 class="text-xs font-bold text-outline uppercase tracking-wider px-1">Gym Floor Attendance</h3>
+      <div class="grid grid-cols-2 gap-2.5">
+        <div class="bg-surface-card p-3.5 rounded-2xl border border-white/5 space-y-1">
+          <span class="text-[10px] font-bold text-outline uppercase">Total Check-Ins</span>
+          <div class="text-2xl font-extrabold text-white">148 <span class="text-xs text-outline font-normal">days</span></div>
+          <span class="text-[10px] text-secondary font-bold">Top 5% Facility Consistency</span>
+        </div>
+        <div class="bg-surface-card p-3.5 rounded-2xl border border-white/5 space-y-1">
+          <span class="text-[10px] font-bold text-outline uppercase">Current Streak</span>
+          <div class="text-2xl font-extrabold text-primary">14 <span class="text-xs text-outline font-normal">days 🔥</span></div>
+          <span class="text-[10px] text-outline">Personal Record Streak</span>
+        </div>
+        <div class="bg-surface-card p-3.5 rounded-2xl border border-white/5 space-y-1">
+          <span class="text-[10px] font-bold text-outline uppercase">Avg Session Duration</span>
+          <div class="text-xl font-extrabold text-white">62 <span class="text-xs text-outline font-normal">mins</span></div>
+          <span class="text-[10px] text-outline">Ideal Hypertrophy Window</span>
+        </div>
+        <div class="bg-surface-card p-3.5 rounded-2xl border border-white/5 space-y-1">
+          <span class="text-[10px] font-bold text-outline uppercase">Preferred Slot</span>
+          <div class="text-xl font-extrabold text-white" id="profile-display-slot">07:00 <span class="text-xs text-outline font-normal">AM</span></div>
+          <span class="text-[10px] text-secondary font-semibold">Low-Density Hours</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GYM FLOOR LIVE STATUS CALLOUT (Directs to Checkin.html) -->
+    <a href="checkin.html" class="flex items-center justify-between p-4 rounded-2xl bg-surface-card hover:bg-surface-elevated border border-white/5 transition-all shadow-sm group">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-secondary/15 border border-secondary/20 flex items-center justify-center text-secondary group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-[20px]">groups</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span class="text-xs font-bold text-white">18 Athletes On Gym Floor Now</span>
+          </div>
+          <span class="text-[10px] text-outline">View active members, streaks & social links in Turnstile Pass</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="flex -space-x-2 overflow-hidden">
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-card object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3KkFTglUrPd3xO2gAh3GuJizexizxBDgaJzewzGYFuJX5HTE8UC8W5gLsGpfKZMYSjAvCDr8-aezaUv1hQS3bP5OvjlGl7xNwjDFjjZd0HVp14zKiqyhwD8wGu2ktfalc0B8jakVwNoVrTK0p5gPCZwMNcXw92NldXzzp0hh2nNfAa_fmjquL9kL25F_UEQDgPSgFWp7px9Lark6JBQq4Jyqp98ecxrkfSiOFrnsEjxvl4jliD__9BKnwvnnpvDwpmP1najrTGm0" alt="Farhan"/>
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-card object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGodECJkGtQLGBvSiyUM9nQYQFJbwSCsHhCNe6QloM0IWLeElLoUhyrLE_-9gaqQXZ5oADg_4bIrzawlMbVO-u-hKBSp6Rd2PhDLF042xfg-cauJCGdmIXtENTM8UzF1lLjL6PIooZMioS9D0Lf4JShoCDfA6Gwsc-3iK5ExlqVVLfrNDoBm34v6LKSFTFnwyB7pQjKJ0jNzAwyoFTEF0NVR7mgolRhxyJJX9A_aEj_7AlgQuwE9-y-25Kuu-MPewAZ9HZRE5Ho-A" alt="Ayesha"/>
+          <img class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-card object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Zaid"/>
+        </div>
+        <span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-0.5 transition-all">chevron_right</span>
+      </div>
+    </a>
+
+    <!-- COACH TIPPU RELATIONSHIP & ASSESSMENT HUB -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.06] space-y-3.5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden border border-primary/40 bg-surface-elevated shrink-0">
+            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=150&q=80" 
+                 alt="Coach Tippu" class="w-full h-full object-cover"/>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-sm font-bold text-white">Coach Tippu</h4>
+              <span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+            </div>
+            <p class="text-[11px] text-outline">Head Strength & Conditioning Coach</p>
+            <span id="profile-display-goal" class="text-[10px] text-primary font-semibold">Goal: Clean Bulk to 78kg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3 bg-surface-low rounded-2xl border border-white/5 text-xs text-outline space-y-1">
+        <div class="flex items-center justify-between text-white font-semibold">
+          <span>Next 1-on-1 Form Check:</span>
+          <span class="text-primary font-bold">Saturday, 10:00 AM</span>
+        </div>
+        <p class="text-[11px] text-outline/80 leading-relaxed">Focus: Bench press bar path & deadlift hip hinge torque review.</p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <a href="https://wa.me/" target="_blank" class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-high border border-white/5 text-xs font-bold text-white flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[16px] text-secondary">chat</span>
+          <span>Message Coach</span>
+        </a>
+        <button onclick="showToast('Assessment request sent to Coach Tippu!')" class="py-2.5 px-3 rounded-full bg-surface-elevated hover:bg-surface-high border border-white/5 text-xs font-bold text-primary flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[16px]">calendar_add_on</span>
+          <span>Book Check-in</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- INVOICES & PAYMENT RECEIPTS -->
+    <section class="space-y-2.5">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-xs font-bold text-outline uppercase tracking-wider">Billing History & Tax Receipts</h3>
+        <span class="text-[10px] text-primary font-semibold">GST Invoices</span>
+      </div>
+
+      <div class="bg-surface-card rounded-2xl border border-white/5 divide-y divide-white/[0.04] overflow-hidden">
+        <!-- Receipt 1 -->
+        <div class="p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-surface-elevated flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-white block">INV-2025-8821 • ₹14,999</span>
+              <span class="text-[10px] text-outline">Paid via UPI (PhonePe) • 28 Nov 2025</span>
+            </div>
+          </div>
+          <button onclick="showToast('Downloading Invoice INV-2025-8821.pdf')" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+            <span>PDF</span>
+            <span class="material-symbols-outlined text-[14px]">download</span>
+          </button>
+        </div>
+
+        <!-- Receipt 2 -->
+        <div class="p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-surface-elevated flex items-center justify-center text-outline">
+              <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-white block">INV-2024-4102 • ₹13,500</span>
+              <span class="text-[10px] text-outline">Paid via UPI (GPay) • 28 Nov 2024</span>
+            </div>
+          </div>
+          <button onclick="showToast('Downloading Invoice INV-2024-4102.pdf')" class="text-xs font-bold text-outline hover:text-white flex items-center gap-1">
+            <span>PDF</span>
+            <span class="material-symbols-outlined text-[14px]">download</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEEKLY TRAINING SPLIT RHYTHM -->
+    <section class="space-y-2.5">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-xs font-bold text-outline uppercase tracking-wider">Weekly Training Split</h3>
+        <a href="onboarding.html" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
+          <span>Configure Split</span>
+          <span class="material-symbols-outlined text-[13px]">tune</span>
+        </a>
+      </div>
+      <div class="bg-surface-card rounded-2xl p-4 border border-white/5 space-y-2 text-xs" id="profile-split-list">
+        <!-- Injected dynamically by renderProfileSplit() -->
+      </div>
+    </section>
+
+    <!-- ATHLETE SPECS & EMERGENCY PROFILE -->
+    <section class="space-y-2.5">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-xs font-bold text-outline uppercase tracking-wider">Athlete Specs &amp; Health Profile</h3>
+        <button onclick="openEditProfileModal()" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-0.5">
+          <span>Edit</span>
+          <span class="material-symbols-outlined text-[13px]">edit</span>
+        </button>
+      </div>
+      <div class="bg-surface-card rounded-2xl p-4 border border-white/5 space-y-3 text-xs">
+        <div class="flex items-center justify-between py-1 border-b border-white/[0.04]">
+          <span class="text-outline">RFID Key Fob ID</span>
+          <span id="profile-spec-fob" class="font-bold text-primary">#AMT-FOB-9842 (Synced)</span>
+        </div>
+        <div class="flex items-center justify-between py-1 border-b border-white/[0.04]">
+          <span class="text-outline">Emergency Contact</span>
+          <span id="profile-spec-emergency" class="font-bold text-white">Brother (+91 98765 43210)</span>
+        </div>
+        <div class="flex items-center justify-between py-1">
+          <span class="text-outline">Blood Group &amp; Medical</span>
+          <span id="profile-spec-blood" class="font-bold text-secondary">O+ • PAR-Q Cleared</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREFERENCES & TOGGLES -->
+    <section class="space-y-2.5">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-xs font-bold text-outline uppercase tracking-wider">Facility Preferences</h3>
+        <button onclick="openEditProfileModal()" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-0.5">
+          <span>Configure</span>
+          <span class="material-symbols-outlined text-[13px]">settings</span>
+        </button>
+      </div>
+      <div class="bg-surface-card rounded-2xl border border-white/5 divide-y divide-white/[0.04] overflow-hidden text-xs">
+        <!-- Toggle 1 -->
+        <label class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02] transition-colors">
+          <div>
+            <span class="font-bold text-white block">Turnstile Haptic Feedback</span>
+            <span class="text-[10px] text-outline">Vibrate upon optical QR scanner clearance</span>
+          </div>
+          <input type="checkbox" id="page-pref-haptic" onchange="toggleDirectPref('hapticFeedback', this.checked)" checked class="rounded bg-surface-elevated border-white/10 text-primary focus:ring-0 w-4 h-4"/>
+        </label>
+        <!-- Toggle 2 -->
+        <label class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02] transition-colors">
+          <div>
+            <span class="font-bold text-white block">Floor Peak Occupancy Alerts</span>
+            <span class="text-[10px] text-outline">Notify when gym floor occupancy &lt; 20 athletes</span>
+          </div>
+          <input type="checkbox" id="page-pref-occupancy" onchange="toggleDirectPref('occupancyAlerts', this.checked)" checked class="rounded bg-surface-elevated border-white/10 text-primary focus:ring-0 w-4 h-4"/>
+        </label>
+        <!-- Units -->
+        <div class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/[0.02] transition-colors" onclick="openEditProfileModal()">
+          <div>
+            <span class="font-bold text-white block">Measurement System</span>
+            <span id="page-pref-units-desc" class="text-[10px] text-outline">Metric (kg, cm, Celsius)</span>
+          </div>
+          <span id="page-pref-units-badge" class="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">METRIC</span>
+        </div>
+        <!-- Rules -->
+        <button onclick="showToast('Facility etiquette: Re-rack weights & wipe machines')" class="w-full p-4 flex items-center justify-between text-left hover:bg-surface-elevated transition-colors">
+          <div>
+            <span class="font-bold text-white block">Gym Etiquette & Facility Guidelines</span>
+            <span class="text-[10px] text-outline">Turnstile rules, dress code, chalk policy</span>
+          </div>
+          <span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- LOGOUT & VERSION -->
+    <section class="pt-2 text-center space-y-2">
+      <button onclick="showToast('Signed out of demo session')" class="px-5 py-2.5 rounded-full bg-surface-elevated border border-white/5 text-xs font-semibold text-outline hover:text-red-400 active:scale-95 transition-all">
+        Sign Out of Account
+      </button>
+      <p id="profile-footer-credit" class="text-[10px] text-outline/60">AM-Tippu Fitness • v2.4.0 (Build 89) • Made for Sufiyan</p>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================== -->
+  <!-- EDIT PROFILE & CONFIGURATIONS MODAL -->
+  <!-- ========================================== -->
+  <div id="edit-profile-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-t-3xl sm:rounded-3xl border border-white/10 max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
+      
+      <!-- Modal Header -->
+      <div class="p-5 pb-4 border-b border-white/[0.06] flex items-center justify-between shrink-0 bg-surface-card">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white tracking-tight">Edit Profile & Settings</h3>
+            <p class="text-[11px] text-outline">Real photo, social links & gym specs</p>
+          </div>
+        </div>
+        <button onclick="closeEditProfileModal()" class="w-8 h-8 rounded-full bg-surface-elevated text-outline hover:text-white flex items-center justify-center active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Content -->
+      <div class="p-5 space-y-6 overflow-y-auto max-h-[calc(92vh-140px)]">
+        
+        <!-- 1. REAL PHOTO UPLOAD -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">1. Member Real Photo</label>
+            <span class="text-[10px] text-primary font-semibold">Camera or File</span>
+          </div>
+          
+          <div class="flex items-center gap-4 bg-surface-low p-4 rounded-2xl border border-white/5">
+            <div class="relative shrink-0">
+              <div class="w-[72px] h-[72px] rounded-full p-[2px] bg-gradient-to-tr from-primary to-surface-card shadow-[0_0_16px_rgba(255,154,46,0.25)]">
+                <img id="edit-preview-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" class="w-full h-full rounded-full object-cover bg-surface-card" alt="Avatar preview"/>
+              </div>
+              <button type="button" onclick="document.getElementById('edit-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary text-black flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-transform" title="Take photo or upload">
+                <span class="material-symbols-outlined text-[14px] font-bold">photo_camera</span>
+              </button>
+            </div>
+
+            <div class="space-y-2 flex-1">
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="document.getElementById('edit-file-input').click()" class="px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-fixed-dim text-xs font-bold text-black flex items-center gap-1.5 active:scale-95 transition-all shadow-sm">
+                  <span class="material-symbols-outlined text-[16px]">upload_file</span>
+                  <span>Upload Real Photo</span>
+                </button>
+                <button type="button" onclick="resetDefaultAvatar()" class="px-2.5 py-2 rounded-xl bg-surface-elevated hover:bg-surface-high border border-white/5 text-[11px] font-semibold text-outline hover:text-white transition-all">
+                  Reset
+                </button>
+              </div>
+              <input type="file" id="edit-file-input" accept="image/*" class="hidden" onchange="handleAvatarFileUpload(event)"/>
+              <p class="text-[10px] text-outline">Upload your actual gym photo from camera or phone library</p>
+            </div>
+          </div>
+
+          <!-- Direct Image URL Option -->
+          <div class="space-y-1">
+            <span class="text-[10px] font-semibold text-outline">Or Paste Photo Direct URL</span>
+            <input type="url" id="edit-input-avatar-url" oninput="onAvatarUrlInput(this.value)" placeholder="https://..." class="w-full px-3 py-2 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+          </div>
+        </div>
+
+        <!-- 2. SOCIAL MEDIA LINKS CONFIGURATION -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">2. Your Social Media Links</label>
+            <span class="text-[10px] text-secondary font-semibold">Visible to Gym Members</span>
+          </div>
+
+          <div class="space-y-2.5">
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Instagram Profile / Handle</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[11px] font-bold text-pink-400">IG</span>
+                <input type="text" id="edit-input-instagram" placeholder="@sufiyan.fit or https://instagram.com/sufiyan.fit" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Strava Athlete Profile</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[11px] font-bold text-orange-400">ST</span>
+                <input type="text" id="edit-input-strava" placeholder="strava.com/athletes/... or athlete name" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">X / Twitter Handle</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-white text-[11px]">𝕏</span>
+                  <input type="text" id="edit-input-twitter" placeholder="@sufiyan_fit" class="w-full pl-8 pr-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+                </div>
+              </div>
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">YouTube / Other Link</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-red-500 text-[11px]">YT</span>
+                  <input type="text" id="edit-input-youtube" placeholder="@channel or URL" class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ATHLETE IDENTITY -->
+        <div class="space-y-3">
+          <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">3. Athlete Identity</label>
+          
+          <div class="space-y-2.5">
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Full Name</label>
+              <input type="text" id="edit-input-name" placeholder="e.g. Sufiyan Khan" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs font-bold text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Handle / Username</label>
+                <input type="text" id="edit-input-handle" placeholder="@sufiyan.fit" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Membership ID</label>
+                <input type="text" id="edit-input-member-id" placeholder="#TK-9842" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Membership Tier & Badge</label>
+              <select id="edit-input-tier" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white focus:border-primary focus:ring-0">
+                <option value="ELITE ANNUAL ATHLETE">ELITE ANNUAL ATHLETE (Gold Tier)</option>
+                <option value="PRO ALL-ACCESS ATHLETE">PRO ALL-ACCESS ATHLETE</option>
+                <option value="FOUNDER'S CIRCLE">FOUNDER'S CIRCLE</option>
+                <option value="STANDARD ATHLETE">STANDARD ATHLETE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. FITNESS GOALS & TARGETS -->
+        <div class="space-y-3">
+          <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">4. Goals & Coaching Specs</label>
+          
+          <div class="space-y-2.5">
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Current Goal / Bio Statement</label>
+              <input type="text" id="edit-input-goal" placeholder="e.g. Clean Bulk to 78kg • Strength Focus" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Target Goal Weight</label>
+                <input type="text" id="edit-input-target-weight" placeholder="e.g. 72.0 kg" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Preferred Gym Slot</label>
+                <select id="edit-input-slot" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white focus:border-primary focus:ring-0">
+                  <option value="06:00 AM">06:00 AM (Early Bird)</option>
+                  <option value="07:00 AM">07:00 AM (Low-Density)</option>
+                  <option value="08:30 AM">08:30 AM (Morning Rush)</option>
+                  <option value="05:30 PM">05:30 PM (Evening Prime)</option>
+                  <option value="07:00 PM">07:00 PM (Peak Power)</option>
+                  <option value="09:00 PM">09:00 PM (Night Owls)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. CONTACT & EMERGENCY SPECS -->
+        <div class="space-y-3">
+          <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">5. Contact & Facility Specs</label>
+          
+          <div class="space-y-2.5">
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Phone Number</label>
+                <input type="tel" id="edit-input-phone" placeholder="+91 98765 43210" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+              </div>
+              <div>
+                <label class="text-[10px] font-semibold text-outline block mb-1">Blood Group</label>
+                <select id="edit-input-blood" class="w-full px-3 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white focus:border-primary focus:ring-0">
+                  <option value="O+">O+ Positive</option>
+                  <option value="O-">O- Negative</option>
+                  <option value="A+">A+ Positive</option>
+                  <option value="A-">A- Negative</option>
+                  <option value="B+">B+ Positive</option>
+                  <option value="B-">B- Negative</option>
+                  <option value="AB+">AB+ Positive</option>
+                  <option value="AB-">AB- Negative</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">Emergency Contact (Relation & Phone)</label>
+              <input type="text" id="edit-input-emergency" placeholder="e.g. Brother (+91 98765 43210)" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+            </div>
+
+            <div>
+              <label class="text-[10px] font-semibold text-outline block mb-1">RFID Key Fob ID</label>
+              <input type="text" id="edit-input-fob" placeholder="#AMT-FOB-9842" class="w-full px-3.5 py-2.5 rounded-xl bg-surface-low border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary focus:ring-0"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. FACILITY & APP CONFIGURATIONS -->
+        <div class="space-y-3">
+          <label class="text-[11px] font-bold text-outline uppercase tracking-wider block">6. App & Facility Configurations</label>
+          
+          <div class="bg-surface-low rounded-2xl border border-white/5 divide-y divide-white/[0.04] p-1">
+            <!-- Toggle: Haptic Feedback -->
+            <label class="p-3 flex items-center justify-between cursor-pointer hover:bg-white/[0.02]">
+              <div>
+                <span class="text-xs font-bold text-white block">Turnstile Haptic Feedback</span>
+                <span class="text-[10px] text-outline">Vibrate upon optical QR scanner clearance</span>
+              </div>
+              <input type="checkbox" id="edit-input-haptic" class="rounded bg-surface-elevated border-white/10 text-primary focus:ring-0 w-4 h-4"/>
+            </label>
+
+            <!-- Toggle: Occupancy Alerts -->
+            <label class="p-3 flex items-center justify-between cursor-pointer hover:bg-white/[0.02]">
+              <div>
+                <span class="text-xs font-bold text-white block">Peak Floor Occupancy Alerts</span>
+                <span class="text-[10px] text-outline">Notify when gym floor occupancy &lt; 20 athletes</span>
+              </div>
+              <input type="checkbox" id="edit-input-occupancy" class="rounded bg-surface-elevated border-white/10 text-primary focus:ring-0 w-4 h-4"/>
+            </label>
+
+            <!-- Toggle: Measurement Unit -->
+            <div class="p-3 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-white block">Measurement Unit System</span>
+                <span class="text-[10px] text-outline">Used for weight logging and bar plates</span>
+              </div>
+              <div class="flex items-center gap-1 bg-surface-elevated p-1 rounded-xl border border-white/5 text-[11px] font-bold">
+                <button type="button" id="btn-unit-metric" onclick="setUnitSystem('Metric')" class="px-2.5 py-1 rounded-lg bg-primary text-black transition-all">kg</button>
+                <button type="button" id="btn-unit-imperial" onclick="setUnitSystem('Imperial')" class="px-2.5 py-1 rounded-lg text-outline hover:text-white transition-all">lbs</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Actions (Sticky Bottom) -->
+      <div class="p-4 bg-surface-card border-t border-white/[0.06] flex items-center gap-2.5 shrink-0">
+        <button type="button" onclick="closeEditProfileModal()" class="w-1/3 py-3 rounded-full bg-surface-elevated hover:bg-surface-high border border-white/10 text-xs font-bold text-white active:scale-95 transition-all">
+          Cancel
+        </button>
+        <button type="button" onclick="saveProfileConfiguration()" class="w-2/3 py-3 rounded-full bg-primary hover:bg-primary/90 text-xs font-extrabold text-black flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-[0_4px_16px_rgba(255,154,46,0.3)]">
+          <span class="material-symbols-outlined text-[16px]">save</span>
+          <span>Save Changes</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UPI RENEWAL BOTTOM SHEET MODAL -->
+  <div id="upi-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-t-3xl sm:rounded-3xl border border-white/10 p-5 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-primary uppercase tracking-wider block">INSTANT UPI RENEWAL</span>
+          <h3 class="text-lg font-bold text-white">Renew All-Access Pass</h3>
+        </div>
+        <button onclick="closeUpiModal()" class="w-8 h-8 rounded-full bg-surface-elevated text-outline hover:text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div class="bg-surface-low p-4 rounded-2xl border border-white/5 space-y-2 text-xs">
+        <div class="flex justify-between text-outline">
+          <span>Plan:</span>
+          <span class="text-white font-bold">12-Month Unlimited All-Access</span>
+        </div>
+        <div class="flex justify-between text-outline">
+          <span>New Expiry:</span>
+          <span class="text-secondary font-bold">28 Nov 2027 (+365 Days)</span>
+        </div>
+        <div class="flex justify-between text-outline pt-2 border-t border-white/5">
+          <span class="text-sm font-bold text-white">Total Amount:</span>
+          <span class="text-lg font-extrabold text-primary">₹14,999</span>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <span class="text-[11px] font-bold text-outline uppercase block">Select Payment App</span>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <button onclick="simulateUpi('Google Pay')" class="p-3 rounded-2xl bg-surface-elevated border border-white/5 hover:border-primary/40 text-white font-bold active:scale-95 transition-all">
+            Google Pay
+          </button>
+          <button onclick="simulateUpi('PhonePe')" class="p-3 rounded-2xl bg-surface-elevated border border-white/5 hover:border-primary/40 text-white font-bold active:scale-95 transition-all">
+            PhonePe
+          </button>
+          <button onclick="simulateUpi('Paytm')" class="p-3 rounded-2xl bg-surface-elevated border border-white/5 hover:border-primary/40 text-white font-bold active:scale-95 transition-all">
+            Paytm
+          </button>
+        </div>
+      </div>
+
+      <p class="text-[10px] text-outline text-center">Protected by 256-bit bank grade encryption • Instant Turnstile Pass Refresh</p>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-surface-elevated border border-primary/40 text-white text-xs px-4 py-2.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+    <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+    <span id="toast-text">Action completed</span>
+  </div>
+
+  <!-- BOTTOM NAVIGATION DOCK (Unified Stitch Component) -->
+  <nav aria-label="Primary Navigation" class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 pb-safe max-w-md mx-auto pointer-events-none">
+    <div class="w-full bg-surface-container-high/90 dark:bg-surface-container-high/90 backdrop-blur-xl rounded-full micro-border shadow-[0px_12px_32px_rgba(255,154,46,0.15)] flex justify-around items-center px-3 py-1.5 pointer-events-auto border border-white/[0.06]">
+      
+      <!-- Home -->
+      <a aria-label="Home" href="dashboard.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+        <span class="material-symbols-outlined text-[23px]">home</span>
+      </a>
+
+      <!-- Workouts -->
+      <a aria-label="Workouts" href="workouts.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+        <span class="material-symbols-outlined text-[23px]">fitness_center</span>
+      </a>
+
+      <!-- Check-in -->
+      <a aria-label="Check-in" href="checkin.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+        <span class="material-symbols-outlined text-[23px]">qr_code_scanner</span>
+      </a>
+
+      <!-- Progress -->
+      <a aria-label="Progress" href="progress.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+        <span class="material-symbols-outlined text-[23px]">monitoring</span>
+      </a>
+
+      <!-- Profile (Active) -->
+      <a aria-current="page" aria-label="Profile" href="profile.html" class="flex flex-col items-center justify-center text-on-surface dark:text-on-surface p-2 after:content-[''] after:w-1.5 after:h-1.5 after:bg-primary-container after:rounded-full after:mt-1 active:scale-90 transition-transform duration-200">
+        <span class="material-symbols-outlined text-[23px] text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ========================================== -->
+  <!-- SCRIPT LOGIC FOR PROFILE, SOCIALS & COMMUNITY -->
+  <!-- ========================================== -->
+  <script>
+
+
+    const DEFAULT_PROFILE = {
+      name: "Sufiyan Khan",
+      handle: "@sufiyan.fit",
+      memberId: "#TK-9842",
+      membershipTier: "ELITE ANNUAL ATHLETE",
+      memberSince: "Member since Nov 2024",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+      bio: "Clean Bulk to 78kg • Strength Focus",
+      phone: "+91 98765 43210",
+      emergencyContact: "Brother (+91 98765 43210)",
+      bloodGroup: "O+",
+      targetWeight: "72.0 kg",
+      fobId: "#AMT-FOB-9842",
+      preferredSlot: "07:00 AM",
+      hapticFeedback: true,
+      occupancyAlerts: true,
+      unitSystem: "Metric",
+      socials: {
+        instagram: "@sufiyan.fit",
+        strava: "Sufiyan K.",
+        twitter: "@sufiyan_fit",
+        youtube: ""
+      }
+    };
+
+    let currentSelectedUnit = "Metric";
+    let tempAvatarUrl = "";
+
+    function getUserProfile() {
+      try {
+        const stored = localStorage.getItem('am_tippu_user_profile');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          return {
+            ...DEFAULT_PROFILE,
+            ...parsed,
+            socials: { ...DEFAULT_PROFILE.socials, ...(parsed.socials || {}) }
+          };
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      return { ...DEFAULT_PROFILE };
+    }
+
+    function renderProfileUI(profile) {
+      // 1. Identity section
+      document.getElementById('profile-avatar-img').src = profile.avatar;
+      document.getElementById('profile-display-name').textContent = profile.name;
+      document.getElementById('profile-display-handle').textContent = `${profile.handle} • Member ID: ${profile.memberId}`;
+      document.getElementById('profile-display-tier').textContent = profile.membershipTier;
+      document.getElementById('profile-display-since').textContent = profile.memberSince || "Member since Nov 2024";
+
+      // 2. Render user's active social links bar
+      renderUserSocialLinksBar(profile.socials);
+
+      // 3. Hero Privileges
+      const privFob = document.getElementById('profile-privilege-fob');
+      if (privFob) privFob.textContent = `${profile.fobId || '#AMT-FOB-9842'} Synced`;
+
+      // 4. 4-Bento Grid
+      const slotParts = profile.preferredSlot.split(' ');
+      document.getElementById('profile-display-slot').innerHTML = `${slotParts[0]} <span class="text-xs text-outline font-normal">${slotParts[1] || 'AM'}</span>`;
+
+      // 5. Coach Tippu section
+      document.getElementById('profile-display-goal').textContent = `Goal: ${profile.bio}`;
+
+      // 6. Specs & Health
+      document.getElementById('profile-spec-fob').textContent = `${profile.fobId} (Synced)`;
+      document.getElementById('profile-spec-emergency').textContent = profile.emergencyContact;
+      document.getElementById('profile-spec-blood').textContent = `${profile.bloodGroup} • PAR-Q Cleared`;
+
+      // 7. Direct page preferences
+      document.getElementById('page-pref-haptic').checked = !!profile.hapticFeedback;
+      document.getElementById('page-pref-occupancy').checked = !!profile.occupancyAlerts;
+      document.getElementById('page-pref-units-badge').textContent = (profile.unitSystem || 'Metric').toUpperCase();
+      document.getElementById('page-pref-units-desc').textContent = profile.unitSystem === 'Imperial' 
+        ? 'Imperial (lbs, in, Fahrenheit)' 
+        : 'Metric (kg, cm, Celsius)';
+
+      // 8. Weekly Training Split
+      renderProfileSplit(profile.customWeeklySplit);
+
+      // 9. Footer credit
+      const firstName = profile.name ? profile.name.split(' ')[0] : 'Sufiyan';
+      document.getElementById('profile-footer-credit').textContent = `AM-Tippu Fitness • v2.4.0 (Build 89) • Made for ${firstName}`;
+    }
+
+    function renderProfileSplit(customWeeklySplit) {
+      const container = document.getElementById('profile-split-list');
+      if (!container) return;
+      const days = [
+        { k: 'Mon', d: 'Monday' },
+        { k: 'Tue', d: 'Tuesday' },
+        { k: 'Wed', d: 'Wednesday' },
+        { k: 'Thu', d: 'Thursday' },
+        { k: 'Fri', d: 'Friday' },
+        { k: 'Sat', d: 'Saturday' },
+        { k: 'Sun', d: 'Sunday' }
+      ];
+      const split = customWeeklySplit || {
+        Mon: 'Back Day',
+        Tue: 'Chest Day',
+        Wed: 'Leg Day',
+        Thu: 'Shoulders',
+        Fri: 'Arms & Biceps',
+        Sat: 'Full Body',
+        Sun: 'Rest Day'
+      };
+
+      container.innerHTML = days.map(day => {
+        const focus = split[day.k] || 'Rest Day';
+        const isRest = focus.toLowerCase().includes('rest') || focus.toLowerCase().includes('recovery');
+        return `
+          <div class="flex items-center justify-between py-1.5 border-b border-white/[0.04] last:border-0">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-lg bg-surface-elevated text-[10px] font-extrabold text-white flex items-center justify-center border border-white/5">${day.k}</span>
+              <span class="text-white font-medium">${day.d}</span>
+            </div>
+            <span class="font-bold text-xs ${isRest ? 'text-outline/70' : 'text-primary'}">${focus}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderUserSocialLinksBar(socials) {
+      const bar = document.getElementById('profile-social-links-bar');
+      bar.innerHTML = '';
+
+      let hasAny = false;
+
+      // Instagram
+      if (socials.instagram) {
+        hasAny = true;
+        const cleanHandle = socials.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//, '').replace(/^@/, '');
+        const url = socials.instagram.startsWith('http') ? socials.instagram : `https://instagram.com/${cleanHandle}`;
+        bar.innerHTML += `
+          <a href="${url}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-pink-500/15 to-purple-500/15 border border-pink-500/30 text-white text-[11px] font-semibold hover:border-pink-500/60 active:scale-95 transition-all">
+            <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+            <span class="text-pink-300 font-bold">IG</span>
+            <span>@${cleanHandle}</span>
+          </a>
+        `;
+      }
+
+      // Strava
+      if (socials.strava) {
+        hasAny = true;
+        const clean = socials.strava.replace(/^https?:\/\/(www\.)?strava\.com\/athletes\//, '');
+        const url = socials.strava.startsWith('http') ? socials.strava : `https://strava.com/athletes/${clean}`;
+        bar.innerHTML += `
+          <a href="${url}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-white text-[11px] font-semibold hover:border-orange-500/60 active:scale-95 transition-all">
+            <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+            <span class="text-orange-300 font-bold">Strava</span>
+            <span>${socials.strava.startsWith('http') ? 'Profile' : socials.strava}</span>
+          </a>
+        `;
+      }
+
+      // X / Twitter
+      if (socials.twitter) {
+        hasAny = true;
+        const cleanHandle = socials.twitter.replace(/^https?:\/\/(www\.)?x\.com\//, '').replace(/^@/, '');
+        const url = socials.twitter.startsWith('http') ? socials.twitter : `https://x.com/${cleanHandle}`;
+        bar.innerHTML += `
+          <a href="${url}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-semibold hover:border-white/40 active:scale-95 transition-all">
+            <span class="font-bold">𝕏</span>
+            <span>@${cleanHandle}</span>
+          </a>
+        `;
+      }
+
+      // YouTube / Other
+      if (socials.youtube) {
+        hasAny = true;
+        const url = socials.youtube.startsWith('http') ? socials.youtube : `https://youtube.com/${socials.youtube}`;
+        bar.innerHTML += `
+          <a href="${url}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-[11px] font-semibold hover:border-red-500/50 active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-[14px]">smart_display</span>
+            <span>Channel</span>
+          </a>
+        `;
+      }
+
+      // Add link button if none
+      if (!hasAny) {
+        bar.innerHTML = `
+          <button onclick="openEditProfileModal()" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-card hover:bg-surface-elevated border border-white/10 text-outline hover:text-white text-[11px] font-semibold transition-all">
+            <span class="material-symbols-outlined text-[14px] text-primary">add_link</span>
+            <span>+ Add your social media links</span>
+          </button>
+        `;
+      }
+    }
+
+
+    // ==========================================
+    // EDIT PROFILE & REAL PHOTO
+    // ==========================================
+    function openEditProfileModal() {
+      const p = getUserProfile();
+      tempAvatarUrl = p.avatar;
+      currentSelectedUnit = p.unitSystem || "Metric";
+
+      // Populate input values
+      document.getElementById('edit-preview-avatar').src = p.avatar;
+      document.getElementById('edit-input-avatar-url').value = p.avatar.startsWith('data:') ? '' : p.avatar;
+      document.getElementById('edit-input-name').value = p.name;
+      document.getElementById('edit-input-handle').value = p.handle;
+      document.getElementById('edit-input-member-id').value = p.memberId;
+      document.getElementById('edit-input-tier').value = p.membershipTier;
+      document.getElementById('edit-input-goal').value = p.bio;
+      document.getElementById('edit-input-target-weight').value = p.targetWeight;
+      document.getElementById('edit-input-slot').value = p.preferredSlot;
+      document.getElementById('edit-input-phone').value = p.phone;
+      document.getElementById('edit-input-blood').value = p.bloodGroup;
+      document.getElementById('edit-input-emergency').value = p.emergencyContact;
+      document.getElementById('edit-input-fob').value = p.fobId;
+      document.getElementById('edit-input-haptic').checked = !!p.hapticFeedback;
+      document.getElementById('edit-input-occupancy').checked = !!p.occupancyAlerts;
+
+      // Populate Socials
+      const soc = p.socials || {};
+      document.getElementById('edit-input-instagram').value = soc.instagram || '';
+      document.getElementById('edit-input-strava').value = soc.strava || '';
+      document.getElementById('edit-input-twitter').value = soc.twitter || '';
+      document.getElementById('edit-input-youtube').value = soc.youtube || '';
+
+      renderUnitButtons();
+      document.getElementById('edit-profile-modal').classList.remove('hidden');
+    }
+
+    function closeEditProfileModal() {
+      document.getElementById('edit-profile-modal').classList.add('hidden');
+    }
+
+    function handleAvatarFileUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        tempAvatarUrl = e.target.result;
+        document.getElementById('edit-preview-avatar').src = tempAvatarUrl;
+        document.getElementById('edit-input-avatar-url').value = '';
+        showToast('✓ Real photo loaded! Tap "Save Changes" to apply.');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetDefaultAvatar() {
+      tempAvatarUrl = DEFAULT_PROFILE.avatar;
+      document.getElementById('edit-preview-avatar').src = DEFAULT_PROFILE.avatar;
+      document.getElementById('edit-input-avatar-url').value = '';
+      showToast('Avatar reset to default photo');
+    }
+
+    function onAvatarUrlInput(val) {
+      val = val.trim();
+      if (val && val.startsWith('http')) {
+        tempAvatarUrl = val;
+        document.getElementById('edit-preview-avatar').src = val;
+      }
+    }
+
+    function setUnitSystem(unit) {
+      currentSelectedUnit = unit;
+      renderUnitButtons();
+    }
+
+    function renderUnitButtons() {
+      const btnMetric = document.getElementById('btn-unit-metric');
+      const btnImp = document.getElementById('btn-unit-imperial');
+      if (currentSelectedUnit === 'Metric') {
+        btnMetric.className = 'px-2.5 py-1 rounded-lg bg-primary text-black transition-all';
+        btnImp.className = 'px-2.5 py-1 rounded-lg text-outline hover:text-white transition-all';
+      } else {
+        btnImp.className = 'px-2.5 py-1 rounded-lg bg-primary text-black transition-all';
+        btnMetric.className = 'px-2.5 py-1 rounded-lg text-outline hover:text-white transition-all';
+      }
+    }
+
+    function saveProfileConfiguration() {
+      const p = getUserProfile();
+
+      const name = document.getElementById('edit-input-name').value.trim();
+      if (name) p.name = name;
+
+      const handle = document.getElementById('edit-input-handle').value.trim();
+      if (handle) p.handle = handle.startsWith('@') ? handle : '@' + handle;
+
+      const memberId = document.getElementById('edit-input-member-id').value.trim();
+      if (memberId) p.memberId = memberId;
+
+      p.membershipTier = document.getElementById('edit-input-tier').value;
+      p.bio = document.getElementById('edit-input-goal').value.trim() || p.bio;
+      p.targetWeight = document.getElementById('edit-input-target-weight').value.trim() || p.targetWeight;
+      p.preferredSlot = document.getElementById('edit-input-slot').value;
+      p.phone = document.getElementById('edit-input-phone').value.trim() || p.phone;
+      p.bloodGroup = document.getElementById('edit-input-blood').value;
+      p.emergencyContact = document.getElementById('edit-input-emergency').value.trim() || p.emergencyContact;
+      p.fobId = document.getElementById('edit-input-fob').value.trim() || p.fobId;
+      p.hapticFeedback = document.getElementById('edit-input-haptic').checked;
+      p.occupancyAlerts = document.getElementById('edit-input-occupancy').checked;
+      p.unitSystem = currentSelectedUnit;
+
+      // Avatar
+      const customUrl = document.getElementById('edit-input-avatar-url').value.trim();
+      if (customUrl) {
+        p.avatar = customUrl;
+      } else if (tempAvatarUrl) {
+        p.avatar = tempAvatarUrl;
+      }
+
+      // Socials
+      p.socials = {
+        instagram: document.getElementById('edit-input-instagram').value.trim(),
+        strava: document.getElementById('edit-input-strava').value.trim(),
+        twitter: document.getElementById('edit-input-twitter').value.trim(),
+        youtube: document.getElementById('edit-input-youtube').value.trim()
+      };
+
+      localStorage.setItem('am_tippu_user_profile', JSON.stringify(p));
+      renderProfileUI(p);
+      closeEditProfileModal();
+      showToast('✓ Profile, real photo & social links updated!');
+    }
+
+    function toggleDirectPref(key, val) {
+      const p = getUserProfile();
+      p[key] = val;
+      localStorage.setItem('am_tippu_user_profile', JSON.stringify(p));
+      showToast(key === 'hapticFeedback' 
+        ? (val ? 'Turnstile haptics enabled' : 'Turnstile haptics disabled') 
+        : (val ? 'Floor occupancy alerts enabled' : 'Floor occupancy alerts disabled')
+      );
+    }
+
+    // Modal for UPI
+    function openUpiModal() {
+      document.getElementById('upi-modal').classList.remove('hidden');
+    }
+    function closeUpiModal() {
+      document.getElementById('upi-modal').classList.add('hidden');
+    }
+    function simulateUpi(app) {
+      closeUpiModal();
+      showToast('Opening ' + app + ' UPI payment gateway...');
+      setTimeout(() => {
+        showToast('✓ Payment Received! Membership extended to Nov 2027.');
+      }, 1500);
+    }
+
+    // Toast
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = msg;
+      t.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => t.classList.add('opacity-0', 'pointer-events-none'), 2500);
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProfileUI(getUserProfile());
+    });
+  </script>
+</body>
+</html>

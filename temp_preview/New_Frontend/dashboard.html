@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AM-Tippu Fitness Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#76d1ff",
+            "on-tertiary-container": "#004a65",
+            "inverse-primary": "#8e4f00",
+            "outline-variant": "#554335",
+            "on-secondary": "#003825",
+            "on-surface": "#e6e1df",
+            "tertiary-fixed": "#c2e8ff",
+            "surface-container-highest": "#363433",
+            "on-tertiary-fixed": "#001e2b",
+            "surface-dim": "#141312",
+            "error-container": "#93000a",
+            "inverse-on-surface": "#32302f",
+            "secondary": "#45dfa4",
+            "on-surface-variant": "#dbc2af",
+            "primary-fixed": "#ffdcc1",
+            "error": "#ffb4ab",
+            "surface-container-high": "#2b2a28",
+            "surface": "#141312",
+            "primary-fixed-dim": "#ffb877",
+            "secondary-fixed-dim": "#45dfa4",
+            "surface-container-lowest": "#0f0e0d",
+            "background": "#141312",
+            "on-background": "#e6e1df",
+            "secondary-fixed": "#68fcbf",
+            "on-primary-fixed-variant": "#6c3a00",
+            "on-tertiary-fixed-variant": "#004d67",
+            "on-primary-container": "#693900",
+            "on-primary": "#4c2700",
+            "surface-container-low": "#1d1b1a",
+            "on-error": "#690005",
+            "surface-variant": "#363433",
+            "on-primary-fixed": "#2e1500",
+            "on-secondary-container": "#00452e",
+            "on-secondary-fixed": "#002114",
+            "outline": "#a28d7c",
+            "secondary-container": "#00bd85",
+            "inverse-surface": "#e6e1df",
+            "surface-bright": "#3b3937",
+            "surface-tint": "#ffb877",
+            "tertiary": "#8dd7ff",
+            "surface-container": "#211f1e",
+            "primary": "#ffc18c",
+            "tertiary-container": "#00c0fd",
+            "on-tertiary": "#003548",
+            "on-secondary-fixed-variant": "#005137",
+            "primary-container": "#ff9a2e",
+            "on-error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "margin-desktop": "3rem",
+            "margin": "1.25rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-metric": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-metric": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen pb-32">
+<!-- Top App Bar (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin h-16 bg-surface/90 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<a href="profile.html" class="relative p-[1.5px] rounded-full bg-gradient-to-tr from-primary-container/80 to-transparent block active:scale-95 transition-transform" title="View Profile">
+<img id="user-header-avatar" class="w-10 h-10 rounded-full object-cover border border-surface-container" data-alt="Athletic portrait of a focused South Asian male fitness enthusiast in modern charcoal training wear, set against a dark architectural gym background with subtle warm ambient side rim lighting. Natural expression, cinematic and calm luxury athletic aesthetic." src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary rounded-full ring-2 ring-surface"></span>
+</a>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-caps text-label-caps text-outline tracking-wider">AM-TIPPU CLUB</span>
+<span class="w-1 h-1 rounded-full bg-primary-container"></span>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim">CENTRAL</span>
+</div>
+<h1 id="user-header-greeting" class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Good morning, Sufiyan</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="relative w-10 h-10 rounded-full bg-surface-container-high/60 flex items-center justify-center text-on-surface hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(255,154,46,0.8)]"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin space-y-5 max-w-md mx-auto">
+<!-- Turnstile QR Pass Pill -->
+<div class="w-full bg-surface-container-low border border-white/[0.04] rounded-2xl p-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]" data-icon="qr_code_scanner">qr_code_scanner</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Turnstile QR Pass</p>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              Active
+            </span>
+</div>
+<p class="font-label-md text-label-md text-outline">Tap to scan at gate • AM-Tippu Central</p>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Weekly Rhythm Card -->
+<section class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-5 relative overflow-hidden">
+<div class="flex justify-between items-center mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-outline block">HABIT TRACKER</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">WEEKLY RHYTHM</h2>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/25 text-primary-container shadow-[0px_8px_16px_rgba(255,154,46,0.1)]">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="local_fire_department" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md font-bold text-primary-container tracking-normal">14-day streak</span>
+</div>
+</div>
+<!-- 7-Day Matrix -->
+<div class="grid grid-cols-7 gap-2 pt-1">
+<!-- Mon (Done) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline">M</span>
+<div class="w-9 h-9 rounded-full bg-primary-container/15 border border-primary-container/40 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+</div>
+<!-- Tue (Done) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline">T</span>
+<div class="w-9 h-9 rounded-full bg-primary-container/15 border border-primary-container/40 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+</div>
+<!-- Wed (Done) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline">W</span>
+<div class="w-9 h-9 rounded-full bg-primary-container/15 border border-primary-container/40 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+</div>
+<!-- Thu (Today - Active Glowing) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary-container font-bold">T</span>
+<div class="w-9 h-9 rounded-full bg-primary-container text-surface-container-lowest font-bold flex items-center justify-center shadow-[0px_0px_16px_rgba(255,154,46,0.6)] ring-2 ring-primary-container/50">
+<span class="material-symbols-outlined text-[18px]" data-icon="local_fire_department" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+</div>
+<!-- Fri (Upcoming) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline-variant">F</span>
+<div class="w-9 h-9 rounded-full bg-surface-container border border-white/[0.03] flex items-center justify-center text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+<!-- Sat (Upcoming) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline-variant">S</span>
+<div class="w-9 h-9 rounded-full bg-surface-container border border-white/[0.03] flex items-center justify-center text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+<!-- Sun (Upcoming) -->
+<div class="flex flex-col items-center gap-1.5">
+<span class="font-label-md text-label-md text-outline-variant">S</span>
+<div class="w-9 h-9 rounded-full bg-surface-container border border-white/[0.03] flex items-center justify-center text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- NEW FEATURE: Club Streak Leaders Carousel -->
+<section class="space-y-3">
+<div class="flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary-container" data-icon="local_fire_department" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">Top Streaks</h2>
+</div>
+<p class="font-label-md text-label-md text-outline">Active consecutive days at AM-Tippu</p>
+</div>
+<button onclick="openMembersDirectoryModal()" class="font-label-lg text-label-lg text-primary hover:underline pb-0.5 cursor-pointer">View All (7)</button>
+</div>
+<!-- Horizontal Carousel with Peeking -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar -mx-margin px-margin pb-1 pt-1">
+<!-- Rank #1: Farhan Ahmed -->
+<div class="min-w-[175px] max-w-[175px] bg-surface-container-low border border-amber-500/20 rounded-2xl p-4 flex flex-col justify-between relative shadow-[0px_10px_24px_rgba(255,154,46,0.08)]">
+<div class="flex justify-between items-start">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-primary-container/60" data-alt="Headshot of athletic male member in his early thirties with clean trimmed beard wearing a fitted black athletic shirt inside a high-end gym with warm low ambient key light and modern equipment in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3KkFTglUrPd3xO2gAh3GuJizexizxBDgaJzewzGYFuJX5HTE8UC8W5gLsGpfKZMYSjAvCDr8-aezaUv1hQS3bP5OvjlGl7xNwjDFjjZd0HVp14zKiqyhwD8wGu2ktfalc0B8jakVwNoVrTK0p5gPCZwMNcXw92NldXzzp0hh2nNfAa_fmjquL9kL25F_UEQDgPSgFWp7px9Lark6JBQq4Jyqp98ecxrkfSiOFrnsEjxvl4jliD__9BKnwvnnpvDwpmP1najrTGm0"/>
+<span class="absolute -bottom-1 -right-1 text-[13px] leading-none">👑</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 border border-primary-container/30 text-primary-container font-label-caps text-label-caps">#1</span>
+</div>
+<div class="mt-3">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface truncate">Farhan Ahmed</h3>
+<a href="https://instagram.com/farhan_lifts" target="_blank" class="text-[10px] text-pink-400 hover:text-pink-300 font-semibold block truncate">@farhan_lifts</a>
+<div class="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">42</span>
+<span class="font-label-caps text-label-caps text-outline">DAYS STREAK</span>
+</div>
+</div>
+</div>
+<!-- Rank #2: Ayesha Patel -->
+<div class="min-w-[175px] max-w-[175px] bg-surface-container-low border border-white/[0.06] rounded-2xl p-4 flex flex-col justify-between relative shadow-sm">
+<div class="flex justify-between items-start">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-slate-300/40" data-alt="Portrait of an athletic South Asian female powerlifter with tied hair in premium matte athletic top, confident gaze in warm minimalist gym environment with soft dramatic shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGodECJkGtQLGBvSiyUM9nQYQFJbwSCsHhCNe6QloM0IWLeElLoUhyrLE_-9gaqQXZ5oADg_4bIrzawlMbVO-u-hKBSp6Rd2PhDLF042xfg-cauJCGdmIXtENTM8UzF1lLjL6PIooZMioS9D0Lf4JShoCDfA6Gwsc-3iK5ExlqVVLfrNDoBm34v6LKSFTFnwyB7pQjKJ0jNzAwyoFTEF0NVR7mgolRhxyJJX9A_aEj_7AlgQuwE9-y-25Kuu-MPewAZ9HZRE5Ho-A"/>
+<span class="absolute -bottom-1 -right-1 text-[13px] leading-none">🥈</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-white/[0.08] text-on-surface-variant font-label-caps text-label-caps">#2</span>
+</div>
+<div class="mt-3">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface truncate">Ayesha Patel</h3>
+<a href="https://instagram.com/ayesha.power" target="_blank" class="text-[10px] text-pink-400 hover:text-pink-300 font-semibold block truncate">@ayesha.power</a>
+<div class="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">38</span>
+<span class="font-label-caps text-label-caps text-outline">DAYS STREAK</span>
+</div>
+</div>
+</div>
+<!-- Rank #3: Rahul Verma -->
+<div class="min-w-[175px] max-w-[175px] bg-surface-container-low border border-white/[0.06] rounded-2xl p-4 flex flex-col justify-between relative shadow-sm">
+<div class="flex justify-between items-start">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-amber-800/50" data-alt="Intense conditioning athlete in dark performance wear after training, subtle glisten and warm atmospheric gym interior lights reflecting off sleek fitness architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnA5tTbFu8zWs43foPzXRqgWwh2wYYYCvp3zvhuFQlEhW47w2iLirr4di7uCT5eu-hCdex7lqTYkakjmmRNYyWSrRl2nsPKhW-SXUvQXF_qAebWDdooOhv2FwiEUBIL9gGhEw79Y1A2N2ROHONB1RP9_-q64lOZlqwosbSsgqMs-8khWx717oU5c5XNrcl1mpWBhUm9-TWJYHChzuODSr2S7MSNLt-3qFvS9_E651gNi-KxFgLGokTNVEcjvgeEhtGOeqQ41Z0Iy0"/>
+<span class="absolute -bottom-1 -right-1 text-[13px] leading-none">🥉</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high border border-white/[0.08] text-on-surface-variant font-label-caps text-label-caps">#3</span>
+</div>
+<div class="mt-3">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface truncate">Rahul Verma</h3>
+<a href="https://x.com/rahulv_fit" target="_blank" class="text-[10px] text-primary hover:text-white font-semibold block truncate">𝕏 @rahulv_fit</a>
+<div class="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">31</span>
+<span class="font-label-caps text-label-caps text-outline">DAYS STREAK</span>
+</div>
+</div>
+</div>
+<!-- Rank #4: Zaid Mansoor -->
+<div class="min-w-[175px] max-w-[175px] bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex flex-col justify-between relative shadow-sm">
+<div class="flex justify-between items-start">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover border border-white/10" data-alt="Fit male athlete in training wear" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"/>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container border border-white/[0.05] text-outline font-label-caps text-label-caps">#4</span>
+</div>
+<div class="mt-3">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface truncate">Zaid Mansoor</h3>
+<a href="https://instagram.com/zaid.snatch" target="_blank" class="text-[10px] text-pink-400 hover:text-pink-300 font-semibold block truncate">@zaid.snatch</a>
+<div class="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">26</span>
+<span class="font-label-caps text-label-caps text-outline">DAYS STREAK</span>
+</div>
+</div>
+</div>
+<!-- Rank #5: Pooja Nair -->
+<div class="min-w-[175px] max-w-[175px] bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex flex-col justify-between relative shadow-sm">
+<div class="flex justify-between items-start">
+<div class="relative">
+<img class="w-12 h-12 rounded-full object-cover border border-white/10" data-alt="Female runner and athlete" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"/>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container border border-white/[0.05] text-outline font-label-caps text-label-caps">#5</span>
+</div>
+<div class="mt-3">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface truncate">Pooja Nair</h3>
+<a href="https://instagram.com/pooja.moves" target="_blank" class="text-[10px] text-pink-400 hover:text-pink-300 font-semibold block truncate">@pooja.moves</a>
+<div class="mt-2 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">22</span>
+<span class="font-label-caps text-label-caps text-outline">DAYS STREAK</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Your Rank Highlight Pill Banner -->
+<div class="bg-gradient-to-r from-surface-container to-surface-container-high border border-primary-container/25 rounded-2xl p-3.5 flex items-center justify-between shadow-[0px_8px_24px_rgba(255,154,46,0.08)]">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-container/20 border border-primary-container/40 flex items-center justify-center font-label-lg text-label-lg font-bold text-primary-container">
+            #7
+          </div>
+<div>
+<div class="flex items-center gap-2">
+<p id="user-streak-banner-name" class="font-label-lg text-label-lg font-bold text-on-surface">You (Sufiyan Khan)</p>
+<span class="font-label-caps text-label-caps text-primary-container font-bold">• 14 Days Streak 🔥</span>
+</div>
+<p class="font-label-md text-label-md text-outline mt-0.5">Only 8 days to enter Top 5! Keep going today.</p>
+</div>
+</div>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+</section>
+<!-- Today's Focus Workout Hero Card -->
+<section class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-5 relative overflow-hidden shadow-[0px_12px_32px_rgba(255,154,46,0.12)]">
+<!-- Ambient Glow Behind CTA -->
+<div class="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-3">
+<div class="flex gap-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container/15 text-primary-container font-label-caps text-label-caps">
+            TODAY'S FOCUS
+          </span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps">
+            PHASE 02
+          </span>
+</div>
+<a href="onboarding.html" class="font-label-caps text-label-caps text-primary hover:underline flex items-center gap-1">
+<span>CUSTOM SPLIT</span>
+<span class="material-symbols-outlined text-[13px]">tune</span>
+</a>
+</div>
+<div class="mb-4">
+<h2 id="dashboard-today-focus-title" class="font-headline-lg text-headline-lg font-extrabold text-on-surface tracking-tight">Push Day</h2>
+<p id="dashboard-today-focus-desc" class="font-body-md text-body-md text-outline mt-0.5">Chest &amp; Triceps Focus with Incline Dumbbell Emphasis</p>
+</div>
+<!-- Metadata Chips -->
+<div class="flex flex-wrap gap-2 mb-5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-white/[0.03] text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="fitness_center">fitness_center</span>
+<span class="font-label-md text-label-md">4 exercises</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-white/[0.03] text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="timer">timer</span>
+<span class="font-label-md text-label-md">45 minutes</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container border border-white/[0.03] text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="bolt">bolt</span>
+<span class="font-label-md text-label-md">Hypertrophy</span>
+</div>
+</div>
+<!-- CTA Button -->
+<a href="workouts.html" style="text-decoration:none"><button class="w-full py-3.5 px-6 rounded-full bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0px_8px_24px_rgba(255,154,46,0.3)] active:scale-[0.98] transition-all duration-150">
+<span>Start Workout</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button></a>
+</section>
+<!-- Quick Glance Metrics: Calories Burned, Target & Weight (Reflected from Analytics) -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between px-1">
+        <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Daily Activity & Biometrics</span>
+        <a href="progress.html" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+          <span>Analytics</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Featured Calorie Burn Bar -->
+      <div class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex items-center justify-between relative overflow-hidden">
+        <div class="flex items-center gap-3.5 relative z-10">
+          <div class="w-11 h-11 rounded-xl bg-primary-container/20 border border-primary-container/30 flex items-center justify-center text-primary-container shadow-[0px_0px_16px_rgba(255,154,46,0.3)]">
+            <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-extrabold text-white font-display-metric">640</span>
+              <span class="text-xs text-outline font-semibold">/ 750 kcal</span>
+              <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-1.5 py-0.2 rounded ml-1">85% Goal</span>
+            </div>
+            <p class="text-[11px] text-outline mt-0.5">Active Burn • +120 kcal above daily avg</p>
+          </div>
+        </div>
+
+        <div class="relative w-12 h-12 flex items-center justify-center shrink-0">
+          <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
+            <path class="text-surface-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"></path>
+            <path class="text-primary-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="85, 100" stroke-linecap="round" stroke-width="3.5"></path>
+          </svg>
+          <span class="absolute text-[10px] font-bold text-primary font-label-caps">85%</span>
+        </div>
+      </div>
+
+      <!-- 2-Card Row: Weekly Target & Current Weight -->
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Card 1: Weekly Target -->
+        <div class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <span class="font-label-caps text-label-caps text-outline">WEEKLY TARGET</span>
+            <div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[16px]" data-icon="flag">flag</span>
+            </div>
+          </div>
+          <div class="my-3 flex items-center justify-between">
+            <div>
+              <div class="font-display-metric text-display-metric font-bold text-on-surface leading-none">4/5</div>
+              <p class="font-label-md text-label-md text-outline mt-1">Sessions done</p>
+            </div>
+            <div class="relative w-10 h-10 flex items-center justify-center">
+              <svg class="w-10 h-10 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-surface-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"></path>
+                <path class="text-primary-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3.5"></path>
+              </svg>
+              <span class="absolute font-label-caps text-[9px] font-bold text-on-surface">80%</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/[0.04] flex items-center justify-between font-label-md text-label-md text-outline">
+            <span>1 left</span>
+            <span class="text-on-surface-variant font-medium">Target: Fri</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Current Weight -->
+        <div class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <span class="font-label-caps text-label-caps text-outline">BODY WEIGHT</span>
+            <div class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+              <span class="material-symbols-outlined text-[16px]" data-icon="monitor_weight">monitor_weight</span>
+            </div>
+          </div>
+          <div class="my-3">
+            <div class="flex items-baseline gap-1">
+              <span id="index-current-weight" class="font-display-metric text-display-metric font-bold text-on-surface leading-none">74.8</span>
+              <span class="font-label-md text-label-md text-outline">kg</span>
+            </div>
+            <div class="inline-flex items-center gap-1 mt-1 text-secondary font-label-md text-label-md font-semibold">
+              <span class="material-symbols-outlined text-[14px]" data-icon="trending_down">trending_down</span>
+              <span>-0.4 kg this week</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/[0.04] flex items-center justify-between font-label-md text-label-md text-outline">
+            <span>Logged today</span>
+            <span class="text-on-surface-variant font-medium">7:30 AM</span>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Wellness & Recovery Status Strip -->
+<section class="bg-surface-container-low border border-white/[0.04] rounded-2xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="bedtime">bedtime</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Recovery Readiness 92%</p>
+<p class="font-label-md text-label-md text-outline">Optimal CNS recovery • Ready for high load</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="check_circle">check_circle</span>
+</section>
+</main>
+
+<!-- BOTTOM NAVIGATION DOCK (Unified Stitch Component) -->
+<nav aria-label="Primary Navigation" class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 pb-safe max-w-md mx-auto pointer-events-none">
+  <div class="w-full bg-surface-container-high/90 dark:bg-surface-container-high/90 backdrop-blur-xl rounded-full micro-border shadow-[0px_12px_32px_rgba(255,154,46,0.15)] flex justify-around items-center px-3 py-1.5 pointer-events-auto border border-white/[0.06]">
+    
+        <!-- Home (Active) -->
+        <a aria-current="page" aria-label="Home" href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface dark:text-on-surface p-2 after:content-[''] after:w-1.5 after:h-1.5 after:bg-primary-container after:rounded-full after:mt-1 active:scale-90 transition-transform duration-200">
+          <span class="material-symbols-outlined text-[23px] text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+        </a>
+
+        <!-- Workouts -->
+        <a aria-label="Workouts" href="workouts.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">fitness_center</span>
+        </a>
+
+        <!-- Check-in -->
+        <a aria-label="Check-in" href="checkin.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">qr_code_scanner</span>
+        </a>
+
+        <!-- Progress -->
+        <a aria-label="Progress" href="progress.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">monitoring</span>
+        </a>
+
+        <!-- Profile -->
+        <a aria-label="Profile" href="profile.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">person</span>
+        </a>
+  </div>
+</nav>
+
+<!-- ========================================== -->
+<!-- GYM MEMBERS COMMUNITY DIRECTORY MODAL -->
+<!-- ========================================== -->
+<div id="members-directory-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+  <div class="w-full max-w-md bg-surface-container rounded-t-3xl sm:rounded-3xl border border-white/10 max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
+    
+    <!-- Modal Header -->
+    <div class="p-5 pb-4 border-b border-white/[0.06] flex items-center justify-between shrink-0 bg-surface-container">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-primary-container/20 border border-primary-container/30 flex items-center justify-center text-primary-container">
+          <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">AM-Tippu Athletes & Streaks</h3>
+          <p class="text-[11px] text-outline">Verified members, streaks & social handles</p>
+        </div>
+      </div>
+      <button onclick="closeMembersDirectoryModal()" class="w-8 h-8 rounded-full bg-surface-container-high text-outline hover:text-white flex items-center justify-center active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+
+    <!-- Live Search & Category Filter Pills -->
+    <div class="p-4 border-b border-white/[0.04] space-y-3 bg-surface-container-low shrink-0">
+      <!-- Search Bar -->
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[18px] text-outline">search</span>
+        <input type="text" id="member-search-input" oninput="filterGymMembers()" placeholder="Search by name, handle, slot, or discipline..." class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-surface-container border border-white/10 text-xs text-white placeholder-outline focus:border-primary focus:ring-0"/>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-0.5" id="member-filter-pills">
+        <button type="button" onclick="setMemberFilter('All', this)" class="member-cat-btn px-3 py-1.5 rounded-full text-xs font-bold bg-primary-container text-black whitespace-nowrap active:scale-95 transition-all">All Athletes</button>
+        <button type="button" onclick="setMemberFilter('Top Streaks', this)" class="member-cat-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-outline hover:text-white whitespace-nowrap active:scale-95 transition-all">🔥 Top Streaks</button>
+        <button type="button" onclick="setMemberFilter('07:00 AM Crew', this)" class="member-cat-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-outline hover:text-white whitespace-nowrap active:scale-95 transition-all">🌅 7:00 AM Crew</button>
+        <button type="button" onclick="setMemberFilter('Powerlifting', this)" class="member-cat-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-outline hover:text-white whitespace-nowrap active:scale-95 transition-all">⚡ Powerlifting</button>
+        <button type="button" onclick="setMemberFilter('Evening Crew', this)" class="member-cat-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-outline hover:text-white whitespace-nowrap active:scale-95 transition-all">🌙 Evening Crew</button>
+      </div>
+    </div>
+
+    <!-- Member Roster List -->
+    <div class="p-4 space-y-3 overflow-y-auto max-h-[calc(92vh-200px)]" id="members-roster-list">
+      <!-- Rendered via JS -->
+    </div>
+
+    <!-- Sticky Footer Notice -->
+    <div class="p-3 bg-surface-container border-t border-white/[0.04] text-center shrink-0">
+      <p class="text-[10px] text-outline">AM-Tippu Private Athlete Network • Real photos & verified optical RFID check-ins</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div id="index-toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-surface-container-high border border-primary-container/40 text-white text-xs px-4 py-2.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+  <span class="material-symbols-outlined text-[16px] text-primary-container">check_circle</span>
+  <span id="index-toast-text">Action completed</span>
+</div>
+
+<script>
+  const GYM_MEMBERS_DATA = [
+    {
+      id: "mem-01",
+      name: "Farhan Ahmed",
+      handle: "@farhan_lifts",
+      memberId: "#TK-1042",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuA3KkFTglUrPd3xO2gAh3GuJizexizxBDgaJzewzGYFuJX5HTE8UC8W5gLsGpfKZMYSjAvCDr8-aezaUv1hQS3bP5OvjlGl7xNwjDFjjZd0HVp14zKiqyhwD8wGu2ktfalc0B8jakVwNoVrTK0p5gPCZwMNcXw92NldXzzp0hh2nNfAa_fmjquL9kL25F_UEQDgPSgFWp7px9Lark6JBQq4Jyqp98ecxrkfSiOFrnsEjxvl4jliD__9BKnwvnnpvDwpmP1najrTGm0",
+      streak: 42,
+      badge: "👑 #1 Streak",
+      slot: "06:30 AM",
+      category: "Morning Crew",
+      focus: "Hypertrophy & Powerbuilding",
+      bio: "Barbell devotee. 220kg Deadlift club. Morning floor regular since 2021.",
+      socials: {
+        instagram: "https://instagram.com/farhan_lifts",
+        instagramHandle: "@farhan_lifts",
+        strava: "https://strava.com/athletes/farhan"
+      }
+    },
+    {
+      id: "mem-02",
+      name: "Ayesha Patel",
+      handle: "@ayesha.power",
+      memberId: "#TK-2089",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCGodECJkGtQLGBvSiyUM9nQYQFJbwSCsHhCNe6QloM0IWLeElLoUhyrLE_-9gaqQXZ5oADg_4bIrzawlMbVO-u-hKBSp6Rd2PhDLF042xfg-cauJCGdmIXtENTM8UzF1lLjL6PIooZMioS9D0Lf4JShoCDfA6Gwsc-3iK5ExlqVVLfrNDoBm34v6LKSFTFnwyB7pQjKJ0jNzAwyoFTEF0NVR7mgolRhxyJJX9A_aEj_7AlgQuwE9-y-25Kuu-MPewAZ9HZRE5Ho-A",
+      streak: 38,
+      badge: "🥈 #2 Streak",
+      slot: "07:00 AM",
+      category: "Powerlifting",
+      focus: "Competitive Powerlifting",
+      bio: "State Powerlifter • Squat 150kg • Bench 85kg • Deadlift 190kg.",
+      socials: {
+        instagram: "https://instagram.com/ayesha.power",
+        instagramHandle: "@ayesha.power",
+        youtube: "https://youtube.com/@ayeshapower"
+      }
+    },
+    {
+      id: "mem-03",
+      name: "Rahul Verma",
+      handle: "@rahulv_fit",
+      memberId: "#TK-3310",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAnA5tTbFu8zWs43foPzXRqgWwh2wYYYCvp3zvhuFQlEhW47w2iLirr4di7uCT5eu-hCdex7lqTYkakjmmRNYyWSrRl2nsPKhW-SXUvQXF_qAebWDdooOhv2FwiEUBIL9gGhEw79Y1A2N2ROHONB1RP9_-q64lOZlqwosbSsgqMs-8khWx717oU5c5XNrcl1mpWBhUm9-TWJYHChzuODSr2S7MSNLt-3qFvS9_E651gNi-KxFgLGokTNVEcjvgeEhtGOeqQ41Z0Iy0",
+      streak: 31,
+      badge: "🥉 #3 Streak",
+      slot: "08:00 PM",
+      category: "Evening Crew",
+      focus: "Conditioning & Calisthenics",
+      bio: "Weighted pullups + muscle-ups. Evening therapy under the lights.",
+      socials: {
+        instagram: "https://instagram.com/rahulv_fit",
+        instagramHandle: "@rahulv_fit",
+        twitter: "https://x.com/rahulv_fit"
+      }
+    },
+    {
+      id: "mem-04",
+      name: "Zaid Mansoor",
+      handle: "@zaid.snatch",
+      memberId: "#TK-4821",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+      streak: 26,
+      badge: "#4 Streak",
+      slot: "07:00 AM",
+      category: "Morning Crew",
+      focus: "Olympic Weightlifting & Mobility",
+      bio: "Clean & jerk enthusiast. Olympic lifting platform regular.",
+      socials: {
+        instagram: "https://instagram.com/zaid.snatch",
+        instagramHandle: "@zaid.snatch"
+      }
+    },
+    {
+      id: "mem-05",
+      name: "Pooja Nair",
+      handle: "@pooja.moves",
+      memberId: "#TK-5104",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80",
+      streak: 22,
+      badge: "#5 Streak",
+      slot: "06:00 PM",
+      category: "Evening Crew",
+      focus: "Functional HIIT & Hyrox",
+      bio: "Hyrox athlete in training. Kettlebell flow & mobility coach.",
+      socials: {
+        instagram: "https://instagram.com/pooja.moves",
+        instagramHandle: "@pooja.moves"
+      }
+    },
+    {
+      id: "mem-06",
+      name: "Kabir Mehra",
+      handle: "@kabir_hyrox",
+      memberId: "#TK-6729",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+      streak: 19,
+      badge: "#6 Streak",
+      slot: "07:00 AM",
+      category: "Morning Crew",
+      focus: "Endurance & Barbell Strength",
+      bio: "Half-marathoner and deadlifter. Always down for pacing sets.",
+      socials: {
+        instagram: "https://instagram.com/kabir_hyrox",
+        instagramHandle: "@kabir_hyrox"
+      }
+    }
+  ];
+
+  let currentHomeMemberFilter = 'All';
+
+  function openMembersDirectoryModal() {
+    currentHomeMemberFilter = 'All';
+    renderHomeMembersRoster();
+    document.getElementById('members-directory-modal').classList.remove('hidden');
+  }
+
+  function closeMembersDirectoryModal() {
+    document.getElementById('members-directory-modal').classList.add('hidden');
+  }
+
+  function setMemberFilter(filter, btn) {
+    currentHomeMemberFilter = filter;
+    document.querySelectorAll('.member-cat-btn').forEach(b => {
+      b.className = 'member-cat-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-high text-outline hover:text-white whitespace-nowrap active:scale-95 transition-all';
+    });
+    if (btn) {
+      btn.className = 'member-cat-btn px-3 py-1.5 rounded-full text-xs font-bold bg-primary-container text-black whitespace-nowrap active:scale-95 transition-all';
+    }
+    filterGymMembers();
+  }
+
+  function filterGymMembers() {
+    const q = (document.getElementById('member-search-input').value || '').trim().toLowerCase();
+    renderHomeMembersRoster(q);
+  }
+
+  function renderHomeMembersRoster(query = '') {
+    const container = document.getElementById('members-roster-list');
+    if (!container) return;
+
+    let userProfile = {
+      name: "Sufiyan Khan",
+      handle: "@sufiyan.fit",
+      memberId: "#TK-9842",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+      preferredSlot: "07:00 AM",
+      bio: "Clean Bulk to 78kg • Strength Focus",
+      socials: { instagram: "@sufiyan.fit", strava: "Sufiyan K.", twitter: "@sufiyan_fit" }
+    };
+
+    try {
+      const raw = localStorage.getItem('am_tippu_user_profile');
+      if (raw) userProfile = { ...userProfile, ...JSON.parse(raw) };
+    } catch(e) {}
+
+    const currentUserMember = {
+      id: "mem-user",
+      name: userProfile.name,
+      handle: userProfile.handle,
+      memberId: userProfile.memberId,
+      avatar: userProfile.avatar,
+      streak: 14,
+      badge: "✨ You (#7)",
+      slot: userProfile.preferredSlot,
+      category: "07:00 AM Crew",
+      focus: userProfile.bio,
+      bio: userProfile.bio + ". Consistent attendance at AM-Tippu floor.",
+      isCurrentUser: true,
+      socials: userProfile.socials || {}
+    };
+
+    const allList = [currentUserMember, ...GYM_MEMBERS_DATA];
+
+    const filtered = allList.filter(m => {
+      if (currentHomeMemberFilter === 'Top Streaks' && m.streak < 20) return false;
+      if (currentHomeMemberFilter === '07:00 AM Crew' && !m.slot.includes('07:00')) return false;
+      if (currentHomeMemberFilter === 'Powerlifting' && !m.focus.toLowerCase().includes('power') && !m.focus.toLowerCase().includes('strength') && !m.focus.toLowerCase().includes('bulk')) return false;
+      if (currentHomeMemberFilter === 'Evening Crew' && !m.slot.includes('PM')) return false;
+
+      if (query) {
+        return m.name.toLowerCase().includes(query) || m.handle.toLowerCase().includes(query) || m.slot.toLowerCase().includes(query) || m.focus.toLowerCase().includes(query);
+      }
+      return true;
+    });
+
+    container.innerHTML = filtered.map(m => {
+      const igHandle = m.socials.instagram ? m.socials.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//, '').replace(/^@/, '') : '';
+      const igUrl = m.socials.instagram ? (m.socials.instagram.startsWith('http') ? m.socials.instagram : `https://instagram.com/${igHandle}`) : '';
+      const stravaUrl = m.socials.strava ? (m.socials.strava.startsWith('http') ? m.socials.strava : `https://strava.com/athletes/${m.socials.strava}`) : '';
+      const twitterHandle = m.socials.twitter ? m.socials.twitter.replace(/^https?:\/\/(www\.)?x\.com\//, '').replace(/^@/, '') : '';
+      const twitterUrl = m.socials.twitter ? (m.socials.twitter.startsWith('http') ? m.socials.twitter : `https://x.com/${twitterHandle}`) : '';
+
+      return `
+        <div class="bg-surface-container-high/60 p-4 rounded-2xl border ${m.isCurrentUser ? 'border-primary-container/40 bg-primary-container/[0.04]' : 'border-white/5'} space-y-3 relative shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="relative shrink-0">
+                <img src="${m.avatar}" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="${m.name}"/>
+                <span class="absolute -bottom-1 -right-1 text-[11px] leading-none">${m.badge ? m.badge.split(' ')[0] : '🔥'}</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h4 class="text-sm font-bold text-white">${m.name}</h4>
+                  ${m.isCurrentUser ? `<span class="px-1.5 py-0.2 rounded bg-primary-container/20 text-primary-container text-[9px] font-bold">YOU</span>` : ''}
+                </div>
+                <p class="text-[10px] text-outline">${m.handle} • ${m.memberId}</p>
+                <span class="text-[10px] text-primary-container font-semibold">${m.focus}</span>
+              </div>
+            </div>
+
+            <div class="text-right shrink-0">
+              <span class="px-2.5 py-1 rounded-full bg-primary-container/15 border border-primary-container/30 text-primary-container text-xs font-bold block">
+                ${m.streak}d 🔥
+              </span>
+              <span class="text-[9px] text-outline block mt-1">${m.slot}</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-outline/80 leading-relaxed">${m.bio}</p>
+
+          <div class="pt-2 border-t border-white/[0.04] flex items-center justify-between gap-2 flex-wrap">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              ${igUrl ? `
+                <a href="${igUrl}" target="_blank" class="px-2.5 py-1 rounded-full bg-pink-500/15 border border-pink-500/30 text-[10px] font-bold text-pink-300 hover:text-white flex items-center gap-1 transition-all">
+                  <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+                  <span>IG</span>
+                  <span>@${igHandle}</span>
+                </a>
+              ` : ''}
+              ${stravaUrl ? `
+                <a href="${stravaUrl}" target="_blank" class="px-2.5 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-[10px] font-bold text-orange-400 hover:text-white flex items-center gap-1 transition-all">
+                  <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                  <span>Strava</span>
+                </a>
+              ` : ''}
+              ${twitterUrl ? `
+                <a href="${twitterUrl}" target="_blank" class="px-2 py-1 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold text-white flex items-center gap-1 transition-all">
+                  <span>𝕏</span>
+                </a>
+              ` : ''}
+            </div>
+
+            ${m.isCurrentUser ? `
+              <a href="profile.html" class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-highest border border-white/10 text-[11px] font-bold text-primary-container flex items-center gap-1 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[13px]">person</span>
+                <span>My Profile</span>
+              </a>
+            ` : `
+              <button onclick="showHomeToast('High five sent to ${m.name} on gym floor!')" class="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-highest border border-white/10 text-[11px] font-bold text-white flex items-center gap-1 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[13px] text-secondary">waving_hand</span>
+                <span>Say Hi</span>
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function showHomeToast(msg) {
+    const t = document.getElementById('index-toast');
+    document.getElementById('index-toast-text').textContent = msg;
+    t.classList.remove('opacity-0', 'pointer-events-none');
+    setTimeout(() => t.classList.add('opacity-0', 'pointer-events-none'), 2500);
+  }
+
+  (function syncAppProfile() {
+    try {
+      const raw = localStorage.getItem('am_tippu_user_profile');
+      if (raw) {
+        const p = JSON.parse(raw);
+        if (p.name) {
+          const first = p.name.trim().split(' ')[0];
+          const greetingEl = document.getElementById('user-header-greeting');
+          if (greetingEl) greetingEl.textContent = 'Good morning, ' + first;
+          const streakEl = document.getElementById('user-streak-banner-name');
+          if (streakEl) streakEl.textContent = 'You (' + p.name + ')';
+        }
+        if (p.avatar) {
+          const avatarEl = document.getElementById('user-header-avatar');
+          if (avatarEl) avatarEl.src = p.avatar;
+        }
+        if (p.customWeeklySplit && typeof p.customWeeklySplit === 'object') {
+          const dayKeys = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+          const todayKey = dayKeys[new Date().getDay()];
+          const todayFocus = p.customWeeklySplit[todayKey];
+          if (todayFocus) {
+            const titleEl = document.getElementById('dashboard-today-focus-title');
+            if (titleEl) titleEl.textContent = todayFocus;
+            const descEl = document.getElementById('dashboard-today-focus-desc');
+            if (descEl) descEl.textContent = `Today's (${todayKey}) Programmed Protocol • AM-Tippu Athletics`;
+          }
+        }
+      }
+
+      const weightRaw = localStorage.getItem('am_tippu_weight_history');
+      if (weightRaw) {
+        const hist = JSON.parse(weightRaw);
+        if (hist && hist.length > 0) {
+          const lastEntry = hist[hist.length - 1];
+          const wEl = document.getElementById('index-current-weight');
+          if (wEl && lastEntry.weight) wEl.textContent = Number(lastEntry.weight).toFixed(1);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  })();
+</script>
+</body></html>

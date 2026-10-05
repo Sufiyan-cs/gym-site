@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AM-TIPPU FITNESS PROTOCOL - Member Assessment</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Barlow Condensed, JetBrains Mono, Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#ffb877",
+            "on-secondary-container": "#004119",
+            "background": "#141312",
+            "tertiary": "#d4ccc4",
+            "surface-bright": "#3b3937",
+            "on-error-container": "#ffdad6",
+            "surface-container-low": "#1d1b1a",
+            "on-surface": "#e6e1df",
+            "on-error": "#690005",
+            "on-tertiary": "#34302a",
+            "primary-container": "#ff9a2e",
+            "on-tertiary-container": "#48443e",
+            "surface-dim": "#141312",
+            "primary-fixed": "#ffdcc1",
+            "error-container": "#93000a",
+            "tertiary-fixed": "#e9e1d9",
+            "primary-fixed-dim": "#ffb877",
+            "secondary-fixed-dim": "#4ae176",
+            "surface-container-high": "#2b2a28",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "on-primary-fixed": "#2e1500",
+            "on-secondary-fixed-variant": "#005321",
+            "inverse-surface": "#e6e1df",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "primary": "#ffc18c",
+            "on-primary-container": "#693900",
+            "inverse-primary": "#8e4f00",
+            "on-secondary-fixed": "#002109",
+            "surface": "#141312",
+            "on-tertiary-fixed": "#1e1b16",
+            "surface-container-lowest": "#0f0e0d",
+            "on-primary": "#4c2700",
+            "error": "#ffb4ab",
+            "inverse-on-surface": "#32302f",
+            "surface-variant": "#363433",
+            "secondary": "#4ae176",
+            "on-primary-fixed-variant": "#6c3a00",
+            "secondary-container": "#00b954",
+            "on-surface-variant": "#dbc2af",
+            "tertiary-container": "#b8b1a9",
+            "on-background": "#e6e1df",
+            "surface-container-highest": "#363433",
+            "surface-container": "#211f1e",
+            "secondary-fixed": "#6bff8f",
+            "outline": "#a28d7c",
+            "outline-variant": "#554335",
+            "on-secondary": "#003915"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.25rem",
+            "gutter": "0.75rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Barlow Condensed"],
+            "telemetry-digit": ["JetBrains Mono"],
+            "display-lg-mobile": ["Barlow Condensed"],
+            "label-sm": ["JetBrains Mono"],
+            "label-md": ["JetBrains Mono"],
+            "display-lg": ["Barlow Condensed"],
+            "headline-lg-mobile": ["Barlow Condensed"],
+            "body-md": ["Space Grotesk"],
+            "headline-sm": ["Barlow Condensed"],
+            "body-sm": ["Space Grotesk"],
+            "body-lg": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Mechanical micro-grid & subtle tactile scanlines */
+    .bg-obsidian-grid {
+      background-color: #0A0908;
+      background-image: radial-gradient(rgba(255, 154, 46, 0.04) 1px, transparent 0);
+      background-size: 20px 20px;
+    }
+    .carbon-surface-t1 {
+      background-color: #141210;
+      border: 1px solid #2C261F;
+    }
+    .carbon-surface-t2 {
+      background-color: #1A1712;
+      border: 1px solid #2C261F;
+    }
+    .amber-selected {
+      background-color: #1A1712;
+      border: 1px solid #FF9A2E !important;
+      box-shadow: inset 0 0 16px rgba(255, 154, 46, 0.12), 0 0 12px rgba(255, 154, 46, 0.15);
+    }
+    .pulse-live {
+      box-shadow: 0 0 8px #22C55E;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-obsidian-grid text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-surface-container-lowest">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#FF9A2E; font-weight:700; text-decoration:underline; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:none; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- Mobile Viewport Wrapper: 4-column fluid mobile grid anchored by strong outer margins -->
+<div class="w-full max-w-md mx-auto flex flex-col min-h-screen relative shadow-2xl">
+<!-- Top Bar: Task Navigation (Back + Protocol Identity + Close) -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin py-space-sm flex items-center justify-between">
+<button aria-label="Go Back" class="w-12 h-12 flex items-center justify-center rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface active:scale-95 transition-transform" type="button" onclick="window.location.href='index.html'">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary pulse-live"></span>
+<span class="font-headline-sm text-headline-sm font-bold tracking-wider text-primary uppercase">AM-TIPPU FITNESS</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase">PROTOCOL ENGINE v2.4</span>
+</div>
+<button aria-label="Cancel Setup" class="w-12 h-12 flex items-center justify-center rounded-lg bg-surface-container-low border border-outline-variant/40 text-on-surface-variant hover:text-on-surface active:scale-95 transition-transform" type="button" onclick="window.location.href='index.html'">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</header>
+<!-- Multi-Step Segmented Tactical Progress Indicator -->
+<section class="px-margin pt-space-sm pb-space-xs">
+<div class="carbon-surface-t1 p-space-sm rounded-lg flex flex-col gap-2">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<div class="flex items-center space-x-1.5">
+<span class="text-primary-container font-semibold">STEP 02 / 04</span>
+<span class="text-outline">::</span>
+<span class="text-on-surface tracking-wider">GOAL &amp; CAPACITY</span>
+</div>
+<span class="text-secondary font-telemetry-digit text-label-sm">50% LOGGED</span>
+</div>
+<!-- 4-Stage Segmented Progress Bar: 2 Filled Molten Amber, 2 Unfilled Carbon -->
+<div class="grid grid-cols-4 gap-1.5 h-2 w-full">
+<div class="bg-primary-container rounded-DEFAULT shadow-[0_0_8px_rgba(255,154,46,0.6)]"></div>
+<div class="bg-primary-container rounded-DEFAULT shadow-[0_0_8px_rgba(255,154,46,0.6)]"></div>
+<div class="bg-surface-variant rounded-DEFAULT"></div>
+<div class="bg-surface-variant rounded-DEFAULT"></div>
+</div>
+</div>
+</section>
+<!-- Main Assessment Scroll Canvas -->
+<main class="flex-1 px-margin pt-space-md pb-36 space-y-space-xl">
+<!-- Section 1: Primary Training Objective -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">
+            WHAT IS YOUR PRIMARY OBJECTIVE?
+          </h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-primary-container/10 border border-primary-container/40 text-primary font-label-sm text-label-sm">
+            CORE FOCUS
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+          Calibrates baseline volume distribution, compound intensity, and macro threshold.
+        </p>
+<!-- 4 Tactile Goal Selection Cards -->
+<div class="grid grid-cols-1 gap-2.5 pt-1">
+<!-- 1. BUILD MAXIMUM MUSCLE (Selected/Active) -->
+<div class="amber-selected relative rounded-lg p-space-md cursor-pointer transition-all active:scale-[0.99] flex items-center justify-between">
+<div class="flex items-start space-x-3.5">
+<div class="w-12 h-12 rounded bg-primary-container/20 border border-primary-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]" data-icon="fitness_center" data-weight="fill" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">BUILD MAXIMUM MUSCLE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Hypertrophy &amp; Mass Progression</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-primary-container border border-primary-container/30">RPE 8-9.5</span>
+<span class="font-label-sm text-label-sm text-outline">HYPERTROPHY SPLIT</span>
+</div>
+</div>
+</div>
+<!-- Active Corner Marker -->
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(255,154,46,0.8)]">
+<span class="material-symbols-outlined text-[16px] font-bold" data-icon="check">check</span>
+</div>
+</div>
+<!-- 2. CUT FAT & GET SHREDDED -->
+<div class="carbon-surface-t2 hover:border-outline transition-colors rounded-lg p-space-md cursor-pointer active:scale-[0.99] flex items-center justify-between">
+<div class="flex items-start space-x-3.5">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">CUT FAT &amp; GET SHREDDED</span>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Fat Loss, High Density &amp; Definition</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-outline border border-outline-variant">DEFICIT 300kcal</span>
+</div>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border border-outline-variant shrink-0"></div>
+</div>
+<!-- 3. RAW POWER & STRENGTH -->
+<div class="carbon-surface-t2 hover:border-outline transition-colors rounded-lg p-space-md cursor-pointer active:scale-[0.99] flex items-center justify-between">
+<div class="flex items-start space-x-3.5">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]" data-icon="sports_gymnastics">sports_gymnastics</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">RAW POWER &amp; STRENGTH</span>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Heavy Compounds &amp; 1RM Strength</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-outline border border-outline-variant">CNS HEAVY</span>
+</div>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border border-outline-variant shrink-0"></div>
+</div>
+<!-- 4. ATHLETIC STAMINA & HEALTH -->
+<div class="carbon-surface-t2 hover:border-outline transition-colors rounded-lg p-space-md cursor-pointer active:scale-[0.99] flex items-center justify-between">
+<div class="flex items-start space-x-3.5">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]" data-icon="bolt">bolt</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">ATHLETIC STAMINA &amp; HEALTH</span>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">High Conditioning, Hybrid Agility &amp; V02</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-outline border border-outline-variant">HYBRID METCON</span>
+</div>
+</div>
+</div>
+<div class="w-5 h-5 rounded-full border border-outline-variant shrink-0"></div>
+</div>
+</div>
+</section>
+<!-- Section 2: Training Experience Level -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">IRON EXPERIENCE</h2>
+<span class="font-label-sm text-label-sm text-outline">VOLUME CAPACITY</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Beginner -->
+<button class="carbon-surface-t2 h-14 rounded flex flex-col items-center justify-center text-center p-1 border border-outline-variant/60 active:scale-95 transition-transform hover:border-outline" type="button">
+<span class="font-headline-sm text-[15px] uppercase tracking-wide text-on-surface">BEGINNER</span>
+<span class="font-label-sm text-[9px] text-outline tracking-tight">&lt; 1 YR</span>
+</button>
+<!-- Intermediate (Active) -->
+<button class="amber-selected h-14 rounded flex flex-col items-center justify-center text-center p-1 active:scale-95 transition-transform relative" type="button">
+<span class="font-headline-sm text-[15px] uppercase tracking-wide text-primary-container font-bold">INTERMEDIATE</span>
+<span class="font-label-sm text-[9px] text-primary tracking-tight font-semibold">1-3 YRS</span>
+<span class="absolute -top-1.5 -right-1 w-2 h-2 rounded-full bg-primary-container"></span>
+</button>
+<!-- Advanced -->
+<button class="carbon-surface-t2 h-14 rounded flex flex-col items-center justify-center text-center p-1 border border-outline-variant/60 active:scale-95 transition-transform hover:border-outline" type="button">
+<span class="font-headline-sm text-[15px] uppercase tracking-wide text-on-surface">ADVANCED</span>
+<span class="font-label-sm text-[9px] text-outline tracking-tight">3+ YRS</span>
+</button>
+</div>
+</section>
+<!-- Section 3: Biometric Target Baseline -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">BIOMETRIC TARGET BASELINE</h2>
+<div class="flex items-center space-x-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-secondary">TELEMETRY LOCK</span>
+</div>
+</div>
+<!-- 2-Column Weight Telemetry Inputs -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Current Weight Block -->
+<div class="carbon-surface-t1 p-3 rounded-lg flex flex-col justify-between space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">CURRENT</span>
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold">KG</span>
+</div>
+<div class="py-1 text-center">
+<div class="font-telemetry-digit text-telemetry-digit text-on-surface tracking-tight" id="current-weight-val">
+                74.2
+              </div>
+<span class="font-label-sm text-[9px] text-outline uppercase">CHECK-IN SCALE</span>
+</div>
+<!-- Stepper Buttons (Min 48px tactile ergonomics) -->
+<div class="grid grid-cols-2 gap-1.5">
+<button aria-label="Decrease current weight" class="h-12 rounded bg-surface-container-high border border-outline-variant/60 text-on-surface active:bg-primary-container active:text-on-primary-container flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<button aria-label="Increase current weight" class="h-12 rounded bg-surface-container-high border border-outline-variant/60 text-on-surface active:bg-primary-container active:text-on-primary-container flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Target Weight Block -->
+<div class="carbon-surface-t1 p-3 rounded-lg flex flex-col justify-between space-y-2 border-primary-container/40">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">TARGET</span>
+<span class="font-label-sm text-label-sm text-primary-container uppercase font-bold">DELTA -4.2</span>
+</div>
+<div class="py-1 text-center">
+<div class="font-telemetry-digit text-telemetry-digit text-primary-container tracking-tight" id="target-weight-val">
+                70.0
+              </div>
+<span class="font-label-sm text-[9px] text-primary/80 uppercase">GOAL STATE</span>
+</div>
+<!-- Stepper Buttons -->
+<div class="grid grid-cols-2 gap-1.5">
+<button aria-label="Decrease target weight" class="h-12 rounded bg-surface-container-high border border-outline-variant/60 text-on-surface active:bg-primary-container active:text-on-primary-container flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<button aria-label="Increase target weight" class="h-12 rounded bg-surface-container-high border border-outline-variant/60 text-on-surface active:bg-primary-container active:text-on-primary-container flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Height & Stature Telemetry Row -->
+<div class="carbon-surface-t1 p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="height">height</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">STATURE / HEIGHT</span>
+<div class="flex items-baseline space-x-1">
+<span class="font-telemetry-digit text-telemetry-digit text-on-surface">178</span>
+<span class="font-label-sm text-label-sm text-primary">CM</span>
+</div>
+</div>
+</div>
+<!-- Unit Toggle Switch (Tactile Carbon) -->
+<div class="bg-surface-container-lowest p-1 rounded border border-outline-variant/50 flex items-center space-x-1">
+<button class="px-3 py-1.5 rounded bg-primary-container text-surface-container-lowest font-label-sm text-label-sm font-bold" type="button">
+              CM
+            </button>
+<button class="px-3 py-1.5 rounded text-outline hover:text-on-surface font-label-sm text-label-sm font-semibold transition-colors" type="button">
+              FT/IN
+            </button>
+</div>
+</div>
+</section>
+<!-- Section 4: Weekly Commitment Frequency -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-wide">DAYS PER WEEK AT SHAMPURA GYM</h2>
+<span class="font-label-sm text-label-sm text-secondary">SHAMPURA HUB</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+          Minimum 48h recovery period integrated for systemic compound lifts.
+        </p>
+<!-- Frequency Day Selector Chips -->
+<div class="grid grid-cols-2 gap-2.5 pt-1">
+<!-- 3 Days -->
+<button class="carbon-surface-t2 min-h-[52px] rounded-lg p-3 text-left border border-outline-variant/60 flex items-center justify-between active:scale-[0.98] transition-transform" type="button">
+<div>
+<span class="font-headline-sm text-[16px] text-on-surface uppercase block">3 DAYS</span>
+<span class="font-label-sm text-[9px] text-outline">FULL BODY SPLIT</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</button>
+<!-- 4 Days -->
+<button class="carbon-surface-t2 min-h-[52px] rounded-lg p-3 text-left border border-outline-variant/60 flex items-center justify-between active:scale-[0.98] transition-transform" type="button">
+<div>
+<span class="font-headline-sm text-[16px] text-on-surface uppercase block">4 DAYS</span>
+<span class="font-label-sm text-[9px] text-outline">UPPER / LOWER</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</button>
+<!-- 5 Days (Recommended & Selected) -->
+<button class="amber-selected min-h-[52px] rounded-lg p-3 text-left flex items-center justify-between active:scale-[0.98] transition-transform relative" type="button">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-[16px] text-primary-container uppercase font-bold">5 DAYS</span>
+<span class="font-label-sm text-[8px] bg-primary-container text-surface-container-lowest px-1 py-0.2 rounded font-bold uppercase">OPTIMAL</span>
+</div>
+<span class="font-label-sm text-[9px] text-primary font-semibold">PPL + HYPERTROPHY</span>
+</div>
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- 6 Days -->
+<button class="carbon-surface-t2 min-h-[52px] rounded-lg p-3 text-left border border-outline-variant/60 flex items-center justify-between active:scale-[0.98] transition-transform" type="button">
+<div>
+<span class="font-headline-sm text-[16px] text-on-surface uppercase block">6 DAYS</span>
+<span class="font-label-sm text-[9px] text-outline">PPL x2 ADVANCED</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</button>
+</div>
+</section>
+<!-- Tactical Micro Callout / Gym Hardware Info -->
+<section class="carbon-surface-t1 p-space-sm rounded-lg flex items-center space-x-3 border-l-2 border-l-primary-container">
+<span class="material-symbols-outlined text-primary-container text-[22px] shrink-0" data-icon="shield">shield</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant leading-relaxed">
+          Iron protocols calibrated specifically to Shampura Gym barbell platforms, Olympic racks, and selectorized machinery.
+        </p>
+</section>
+</main>
+<!-- Sticky Docked Bottom Action Bar (Edge-to-Edge Action Tray) -->
+<aside class="fixed bottom-0 left-0 right-0 z-50 bg-[#0A0908]/95 backdrop-blur-xl border-t border-[#2C261F]">
+<div class="max-w-md mx-auto px-margin py-3 space-y-2">
+<!-- High Impact Primary CTA (Molten Amber CTA, min-h 52px, Barlow Condensed Bold) -->
+<button class="w-full min-h-[52px] rounded-lg bg-primary-container hover:bg-primary text-surface-container-lowest font-headline-lg-mobile text-headline-lg-mobile tracking-wider uppercase flex items-center justify-center space-x-2 shadow-[0_0_24px_rgba(255,154,46,0.35)] active:scale-[0.98] transition-all" type="button" onclick="window.location.href='index.html'">
+<span>LOCK IN PROTOCOL &amp; CONTINUE</span>
+<span class="material-symbols-outlined text-[24px] font-bold" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Microcopy -->
+<p class="text-center font-body-sm text-[11px] text-outline tracking-tight">
+          Your routine and calorie blueprint will be customized automatically
+        </p>
+</div>
+</aside>
+</div>
+</body></html>

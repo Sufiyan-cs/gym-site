@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Progress & Weight Logger - AM-Tippu Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-lowest": "#0C0B0A",
+            "surface-low": "#141312",
+            "surface-card": "#181716",
+            "surface-elevated": "#21201E",
+            "surface-high": "#2A2826",
+            "primary": "#FF9A2E",
+            "primary-container": "#FF9A2E",
+            "secondary": "#34D399",
+            "on-surface": "#FFFFFF",
+            "outline": "#8E8D8A"
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0C0B0A;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .amber-glow {
+      box-shadow: 0px 10px 28px rgba(255, 154, 46, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-surface-lowest min-h-screen text-on-surface antialiased pb-28">
+
+  <!-- TOP APP BAR -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-surface-low/90 backdrop-blur-md border-b border-white/[0.04]">
+    <div class="max-w-md mx-auto px-5 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="dashboard.html" class="w-9 h-9 rounded-full bg-surface-elevated border border-white/5 flex items-center justify-center text-outline hover:text-white">
+          <span class="material-symbols-outlined text-[19px]">arrow_back</span>
+        </a>
+        <div>
+          <h1 class="text-base font-bold text-white tracking-tight">Progress & Analytics</h1>
+          <p class="text-[11px] text-outline">Weight trajectory & body metrics</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5 bg-surface-elevated px-2.5 py-1 rounded-full border border-white/5 text-[11px]">
+        <span class="text-outline">Goal:</span>
+        <span id="progress-goal-weight" class="text-primary font-bold">72.0 kg</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-md mx-auto pt-20 px-5 space-y-5">
+
+    <!-- TIMEFRAME SELECTOR -->
+    <div class="flex justify-between items-center bg-surface-card p-1 rounded-2xl border border-white/5 text-xs font-semibold">
+      <button class="flex-1 py-1.5 rounded-xl text-outline hover:text-white">1M</button>
+      <button class="flex-1 py-1.5 rounded-xl bg-primary text-black font-bold">3M</button>
+      <button class="flex-1 py-1.5 rounded-xl text-outline hover:text-white">6M</button>
+      <button class="flex-1 py-1.5 rounded-xl text-outline hover:text-white">1Y</button>
+    </div>
+
+    <!-- CURRENT WEIGHT TRAJECTORY HERO CARD -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.06] amber-glow space-y-4">
+      <div class="flex items-start justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-outline tracking-wider uppercase block">Current Weight</span>
+          <div class="flex items-baseline gap-1 mt-0.5">
+            <span id="hero-weight" class="text-4xl font-extrabold text-white">74.8</span>
+            <span class="text-lg text-outline font-semibold">kg</span>
+          </div>
+          <p id="hero-date" class="text-[11px] text-outline mt-0.5">Logged today, 7:15 AM</p>
+        </div>
+        <div id="hero-delta" class="px-2.5 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-bold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px]">trending_down</span>
+          <span>-1.4 kg this mo</span>
+        </div>
+      </div>
+
+      <!-- TRAJECTORY SVG GRAPH -->
+      <div class="relative w-full h-32 mt-2">
+        <svg class="w-full h-full overflow-visible" viewBox="0 0 320 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="amberGlowGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF9A2E" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#FF9A2E" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <path d="M 0,20 Q 80,30 140,45 T 220,60 T 300,80 L 300,100 L 0,100 Z" fill="url(#amberGlowGrad)"/>
+          <path d="M 0,20 Q 80,30 140,45 T 220,60 T 300,80" fill="none" stroke="#FF9A2E" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="0" cy="20" r="3" fill="#8E8D8A"/>
+          <circle cx="140" cy="45" r="3" fill="#8E8D8A"/>
+          <circle cx="220" cy="60" r="3" fill="#8E8D8A"/>
+          <circle cx="300" cy="80" r="5" fill="#FF9A2E"/>
+          <circle cx="300" cy="80" r="2" fill="#0C0B0A"/>
+        </svg>
+      </div>
+
+      <div class="flex justify-between text-[10px] text-outline font-semibold pt-1 border-t border-white/[0.04]">
+        <span>OCT 01 (76.8)</span>
+        <span>NOV 01 (75.9)</span>
+        <span>DEC 01 (75.2)</span>
+        <span class="text-primary font-bold">TODAY (<span id="graph-today-val">74.8</span>)</span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE WEIGHT LOGGER WIDGET -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.06] space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[19px]">scale</span>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold text-white">Log Today's Weight</h2>
+            <p class="text-[11px] text-outline">Adjust with buttons or tap number</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">ACTIVE LOGGER</span>
+      </div>
+
+      <!-- STEPPER CONTROLS -->
+      <div class="flex items-center justify-between bg-surface-low p-3.5 rounded-2xl border border-white/[0.05]">
+        <button id="btn-decrement" class="w-12 h-12 rounded-xl bg-surface-elevated hover:bg-surface-high active:scale-90 flex items-center justify-center text-white text-xl font-bold transition-all border border-white/5">
+          <span class="material-symbols-outlined text-[20px]">remove</span>
+        </button>
+
+        <div class="text-center">
+          <div class="flex items-baseline justify-center gap-1">
+            <input id="input-weight" type="number" step="0.1" value="74.8" 
+              class="w-28 text-center text-3xl font-extrabold text-white bg-transparent border-0 p-0 focus:ring-0 focus:outline-none"/>
+            <span class="text-sm text-outline font-semibold">kg</span>
+          </div>
+          <span class="text-[9px] text-outline uppercase font-bold tracking-wider block mt-1">Tap number to type</span>
+        </div>
+
+        <button id="btn-increment" class="w-12 h-12 rounded-xl bg-surface-elevated hover:bg-surface-high active:scale-90 flex items-center justify-center text-primary text-xl font-bold transition-all border border-white/5">
+          <span class="material-symbols-outlined text-[20px]">add</span>
+        </button>
+      </div>
+
+      <!-- OPTIONAL ATTRIBUTES -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <label class="text-[10px] font-bold text-outline uppercase block mb-1">Body Fat % (Est.)</label>
+          <input id="input-bf" type="text" value="14.6%" 
+            class="w-full bg-surface-low text-xs text-white rounded-xl border border-white/[0.06] p-2.5 focus:border-primary focus:ring-0"/>
+        </div>
+        <div>
+          <label class="text-[10px] font-bold text-outline uppercase block mb-1">Weigh-in Condition</label>
+          <select id="input-cond" class="w-full bg-surface-low text-xs text-white rounded-xl border border-white/[0.06] p-2.5 focus:border-primary focus:ring-0">
+            <option>Morning Fasted</option>
+            <option>Post-Workout</option>
+            <option>Evening Before Bed</option>
+            <option>Rest Day Baseline</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- NOTES FIELD -->
+      <div>
+        <label class="text-[10px] font-bold text-outline uppercase block mb-1">Notes (Optional)</label>
+        <input id="input-notes" type="text" placeholder="e.g. Well rested, post light jog..." 
+          class="w-full bg-surface-low text-xs text-white placeholder:text-outline/50 rounded-xl border border-white/[0.06] p-2.5 focus:border-primary focus:ring-0"/>
+      </div>
+
+      <!-- SAVE BUTTON -->
+      <button id="btn-save-weight" class="w-full py-3.5 rounded-full bg-primary text-black font-bold text-sm amber-glow flex items-center justify-center gap-2 active:scale-98 transition-all">
+        <span class="material-symbols-outlined text-[18px]">check</span>
+        <span>Save Weigh-In Entry</span>
+      </button>
+    </section>
+
+    
+    <!-- CALORIE & DAILY ACTIVE ENERGY TRACKER -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.06] space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-primary-container/20 border border-primary-container/30 flex items-center justify-center text-primary-container shadow-[0px_0px_16px_rgba(255,154,46,0.3)]">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+          </div>
+          <div>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider">Calorie & Energy Tracker</h2>
+            <p class="text-[11px] text-outline">Active Burn & Nutrition Balance</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">-410 kcal Deficit</span>
+      </div>
+
+      <!-- Main Calorie Grid -->
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Active Burn -->
+        <div class="bg-surface-low p-4 rounded-2xl border border-white/5 space-y-2">
+          <div class="flex justify-between items-center text-outline text-[10px] font-bold uppercase">
+            <span>Active Burn</span>
+            <span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-2xl font-extrabold text-white">640</span>
+            <span class="text-xs text-outline font-semibold">/ 750 kcal</span>
+          </div>
+          <div class="w-full bg-surface-elevated rounded-full h-1.5 overflow-hidden">
+            <div class="bg-primary-container h-1.5 rounded-full" style="width: 85%;"></div>
+          </div>
+          <span class="text-[10px] text-secondary font-medium block">85% • Push Day Workout</span>
+        </div>
+
+        <!-- Calorie Intake -->
+        <div class="bg-surface-low p-4 rounded-2xl border border-white/5 space-y-2">
+          <div class="flex justify-between items-center text-outline text-[10px] font-bold uppercase">
+            <span>Intake</span>
+            <span class="material-symbols-outlined text-[16px] text-secondary">restaurant</span>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-2xl font-extrabold text-white">2,450</span>
+            <span class="text-xs text-outline font-semibold">/ 2,800 kcal</span>
+          </div>
+          <div class="w-full bg-surface-elevated rounded-full h-1.5 overflow-hidden">
+            <div class="bg-secondary h-1.5 rounded-full" style="width: 87%;"></div>
+          </div>
+          <span class="text-[10px] text-outline font-medium block">3 Meals • 1 Shake logged</span>
+        </div>
+      </div>
+
+      <!-- Macro Split Row -->
+      <div class="bg-surface-low p-3.5 rounded-2xl border border-white/5 flex items-center justify-around text-center text-xs">
+        <div>
+          <span class="text-[10px] font-bold text-outline uppercase block">PROTEIN</span>
+          <span class="text-sm font-extrabold text-white">165g</span>
+          <span class="text-[9px] text-secondary block font-semibold">97% Target</span>
+        </div>
+        <div class="w-px h-7 bg-white/10"></div>
+        <div>
+          <span class="text-[10px] font-bold text-outline uppercase block">CARBS</span>
+          <span class="text-sm font-extrabold text-white">240g</span>
+          <span class="text-[9px] text-outline block">92% Target</span>
+        </div>
+        <div class="w-px h-7 bg-white/10"></div>
+        <div>
+          <span class="text-[10px] font-bold text-outline uppercase block">FATS</span>
+          <span class="text-sm font-extrabold text-white">62g</span>
+          <span class="text-[9px] text-outline block">95% Target</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Button -->
+      <button onclick="showToast('✓ Quick Meal logged: +450 kcal')" class="w-full py-2.5 rounded-xl bg-surface-elevated hover:bg-surface-high border border-white/5 text-xs font-bold text-white flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-[16px] text-primary">add_circle</span>
+        <span>+ Log Calories or Meal</span>
+      </button>
+    </section>
+
+    <!-- BODY COMPOSITION METRICS -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-surface-card rounded-2xl p-4 border border-white/[0.05] space-y-2">
+        <div class="flex items-center justify-between text-outline">
+          <span class="text-[10px] font-bold uppercase tracking-wider">Body Fat</span>
+          <span class="material-symbols-outlined text-[16px] text-secondary">pie_chart</span>
+        </div>
+        <div class="text-2xl font-extrabold text-white">14.6%</div>
+        <div class="flex items-center gap-1 text-[11px] text-secondary font-bold">
+          <span class="material-symbols-outlined text-[13px]">arrow_downward</span>
+          <span>-0.8% this month</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-card rounded-2xl p-4 border border-white/[0.05] space-y-2">
+        <div class="flex items-center justify-between text-outline">
+          <span class="text-[10px] font-bold uppercase tracking-wider">Skeletal Muscle</span>
+          <span class="material-symbols-outlined text-[16px] text-primary">fitness_center</span>
+        </div>
+        <div class="text-2xl font-extrabold text-white">38.2 kg</div>
+        <div class="flex items-center gap-1 text-[11px] text-secondary font-bold">
+          <span class="material-symbols-outlined text-[13px]">arrow_upward</span>
+          <span>+0.6 kg this month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONAL RECORDS (PR) MILESTONES -->
+    <section class="bg-surface-card rounded-3xl p-5 border border-white/[0.05] space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Personal Records (1RM)</h3>
+        <button onclick="openAllWorkoutRecords()" class="text-xs font-bold text-primary hover:underline flex items-center gap-1 active:scale-95 transition-all">
+          <span>View All</span>
+          <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+        </button>
+      </div>
+      <div class="grid grid-cols-3 gap-2 text-center text-xs">
+        <div class="bg-surface-low p-3 rounded-2xl border border-white/5">
+          <span class="text-[10px] text-outline font-bold block mb-1">BENCH</span>
+          <span class="text-base font-extrabold text-white block">105 kg</span>
+          <span class="inline-block mt-1 bg-primary/20 text-primary text-[8px] font-bold px-1.5 py-0.5 rounded-full">NEW PR</span>
+        </div>
+        <div class="bg-surface-low p-3 rounded-2xl border border-white/5">
+          <span class="text-[10px] text-outline font-bold block mb-1">SQUAT</span>
+          <span class="text-base font-extrabold text-white block">140 kg</span>
+          <span class="inline-block mt-1 text-secondary text-[8px] font-bold px-1.5 py-0.5">+5 kg</span>
+        </div>
+        <div class="bg-surface-low p-3 rounded-2xl border border-white/5">
+          <span class="text-[10px] text-outline font-bold block mb-1">DEADLIFT</span>
+          <span class="text-base font-extrabold text-white block">175 kg</span>
+          <span class="inline-block mt-1 text-secondary text-[8px] font-bold px-1.5 py-0.5">+7.5 kg</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORICAL WEIGH-IN LOG -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-bold text-white">Weigh-In History</h3>
+          <p class="text-[11px] text-outline">Stored chronologically</p>
+        </div>
+        <button onclick="resetLogsToDefault()" class="text-[10px] text-outline hover:text-white">Reset Demo</button>
+      </div>
+
+      <div id="history-container" class="space-y-2.5">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-surface-elevated border border-primary/40 text-white text-xs px-4 py-2.5 rounded-full shadow-2xl transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+    <span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+    <span id="toast-text">Weigh-in recorded</span>
+  </div>
+
+  
+<!-- BOTTOM NAVIGATION DOCK (Unified Stitch Component) -->
+<nav aria-label="Primary Navigation" class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 pb-safe max-w-md mx-auto pointer-events-none">
+  <div class="w-full bg-surface-container-high/90 dark:bg-surface-container-high/90 backdrop-blur-xl rounded-full micro-border shadow-[0px_12px_32px_rgba(255,154,46,0.15)] flex justify-around items-center px-3 py-1.5 pointer-events-auto border border-white/[0.06]">
+    
+        <!-- Home -->
+        <a aria-label="Home" href="dashboard.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">home</span>
+        </a>
+
+        <!-- Workouts -->
+        <a aria-label="Workouts" href="workouts.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">fitness_center</span>
+        </a>
+
+        <!-- Check-in -->
+        <a aria-label="Check-in" href="checkin.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">qr_code_scanner</span>
+        </a>
+
+        <!-- Progress (Active) -->
+        <a aria-current="page" aria-label="Progress" href="progress.html" class="flex flex-col items-center justify-center text-on-surface dark:text-on-surface p-2 after:content-[''] after:w-1.5 after:h-1.5 after:bg-primary-container after:rounded-full after:mt-1 active:scale-90 transition-transform duration-200">
+          <span class="material-symbols-outlined text-[23px] text-primary" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+        </a>
+
+        <!-- Profile -->
+        <a aria-label="Profile" href="profile.html" class="flex flex-col items-center justify-center text-outline dark:text-outline p-2 hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 active:scale-90">
+          <span class="material-symbols-outlined text-[23px]">person</span>
+        </a>
+  </div>
+</nav>
+
+  <script>
+    const defaultHistory = [
+      { id: 1, date: "Oct 04, 2026", time: "07:15 AM", weight: 74.8, delta: "-0.3 kg", cond: "Morning fasted", note: "Baseline fasted" },
+      { id: 2, date: "Oct 01, 2026", time: "06:45 PM", weight: 75.1, delta: "-0.4 kg", cond: "Post workout", note: "Hydrated" },
+      { id: 3, date: "Sep 28, 2026", time: "07:10 AM", weight: 75.5, delta: "-0.4 kg", cond: "Morning fasted", note: "Post leg session" },
+      { id: 4, date: "Sep 24, 2026", time: "08:00 AM", weight: 75.9, delta: "-0.5 kg", cond: "Rest day baseline", note: "Clean refeed" },
+      { id: 5, date: "Sep 18, 2026", time: "07:30 AM", weight: 76.4, delta: "-0.3 kg", cond: "Baseline check-in", note: "Program kick-off" }
+    ];
+
+    function getHistory() {
+      const stored = localStorage.getItem('am_tippu_weight_history');
+      if (stored) {
+        try { return JSON.parse(stored); } catch (e) {}
+      }
+      return defaultHistory;
+    }
+
+    function saveHistory(list) {
+      localStorage.setItem('am_tippu_weight_history', JSON.stringify(list));
+    }
+
+    function renderHistory() {
+      const list = getHistory();
+      const container = document.getElementById('history-container');
+
+      if (list.length > 0) {
+        const latest = list[0];
+        document.getElementById('hero-weight').textContent = Number(latest.weight).toFixed(1);
+        document.getElementById('graph-today-val').textContent = Number(latest.weight).toFixed(1);
+        document.getElementById('hero-date').textContent = 'Logged ' + latest.date + ', ' + latest.time;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="bg-surface-card rounded-2xl p-3.5 border border-white/[0.05] flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-surface-elevated border border-white/5 flex flex-col items-center justify-center">
+              <span class="text-[9px] font-bold text-outline uppercase">${item.date.split(' ')[0]}</span>
+              <span class="text-sm font-bold text-white leading-none">${item.date.split(' ')[1].replace(',', '')}</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-white">${Number(item.weight).toFixed(1)} kg</span>
+                <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-1.5 py-0.5 rounded">${item.delta}</span>
+              </div>
+              <p class="text-[11px] text-outline">${item.cond} • ${item.time}</p>
+            </div>
+          </div>
+          <button onclick="deleteEntry(${item.id})" class="text-outline hover:text-red-400 p-1">
+            <span class="material-symbols-outlined text-[16px]">delete</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    const inputWeight = document.getElementById('input-weight');
+
+    document.getElementById('btn-decrement').addEventListener('click', () => {
+      let val = parseFloat(inputWeight.value) || 74.8;
+      val = Math.max(30, val - 0.1);
+      inputWeight.value = val.toFixed(1);
+    });
+
+    document.getElementById('btn-increment').addEventListener('click', () => {
+      let val = parseFloat(inputWeight.value) || 74.8;
+      val = Math.min(250, val + 0.1);
+      inputWeight.value = val.toFixed(1);
+    });
+
+    document.getElementById('btn-save-weight').addEventListener('click', () => {
+      const weight = parseFloat(inputWeight.value);
+      if (isNaN(weight) || weight <= 0) {
+        showToast('Please enter a valid weight');
+        return;
+      }
+
+      const cond = document.getElementById('input-cond').value;
+      const notes = document.getElementById('input-notes').value || 'User logged entry';
+      const history = getHistory();
+      
+      const prevWeight = history.length > 0 ? history[0].weight : weight;
+      const deltaVal = (weight - prevWeight).toFixed(1);
+      const deltaStr = deltaVal <= 0 ? deltaVal + ' kg' : '+' + deltaVal + ' kg';
+
+      const now = new Date();
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const dateStr = months[now.getMonth()] + ' ' + String(now.getDate()).padStart(2, '0') + ', ' + now.getFullYear();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      const newEntry = {
+        id: Date.now(),
+        date: dateStr,
+        time: timeStr,
+        weight: weight,
+        delta: deltaStr,
+        cond: cond,
+        note: notes
+      };
+
+      history.unshift(newEntry);
+      saveHistory(history);
+      renderHistory();
+      showToast('✓ Saved weigh-in: ' + weight.toFixed(1) + ' kg!');
+    });
+
+    function deleteEntry(id) {
+      let history = getHistory();
+      history = history.filter(x => x.id !== id);
+      saveHistory(history);
+      renderHistory();
+      showToast('Entry removed');
+    }
+
+    function resetLogsToDefault() {
+      localStorage.removeItem('am_tippu_weight_history');
+      renderHistory();
+      showToast('Demo logs reset');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = msg;
+      t.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => t.classList.add('opacity-0', 'pointer-events-none'), 2200);
+    }
+
+    renderHistory();
+  </script>
+
+  <!-- ALL WORKOUT RECORDS & EXERCISE PR MODAL -->
+  <div id="all-records-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-surface-card rounded-t-3xl sm:rounded-3xl border border-white/10 max-h-[90vh] flex flex-col overflow-hidden animate-slide-up">
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-bold text-primary uppercase tracking-wider block">ALL EXERCISE MILESTONES</span>
+          <h2 class="text-lg font-bold text-white">Previous Workout Records</h2>
+        </div>
+        <button onclick="closeAllWorkoutRecords()" class="w-8 h-8 rounded-full bg-surface-elevated text-outline hover:text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Search & Category Filters -->
+      <div class="p-4 border-b border-white/[0.04] space-y-2.5">
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+          <input id="pr-search" type="text" placeholder="Search exercises (e.g. Squat, Row, OHP)..." 
+            class="w-full bg-surface-low text-xs text-white placeholder:text-outline/60 pl-9 pr-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-primary"/>
+        </div>
+
+        <div id="pr-filter-pills" class="flex overflow-x-auto no-scrollbar gap-1.5 py-0.5">
+          <button data-cat="All" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-bold bg-primary text-black shrink-0">All (12)</button>
+          <button data-cat="Chest" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-semibold bg-surface-elevated text-outline hover:text-white border border-white/5 shrink-0">Chest</button>
+          <button data-cat="Back" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-semibold bg-surface-elevated text-outline hover:text-white border border-white/5 shrink-0">Back</button>
+          <button data-cat="Legs" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-semibold bg-surface-elevated text-outline hover:text-white border border-white/5 shrink-0">Legs</button>
+          <button data-cat="Shoulders" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-semibold bg-surface-elevated text-outline hover:text-white border border-white/5 shrink-0">Shoulders</button>
+          <button data-cat="Arms" class="pr-cat-pill px-3 py-1 rounded-full text-[11px] font-semibold bg-surface-elevated text-outline hover:text-white border border-white/5 shrink-0">Arms</button>
+        </div>
+      </div>
+
+      <!-- Records List -->
+      <div id="pr-records-list" class="p-4 overflow-y-auto space-y-3 no-scrollbar max-h-[60vh]">
+        <!-- Dynamic PR items rendered via JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-white/[0.06] bg-surface-card">
+        <button onclick="showToast('Opened routine logger'); closeAllWorkoutRecords();" class="w-full py-3 rounded-full bg-primary text-black font-bold text-xs amber-glow active:scale-95 transition-all">
+          + Log New Workout Session
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const allRecordsData = [{"name":"Barbell Bench Press","category":"Chest","equipment":"Barbell","pr":"105 kg","date":"Oct 02, 2026","history":["105 kg × 5 (PR)","100 kg × 6","95 kg × 8","90 kg × 10"]},{"name":"Barbell Full Squat","category":"Legs","equipment":"Barbell","pr":"140 kg","date":"Sep 30, 2026","history":["140 kg × 5 (PR)","140 kg × 4","130 kg × 6","120 kg × 8"]},{"name":"Conventional Deadlift","category":"Back","equipment":"Barbell","pr":"175 kg","date":"Sep 27, 2026","history":["175 kg × 3 (PR)","165 kg × 4","150 kg × 5"]},{"name":"Dumbbell Shoulder Press","category":"Shoulders","equipment":"Dumbbell","pr":"34 kg","date":"Oct 03, 2026","history":["34 kg × 8 (PR)","34 kg × 6","30 kg × 10","28 kg × 10"]},{"name":"Barbell Bent-Over Row","category":"Back","equipment":"Barbell","pr":"92.5 kg","date":"Oct 01, 2026","history":["92.5 kg × 8 (PR)","92.5 kg × 6","85 kg × 8","80 kg × 10"]},{"name":"Weighted Pull-Up","category":"Back","equipment":"Bodyweight + Weight","pr":"+20 kg","date":"Sep 29, 2026","history":["+20 kg × 5 (PR)","+15 kg × 6","+10 kg × 8","BW × 12"]},{"name":"Incline Dumbbell Curl","category":"Arms","equipment":"Dumbbell","pr":"22 kg","date":"Sep 29, 2026","history":["22 kg × 8 (PR)","20 kg × 8","18 kg × 10"]},{"name":"Dumbbell Lateral Raise","category":"Shoulders","equipment":"Dumbbell","pr":"16 kg","date":"Oct 03, 2026","history":["16 kg × 12 (PR)","16 kg × 10","14 kg × 12","12 kg × 15"]},{"name":"Cable Triceps Pushdown","category":"Arms","equipment":"Cable","pr":"42.5 kg","date":"Oct 02, 2026","history":["42.5 kg × 10 (PR)","40 kg × 10","35 kg × 12"]},{"name":"Incline Barbell Bench Press","category":"Chest","equipment":"Barbell","pr":"85 kg","date":"Oct 02, 2026","history":["85 kg × 6 (PR)","80 kg × 8","75 kg × 8"]},{"name":"Leg Press","category":"Legs","equipment":"Machine","pr":"280 kg","date":"Sep 25, 2026","history":["280 kg × 10 (PR)","280 kg × 8","250 kg × 10","220 kg × 12"]},{"name":"Romanian Deadlift (RDL)","category":"Legs","equipment":"Barbell","pr":"130 kg","date":"Sep 20, 2026","history":["130 kg × 6 (PR)","120 kg × 8","115 kg × 8","100 kg × 10"]}];
+
+    function renderAllRecords(list) {
+      const container = document.getElementById('pr-records-list');
+      if (list.length === 0) {
+        container.innerHTML = '<div class="text-center py-6 text-outline text-xs">No records found matching filter.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="bg-surface-low rounded-2xl p-4 border border-white/5 space-y-2.5">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                <span class="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[9px] font-bold">PR ${item.pr}</span>
+              </div>
+              <div class="flex items-center gap-2 text-[10px] text-outline mt-0.5">
+                <span class="px-2 py-0.2 rounded bg-surface-elevated">${item.category}</span>
+                <span>•</span>
+                <span>${item.equipment}</span>
+                <span>•</span>
+                <span>Last logged: ${item.date}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- History Sets Pill Grid -->
+          <div class="bg-surface-card p-2.5 rounded-xl border border-white/[0.04]">
+            <span class="text-[9px] font-bold text-outline uppercase block mb-1.5">Previous Session Sets:</span>
+            <div class="flex flex-wrap gap-1.5">
+              ${item.history.map(s => `
+                <span class="px-2.5 py-1 rounded-lg bg-surface-elevated text-xs font-semibold ${s.includes('PR') ? 'text-primary border border-primary/30' : 'text-on-surface'}">${s}</span>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openAllWorkoutRecords() {
+      document.getElementById('all-records-modal').classList.remove('hidden');
+      renderAllRecords(allRecordsData);
+    }
+
+    function closeAllWorkoutRecords() {
+      document.getElementById('all-records-modal').classList.add('hidden');
+    }
+
+    // Modal filters
+    let currentPrCat = 'All';
+    let currentPrSearch = '';
+
+    function filterPrs() {
+      let filtered = allRecordsData;
+      if (currentPrCat !== 'All') {
+        filtered = filtered.filter(x => x.category.toLowerCase() === currentPrCat.toLowerCase());
+      }
+      if (currentPrSearch.trim() !== '') {
+        const q = currentPrSearch.toLowerCase();
+        filtered = filtered.filter(x => x.name.toLowerCase().includes(q) || x.category.toLowerCase().includes(q) || x.equipment.toLowerCase().includes(q));
+      }
+      renderAllRecords(filtered);
+    }
+
+    document.querySelectorAll('.pr-cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pr-cat-pill').forEach(b => {
+          b.classList.remove('bg-primary', 'text-black');
+          b.classList.add('bg-surface-elevated', 'text-outline');
+        });
+        btn.classList.add('bg-primary', 'text-black');
+        btn.classList.remove('bg-surface-elevated', 'text-outline');
+        currentPrCat = btn.getAttribute('data-cat');
+        filterPrs();
+      });
+    });
+
+    document.getElementById('pr-search').addEventListener('input', (e) => {
+      currentPrSearch = e.target.value;
+      filterPrs();
+    });
+
+    // Synchronize goal weight from profile
+    (function syncProfileGoal() {
+      try {
+        const raw = localStorage.getItem('am_tippu_user_profile');
+        if (raw) {
+          const p = JSON.parse(raw);
+          if (p.targetWeight) {
+            const gw = document.getElementById('progress-goal-weight');
+            if (gw) gw.textContent = p.targetWeight;
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-Tippu Member Onboarding &amp; Goal Assessment</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#1d1b1a",
+            "tertiary-fixed-dim": "#76d1ff",
+            "on-tertiary-container": "#004a65",
+            "on-primary": "#4c2700",
+            "inverse-on-surface": "#32302f",
+            "on-tertiary-fixed": "#001e2b",
+            "tertiary-container": "#00c0fd",
+            "tertiary": "#8dd7ff",
+            "secondary-container": "#00bd85",
+            "surface-container-high": "#2b2a28",
+            "surface-dim": "#141312",
+            "surface": "#141312",
+            "primary-container": "#ff9a2e",
+            "surface-container-lowest": "#0f0e0d",
+            "surface-container-highest": "#363433",
+            "surface-container": "#211f1e",
+            "error-container": "#93000a",
+            "outline": "#a28d7c",
+            "on-secondary-fixed": "#002114",
+            "on-secondary": "#003825",
+            "primary-fixed": "#ffdcc1",
+            "on-surface-variant": "#dbc2af",
+            "on-primary-fixed-variant": "#6c3a00",
+            "outline-variant": "#554335",
+            "on-secondary-container": "#00452e",
+            "surface-bright": "#3b3937",
+            "on-primary-container": "#693900",
+            "error": "#ffb4ab",
+            "secondary-fixed": "#68fcbf",
+            "on-background": "#e6e1df",
+            "secondary": "#45dfa4",
+            "secondary-fixed-dim": "#45dfa4",
+            "inverse-primary": "#8e4f00",
+            "surface-tint": "#ffb877",
+            "on-tertiary": "#003548",
+            "on-error": "#690005",
+            "surface-variant": "#363433",
+            "primary-fixed-dim": "#ffb877",
+            "on-secondary-fixed-variant": "#005137",
+            "tertiary-fixed": "#c2e8ff",
+            "on-surface": "#e6e1df",
+            "on-error-container": "#ffdad6",
+            "inverse-surface": "#e6e1df",
+            "background": "#141312",
+            "primary": "#ffc18c",
+            "on-tertiary-fixed-variant": "#004d67",
+            "on-primary-fixed": "#2e1500"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem",
+            "gutter": "1rem",
+            "space-md": "1rem",
+            "margin-desktop": "3rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-metric": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "display-metric": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide scrollbar for neat carousel rows */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Wrapper with Max Bounds for Flagship Experience -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col relative pb-36">
+<!-- Top Navigation & Stepper Header -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin py-3">
+<div class="flex items-center justify-between">
+<!-- Close / Back Button -->
+<button aria-label="Go Back" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors active:scale-95 border border-white/5" type="button">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<!-- Brand Crest -->
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse shadow-[0_0_8px_rgba(255,154,46,0.6)]"></span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">AM-Tippu</span>
+<span class="text-[9px] font-label-caps uppercase px-1.5 py-0.5 rounded bg-surface-container-high text-outline tracking-wider border border-white/5">Athletics</span>
+</div>
+<!-- Help / Support icon -->
+<button aria-label="Support Desk" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors active:scale-95 border border-white/5" type="button">
+<span class="material-symbols-outlined text-base">help_outline</span>
+</button>
+</div>
+<!-- Step Counter & Segmented Progress Bar -->
+<div class="mt-3 pt-2">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Step 1 of 4 • Complete Athlete Profile</span>
+<span class="text-label-caps font-label-caps text-primary-container font-semibold">25% Protocol Completed</span>
+</div>
+<!-- Segmented 4-bar indicator -->
+<div class="grid grid-cols-4 gap-1.5 w-full">
+<div class="h-1 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,154,46,0.4)]"></div>
+<div class="h-1 rounded-full bg-surface-container-high"></div>
+<div class="h-1 rounded-full bg-surface-container-high"></div>
+<div class="h-1 rounded-full bg-surface-container-high"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-margin pt-4 space-y-7">
+<!-- Hero Headline Banner -->
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container border border-primary-container/20 text-primary text-[10px] font-label-caps">
+<span class="material-symbols-outlined text-xs text-primary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Serenity Elite Protocol</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+          Assessment &amp; Protocol Blueprint
+        </h1>
+<p class="font-body-md text-body-md text-outline leading-relaxed">
+          Personalize your training split, biometric milestones, and access credentials.
+        </p>
+</div>
+<!-- SECTION 01: Biometrics & Core Identity -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">01</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Biometrics &amp; Core Identity</h2>
+</div>
+<span class="text-label-caps font-label-caps text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">sync</span>
+            Live Bio-Sync
+          </span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 border border-white/5 space-y-4">
+<!-- Gender Selector -->
+<div class="space-y-2">
+<label class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Biological Profile</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2.5 px-3 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg border border-primary-container/40 shadow-[0px_4px_16px_rgba(255,154,46,0.12)] flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm text-primary-container" style="font-variation-settings: 'FILL' 1;">male</span>
+                Male
+              </button>
+<button class="py-2.5 px-3 rounded-xl bg-surface-container-lowest text-outline font-label-lg text-label-lg border border-transparent hover:text-on-surface transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm">female</span>
+                Female
+              </button>
+<button class="py-2.5 px-3 rounded-xl bg-surface-container-lowest text-outline font-label-lg text-label-lg border border-transparent hover:text-on-surface transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-sm">transgender</span>
+                Non-binary
+              </button>
+</div>
+</div>
+<!-- Dual Steppers Grid: Age & Height -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Age Stepper Card -->
+<div class="bg-surface-container p-3 rounded-xl border border-white/5 flex flex-col justify-between">
+<span class="text-label-caps font-label-caps text-outline uppercase">Chronological Age</span>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-metric text-display-metric font-bold text-on-surface tracking-tight">26</span>
+<span class="text-body-md text-outline">yrs</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/5">
+<button aria-label="Decrease age" class="w-7 h-7 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-[11px] text-outline font-mono">18-65</span>
+<button aria-label="Increase age" class="w-7 h-7 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<!-- Height Stepper Card -->
+<div class="bg-surface-container p-3 rounded-xl border border-white/5 flex flex-col justify-between">
+<span class="text-label-caps font-label-caps text-outline uppercase">Stature / Height</span>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-metric text-display-metric font-bold text-on-surface tracking-tight">182</span>
+<span class="text-body-md text-outline">cm</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/5">
+<button aria-label="Decrease height" class="w-7 h-7 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-[11px] text-outline font-mono">5'11.6"</span>
+<button aria-label="Increase height" class="w-7 h-7 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Weight Differential Spectrum: Current vs Target Goal -->
+<div class="bg-surface-container p-3.5 rounded-xl border border-white/5 space-y-3">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<span class="text-label-caps font-label-caps text-outline uppercase block">Current Weight</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-display-metric text-display-metric font-bold text-on-surface">74.8</span>
+<span class="text-body-md text-outline font-medium">kg</span>
+</div>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-primary uppercase block">Target Goal Weight</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-display-metric text-display-metric font-bold text-primary-container">78.0</span>
+<span class="text-body-md text-primary font-medium">kg</span>
+</div>
+</div>
+</div>
+<!-- Target Gain Bar -->
+<div class="space-y-1 pt-1 border-t border-white/5">
+<div class="flex items-center justify-between text-label-caps font-label-caps">
+<span class="text-outline">+3.2 kg Lean Mass Protocol</span>
+<span class="text-secondary font-semibold">Healthy Range (0.4 kg/wk)</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-lowest rounded-full overflow-hidden flex">
+<div class="w-[72%] bg-outline-variant h-full"></div>
+<div class="w-[28%] bg-primary-container h-full rounded-r-full shadow-[0_0_8px_rgba(255,154,46,0.6)]"></div>
+</div>
+</div>
+</div>
+<!-- Blood Group Selector -->
+<div class="space-y-2">
+<label class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Clinical Blood Group (Emergency &amp; Micronutrition)</label>
+<div class="flex items-center justify-between gap-1.5">
+<button class="flex-1 py-2 rounded-lg bg-surface-container-lowest text-outline text-label-md font-label-md border border-transparent hover:text-on-surface" type="button">A+</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-lowest text-outline text-label-md font-label-md border border-transparent hover:text-on-surface" type="button">B+</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-primary-container text-label-md font-label-md border border-primary-container/40 shadow-[0_2px_8px_rgba(255,154,46,0.15)] font-bold" type="button">O+</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-lowest text-outline text-label-md font-label-md border border-transparent hover:text-on-surface" type="button">AB+</button>
+<button class="flex-1 py-2 rounded-lg bg-surface-container-lowest text-outline text-label-md font-label-md border border-transparent hover:text-on-surface" type="button">O-</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 02: Training Background & Experience -->
+<section class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">02</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Training Background</h2>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Beginner -->
+<button class="p-3.5 rounded-2xl bg-surface-container-low border border-white/5 text-left flex flex-col justify-between hover:bg-surface-container transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-outline text-xl mb-3">spa</span>
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Beginner</div>
+<div class="text-label-caps font-label-caps text-outline mt-0.5">&lt; 1 yr deliberate training</div>
+</div>
+</button>
+<!-- Intermediate (Active) -->
+<button class="p-3.5 rounded-2xl bg-surface-container border border-primary-container shadow-[0px_8px_24px_rgba(255,154,46,0.14)] text-left flex flex-col justify-between relative active:scale-[0.98]" type="button">
+<div class="flex items-center justify-between w-full mb-3">
+<span class="material-symbols-outlined text-primary-container text-xl" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</div>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface flex items-center gap-1">
+                Intermediate
+              </div>
+<div class="text-label-caps font-label-caps text-primary mt-0.5">1-3 yrs structured lifting</div>
+</div>
+</button>
+<!-- Advanced -->
+<button class="p-3.5 rounded-2xl bg-surface-container-low border border-white/5 text-left flex flex-col justify-between hover:bg-surface-container transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-outline text-xl mb-3">bolt</span>
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Advanced</div>
+<div class="text-label-caps font-label-caps text-outline mt-0.5">3-5+ yrs progressive overload</div>
+</div>
+</button>
+<!-- Competitive -->
+<button class="p-3.5 rounded-2xl bg-surface-container-low border border-white/5 text-left flex flex-col justify-between hover:bg-surface-container transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-outline text-xl mb-3">military_tech</span>
+<div>
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Competitive</div>
+<div class="text-label-caps font-label-caps text-outline mt-0.5">Stage / Meet / Hyrox Pro</div>
+</div>
+</button>
+</div>
+</section>
+<!-- SECTION 03: Primary Athletic Focus & Goal -->
+<section class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">03</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Primary Athletic Focus</h2>
+</div>
+<div class="space-y-2.5">
+<!-- Active Target Card -->
+<div class="p-4 rounded-2xl bg-surface-container border border-primary-container shadow-[0px_10px_28px_rgba(255,154,46,0.18)] relative flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-primary-container/20 text-primary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-[16px] font-bold text-on-surface">Clean Hypertrophy</h3>
+<span class="text-label-caps font-label-caps px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-extrabold uppercase">Selected</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant text-[13px] mt-0.5 leading-snug">
+                Targeting +3 to 4 kg lean skeletal muscle mass with calculated caloric surplus and myofibrillar stimulus.
+              </p>
+</div>
+</div>
+<!-- Inactive Goal 2 -->
+<div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex items-start gap-3 hover:bg-surface-container transition-all cursor-pointer">
+<div class="w-8 h-8 rounded-xl bg-surface-container-high text-outline flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-lg">hardware</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Max Strength &amp; Powerlifting PRs</h3>
+<span class="text-label-caps font-label-caps text-outline">RPE 8-10</span>
+</div>
+<p class="text-body-md text-outline text-[12px] mt-0.5">
+                CNS-focused periodization maximizing 1RM in Deadlift, Low-bar Squat, and Bench Press.
+              </p>
+</div>
+</div>
+<!-- Inactive Goal 3 -->
+<div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex items-start gap-3 hover:bg-surface-container transition-all cursor-pointer">
+<div class="w-8 h-8 rounded-xl bg-surface-container-high text-outline flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-lg">local_fire_department</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Aggressive Fat Loss &amp; Definition</h3>
+<span class="text-label-caps font-label-caps text-outline">Sub-10%</span>
+</div>
+<p class="text-body-md text-outline text-[12px] mt-0.5">
+                Preserve nitrogen balance while sustaining aggressive deficit and lactate-threshold circuits.
+              </p>
+</div>
+</div>
+<!-- Inactive Goal 4 -->
+<div class="p-4 rounded-2xl bg-surface-container-low border border-white/5 flex items-start gap-3 hover:bg-surface-container transition-all cursor-pointer">
+<div class="w-8 h-8 rounded-xl bg-surface-container-high text-outline flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-lg">sprint</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Hyrox &amp; Functional Conditioning</h3>
+<span class="text-label-caps font-label-caps text-outline">Aerobic Zone 2/4</span>
+</div>
+<p class="text-body-md text-outline text-[12px] mt-0.5">
+                SkiErg, Sled Push, Wall Balls, and lactate buffering for official competition readiness.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 04: Preferred Split & Frequency (Custom Weekday Split) -->
+<section class="space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">04</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Split &amp; Weekly Rhythm</h2>
+</div>
+<span class="text-label-caps font-label-caps text-primary uppercase font-bold text-[10px]">Custom Weekday Split</span>
+</div>
+
+<!-- Split Routine Selection Cards (Includes Custom Split & Quick Templates) -->
+<div class="grid grid-cols-2 gap-2" id="split-preset-tabs">
+<button type="button" onclick="applySplitTemplate('custom')" id="split-tab-custom" class="p-3 rounded-xl bg-surface-container border border-primary-container/80 text-left transition-all relative overflow-hidden shadow-[0px_4px_16px_rgba(255,154,46,0.15)]">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-white flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+Custom Split
+</span>
+<span class="material-symbols-outlined text-primary-container text-sm">tune</span>
+</div>
+<p class="text-[10px] text-primary">Your exact daily focus</p>
+</button>
+
+<button type="button" onclick="applySplitTemplate('ppl')" id="split-tab-ppl" class="p-3 rounded-xl bg-surface-container-low border border-white/5 hover:border-white/20 text-left transition-all">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Push / Pull / Legs</span>
+<span class="text-[10px] text-outline">6 Days</span>
+</div>
+<p class="text-[10px] text-outline">PPL Hypertrophy</p>
+</button>
+
+<button type="button" onclick="applySplitTemplate('arnold')" id="split-tab-arnold" class="p-3 rounded-xl bg-surface-container-low border border-white/5 hover:border-white/20 text-left transition-all">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Arnold Split</span>
+<span class="text-[10px] text-outline">6 Days</span>
+</div>
+<p class="text-[10px] text-outline">Chest/Back, Arms, Legs</p>
+</button>
+
+<button type="button" onclick="applySplitTemplate('upperlower')" id="split-tab-upperlower" class="p-3 rounded-xl bg-surface-container-low border border-white/5 hover:border-white/20 text-left transition-all">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-on-surface">Upper / Lower</span>
+<span class="text-[10px] text-outline">4 Days</span>
+</div>
+<p class="text-[10px] text-outline">Power &amp; Recovery</p>
+</button>
+</div>
+
+<!-- CUSTOM WEEKDAY BUILDER CARD -->
+<div class="p-4 rounded-2xl bg-surface-container-low border border-white/10 space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-xs font-bold text-white block">Interactive Weekday Split Builder</span>
+<span class="text-[10px] text-outline">Tap a day (M, T, W...) then assign your focus</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[10px] font-bold">Live Synced</span>
+</div>
+
+<!-- 7 Weekday Buttons Row: M T W T F S S -->
+<div class="grid grid-cols-7 gap-1.5" id="weekday-buttons-row">
+<button type="button" onclick="selectWeekday('Mon')" id="day-btn-Mon" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-primary-container text-black font-extrabold shadow-[0px_2px_10px_rgba(255,154,46,0.25)] ring-2 ring-primary-container">
+<span class="text-xs block">M</span>
+<span class="text-[8px] uppercase tracking-tighter opacity-80 block">Mon</span>
+</button>
+<button type="button" onclick="selectWeekday('Tue')" id="day-btn-Tue" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">T</span>
+<span class="text-[8px] uppercase tracking-tighter block">Tue</span>
+</button>
+<button type="button" onclick="selectWeekday('Wed')" id="day-btn-Wed" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">W</span>
+<span class="text-[8px] uppercase tracking-tighter block">Wed</span>
+</button>
+<button type="button" onclick="selectWeekday('Thu')" id="day-btn-Thu" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">T</span>
+<span class="text-[8px] uppercase tracking-tighter block">Thu</span>
+</button>
+<button type="button" onclick="selectWeekday('Fri')" id="day-btn-Fri" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">F</span>
+<span class="text-[8px] uppercase tracking-tighter block">Fri</span>
+</button>
+<button type="button" onclick="selectWeekday('Sat')" id="day-btn-Sat" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">S</span>
+<span class="text-[8px] uppercase tracking-tighter block">Sat</span>
+</button>
+<button type="button" onclick="selectWeekday('Sun')" id="day-btn-Sun" class="day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5">
+<span class="text-xs font-bold block">S</span>
+<span class="text-[8px] uppercase tracking-tighter block">Sun</span>
+</button>
+</div>
+
+<!-- Active Day Protocol Editor Box -->
+<div class="p-3.5 rounded-xl bg-surface-container border border-primary-container/30 space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-base">calendar_month</span>
+<span class="text-xs font-bold text-white">Configuring: <span id="current-day-label" class="text-primary-container">Monday</span></span>
+</div>
+<span id="current-focus-badge" class="px-2 py-0.5 rounded-md bg-primary-container/20 text-primary-container text-[11px] font-bold">Back Day</span>
+</div>
+
+<!-- Quick Preset Focus Chips -->
+<div class="space-y-1.5">
+<span class="text-[10px] text-outline uppercase tracking-wider font-semibold block">Quick Focus Presets (Tap to Assign):</span>
+<div class="flex flex-wrap gap-1.5" id="focus-preset-chips">
+<button type="button" onclick="setFocusForActiveDay('Back Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-primary-container text-black font-bold transition-all">Back Day</button>
+<button type="button" onclick="setFocusForActiveDay('Chest Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Chest Day</button>
+<button type="button" onclick="setFocusForActiveDay('Leg Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Leg Day</button>
+<button type="button" onclick="setFocusForActiveDay('Shoulders')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Shoulders</button>
+<button type="button" onclick="setFocusForActiveDay('Arms &amp; Biceps')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Arms &amp; Biceps</button>
+<button type="button" onclick="setFocusForActiveDay('Push Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Push Day</button>
+<button type="button" onclick="setFocusForActiveDay('Pull Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Pull Day</button>
+<button type="button" onclick="setFocusForActiveDay('Full Body')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all">Full Body</button>
+<button type="button" onclick="setFocusForActiveDay('Rest Day')" class="focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-secondary border border-secondary/20 transition-all">Rest Day</button>
+</div>
+</div>
+
+<!-- Custom Day Focus Freeform Input -->
+<div class="space-y-1 pt-1">
+<label class="text-[10px] text-outline font-semibold block">Or Type Custom Focus for this Day:</label>
+<div class="relative">
+<input type="text" id="custom-focus-input" oninput="onCustomFocusInput(this.value)" placeholder="e.g. Back Day &amp; Deadlifts, Chest &amp; Abs..." class="w-full px-3 py-2 rounded-xl bg-surface-container-lowest border border-white/10 text-xs text-white placeholder-outline/50 focus:border-primary-container focus:ring-0"/>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none">edit</span>
+</div>
+</div>
+</div>
+
+<!-- 7-Day Rhythm Summary Strip -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Your Weekly 7-Day Schedule:</span>
+<span class="text-[10px] text-primary" id="split-training-days-count">6 Training Days • 1 Rest</span>
+</div>
+<div class="grid grid-cols-2 gap-1.5" id="weekly-blueprint-summary">
+<!-- Rendered dynamically by renderWeeklyBlueprint() -->
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 05: Preferred Floor Time Slot -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">05</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Floor Access Window</h2>
+</div>
+<span class="text-label-caps font-label-caps text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+            Sensors Active
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-2.5">
+<!-- 06:00 AM -->
+<button class="p-3 rounded-xl bg-surface-container-low border border-white/5 text-left hover:bg-surface-container transition-colors" type="button">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">06:00 AM</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-secondary/10 text-secondary font-bold font-label-caps">18% Capacity</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline block">Dawn Crew • Minimal Traffic</span>
+</button>
+<!-- 07:00 AM [Selected] -->
+<button class="p-3 rounded-xl bg-surface-container border border-primary-container shadow-[0px_4px_16px_rgba(255,154,46,0.15)] text-left" type="button">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-lg text-primary-container font-bold">07:00 AM</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-primary-container/20 text-primary-container font-bold font-label-caps">Primary</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface block">Morning Peak • Full Energy</span>
+</button>
+<!-- 06:00 PM -->
+<button class="p-3 rounded-xl bg-surface-container-low border border-white/5 text-left hover:bg-surface-container transition-colors" type="button">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">06:00 PM</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-error/15 text-error font-bold font-label-caps">82% Peak</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline block">Evening Rush • High Intensity</span>
+</button>
+<!-- 08:00 PM -->
+<button class="p-3 rounded-xl bg-surface-container-low border border-white/5 text-left hover:bg-surface-container transition-colors" type="button">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">08:00 PM</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-secondary/10 text-secondary font-bold font-label-caps">34% Capacity</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline block">Night Vault • Ambient Flow</span>
+</button>
+</div>
+</section>
+<!-- SECTION 06: PAR-Q & Medical Screening -->
+<section class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">06</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">PAR-Q &amp; Medical Clearance</h2>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 border border-white/5 space-y-4">
+<!-- Injury Input Area -->
+<div class="space-y-1.5">
+<label class="text-label-caps font-label-caps text-outline uppercase tracking-wider block" for="injuries">
+              Joint, Spinal or Muscular Restrictions
+            </label>
+<div class="relative">
+<input class="w-full bg-surface-container text-on-surface text-body-md rounded-xl px-3.5 py-2.5 border border-white/10 focus:border-primary-container focus:outline-none focus:ring-1 focus:ring-primary-container font-body-md" id="injuries" type="text" value="Minor right shoulder impingement on overhead press"/>
+<span class="material-symbols-outlined text-outline absolute right-3 top-2.5 text-base">edit_note</span>
+</div>
+<span class="text-[11px] text-outline-variant">Coach Tippu will automatically adjust pressing angles in your template.</span>
+</div>
+<!-- Cardiovascular Clearance Toggle -->
+<div class="pt-3 border-t border-white/5 flex items-center justify-between">
+<div class="pr-3">
+<div class="font-label-lg text-label-lg font-semibold text-on-surface">Cardiovascular Clearance</div>
+<div class="text-[11px] text-secondary font-medium">Cleared for high-intensity training (Zone 4/5)</div>
+</div>
+<!-- Custom Toggle -->
+<button aria-checked="true" class="w-12 h-6 bg-secondary-container rounded-full p-0.5 transition-colors relative flex items-center justify-end" role="switch" type="button">
+<span class="w-5 h-5 rounded-full bg-on-background shadow-md"></span>
+</button>
+</div>
+<!-- Doctor Clearance Checkbox -->
+<div class="pt-3 border-t border-white/5 flex items-start gap-2.5">
+<input checked="" class="mt-0.5 rounded bg-surface-container border-white/20 text-primary-container focus:ring-primary-container" id="liability" type="checkbox"/>
+<label class="text-[11px] text-outline leading-tight select-none" for="liability">
+              I certify that I have had medical clearance or accept full personal liability for vigorous athletic loading within AM-Tippu athletic facilities.
+            </label>
+</div>
+</div>
+</section>
+<!-- SECTION 07: Nutrition & Dietary Blueprint -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">07</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Nutrition Blueprint</h2>
+</div>
+<span class="text-label-caps font-label-caps text-primary uppercase">Macros Engine</span>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 border border-white/5 space-y-4">
+<!-- Diet Style Pills (Carousel / Grid) -->
+<div class="space-y-2">
+<span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Nutritional Philosophy</span>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2.5 px-3 rounded-xl bg-surface-container text-on-surface font-label-lg text-label-lg border border-primary-container/40 flex items-center justify-between" type="button">
+<span>High Protein Non-Veg</span>
+<span class="material-symbols-outlined text-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="py-2.5 px-3 rounded-xl bg-surface-container-lowest text-outline font-label-lg text-label-lg border border-transparent hover:text-on-surface text-left" type="button">
+                High Protein Veg
+              </button>
+<button class="py-2.5 px-3 rounded-xl bg-surface-container-lowest text-outline font-label-lg text-label-lg border border-transparent hover:text-on-surface text-left" type="button">
+                Strict Vegan / Plant
+              </button>
+<button class="py-2.5 px-3 rounded-xl bg-surface-container-lowest text-outline font-label-lg text-label-lg border border-transparent hover:text-on-surface text-left" type="button">
+                Ketogenic / Low-Carb
+              </button>
+</div>
+</div>
+<!-- Dual Target Cards: Calories & Protein -->
+<div class="grid grid-cols-2 gap-3 pt-1 border-t border-white/5">
+<!-- Calorie Card -->
+<div class="bg-surface-container p-3 rounded-xl border border-white/5">
+<div class="flex items-center justify-between text-label-caps font-label-caps text-outline uppercase">
+<span>Energy Ceiling</span>
+<span class="material-symbols-outlined text-primary text-xs">local_fire_department</span>
+</div>
+<div class="my-1.5">
+<span class="font-display-metric text-display-metric font-bold text-on-surface">2,850</span>
+<span class="text-label-caps text-outline block">kcal / daily</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/5">
+<button aria-label="Decrease calories" class="w-6 h-6 rounded bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright" type="button">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="text-[10px] text-primary font-mono">+300 surplus</span>
+<button aria-label="Increase calories" class="w-6 h-6 rounded bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright" type="button">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</div>
+<!-- Protein Card -->
+<div class="bg-surface-container p-3 rounded-xl border border-white/5">
+<div class="flex items-center justify-between text-label-caps font-label-caps text-outline uppercase">
+<span>Anabolic Floor</span>
+<span class="material-symbols-outlined text-secondary text-xs">egg_alt</span>
+</div>
+<div class="my-1.5">
+<span class="font-display-metric text-display-metric font-bold text-secondary">165</span>
+<span class="text-label-caps text-outline block">grams / daily</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-white/5">
+<button aria-label="Decrease protein" class="w-6 h-6 rounded bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright" type="button">
+<span class="material-symbols-outlined text-xs">remove</span>
+</button>
+<span class="text-[10px] text-outline font-mono">2.2g / kg</span>
+<button aria-label="Increase protein" class="w-6 h-6 rounded bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright" type="button">
+<span class="material-symbols-outlined text-xs">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 08: Amenities & Coach Alignment -->
+<section class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-surface-container-high text-primary-container text-label-caps font-bold flex items-center justify-center text-[10px]">08</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Club Amenities &amp; Mentorship</h2>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 border border-white/5 space-y-3.5">
+<!-- NFC / Key Fob Sync Status -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">contactless</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">Dynamic Optical / NFC Gate Pass</span>
+<span class="text-[11px] text-secondary font-medium">Ready for instant Apple Wallet / Google Pay pairing</span>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(69,223,164,0.6)]"></span>
+</div>
+<!-- 1-on-1 Coach Tippu Assessment Booking Slot -->
+<div class="p-3.5 rounded-xl bg-surface-container border border-primary-container/30 relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 border border-primary-container/40 flex items-center justify-center text-primary-container font-bold text-sm">
+                  CT
+                </div>
+<div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">1-on-1 Foundation Onboarding</div>
+<div class="text-[12px] text-primary">Head Coach Tippu • Bio-mechanics Audit</div>
+</div>
+</div>
+<span class="text-label-caps font-label-caps px-2 py-0.5 rounded bg-primary-container/20 text-primary-container border border-primary-container/30">Complimentary</span>
+</div>
+<div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[12px]">
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-sm text-outline">calendar_today</span>
+<span>Saturday, 10:00 AM reserved</span>
+</div>
+<button class="text-label-caps font-label-caps text-outline hover:text-on-surface transition-colors uppercase" type="button">Reschedule</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Action Bar with Glowing Ember CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-surface-dim/95 backdrop-blur-xl border-t border-white/5 py-3 px-margin">
+<div class="max-w-md mx-auto space-y-2">
+<!-- Primary Action Button -->
+<button onclick="saveOnboardingAndActivate();" class="w-full py-4 px-6 rounded-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0px_12px_32px_rgba(255,154,46,0.3)] hover:brightness-105 active:scale-[0.98] transition-all cursor-pointer" type="button">
+<span>Save &amp; Activate Turnstile Pass</span>
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+<!-- Subtitle & Vault Encryption Guarantee -->
+<div class="flex items-center justify-center gap-1.5 text-[11px] text-outline">
+<span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span>Generates dynamic 256-bit optical gate QR • AM-Tippu Athletics Vault</span>
+</div>
+</div>
+</div>
+</div>
+
+  <script>
+    const WEEKDAYS = [
+      { key: 'Mon', label: 'Monday', short: 'M' },
+      { key: 'Tue', label: 'Tuesday', short: 'T' },
+      { key: 'Wed', label: 'Wednesday', short: 'W' },
+      { key: 'Thu', label: 'Thursday', short: 'T' },
+      { key: 'Fri', label: 'Friday', short: 'F' },
+      { key: 'Sat', label: 'Saturday', short: 'S' },
+      { key: 'Sun', label: 'Sunday', short: 'S' }
+    ];
+
+    let activeDayKey = 'Mon';
+    let userWeeklySplit = {
+      Mon: 'Back Day',
+      Tue: 'Chest Day',
+      Wed: 'Leg Day',
+      Thu: 'Shoulders',
+      Fri: 'Arms & Biceps',
+      Sat: 'Full Body',
+      Sun: 'Rest Day'
+    };
+
+    const TEMPLATES = {
+      custom: {
+        Mon: 'Back Day',
+        Tue: 'Chest Day',
+        Wed: 'Leg Day',
+        Thu: 'Shoulders',
+        Fri: 'Arms & Biceps',
+        Sat: 'Full Body',
+        Sun: 'Rest Day'
+      },
+      ppl: {
+        Mon: 'Push Day (Chest/Tris)',
+        Tue: 'Pull Day (Back/Bis)',
+        Wed: 'Leg Day (Quads/Calves)',
+        Thu: 'Push Day (Shoulders)',
+        Fri: 'Pull Day (Deadlifts/Lats)',
+        Sat: 'Leg Day (Hams/Glutes)',
+        Sun: 'Rest Day'
+      },
+      arnold: {
+        Mon: 'Chest & Back Day',
+        Tue: 'Shoulders & Arms',
+        Wed: 'Leg Day & Core',
+        Thu: 'Chest & Back Day',
+        Fri: 'Shoulders & Arms',
+        Sat: 'Leg Day & Abs',
+        Sun: 'Rest Day'
+      },
+      upperlower: {
+        Mon: 'Upper Body Power',
+        Tue: 'Lower Body Power',
+        Wed: 'Rest Day',
+        Thu: 'Upper Body Hypertrophy',
+        Fri: 'Lower Body Hypertrophy',
+        Sat: 'Active Recovery',
+        Sun: 'Rest Day'
+      }
+    };
+
+    // Load any existing custom split if already stored
+    try {
+      const raw = localStorage.getItem('am_tippu_user_profile');
+      if (raw) {
+        const p = JSON.parse(raw);
+        if (p.customWeeklySplit && typeof p.customWeeklySplit === 'object') {
+          userWeeklySplit = { ...userWeeklySplit, ...p.customWeeklySplit };
+        }
+      }
+    } catch(e) {}
+
+    function selectWeekday(dayKey) {
+      activeDayKey = dayKey;
+      updateWeekdayUI();
+    }
+
+    function setFocusForActiveDay(focus) {
+      userWeeklySplit[activeDayKey] = focus;
+      updateWeekdayUI();
+    }
+
+    function onCustomFocusInput(val) {
+      if (val && val.trim()) {
+        userWeeklySplit[activeDayKey] = val.trim();
+      }
+      renderWeeklyBlueprint();
+      updateStats();
+    }
+
+    function applySplitTemplate(templateKey) {
+      if (TEMPLATES[templateKey]) {
+        userWeeklySplit = { ...TEMPLATES[templateKey] };
+      }
+      ['custom', 'ppl', 'arnold', 'upperlower'].forEach(k => {
+        const tab = document.getElementById('split-tab-' + k);
+        if (!tab) return;
+        if (k === templateKey) {
+          tab.className = 'p-3 rounded-xl bg-surface-container border border-primary-container/80 text-left transition-all relative overflow-hidden shadow-[0px_4px_16px_rgba(255,154,46,0.15)]';
+        } else {
+          tab.className = 'p-3 rounded-xl bg-surface-container-low border border-white/5 hover:border-white/20 text-left transition-all';
+        }
+      });
+      updateWeekdayUI();
+    }
+
+    function updateWeekdayUI() {
+      const currentObj = WEEKDAYS.find(w => w.key === activeDayKey);
+      const currentDayName = currentObj ? currentObj.label : activeDayKey;
+      const currentFocus = userWeeklySplit[activeDayKey] || 'Rest Day';
+
+      const dayLabelEl = document.getElementById('current-day-label');
+      if (dayLabelEl) dayLabelEl.textContent = currentDayName;
+      const badgeEl = document.getElementById('current-focus-badge');
+      if (badgeEl) badgeEl.textContent = currentFocus;
+      const inputEl = document.getElementById('custom-focus-input');
+      if (inputEl) inputEl.value = currentFocus;
+
+      WEEKDAYS.forEach(w => {
+        const btn = document.getElementById('day-btn-' + w.key);
+        if (!btn) return;
+        if (w.key === activeDayKey) {
+          btn.className = 'day-selector-btn py-2.5 rounded-xl text-center transition-all bg-primary-container text-black font-extrabold shadow-[0px_2px_10px_rgba(255,154,46,0.25)] ring-2 ring-primary-container';
+        } else {
+          btn.className = 'day-selector-btn py-2.5 rounded-xl text-center transition-all bg-surface-container text-outline hover:text-white border border-white/5';
+        }
+      });
+
+      document.querySelectorAll('.focus-chip').forEach(chip => {
+        const text = chip.textContent.trim().toLowerCase();
+        if (text === currentFocus.trim().toLowerCase()) {
+          chip.className = 'focus-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-primary-container text-black transition-all';
+        } else {
+          chip.className = 'focus-chip px-2.5 py-1 rounded-lg text-xs font-medium bg-surface-container-high text-on-surface hover:text-white border border-white/5 transition-all';
+        }
+      });
+
+      renderWeeklyBlueprint();
+      updateStats();
+    }
+
+    function renderWeeklyBlueprint() {
+      const container = document.getElementById('weekly-blueprint-summary');
+      if (!container) return;
+      container.innerHTML = WEEKDAYS.map(w => {
+        const focus = userWeeklySplit[w.key] || 'Rest Day';
+        const isRest = focus.toLowerCase().includes('rest') || focus.toLowerCase().includes('recovery');
+        const isCurrent = w.key === activeDayKey;
+        return `
+          <div onclick="selectWeekday('${w.key}')" class="p-2.5 rounded-xl ${isCurrent ? 'bg-primary-container/10 border-primary-container/50' : 'bg-surface-container-lowest border-white/5'} border flex items-center justify-between cursor-pointer hover:border-white/20 transition-all">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md ${isCurrent ? 'bg-primary-container text-black font-extrabold' : 'bg-surface-container text-outline'} flex items-center justify-center text-[10px] font-bold">${w.short}</span>
+              <div>
+                <span class="text-[11px] font-bold text-white block truncate max-w-[105px]">${focus}</span>
+                <span class="text-[9px] text-outline">${w.label}</span>
+              </div>
+            </div>
+            <span class="w-2 h-2 rounded-full ${isRest ? 'bg-outline/40' : 'bg-primary-container'} shrink-0"></span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateStats() {
+      const trainingCount = Object.values(userWeeklySplit).filter(f => !f.toLowerCase().includes('rest') && !f.toLowerCase().includes('recovery')).length;
+      const countEl = document.getElementById('split-training-days-count');
+      if (countEl) countEl.textContent = `${trainingCount} Training Days • ${7 - trainingCount} Rest`;
+    }
+
+    function selectPill(groupClass, el) {
+      document.querySelectorAll('.' + groupClass).forEach(p => {
+        p.classList.remove('bg-primary-container', 'text-black', 'font-bold', 'border-primary-container');
+        p.classList.add('bg-surface-container', 'text-outline');
+      });
+      el.classList.remove('bg-surface-container', 'text-outline');
+      el.classList.add('bg-primary-container', 'text-black', 'font-bold', 'border-primary-container');
+    }
+
+    function adjustNum(id, delta, min, max, unit) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let val = parseFloat(el.textContent) || 0;
+      val = Math.max(min, Math.min(max, val + delta));
+      el.textContent = unit ? (val + ' ' + unit) : val;
+    }
+
+    function saveOnboardingAndActivate() {
+      try {
+        let existing = {};
+        try {
+          const raw = localStorage.getItem('am_tippu_user_profile');
+          if (raw) existing = JSON.parse(raw);
+        } catch(err) {}
+
+        const profile = {
+          ...existing,
+          onboardingCompleted: true,
+          bio: 'Clean Bulk to 78kg • Hypertrophy Protocol',
+          targetWeight: '78.0 kg',
+          preferredSlot: '07:00 AM',
+          customWeeklySplit: userWeeklySplit
+        };
+        // Remove any remnant locker field
+        delete profile.locker;
+
+        localStorage.setItem('am_tippu_user_profile', JSON.stringify(profile));
+      } catch(e) {
+        console.error(e);
+      }
+      alert('✓ Athlete Protocol Activated! Turnstile Pass & Dynamic QR generated.');
+      window.location.href = 'checkin.html';
+    }
+
+    // Initialize UI on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateWeekdayUI();
+    });
+    // In case DOM is already ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(updateWeekdayUI, 10);
+    }
+  </script>
+</body></html>

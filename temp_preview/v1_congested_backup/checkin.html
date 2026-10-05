@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-Tippu Digital Access Pass &amp; Facility QR Check-In</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Barlow Condensed, Space Grotesk, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed": "#002109",
+            "inverse-on-surface": "#32302f",
+            "primary": "#ffc18c",
+            "surface-container": "#211f1e",
+            "secondary-fixed": "#6bff8f",
+            "surface-variant": "#363433",
+            "on-primary-fixed-variant": "#6c3a00",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#dbc2af",
+            "on-primary-container": "#693900",
+            "on-surface": "#e6e1df",
+            "on-secondary-fixed-variant": "#005321",
+            "surface-tint": "#ffb877",
+            "tertiary-fixed-dim": "#cdc5bd",
+            "surface-container-low": "#1d1b1a",
+            "inverse-primary": "#8e4f00",
+            "primary-fixed": "#ffdcc1",
+            "on-tertiary": "#34302a",
+            "surface-container-high": "#2b2a28",
+            "surface-container-highest": "#363433",
+            "on-primary-fixed": "#2e1500",
+            "background": "#141312",
+            "surface-container-lowest": "#0f0e0d",
+            "secondary-fixed-dim": "#4ae176",
+            "primary-fixed-dim": "#ffb877",
+            "on-secondary-container": "#004119",
+            "primary-container": "#ff9a2e",
+            "on-primary": "#4c2700",
+            "tertiary-container": "#b8b1a9",
+            "surface-bright": "#3b3937",
+            "on-error-container": "#ffdad6",
+            "outline": "#a28d7c",
+            "surface-dim": "#141312",
+            "surface": "#141312",
+            "secondary": "#4ae176",
+            "on-secondary": "#003915",
+            "on-error": "#690005",
+            "on-background": "#e6e1df",
+            "on-tertiary-fixed": "#1e1b16",
+            "on-tertiary-fixed-variant": "#4a4640",
+            "tertiary": "#d4ccc4",
+            "error-container": "#93000a",
+            "tertiary-fixed": "#e9e1d9",
+            "outline-variant": "#554335",
+            "secondary-container": "#00b954",
+            "on-tertiary-container": "#48443e",
+            "inverse-surface": "#e6e1df"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "gutter": "0.75rem",
+            "gutter-desktop": "1.25rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.25rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "display-lg-mobile": ["Barlow Condensed", "sans-serif"],
+            "headline-lg-mobile": ["Barlow Condensed", "sans-serif"],
+            "display-lg": ["Barlow Condensed", "sans-serif"],
+            "telemetry-digit": ["JetBrains Mono", "monospace"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "headline-lg": ["Barlow Condensed", "sans-serif"],
+            "body-lg": ["Space Grotesk", "sans-serif"],
+            "label-md": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Space Grotesk", "sans-serif"],
+            "headline-sm": ["Barlow Condensed", "sans-serif"],
+            "body-md": ["Space Grotesk", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg-mobile": ["44px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "32px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "display-lg": ["56px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "telemetry-digit": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "headline-lg": ["36px", { "lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "24px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    /* Tactile grid scanline texture */
+    .carbon-scanlines {
+      background: linear-gradient(135deg, rgba(20, 18, 16, 0.98) 0%, rgba(15, 14, 13, 0.95) 100%),
+                  repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 154, 46, 0.015) 2px, rgba(255, 154, 46, 0.015) 4px);
+    }
+    
+    /* HUD Corner reticles */
+    .hud-bracket {
+      position: relative;
+    }
+    .hud-bracket::before, .hud-bracket::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: #ff9a2e;
+      pointer-events: none;
+    }
+    .hud-bracket-top::before { top: -2px; left: -2px; border-top: 2px solid #ff9a2e; border-left: 2px solid #ff9a2e; }
+    .hud-bracket-top::after { top: -2px; right: -2px; border-top: 2px solid #ff9a2e; border-right: 2px solid #ff9a2e; }
+    .hud-bracket-bot::before { bottom: -2px; left: -2px; border-bottom: 2px solid #ff9a2e; border-left: 2px solid #ff9a2e; }
+    .hud-bracket-bot::after { bottom: -2px; right: -2px; border-bottom: 2px solid #ff9a2e; border-right: 2px solid #ff9a2e; }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen pb-28">
+
+<!-- MOBILE PREVIEW DOCK -->
+<div style="background:#141210; border-bottom:1px solid #2C261F; padding:8px 12px; font-family:'JetBrains Mono',monospace; font-size:11px; display:flex; gap:12px; align-items:center; overflow-x:auto; white-space:nowrap; position:sticky; top:0; z-index:9999; -webkit-overflow-scrolling:touch;">
+  <span style="color:#FF9A2E; font-weight:700; flex-shrink:0;">AM-TIPPU MOBILE</span>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="index.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Home</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="workouts.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Workouts</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="checkin.html" style="color:#FF9A2E; font-weight:700; text-decoration:underline; flex-shrink:0;">Pass</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="progress.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Stats</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="profile.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Profile</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="onboarding.html" style="color:#F0EAE0; font-weight:400; text-decoration:none; flex-shrink:0;">Onboarding</a>
+  <span style="color:#554335; flex-shrink:0;">|</span>
+  <a href="admin.html" style="color:#22C55E; font-weight:700; text-decoration:none; flex-shrink:0;">Ops Command</a>
+</div>
+
+
+    
+    
+<!-- Mobile Viewport Container: max-w-md mx-auto matching shared components -->
+<div class="max-w-md mx-auto relative flex flex-col px-margin pt-space-xs">
+<!-- Top Navigation Anchor (Synthesized from TopAppBar Blueprint) -->
+<header class="flex justify-between items-center w-full py-space-sm bg-surface">
+<!-- Leading: Operator / Profile Avatar -->
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg overflow-hidden border border-outline-variant relative bg-surface-container-high flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of Sufiyan, an athletic Middle Eastern male with a focused gaze and lean physique, captured under dramatic low-key gym directional studio lighting with subtle amber highlights on dark carbon background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABx5E6KAkRkXLphH08ERy_6O131snzQls5fr_D1REa-KogtH4YiBGf6ke2gZqRXctcgNut-RjpdZNrH7LSegCAQcdN3BYdZhKiO7nujGHdRbGkUUHppYSaMGx7ilnfMKKA5pcWNAJbC5xQ2Qk47M7eOKpHU1fvFineeaSGZPvF4_3WT3Pw3VyvRIsXyOirG2vRQiBszzvZTneH8qWr9SQkBoTBWq_pv0guPhTLN_6Yu8Fk98HS8leUkLdEajkdqwCvwgmHTJVU8Sc"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-secondary rounded-full border border-background"></span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm font-bold tracking-wider text-primary block uppercase leading-none">AM-TIPPU FITNESS</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block animate-pulse"></span>
+            SHAMPURA GATE A
+          </span>
+</div>
+</div>
+<!-- Trailing: Telemetry Alert/Notifications -->
+<button aria-label="Notifications" class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</header>
+<!-- Operational Security Timestamp Bar -->
+<div class="mt-space-xs mb-space-sm flex items-center justify-between px-space-sm py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">LIVE PASS VALIDATED</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">schedule</span>
+<span class="text-on-surface font-semibold tracking-wider" id="live-clock">06:42:15 AM</span>
+</div>
+</div>
+<!-- SECTION 1: The Tactical Member Pass Card (Hero Component) -->
+<section class="relative w-full rounded-xl p-space-md border border-outline-variant shadow-2xl carbon-scanlines overflow-hidden">
+<!-- Decorative forged carbon aura overlay -->
+<div class="absolute -top-12 -right-12 w-36 h-36 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/5 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Top Row: Mark & Hologram Chip -->
+<div class="flex items-center justify-between relative z-10 pb-space-sm border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm font-bold">fitness_center</span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm uppercase text-primary font-black tracking-wider leading-none">AM-TIPPU</span>
+<span class="block font-label-sm text-label-sm text-outline tracking-widest leading-none mt-0.5">HIGH-PERFORMANCE</span>
+</div>
+</div>
+<!-- Holographic Chip Badge -->
+<div class="px-2.5 py-1 rounded bg-gradient-to-r from-primary-container/20 via-primary/30 to-primary-container/20 border border-primary/40 flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-xs text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">VIP ATHLETE</span>
+</div>
+</div>
+<!-- Member Identity Telemetry -->
+<div class="mt-space-md flex items-center justify-between relative z-10">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg border-2 border-primary-container/60 p-0.5 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover rounded" data-alt="Athletic portrait photo of member Sufiyan with high contrast training demeanor, dramatic lighting against deep industrial gym background, sharp visual fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpibV7TPEuA5l_YrurrobuLcFVnuUYqxq7ailH2bPhLdRn94j8Lgkv7YDdHdH6pW3hE4GMy3QX1vvaUYMdeUIQaAkkOUXRXrSv9-vrNCqhlzA9EpKVz-9l5R17A5eGvyiLO6ZjE86kZHBuvM9Y5taLRZecy722q7XuFKifqwSbDyzm0Sd7CkuW9kxkMfYj9rzt28YAYO57xUnH81VcQ-P55qxmTPL7DGbsG91BGZOD-0M4zkKGsZ96ZXDjNmi_o-Zmk0ANKTyIc3Q"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface leading-tight font-extrabold">SUFIYAN A.</h2>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-primary-fixed border border-outline-variant">#AMT-8821</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase flex items-center gap-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> PRO TIER
+              </span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">GATE CODE</span>
+<span class="font-telemetry-digit text-telemetry-digit text-primary tracking-widest">A-04</span>
+</div>
+</div>
+<!-- High-Contrast QR Code Viewport Frame -->
+<div class="my-space-md flex flex-col items-center justify-center relative z-10">
+<div class="hud-bracket hud-bracket-top hud-bracket-bot p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/80">
+<div class="p-3 bg-white rounded flex items-center justify-center shadow-inner">
+<!-- Synthesized Precision SVG High-Contrast QR Code for Turnstile Scanners -->
+<svg class="w-44 h-44" fill="none" viewbox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#FFFFFF" height="29" width="29"></rect>
+<!-- Corner Finder Pattern 1 (Top-Left) -->
+<rect fill="#0A0908" height="7" width="7" x="2" y="2"></rect>
+<rect fill="#FFFFFF" height="5" width="5" x="3" y="3"></rect>
+<rect fill="#0A0908" height="3" width="3" x="4" y="4"></rect>
+<!-- Corner Finder Pattern 2 (Top-Right) -->
+<rect fill="#0A0908" height="7" width="7" x="20" y="2"></rect>
+<rect fill="#FFFFFF" height="5" width="5" x="21" y="3"></rect>
+<rect fill="#0A0908" height="3" width="3" x="22" y="4"></rect>
+<!-- Corner Finder Pattern 3 (Bottom-Left) -->
+<rect fill="#0A0908" height="7" width="7" x="2" y="20"></rect>
+<rect fill="#FFFFFF" height="5" width="5" x="3" y="21"></rect>
+<rect fill="#0A0908" height="3" width="3" x="4" y="22"></rect>
+<!-- Timing bars -->
+<rect fill="#0A0908" height="1" width="8" x="10" y="5"></rect>
+<rect fill="#0A0908" height="8" width="1" x="5" y="10"></rect>
+<!-- Data clusters for AM-Tippu Turnstile Protocol -->
+<rect fill="#0A0908" height="2" width="2" x="10" y="2"></rect>
+<rect fill="#0A0908" height="2" width="1" x="14" y="2"></rect>
+<rect fill="#0A0908" height="1" width="2" x="17" y="2"></rect>
+<rect fill="#0A0908" height="2" width="3" x="11" y="8"></rect>
+<rect fill="#0A0908" height="1" width="2" x="15" y="8"></rect>
+<rect fill="#0A0908" height="3" width="2" x="10" y="11"></rect>
+<rect fill="#0A0908" height="3" width="3" x="13" y="12"></rect>
+<rect fill="#0A0908" height="2" width="2" x="17" y="10"></rect>
+<rect fill="#0A0908" height="3" width="2" x="11" y="15"></rect>
+<rect fill="#0A0908" height="2" width="3" x="14" y="16"></rect>
+<rect fill="#0A0908" height="4" width="2" x="18" y="14"></rect>
+<rect fill="#0A0908" height="1" width="2" x="2" y="11"></rect>
+<rect fill="#0A0908" height="2" width="2" x="6" y="12"></rect>
+<rect fill="#0A0908" height="1" width="3" x="2" y="15"></rect>
+<rect fill="#0A0908" height="2" width="2" x="7" y="16"></rect>
+<rect fill="#0A0908" height="2" width="2" x="21" y="11"></rect>
+<rect fill="#0A0908" height="1" width="3" x="24" y="10"></rect>
+<rect fill="#0A0908" height="2" width="2" x="20" y="15"></rect>
+<rect fill="#0A0908" height="3" width="2" x="23" y="14"></rect>
+<rect fill="#0A0908" height="4" width="1" x="26" y="13"></rect>
+<rect fill="#0A0908" height="2" width="3" x="10" y="20"></rect>
+<rect fill="#0A0908" height="3" width="2" x="14" y="22"></rect>
+<rect fill="#0A0908" height="2" width="2" x="11" y="25"></rect>
+<rect fill="#0A0908" height="1" width="3" x="15" y="26"></rect>
+<rect fill="#0A0908" height="3" width="2" x="18" y="20"></rect>
+<rect fill="#0A0908" height="2" width="4" x="21" y="22"></rect>
+<rect fill="#0A0908" height="2" width="3" x="19" y="25"></rect>
+<rect fill="#0A0908" height="2" width="2" x="24" y="25"></rect>
+</svg>
+</div>
+</div>
+<!-- Dynamic Security Refresh Pill & Countdown -->
+<div class="mt-3 flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full border border-outline-variant">
+<div class="relative w-4 h-4 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-width="4"></path>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold tracking-wide">
+            REFRESHES IN <span class="text-primary-container font-bold" id="otp-timer">45s</span> • SECURE TOKEN <span class="text-primary">#9421</span>
+</span>
+</div>
+</div>
+<!-- Membership Tier & Countdown Telemetry Strip -->
+<div class="relative z-10 pt-space-sm border-t border-outline-variant/60 flex items-center justify-between text-on-surface-variant">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">SUBSCRIPTION PLAN</span>
+<span class="font-body-md text-body-md font-bold text-on-surface tracking-tight">GOLD 3-MONTH ACCESS</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 48 DAYS REMAINING
+          </span>
+<span class="font-label-sm text-label-sm text-outline">EXP: NOV 28, 2024</span>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Dual Check-In Action -->
+<section class="mt-space-md flex flex-col items-center gap-space-xs">
+<!-- Primary CTA: High-impact Solid Molten Amber Button -->
+<button class="w-full h-14 bg-primary-container rounded-lg flex items-center justify-center gap-space-sm text-on-primary-container font-headline-sm text-headline-sm uppercase font-extrabold tracking-wider transition-transform duration-100 active:scale-[0.98] shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-2xl font-black">qr_code_scanner</span>
+<span>SCAN FACILITY QR CAMERA</span>
+</button>
+<!-- Auxiliary Helper Message -->
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-1 flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-outline">info</span>
+        Or present your digital QR pass above directly to the optical turnstile scanner
+      </p>
+</section>
+<!-- SECTION 3: Real-Time Gym Floor Occupancy Telemetry -->
+<section class="mt-space-lg bg-surface-container-low border border-outline-variant rounded-xl p-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">sensors</span>
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wider">LIVE GYM FLOOR OCCUPANCY</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary/15 text-secondary border border-secondary/30 font-bold uppercase">
+          MODERATE
+        </span>
+</div>
+<!-- Capacity Figures -->
+<div class="mt-space-sm flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface font-extrabold">42</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-outline font-semibold">/ 65</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider ml-1">ATHLETES ACTIVE</span>
+</div>
+<span class="font-telemetry-digit text-telemetry-digit text-primary-fixed-dim">64%</span>
+</div>
+<!-- Density Progress Gauge Strip -->
+<div class="mt-space-xs w-full bg-surface-container-highest rounded-full h-2.5 overflow-hidden p-0.5 border border-outline-variant">
+<div class="h-full rounded-full bg-gradient-to-r from-secondary via-primary-container to-primary transition-all duration-500" style="width: 64.6%;"></div>
+</div>
+<!-- Status telemetry pills -->
+<div class="mt-space-sm grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container p-2.5 rounded border border-outline-variant/60 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-base mt-0.5">check_circle</span>
+<div>
+<span class="font-label-sm text-label-sm text-outline block uppercase">EQUIPMENT STATUS</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight block">Zero Wait for Power Racks</span>
+</div>
+</div>
+<div class="bg-surface-container p-2.5 rounded border border-outline-variant/60 flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-base mt-0.5">trending_down</span>
+<div>
+<span class="font-label-sm text-label-sm text-outline block uppercase">FLOW FORECAST</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight block">Low Crowd Peak until 08:30 AM</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Monthly Attendance Consistency Grid -->
+<section class="mt-space-lg bg-surface-container-low border border-outline-variant rounded-xl p-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/60">
+<div>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wider block">OCTOBER ATTENDANCE</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">MONTHLY PROTOCOL SUMMARY</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 bg-surface-container rounded border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-sm font-bold">event_available</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">18 VISITS LOGGED</span>
+</div>
+</div>
+<!-- Streak Highlight Banner -->
+<div class="my-space-sm px-3 py-2 rounded bg-surface-container-high border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<div>
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">4-DAY ACTIVE STREAK</span>
+<span class="font-label-sm text-label-sm text-outline block">Consistency tier: Top 8% of Facility</span>
+</div>
+</div>
+<span class="font-telemetry-digit text-telemetry-digit text-secondary">92%</span>
+</div>
+<!-- 7-Day Day-of-Week Matrix Header -->
+<div class="grid grid-cols-7 gap-1 text-center font-label-sm text-label-sm text-outline mb-1.5 font-bold">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+<!-- Attendance Micro Grid (Sample October 28-day slice) -->
+<div class="grid grid-cols-7 gap-1.5">
+<!-- Oct 1-7 -->
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>01</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>02</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-center text-outline font-label-sm text-label-sm">
+<span>03</span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>04</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>05</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>06</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-center text-outline font-label-sm text-label-sm">
+<span>07</span>
+</div>
+<!-- Oct 8-14 -->
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>08</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>09</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-center text-outline font-label-sm text-label-sm">
+<span>10</span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>11</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>12</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-surface-container border border-outline-variant/40 flex flex-col items-center justify-center text-outline font-label-sm text-label-sm">
+<span>13</span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>14</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<!-- Oct 15-21 (Current Streak Segment) -->
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>15</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>16</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<div class="h-8 rounded bg-secondary/20 border border-secondary/50 flex flex-col items-center justify-center text-secondary font-label-sm text-label-sm font-bold">
+<span>17</span>
+<span class="w-1 h-1 rounded-full bg-secondary"></span>
+</div>
+<!-- Today: Active Glow Target -->
+<div class="h-8 rounded bg-primary-container border-2 border-primary text-on-primary-container flex flex-col items-center justify-center font-label-sm text-label-sm font-black shadow-lg shadow-primary-container/30">
+<span>18</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary-container"></span>
+</div>
+<div class="h-8 rounded bg-surface-container-lowest border border-dashed border-outline-variant/50 flex flex-col items-center justify-center text-outline-variant font-label-sm text-label-sm">
+<span>19</span>
+</div>
+<div class="h-8 rounded bg-surface-container-lowest border border-dashed border-outline-variant/50 flex flex-col items-center justify-center text-outline-variant font-label-sm text-label-sm">
+<span>20</span>
+</div>
+<div class="h-8 rounded bg-surface-container-lowest border border-dashed border-outline-variant/50 flex flex-col items-center justify-center text-outline-variant font-label-sm text-label-sm">
+<span>21</span>
+</div>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/60 flex items-center justify-around text-center">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">AVG SESSION</span>
+<span class="font-telemetry-digit text-telemetry-digit text-on-surface">71<span class="font-label-sm text-label-sm text-outline">m</span></span>
+</div>
+<div class="w-px h-7 bg-outline-variant/60"></div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">PRIMARY SLOT</span>
+<span class="font-body-md text-body-md font-bold text-primary uppercase">06:00 AM</span>
+</div>
+<div class="w-px h-7 bg-outline-variant/60"></div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">GOAL REACHED</span>
+<span class="font-telemetry-digit text-telemetry-digit text-secondary">85<span class="font-label-sm text-label-sm text-outline">%</span></span>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Recent Facility Turnstile Logs -->
+<section class="mt-space-lg mb-space-md">
+<div class="flex items-center justify-between mb-space-sm px-1">
+<h3 class="font-headline-sm text-headline-sm uppercase text-on-surface tracking-wider">RECENT FACILITY LOGS</h3>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-bold">HISTORY</span>
+</div>
+<div class="space-y-space-xs">
+<!-- Log Item 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-secondary/15 border border-secondary/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">login</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-body-md text-body-md font-bold text-on-surface">Yesterday, 06:14 AM</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-secondary border border-outline-variant">GATE A</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Morning Batch • Chest &amp; Arms (68 mins logged)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">verified</span>
+</div>
+<!-- Log Item 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-secondary/15 border border-secondary/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">login</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-body-md text-body-md font-bold text-on-surface">Thursday, 06:22 AM</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-secondary border border-outline-variant">GATE A</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Morning Batch • Back &amp; Core (74 mins logged)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-lg">verified</span>
+</div>
+</div>
+</section>
+</div>
+<!-- BOTTOM NAVIGATION BAR (Synthesized strictly from Shared Component: BottomNavBar JSON) -->
+<!-- Keys mapped directly: style_bg_color, style_primary_color, style_active_navigation, style_inactive_navigation, icons, labels -->
+<!-- Contextual Active: 'Check In' is index 2, active state mapped to text-primary with highlighted pill -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-sm bg-surface-container-lowest shadow-2xl safe-area-bottom">
+<!-- Home Navigation Item -->
+<a aria-label="Home" class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="index.html">
+<span class="material-symbols-outlined text-2xl">fitness_center</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Home</span>
+</a>
+<!-- Workouts Navigation Item -->
+<a aria-label="Workouts" class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="workouts.html">
+<span class="material-symbols-outlined text-2xl">sports_gymnastics</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Workouts</span>
+</a>
+<!-- Check In Navigation Item (CRITICAL ACTIVE SELECTION FOR THIS SCREEN) -->
+<a aria-label="Check In" class="flex flex-col items-center justify-center text-primary hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1 relative" href="checkin.html">
+<!-- Active Kinetic Accent Pill -->
+<div class="w-12 h-8 rounded-full bg-primary-container/20 border border-primary-container flex items-center justify-center mb-0.5">
+<span class="material-symbols-outlined text-2xl text-primary font-bold" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase font-semibold text-primary font-bold">Check In</span>
+<span class="w-1 h-1 rounded-full bg-primary-container mt-0.5"></span>
+</a>
+<!-- Analytics Navigation Item -->
+<a aria-label="Analytics" class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="progress.html">
+<span class="material-symbols-outlined text-2xl">monitoring</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Analytics</span>
+</a>
+<!-- Profile Navigation Item -->
+<a aria-label="Profile" class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors duration-150 active:scale-95 duration-100 flex-1 py-1" href="profile.html">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-label-sm text-label-sm uppercase font-semibold mt-1">Profile</span>
+</a>
+</nav>
+<!-- Lightweight Micro-Interactions Script for Atmospheric Pass Refresh -->
+<script>
+    // Live ticking clock in military/high-precision format
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      const strTime = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+      const clockEl = document.getElementById('live-clock');
+      if (clockEl) {
+        clockEl.textContent = strTime;
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Visual countdown loop for QR token security validity
+    let timeLeft = 45;
+    const timerEl = document.getElementById('otp-timer');
+    setInterval(() => {
+      timeLeft = timeLeft <= 1 ? 45 : timeLeft - 1;
+      if (timerEl) {
+        timerEl.textContent = `${timeLeft}s`;
+      }
+    }, 1000);
+  </script>
+</body></html>

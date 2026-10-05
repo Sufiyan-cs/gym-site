@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Billing &amp; POS Command - AM-Tippu Fitness</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#3b3937",
+            "on-primary-fixed": "#2e1500",
+            "on-error": "#690005",
+            "on-background": "#e6e1df",
+            "on-primary-fixed-variant": "#6c3a00",
+            "on-primary": "#4c2700",
+            "primary-fixed": "#ffdcc1",
+            "secondary-fixed-dim": "#45dfa4",
+            "on-error-container": "#ffdad6",
+            "on-primary-container": "#693900",
+            "on-secondary-fixed": "#002114",
+            "primary-container": "#ff9a2e",
+            "inverse-primary": "#8e4f00",
+            "surface-container": "#211f1e",
+            "on-secondary": "#003825",
+            "inverse-surface": "#e6e1df",
+            "secondary": "#45dfa4",
+            "on-tertiary-fixed-variant": "#004d67",
+            "on-tertiary-fixed": "#001e2b",
+            "surface-variant": "#363433",
+            "secondary-container": "#00bd85",
+            "primary": "#ffc18c",
+            "surface-dim": "#141312",
+            "error-container": "#93000a",
+            "inverse-on-surface": "#32302f",
+            "surface-tint": "#ffb877",
+            "error": "#ffb4ab",
+            "secondary-fixed": "#68fcbf",
+            "tertiary-container": "#00c0fd",
+            "outline-variant": "#554335",
+            "outline": "#a28d7c",
+            "on-tertiary-container": "#004a65",
+            "primary-fixed-dim": "#ffb877",
+            "on-tertiary": "#003548",
+            "tertiary": "#8dd7ff",
+            "surface": "#141312",
+            "on-secondary-fixed-variant": "#005137",
+            "surface-container-low": "#1d1b1a",
+            "on-surface": "#e6e1df",
+            "tertiary-fixed-dim": "#76d1ff",
+            "surface-container-lowest": "#0f0e0d",
+            "background": "#141312",
+            "tertiary-fixed": "#c2e8ff",
+            "on-surface-variant": "#dbc2af",
+            "surface-container-highest": "#363433",
+            "surface-container-high": "#2b2a28",
+            "on-secondary-container": "#00452e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "2rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "margin-desktop": "3rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display-metric": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-metric": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Hide scrollbar for horizontal strips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Ember Glow atmospheric tokens */
+    .amber-ember-glow {
+      box-shadow: 0px 12px 32px rgba(255, 154, 46, 0.18);
+    }
+    .emerald-glow {
+      box-shadow: 0px 8px 24px rgba(69, 223, 164, 0.15);
+    }
+    .glass-surface {
+      background: rgba(29, 27, 26, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#0C0B0A] text-on-surface antialiased font-body-md min-h-screen selection:bg-primary-container selection:text-on-primary-fixed relative pb-28">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 left-0 w-full z-40 bg-[#0C0B0A]/90 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-white/[0.04]">
+<div class="flex items-center gap-3">
+<a href="admin_dashboard.html" aria-label="Back to Ops Command" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-outline hover:text-on-surface border border-white/[0.05] active:scale-95 transition-all" style="text-decoration:none">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+</a>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-tight">Billing &amp; POS Command</h1>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<p class="font-label-caps text-label-caps text-on-surface-variant font-bold tracking-wider">₹3.42L MTD Collections • +18.4% MoM</p>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-1 px-3 py-2 rounded-full bg-primary-container text-on-primary-fixed font-label-md text-label-md font-bold amber-ember-glow hover:brightness-110 active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Quick Pay</span>
+</button>
+</header>
+<!-- MAIN SCROLLABLE CONTENT (390px Mobile Ergonomic Canvas) -->
+<main class="max-w-[390px] mx-auto px-4 pt-4 space-y-5">
+<!-- SECTION 1: TELEMETRY STRIP (3 CARDS) -->
+<section aria-label="Daily Collections Summary">
+<div class="flex items-center justify-between mb-2.5">
+<span class="font-label-caps text-label-caps text-outline tracking-wider uppercase">Live Telemetry</span>
+<span class="flex items-center gap-1 font-label-caps text-label-caps text-secondary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          10s Live Sync
+        </span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- Card 1: Gross -->
+<div class="bg-surface-container-low p-3 rounded-xl border border-white/[0.05] relative overflow-hidden">
+<div class="absolute -top-6 -right-6 w-14 h-14 bg-primary-container/10 rounded-full blur-xl pointer-events-none"></div>
+<p class="font-label-caps text-label-caps text-outline font-semibold mb-1">Today's Gross</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">₹14,500</p>
+<div class="mt-1 flex items-center gap-0.5 text-secondary font-label-caps text-[9px] font-bold">
+<span class="material-symbols-outlined text-[11px]">trending_up</span>
+<span>+22% vs y'day</span>
+</div>
+</div>
+<!-- Card 2: UPI / QR -->
+<div class="bg-surface-container-low p-3 rounded-xl border border-white/[0.05] relative overflow-hidden">
+<p class="font-label-caps text-label-caps text-outline font-semibold mb-1">UPI / QR (88%)</p>
+<p class="font-headline-sm text-headline-sm text-secondary font-extrabold tracking-tight">₹12,800</p>
+<div class="mt-1 flex items-center gap-1">
+<span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-caps text-[9px] font-bold">Instant</span>
+</div>
+</div>
+<!-- Card 3: Cash -->
+<div class="bg-surface-container-low p-3 rounded-xl border border-white/[0.05]">
+<p class="font-label-caps text-label-caps text-outline font-semibold mb-1">Desk Cash (12%)</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">₹1,700</p>
+<div class="mt-1 flex items-center gap-0.5 text-outline font-label-caps text-[9px]">
+<span>Drawer Vault</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: COUNTER POS & FAST TURNSTILE RENEWAL TERMINAL -->
+<section class="bg-surface-container p-4 rounded-2xl border border-white/[0.06] relative shadow-lg">
+<div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-base">point_of_sale</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold text-sm">Counter Fast Checkout</h2>
+<p class="font-label-caps text-label-caps text-outline">Turnstile Gate Sync Active</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/15 text-primary-container font-label-caps text-label-caps font-bold uppercase tracking-wider">Desk Terminal 01</span>
+</div>
+<!-- Athlete Search Selector Input -->
+<div class="mt-3.5 relative">
+<label class="font-label-caps text-label-caps text-outline block mb-1.5" for="athlete-search">Athlete Search / Member ID</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-lg">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface pl-9 pr-20 py-2.5 rounded-xl border border-white/[0.08] focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-md text-sm outline-none transition-all placeholder:text-outline" id="athlete-search" placeholder="Search athlete by name or #AMT-ID" type="text" value="Sufiyan (#TK-9842)"/>
+<div class="absolute right-2 px-2 py-1 bg-surface-container-high rounded text-[10px] font-label-caps text-secondary font-bold flex items-center gap-1 border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            ACTIVE TILE
+          </div>
+</div>
+</div>
+<!-- Tier Selection List -->
+<div class="mt-3.5 space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-outline tracking-wider">Select Subscription or Floor SKU</span>
+<span class="font-label-caps text-label-caps text-primary-container font-semibold">Taxes Included (18% GST)</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Tier 1 -->
+<button class="p-2.5 rounded-xl bg-surface-container-lowest text-left border border-white/[0.04] hover:border-white/10 active:scale-98 transition-all" type="button">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Elite Annual</p>
+<p class="font-headline-sm text-sm text-outline font-bold mt-0.5">₹24,999</p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5 truncate">Concierge + Locker</p>
+</button>
+<!-- Tier 2 (Selected) -->
+<button class="p-2.5 rounded-xl bg-surface-container-low text-left border-2 border-primary-container shadow-[0_0_16px_rgba(255,154,46,0.18)] relative active:scale-98 transition-all" type="button">
+<span class="absolute -top-2 right-2 px-1.5 py-0.5 rounded-full bg-primary-container text-on-primary-fixed text-[8px] font-bold uppercase tracking-wider">Selected</span>
+<p class="font-label-md text-label-md text-primary font-bold truncate">Pro Annual</p>
+<p class="font-headline-sm text-sm text-on-surface font-extrabold mt-0.5">₹14,999</p>
+<p class="font-label-caps text-[9px] text-secondary font-semibold mt-0.5 truncate">Standard Floor + Turnstile</p>
+</button>
+<!-- Tier 3 -->
+<button class="p-2.5 rounded-xl bg-surface-container-lowest text-left border border-white/[0.04] hover:border-white/10 active:scale-98 transition-all" type="button">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Foundation Monthly</p>
+<p class="font-headline-sm text-sm text-outline font-bold mt-0.5">₹1,999</p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5">Floor Only Pass</p>
+</button>
+<!-- Tier 4 -->
+<button class="p-2.5 rounded-xl bg-surface-container-lowest text-left border border-white/[0.04] hover:border-white/10 active:scale-98 transition-all" type="button">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">Front Desk Nutri-POS</p>
+<p class="font-headline-sm text-sm text-outline font-bold mt-0.5">Custom Cart</p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5">Shakes, Whey &amp; Bars</p>
+</button>
+</div>
+</div>
+<!-- Quick QR Collection Box -->
+<div class="mt-4 p-3 rounded-xl bg-surface-container-lowest border border-white/[0.06] flex items-center gap-3">
+<div class="w-20 h-20 bg-white p-1 rounded-lg flex flex-col items-center justify-between shrink-0 shadow-inner">
+<!-- Stylized QR Pattern Mockup -->
+<div class="w-full h-full flex flex-col justify-between p-1 bg-neutral-900 rounded">
+<div class="flex justify-between">
+<div class="w-4 h-4 bg-white border border-black flex items-center justify-center"><div class="w-2 h-2 bg-neutral-900"></div></div>
+<div class="w-4 h-4 bg-white border border-black flex items-center justify-center"><div class="w-2 h-2 bg-neutral-900"></div></div>
+</div>
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">qr_code_2</span>
+</div>
+<div class="flex justify-between">
+<div class="w-4 h-4 bg-white border border-black flex items-center justify-center"><div class="w-2 h-2 bg-neutral-900"></div></div>
+<div class="w-2 h-2 bg-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="px-1.5 py-0.5 rounded bg-primary-container/20 text-primary-container font-label-caps text-[9px] font-bold">UPI DYNAMIC LOCK</span>
+<span class="text-[10px] font-label-caps text-outline">PhonePe • GPay • Paytm</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹14,999<span class="font-body-md text-xs text-outline font-normal">.00</span></p>
+<p class="font-label-caps text-[9px] text-outline truncate mt-0.5">Virtual VPA: amt-tippu.rzp@icici</p>
+</div>
+</div>
+<!-- Turnstile Auto-Arm Toggle -->
+<div class="mt-3 flex items-center justify-between px-1 py-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">sensor_door</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Auto-Arm Optical Turnstile Gate</p>
+<p class="font-label-caps text-[9px] text-outline">Unlocks turnstile instantly once UPI webhook signals 200 OK</p>
+</div>
+</div>
+<!-- Active Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Submit Action Button -->
+<button class="w-full mt-3.5 py-3 px-4 rounded-xl bg-gradient-to-r from-primary-container to-[#ff8500] text-on-primary-fixed font-label-lg text-label-lg font-extrabold flex items-center justify-center gap-2 amber-ember-glow active:scale-98 transition-all hover:brightness-105" type="button">
+<span class="material-symbols-outlined text-lg">receipt_long</span>
+<span>Confirm &amp; Generate Tax Invoice (UPI Synced)</span>
+</button>
+</section>
+<!-- SECTION 3: RECENT TRANSACTIONS LEDGER -->
+<section class="space-y-3 pt-1">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold text-sm">Recent Ledger</h2>
+<p class="font-label-caps text-label-caps text-outline">Real-Time GST Audit Stream</p>
+</div>
+<button class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-surface-container-low border border-white/[0.05] text-outline hover:text-on-surface font-label-caps text-label-caps font-bold transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Export GST CSV</span>
+</button>
+</div>
+<!-- Filter Chips -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md font-bold border border-primary-container/40 shrink-0" type="button">
+          All (48)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-outline hover:text-on-surface font-label-md text-label-md font-medium border border-white/[0.04] shrink-0" type="button">
+          Subscriptions (32)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-outline hover:text-on-surface font-label-md text-label-md font-medium border border-white/[0.04] shrink-0" type="button">
+          Nutri-POS (14)
+        </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-low text-outline hover:text-on-surface font-label-md text-label-md font-medium border border-white/[0.04] shrink-0" type="button">
+          Pending / Overdue (2)
+        </button>
+</div>
+<!-- Transaction Cards Stack -->
+<div class="space-y-2.5">
+<!-- ITEM 1: Rahul Sharma -->
+<article class="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.05] hover:border-white/10 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs text-primary border border-white/[0.05]">
+                RS
+              </div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-none">Rahul Sharma</h3>
+<p class="font-label-caps text-[10px] text-outline mt-0.5">Athlete #AMT-4102 • PhonePe UPI</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-sm text-on-surface font-extrabold leading-none">₹14,999</p>
+<span class="inline-block mt-1 px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-caps text-[9px] font-bold leading-none">PAID</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-outline text-[11px] font-body-md">
+<div>
+<p class="text-on-surface-variant font-label-md text-[10px]">Elite Annual Renewal • <span class="text-outline">Tax Inv #AMT-INV-8821</span></p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5">Today, 08:15 AM • Turnstile Armed</p>
+</div>
+<div class="flex items-center gap-1.5">
+<button aria-label="WhatsApp invoice to Rahul" class="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-secondary active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">chat</span>
+</button>
+<button aria-label="Download PDF Tax Receipt" class="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-outline hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ITEM 2: Mohammed Zishan -->
+<article class="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.05] hover:border-white/10 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-xs text-secondary border border-white/[0.05]">
+                MZ
+              </div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-none">Mohammed Zishan</h3>
+<p class="font-label-caps text-[10px] text-outline mt-0.5">Athlete #AMT-8819 • Google Pay</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-sm text-on-surface font-extrabold leading-none">₹1,999</p>
+<span class="inline-block mt-1 px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-caps text-[9px] font-bold leading-none">PAID</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-outline text-[11px] font-body-md">
+<div>
+<p class="text-on-surface-variant font-label-md text-[10px]">Monthly Pass • <span class="text-outline">Tax Inv #AMT-INV-8820</span></p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5">Today, 06:45 AM �� Optical Gate OK</p>
+</div>
+<div class="flex items-center gap-1.5">
+<button aria-label="WhatsApp invoice" class="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-secondary active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">chat</span>
+</button>
+<button aria-label="Download PDF" class="w-7 h-7 rounded-lg bg-surface-container-high hover:bg-surface-variant flex items-center justify-center text-outline hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ITEM 3: Walk-in POS Sale (Whey Isolate) -->
+<article class="p-3.5 rounded-xl bg-surface-container-low border border-white/[0.05] hover:border-white/10 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container border border-primary-container/20">
+<span class="material-symbols-outlined text-base">nutrition</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-none">Counter Walk-in / Pos Sale</h3>
+<p class="font-label-caps text-[10px] text-outline mt-0.5">Counter Cash • POS Bill #POS-1049</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-sm text-on-surface font-extrabold leading-none">₹3,200</p>
+<span class="inline-block mt-1 px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-label-caps text-[9px] font-bold leading-none">PAID</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-outline text-[11px] font-body-md">
+<div>
+<p class="text-on-surface-variant font-label-md text-[10px] truncate max-w-[210px]">Optimum Nutrition Whey Isolate (Double Rich Choc)</p>
+<p class="font-label-caps text-[9px] text-outline mt-0.5">Today, 07:10 AM • Stock -1 Unit</p>
+</div>
+<button class="flex items-center gap-1 px-2 py-1 rounded-lg bg-surface-container-high hover:bg-surface-variant text-outline hover:text-on-surface font-label-caps text-[9px] font-bold active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-xs">print</span>
+<span>Print Slip</span>
+</button>
+</div>
+</article>
+<!-- ITEM 4: Ayesha Patel (Overdue Alert) -->
+<article class="p-3.5 rounded-xl bg-surface-container-low border border-primary-container/30 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-error-container/20 flex items-center justify-center font-bold text-xs text-error border border-error/30">
+                AP
+              </div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold leading-none">Ayesha Patel</h3>
+<p class="font-label-caps text-[10px] text-outline mt-0.5">Athlete #AMT-3310 • Auto-Debit Failed</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-sm text-primary font-extrabold leading-none">₹1,499</p>
+<span class="inline-block mt-1 px-1.5 py-0.5 rounded bg-primary-container/20 text-primary-container font-label-caps text-[9px] font-bold leading-none">RENEWAL DUE</span>
+</div>
+</div>
+<div class="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between">
+<div class="flex items-center gap-1 text-primary text-[10px] font-label-caps font-semibold">
+<span class="material-symbols-outlined text-xs">lock</span>
+<span>Turnstile Locked • Auto-Arm Disabled</span>
+</div>
+<button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-fixed font-label-caps text-[10px] font-bold hover:brightness-105 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-xs">send_to_mobile</span>
+<span>Instant UPI Link</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BOTTOM FLOATING NAVIGATION DOCK (Admin Spec: 4 Tabs) -->
+<nav aria-label="Gym Admin Operational Navigation" class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface-container-high/90 backdrop-blur-xl rounded-full mx-auto mb-4 w-[calc(100%-2.5rem)] max-w-md shadow-[0px_12px_32px_rgba(255,154,46,0.2)] border border-white/10">
+<!-- Tab 1: Floor Ops -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface active:scale-90 transition-all duration-200" href="admin_dashboard.html">
+<span class="material-symbols-outlined text-xl">fitness_center</span>
+<span class="text-[9px] mt-0.5 font-semibold">Floor</span>
+</a>
+<!-- Tab 2: Members -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface active:scale-90 transition-all duration-200" href="admin_members.html">
+<span class="material-symbols-outlined text-xl">badge</span>
+<span class="text-[9px] mt-0.5 font-semibold">Members</span>
+</a>
+<!-- Tab 3: Billing/POS (ACTIVE with Molten Amber Indicator) -->
+<a class="flex flex-col items-center justify-center text-on-surface p-2 font-semibold after:content-[''] after:w-1 after:h-1 after:bg-primary-container after:rounded-full after:mt-1 active:scale-90 transition-all duration-200" href="admin_subscriptions.html">
+<span class="material-symbols-outlined text-xl text-primary-container" style="font-variation-settings: 'FILL' 1;">point_of_sale</span>
+<span class="text-[9px] mt-0.5 font-bold text-primary">Billing</span>
+</a>
+<!-- Tab 4: Inventory -->
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-on-surface active:scale-90 transition-all duration-200" href="admin_inventory.html">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="text-[9px] mt-0.5 font-semibold">Stock</span>
+</a>
+</nav>
+
+<script>
+  // POS confirmation handler
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.includes('Confirm & Generate') || btn.textContent.includes('Quick Pay')) {
+      btn.addEventListener('click', () => {
+        alert('✓ POS Payment Confirmed! GST Tax Invoice Generated & WhatsApp Receipt dispatched to athlete.');
+      });
+    } else if (btn.textContent.includes('Share PDF') || btn.textContent.includes('PDF Receipt')) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alert('✓ Generating GST Invoice PDF with optical turnstile authorization stamp...');
+      });
+    }
+  });
+</script>
+</body></html>

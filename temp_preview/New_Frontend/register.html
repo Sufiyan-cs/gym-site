@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>AM-Tippu | Athlete Registration</title>
+<!-- Plus Jakarta Sans Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#76d1ff",
+            "surface-dim": "#141312",
+            "surface-container-highest": "#363433",
+            "on-secondary-fixed-variant": "#005137",
+            "on-primary-container": "#693900",
+            "on-primary-fixed": "#2e1500",
+            "on-secondary": "#003825",
+            "primary-fixed-dim": "#ffb877",
+            "on-secondary-container": "#00452e",
+            "on-tertiary-fixed": "#001e2b",
+            "on-tertiary-fixed-variant": "#004d67",
+            "tertiary-container": "#00c0fd",
+            "on-primary": "#4c2700",
+            "surface-variant": "#363433",
+            "surface-bright": "#3b3937",
+            "on-surface": "#e6e1df",
+            "secondary-fixed-dim": "#45dfa4",
+            "surface-container-lowest": "#0f0e0d",
+            "on-tertiary": "#003548",
+            "surface-container-low": "#1d1b1a",
+            "tertiary-fixed": "#c2e8ff",
+            "inverse-surface": "#e6e1df",
+            "surface": "#141312",
+            "outline-variant": "#554335",
+            "on-tertiary-container": "#004a65",
+            "on-secondary-fixed": "#002114",
+            "primary": "#ffc18c",
+            "surface-container-high": "#2b2a28",
+            "on-primary-fixed-variant": "#6c3a00",
+            "on-error": "#690005",
+            "background": "#141312",
+            "secondary-fixed": "#68fcbf",
+            "error": "#ffb4ab",
+            "on-surface-variant": "#dbc2af",
+            "on-background": "#e6e1df",
+            "tertiary": "#8dd7ff",
+            "surface-tint": "#ffb877",
+            "surface-container": "#211f1e",
+            "secondary": "#45dfa4",
+            "outline": "#a28d7c",
+            "primary-container": "#ff9a2e",
+            "inverse-on-surface": "#32302f",
+            "secondary-container": "#00bd85",
+            "on-error-container": "#ffdad6",
+            "error-container": "#93000a",
+            "primary-fixed": "#ffdcc1",
+            "inverse-primary": "#8e4f00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "3rem",
+            "margin": "1.25rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "margin-tablet": "2rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-metric": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", { "lineHeight": "54px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-metric": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    /* Custom radio styling without arbitrary colors */
+    .tier-input:checked + .tier-card {
+      border-color: #ff9a2e;
+      background: radial-gradient(120% 80% at 50% 0%, rgba(255, 154, 46, 0.12) 0%, rgba(33, 31, 30, 0.95) 100%);
+      box-shadow: 0px 12px 32px rgba(255, 154, 46, 0.18);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-surface-container-lowest min-h-screen relative overflow-x-hidden font-body-md text-body-md">
+<!-- Subtle Atmospheric Ember Glow Background -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-96 pointer-events-none opacity-30 z-0">
+<div class="w-72 h-72 mx-auto rounded-full blur-[100px] bg-primary-container"></div>
+</div>
+<main class="relative z-10 max-w-md mx-auto min-h-screen px-margin pb-12 flex flex-col justify-between">
+<!-- Top Nav / Back Action Bar -->
+<header class="pt-6 pb-4 flex items-center justify-between">
+<button aria-label="Go back to login screen" class="w-10 h-10 rounded-full bg-surface-container-low border border-white/5 flex items-center justify-center text-on-surface hover:text-primary transition-colors active:scale-95 duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high/80 border border-white/5 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-outline tracking-wider uppercase">AM-Tippu Club • Central Access</span>
+</div>
+<div class="w-10 h-10 flex items-center justify-end">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="lock">lock</span>
+</div>
+</header>
+<!-- Header Section: Emblem & Titles -->
+<section class="mt-2 mb-8 text-center flex flex-col items-center">
+<!-- AM Emblem Badge with Ambient Ember Glow -->
+<div class="relative mb-4 group">
+<div class="absolute -inset-1 rounded-full bg-primary-container/20 blur-md"></div>
+<div class="relative w-14 h-14 rounded-full bg-surface-container-low border border-primary-container/40 flex flex-col items-center justify-center shadow-[0px_8px_20px_rgba(255,154,46,0.15)]">
+<span class="font-headline-sm text-headline-sm font-extrabold text-primary-container tracking-tighter">AM</span>
+</div>
+</div>
+<p class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">AM-TIPPU ATHLETIC SYSTEM</p>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight mb-2">Join the Collective</h1>
+<p class="font-body-md text-body-md text-outline max-w-xs mx-auto">Create your private athlete account &amp; membership credential</p>
+</section>
+<!-- Registration Form -->
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Section 1: Personal & Contact Credentials -->
+<div class="bg-surface-container-low border border-white/5 rounded-xl p-5 space-y-4 shadow-sm">
+<div class="flex items-center justify-between pb-1 border-b border-white/5">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">01 • Personal &amp; Contact</span>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="badge">badge</span>
+</div>
+<!-- Full Legal Name -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="fullName">Full Legal Name</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="person">person</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="fullName" placeholder="e.g. Sufiyan Khan" type="text" value="Sufiyan Khan"/>
+</div>
+</div>
+<!-- Email Address -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="email">Email Address</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="mail">mail</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="email" placeholder="e.g. sufiyan@example.fit" type="email" value="sufiyan@example.fit"/>
+</div>
+</div>
+<!-- Mobile Phone Number -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="phone">Mobile Phone Number</label>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-surface-container border border-white/10 rounded-lg px-3 py-3 text-on-surface-variant font-label-lg text-label-lg">
+<span class="font-body-md text-body-md text-outline">🇮🇳</span>
+<span>+91</span>
+</div>
+<div class="relative flex-1 flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="call">call</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="phone" placeholder="98765 43210" type="tel" value="98765 43210"/>
+</div>
+</div>
+</div>
+<!-- WhatsApp Alert Checkbox -->
+<label class="flex items-start gap-2.5 pt-1 cursor-pointer group">
+<input checked="" class="mt-0.5 rounded border-white/20 bg-surface-container text-primary-container focus:ring-0 focus:ring-offset-0 transition-colors" type="checkbox"/>
+<span class="font-label-md text-label-md text-outline group-hover:text-on-surface transition-colors leading-tight">
+            Receive workout alerts, coach notes &amp; turnstile QR OTP via WhatsApp
+          </span>
+</label>
+</div>
+<!-- Section 2: Vault Security Passcode -->
+<div class="bg-surface-container-low border border-white/5 rounded-xl p-5 space-y-4 shadow-sm">
+<div class="flex items-center justify-between pb-1 border-b border-white/5">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">02 • Vault Security Passcode</span>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="shield">shield</span>
+</div>
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="passcode">Create Passcode</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="key">key</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-11 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="passcode" type="password" value="Athletix#2024Secure"/>
+<button aria-label="Toggle password visibility" class="absolute right-3.5 text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Password Strength Meter -->
+<div class="space-y-1.5 pt-1">
+<div class="grid grid-cols-4 gap-1.5">
+<div class="h-1 rounded-full bg-primary-container"></div>
+<div class="h-1 rounded-full bg-primary-container"></div>
+<div class="h-1 rounded-full bg-primary-container"></div>
+<div class="h-1 rounded-full bg-primary-container"></div>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-caps text-label-caps text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+              Strong
+            </span>
+<span class="font-label-caps text-label-caps text-outline">12+ chars, biometric ready</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Membership Tier Selection -->
+<div class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">03 • Membership Tier Selection</span>
+<span class="font-label-caps text-label-caps text-primary">SELECT ACCESS</span>
+</div>
+<!-- Tier 1: Elite Annual (Recommended & Selected) -->
+<label class="relative block cursor-pointer">
+<input checked="" class="tier-input sr-only" name="membership_tier" type="radio"/>
+<div class="tier-card relative bg-surface-container border border-primary-container rounded-xl p-4 transition-all duration-200">
+<div class="absolute -top-2.5 right-4 bg-primary-container text-surface-container-lowest font-label-caps text-label-caps px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[11px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+              RECOMMENDED
+            </div>
+<div class="flex items-start justify-between mb-1.5">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+                  ELITE ANNUAL
+                </h3>
+<p class="font-label-caps text-label-caps text-primary">Full Vault Concierge</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm font-extrabold text-primary-container">₹14,999</span>
+<span class="font-label-caps text-label-caps text-outline">/yr</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-outline-variant leading-snug">
+              Unlimited floor, recovery spa zone &amp; monthly 1-on-1 coach check-in.
+            </p>
+</div>
+</label>
+<!-- Tier 2: Pro All-Access -->
+<label class="relative block cursor-pointer">
+<input class="tier-input sr-only" name="membership_tier" type="radio"/>
+<div class="tier-card relative bg-surface-container-low border border-white/5 rounded-xl p-4 transition-all duration-200 hover:border-white/15">
+<div class="flex items-start justify-between mb-1.5">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">PRO ALL-ACCESS</h3>
+<p class="font-label-caps text-label-caps text-outline">Performance Athlete</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">₹1,499</span>
+<span class="font-label-caps text-label-caps text-outline">/mo</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-outline leading-snug">
+              Turnstile 24/7 access, full exercise library &amp; infrared sauna sessions.
+            </p>
+</div>
+</label>
+<!-- Tier 3: Standard Monthly -->
+<label class="relative block cursor-pointer">
+<input class="tier-input sr-only" name="membership_tier" type="radio"/>
+<div class="tier-card relative bg-surface-container-low border border-white/5 rounded-xl p-4 transition-all duration-200 hover:border-white/15">
+<div class="flex items-start justify-between mb-1.5">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">STANDARD MONTHLY</h3>
+<p class="font-label-caps text-label-caps text-outline">Active Track</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">₹999</span>
+<span class="font-label-caps text-label-caps text-outline">/mo</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-outline leading-snug">
+              Standard gym floor access &amp; synced biometric workout logging.
+            </p>
+</div>
+</label>
+</div>
+<!-- Section 4: Facility Safety & Medical -->
+<div class="bg-surface-container-low border border-white/5 rounded-xl p-5 space-y-4 shadow-sm">
+<div class="flex items-center justify-between pb-1 border-b border-white/5">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">04 • Facility Safety &amp; Medical</span>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="medical_services">medical_services</span>
+</div>
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="emergencyName">Emergency Contact Name &amp; Relation</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="contacts">contacts</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="emergencyName" placeholder="e.g. Tariq Khan (Brother)" type="text"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-outline-variant uppercase" for="emergencyPhone">Emergency Phone Number</label>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-surface-container border border-white/10 rounded-lg px-3 py-3 text-on-surface-variant font-label-lg text-label-lg">
+<span>+91</span>
+</div>
+<div class="relative flex-1 flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="emergency">emergency</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" id="emergencyPhone" placeholder="98123 45678" type="tel"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Optional Perks -->
+<div class="bg-surface-container-low border border-white/5 rounded-xl p-4 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<label class="block font-label-caps text-label-caps text-outline uppercase tracking-wider" for="referralCode">05 • Referral / Coach Invite Code (Optional)</label>
+<span class="material-symbols-outlined text-outline text-[16px]" data-icon="card_giftcard">card_giftcard</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative flex-1 flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[18px]" data-icon="confirmation_number">confirmation_number</span>
+<input class="w-full bg-surface-container border border-white/10 rounded-lg pl-10 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container uppercase transition-all" id="referralCode" placeholder="COACH-TIPPU-24" type="text"/>
+</div>
+<button class="bg-surface-container-high border border-white/10 px-4 py-2.5 rounded-lg text-on-surface font-label-md text-label-md hover:bg-surface-bright active:scale-95 transition-all" type="button">
+            Apply
+          </button>
+</div>
+</div>
+<!-- Section 6: Terms & Agreements -->
+<div class="pt-1">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-0.5 rounded border-white/20 bg-surface-container text-primary-container focus:ring-0 focus:ring-offset-0 transition-colors" required="" type="checkbox"/>
+<span class="font-body-md text-body-md text-outline group-hover:text-on-surface transition-colors leading-relaxed">
+            I agree to the <a class="text-primary underline hover:text-primary-container" href="#">AM-Tippu Facility Guidelines</a>, Code of Etiquette, and Athlete Liability Waiver.
+          </span>
+</label>
+</div>
+<!-- Primary CTA Action -->
+<div class="pt-4 space-y-3">
+<button class="w-full bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm font-extrabold py-4 px-6 rounded-full flex items-center justify-center gap-2 shadow-[0px_12px_32px_rgba(255,154,46,0.25)] hover:shadow-[0px_16px_40px_rgba(255,154,46,0.35)] active:scale-95 transition-all duration-200" type="submit">
+<span>Complete Registration &amp; Begin Assessment</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Security Footnote -->
+<div class="flex items-center justify-center gap-1.5 text-center text-outline">
+<span class="material-symbols-outlined text-[14px]" data-icon="encrypted">encrypted</span>
+<p class="font-label-caps text-label-caps tracking-wider">
+            256-bit encrypted athlete vault • Optical turnstile pass issued upon review
+          </p>
+</div>
+</div>
+</form>
+<!-- Bottom Destination Link -->
+<footer class="mt-8 pt-4 pb-2 text-center border-t border-white/5">
+<p class="font-body-md text-body-md text-outline">
+        Already an athlete? 
+        <a class="font-label-lg text-label-lg font-bold text-primary hover:text-primary-container transition-colors ml-1" href="login.html">Sign In
+        </a>
+</p>
+</footer>
+</main>
+<script>
+    // Lightweight toggle for password eye interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.querySelector('button[aria-label="Toggle password visibility"]');
+      const passInput = document.getElementById('passcode');
+      const eyeIcon = toggleBtn ? toggleBtn.querySelector('span') : null;
+
+      if (toggleBtn && passInput && eyeIcon) {
+        toggleBtn.addEventListener('click', () => {
+          const isPassword = passInput.getAttribute('type') === 'password';
+          passInput.setAttribute('type', isPassword ? 'text' : 'password');
+          eyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+        });
+      }
+    });
+  </script>
+
+  <script>
+    function handleRegistrationSubmit(e) {
+      if (e) e.preventDefault();
+      try {
+        const name = document.getElementById('fullName')?.value || 'Sufiyan Khan';
+        const phone = document.getElementById('phone')?.value || '+91 98765 43210';
+        let tier = 'ELITE ANNUAL ATHLETE';
+        const tierRadio = document.querySelector('input[name="tier"]:checked');
+        if (tierRadio) {
+          tier = tierRadio.value;
+        }
+
+        let existing = {};
+        try {
+          const raw = localStorage.getItem('am_tippu_user_profile');
+          if (raw) existing = JSON.parse(raw);
+        } catch(err) {}
+
+        const updated = {
+          ...existing,
+          name: name,
+          phone: phone,
+          membershipTier: tier.includes('ELITE') ? 'ELITE ANNUAL ATHLETE' : (tier.includes('PRO') ? 'PRO ALL-ACCESS' : 'STANDARD ATHLETE')
+        };
+        localStorage.setItem('am_tippu_user_profile', JSON.stringify(updated));
+      } catch(err) {
+        console.error(err);
+      }
+      window.location.href = 'onboarding.html';
+    }
+  </script>
+</body></html>
