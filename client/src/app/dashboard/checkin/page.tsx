@@ -15,6 +15,7 @@ interface MemberItem {
   customSplit?: any;
   social_instagram?: string;
   social_youtube?: string;
+  streak?: number;
   is_on_floor?: number;
   check_in_time?: string;
 }
@@ -88,6 +89,7 @@ export default function CheckinPage() {
           avatar_url: userAvatar,
           role: user.role,
           goal: user.goal || "Clean Hypertrophy",
+          streak: user.streak || (user as any).current_streak || 0,
           preferredSlot: (user as any).preferredSlot || "Morning",
           social_instagram: (user as any).social_instagram,
           social_youtube: (user as any).social_youtube,
@@ -104,10 +106,19 @@ export default function CheckinPage() {
             avatar_url: currentAthlete.avatar_url || allList[existingIdx].avatar_url,
             preferredSlot: currentAthlete.preferredSlot || allList[existingIdx].preferredSlot,
             goal: currentAthlete.goal || allList[existingIdx].goal,
+            streak: currentAthlete.streak || allList[existingIdx].streak,
             is_on_floor: isCheckedIn ? 1 : (allList[existingIdx].is_on_floor || 0),
           };
         } else {
           allList = [currentAthlete, ...allList];
+        }
+
+        // Auto-heal / sync avatar to server if logged-in user has photo locally but server has null
+        if (userAvatar) {
+          const serverEntry = allList.find((m) => m.id === currentAthlete.id);
+          if (serverEntry && !serverEntry.avatar_url) {
+            api.updateProfile({ avatar_url: userAvatar }).catch(() => {});
+          }
         }
 
         try {
@@ -722,6 +733,16 @@ export default function CheckinPage() {
                           </a>
                         )}
                       </div>
+
+                      {/* Floor Member Streak & Slot */}
+                      <div className="flex items-center gap-2 pt-1 border-t border-white/[0.03] text-[9px] text-outline flex-wrap">
+                        <span>Slot: {m.preferredSlot || "Floor Access"}</span>
+                        <span>•</span>
+                        <span className="inline-flex items-center gap-1 text-[#FF9A2E] font-bold">
+                          <span className="material-symbols-outlined text-[13px]" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                          <span>{m.streak || 0}-day streak</span>
+                        </span>
+                      </div>
                     </div>
                   ))
                 )
@@ -753,7 +774,7 @@ export default function CheckinPage() {
                               <h4 className="text-xs font-bold text-white">{m.name}</h4>
                               {m.is_on_floor ? (
                                 <span className="px-1.5 py-0.2 rounded bg-secondary/20 text-secondary text-[8px] font-bold">
-                                  ON FLOOR
+                                   ON FLOOR
                                 </span>
                               ) : (
                                 <span className="px-1.5 py-0.2 rounded bg-surface-elevated text-outline text-[8px] font-bold">
@@ -788,6 +809,11 @@ export default function CheckinPage() {
                         <span>Slot: {m.preferredSlot || "06:00 AM - 08:00 AM"}</span>
                         <span>•</span>
                         <span>Tier: {m.role?.toUpperCase() || "MEMBER"}</span>
+                        <span>•</span>
+                        <span className="inline-flex items-center gap-1 text-[#FF9A2E] font-bold">
+                          <span className="material-symbols-outlined text-[13px]" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                          <span>{m.streak || 0}-day streak</span>
+                        </span>
                       </div>
                     </div>
                   ))

@@ -10,17 +10,26 @@ router.get(['/community', '/all'], (req, res) => {
             SELECT u.id, u.name, u.role, u.avatar_url, u.goal, u.weight, u.height,
                    u.preferred_slot as preferredSlot, u.custom_split as customSplit,
                    u.social_instagram, u.social_youtube, u.social_links, u.joined_at,
+                   COALESCE(s.current_streak, 0) as streak,
+                   COALESCE(s.longest_streak, 0) as longest_streak,
                    (SELECT COUNT(*) FROM check_ins c WHERE c.user_id = u.id AND c.check_out_time IS NULL) as is_on_floor
             FROM users u
+            LEFT JOIN streaks s ON s.user_id = u.id
             WHERE (u.is_active = 1 OR u.is_active IS NULL)
-            ORDER BY is_on_floor DESC, u.name ASC
+            ORDER BY is_on_floor DESC, streak DESC, u.name ASC
         `);
         res.json(members);
     } catch (err) {
         console.error('Community directory error:', err);
         try {
             // Resilient fallback query in case of missing check_ins or specific columns
-            const fallbackMembers = query(`SELECT id, name, role, avatar_url, goal, weight, height, joined_at FROM users WHERE (is_active = 1 OR is_active IS NULL)`);
+            const fallbackMembers = query(`
+                SELECT u.id, u.name, u.role, u.avatar_url, u.goal, u.weight, u.height, u.joined_at,
+                       COALESCE(s.current_streak, 0) as streak
+                FROM users u
+                LEFT JOIN streaks s ON s.user_id = u.id
+                WHERE (u.is_active = 1 OR u.is_active IS NULL)
+            `);
             res.json(fallbackMembers.map(m => ({ ...m, is_on_floor: 0 })));
         } catch (e2) {
             console.error('Fallback query error:', e2);

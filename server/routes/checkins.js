@@ -63,9 +63,11 @@ router.get('/active', (req, res) => {
         const active = query(`
             SELECT c.id as checkin_id, c.check_in_time, u.id, u.name, u.avatar_url,
                    u.goal, u.preferred_slot as preferredSlot, u.social_instagram, u.social_youtube,
-                   u.role, u.custom_split as customSplit
+                   u.role, u.custom_split as customSplit,
+                   COALESCE(s.current_streak, 0) as streak
             FROM check_ins c 
             JOIN users u ON c.user_id = u.id 
+            LEFT JOIN streaks s ON s.user_id = u.id
             WHERE c.check_out_time IS NULL
             ORDER BY c.check_in_time DESC
         `);

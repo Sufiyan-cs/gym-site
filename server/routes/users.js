@@ -49,7 +49,16 @@ router.put('/profile', authenticateToken, (req, res) => {
         
         run(`UPDATE users SET ${fields.join(', ')} WHERE id = ?`, values);
         
-        const updatedUser = queryOne('SELECT id, name, phone, role, avatar_url, social_instagram, social_youtube, weight, height, goal, target_weight as targetWeight, preferred_slot as preferredSlot, custom_split as customSplit, onboarding_completed, social_links, joined_at, is_active FROM users WHERE id = ?', [userId]);
+        const updatedUser = queryOne(`
+            SELECT u.id, u.name, u.phone, u.role, u.avatar_url, u.social_instagram, u.social_youtube,
+                   u.weight, u.height, u.goal, u.target_weight as targetWeight,
+                   u.preferred_slot as preferredSlot, u.custom_split as customSplit,
+                   u.onboarding_completed, u.social_links, u.joined_at, u.is_active,
+                   COALESCE(s.current_streak, 0) as streak, COALESCE(s.longest_streak, 0) as longest_streak
+            FROM users u
+            LEFT JOIN streaks s ON s.user_id = u.id
+            WHERE u.id = ?
+        `, [userId]);
         
         res.json({ message: 'Profile updated successfully', user: updatedUser });
     } catch (err) {
