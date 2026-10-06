@@ -248,54 +248,7 @@ export default function DashboardPage() {
           </div>
         </Link>
 
-        {/* Quick Action Bento Grid */}
-        <div className="grid grid-cols-4 gap-2">
-          <Link
-            href="/dashboard/workouts"
-            className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#1a1918] border border-white/[0.04] hover:border-[#ff9a2e]/30 active:scale-95 transition-all group text-center"
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#ff9a2e]/10 text-[#ff9a2e] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined text-[20px]">fitness_center</span>
-            </div>
-            <span className="text-[10px] font-bold text-white tracking-tight">Workouts</span>
-            <span className="text-[8px] text-[#a28d7c]">Vault</span>
-          </Link>
 
-          <Link
-            href="/dashboard/workouts?tab=queue"
-            className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#1a1918] border border-white/[0.04] hover:border-[#ff9a2e]/30 active:scale-95 transition-all group text-center"
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#45dfa4]/10 text-[#45dfa4] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined text-[20px]">playlist_add_check</span>
-            </div>
-            <span className="text-[10px] font-bold text-white tracking-tight">Queue</span>
-            <span className="text-[8px] text-[#a28d7c]">
-              {queuedWorkouts.length > 0 ? `${queuedWorkouts.length} Active` : "Empty"}
-            </span>
-          </Link>
-
-          <Link
-            href="/dashboard/checkin"
-            className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#1a1918] border border-white/[0.04] hover:border-[#ff9a2e]/30 active:scale-95 transition-all group text-center"
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#8dd7ff]/10 text-[#8dd7ff] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined text-[20px]">groups</span>
-            </div>
-            <span className="text-[10px] font-bold text-white tracking-tight">Collective</span>
-            <span className="text-[8px] text-[#a28d7c]">Floor Hub</span>
-          </Link>
-
-          <Link
-            href="/dashboard/progress"
-            className="flex flex-col items-center justify-center p-3 rounded-2xl bg-[#1a1918] border border-white/[0.04] hover:border-[#ff9a2e]/30 active:scale-95 transition-all group text-center"
-          >
-            <div className="w-9 h-9 rounded-xl bg-[#ffdcc1]/10 text-[#ffdcc1] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-              <span className="material-symbols-outlined text-[20px]">monitoring</span>
-            </div>
-            <span className="text-[10px] font-bold text-white tracking-tight">Metrics</span>
-            <span className="text-[8px] text-[#a28d7c]">PRs & Stats</span>
-          </Link>
-        </div>
 
         {/* Weekly Habit Rhythm & Streak Tracker */}
         <section className="bg-gradient-to-b from-[#1b1918] to-[#141312] border border-white/[0.05] rounded-2xl p-4 relative overflow-hidden shadow-sm">
