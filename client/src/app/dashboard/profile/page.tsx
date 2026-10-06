@@ -13,10 +13,18 @@ export default function ProfilePage() {
 
   const userName = user?.name || "Athlete";
   const firstName = userName.split(" ")[0];
-  const userAvatar =
-    user?.avatar_url ||
-    (user as any)?.avatar ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=141210&color=FF9A2E&size=160&bold=true`;
+
+  const isRealPhoto = (url?: string) => {
+    if (!url || typeof url !== 'string') return false;
+    if (url.startsWith('data:image/')) return true;
+    if (url.startsWith('http') && !url.includes('ui-avatars.com')) return true;
+    return false;
+  };
+
+  const rawAvatar = user?.avatar_url || (user as any)?.avatar;
+  const userAvatar = isRealPhoto(rawAvatar)
+    ? (rawAvatar as string)
+    : `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=141210&color=FF9A2E&size=160&bold=true`;
 
   // Settings State
   const [hapticFeedback, setHapticFeedback] = useState(true);
@@ -105,7 +113,10 @@ export default function ProfilePage() {
   const handlePhotoSelected = async (dataUrl: string) => {
     try {
       updateUser({ avatar_url: dataUrl });
-      await api.updateProfile({ avatar_url: dataUrl });
+      const res = await api.updateProfile({ avatar_url: dataUrl });
+      if (res?.user) {
+        updateUser(res.user);
+      }
       displayToast("Athlete photo updated successfully!");
     } catch (err) {
       console.error("Failed to persist avatar:", err);
@@ -182,7 +193,6 @@ export default function ProfilePage() {
         weight: editForm.weight,
         targetWeight: editForm.targetWeight,
         preferredSlot: editForm.preferredSlot,
-        avatar_url: user?.avatar_url || userAvatar,
         social_instagram: editForm.instagram,
         social_youtube: editForm.youtube,
         social_links: {
@@ -191,8 +201,16 @@ export default function ProfilePage() {
         customSplit: splitData,
       };
 
-      await api.updateProfile(payload);
-      updateUser(payload);
+      if (isRealPhoto(user?.avatar_url)) {
+        payload.avatar_url = user?.avatar_url;
+      }
+
+      const res = await api.updateProfile(payload);
+      if (res?.user) {
+        updateUser(res.user);
+      } else {
+        updateUser(payload);
+      }
       localStorage.setItem("customSplit", JSON.stringify(splitData));
       window.dispatchEvent(new Event("splitUpdated"));
 

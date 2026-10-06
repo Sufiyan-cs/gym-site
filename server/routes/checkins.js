@@ -58,7 +58,7 @@ router.post(['/out', '/checkout'], authenticateToken, (req, res) => {
     }
 });
 
-router.get('/active', authenticateToken, (req, res) => {
+router.get('/active', (req, res) => {
     try {
         const active = query(`
             SELECT c.id as checkin_id, c.check_in_time, u.id, u.name, u.avatar_url,
@@ -69,10 +69,10 @@ router.get('/active', authenticateToken, (req, res) => {
             WHERE c.check_out_time IS NULL
             ORDER BY c.check_in_time DESC
         `);
-        res.json(active);
+        res.json(active || []);
     } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Active floor check error:', err);
+        res.json([]);
     }
 });
 

@@ -14,7 +14,10 @@ router.put('/profile', authenticateToken, (req, res) => {
         const values = [];
         
         if (name !== undefined) { fields.push('name = ?'); values.push(name); }
-        if (avatar_url !== undefined) { fields.push('avatar_url = ?'); values.push(avatar_url); }
+        if (avatar_url !== undefined && avatar_url !== null && typeof avatar_url === 'string' && avatar_url.trim().length > 0) { 
+            fields.push('avatar_url = ?'); 
+            values.push(avatar_url); 
+        }
         if (social_instagram !== undefined) { fields.push('social_instagram = ?'); values.push(social_instagram); }
         if (social_youtube !== undefined) { fields.push('social_youtube = ?'); values.push(social_youtube); }
         if (weight !== undefined) { fields.push('weight = ?'); values.push(weight); }

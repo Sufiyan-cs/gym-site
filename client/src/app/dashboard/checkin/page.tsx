@@ -40,6 +40,13 @@ export default function CheckinPage() {
     return () => clearInterval(timer);
   }, []);
 
+  const isRealPhoto = (url?: string) => {
+    if (!url || typeof url !== 'string') return false;
+    if (url.startsWith('data:image/')) return true;
+    if (url.startsWith('http') && !url.includes('ui-avatars.com')) return true;
+    return false;
+  };
+
   const loadMembers = async () => {
     try {
       setIsLoading(true);
@@ -51,19 +58,34 @@ export default function CheckinPage() {
       let floorList: MemberItem[] = [];
       if (floorRes.status === "fulfilled" && Array.isArray(floorRes.value)) {
         floorList = floorRes.value;
+      } else {
+        console.warn("Floor API notice:", floorRes);
       }
 
       let allList: MemberItem[] = [];
-      if (allRes.status === "fulfilled" && Array.isArray(allRes.value)) {
+      if (allRes.status === "fulfilled" && Array.isArray(allRes.value) && allRes.value.length > 0) {
         allList = allRes.value;
+        try {
+          localStorage.setItem("am_tippu_community_cache", JSON.stringify(allList));
+        } catch (e) {}
+      } else {
+        console.warn("Community API notice:", allRes);
+        try {
+          const cached = localStorage.getItem("am_tippu_community_cache");
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed)) allList = parsed;
+          }
+        } catch (e) {}
       }
 
-      // If current athlete is logged in, ensure they are present in allMembers directory
+      // If current athlete is logged in, ensure they are present in allMembers directory with latest biometrics
       if (user) {
+        const userAvatar = isRealPhoto(user.avatar_url) ? user.avatar_url : (isRealPhoto((user as any).avatar) ? (user as any).avatar : undefined);
         const currentAthlete: MemberItem = {
           id: Number(user.id) || 1,
           name: user.name || "Athlete",
-          avatar_url: user.avatar_url,
+          avatar_url: userAvatar,
           role: user.role,
           goal: user.goal || "Clean Hypertrophy",
           preferredSlot: (user as any).preferredSlot || "Morning",
@@ -72,9 +94,25 @@ export default function CheckinPage() {
           is_on_floor: isCheckedIn ? 1 : 0,
         };
 
-        if (!allList.some((m) => m.id === currentAthlete.id || m.name === currentAthlete.name)) {
+        const existingIdx = allList.findIndex(
+          (m) => (m.id && currentAthlete.id && m.id === currentAthlete.id) || (m.name && currentAthlete.name && m.name.toLowerCase() === currentAthlete.name.toLowerCase())
+        );
+
+        if (existingIdx >= 0) {
+          allList[existingIdx] = {
+            ...allList[existingIdx],
+            avatar_url: currentAthlete.avatar_url || allList[existingIdx].avatar_url,
+            preferredSlot: currentAthlete.preferredSlot || allList[existingIdx].preferredSlot,
+            goal: currentAthlete.goal || allList[existingIdx].goal,
+            is_on_floor: isCheckedIn ? 1 : (allList[existingIdx].is_on_floor || 0),
+          };
+        } else {
           allList = [currentAthlete, ...allList];
         }
+
+        try {
+          localStorage.setItem("am_tippu_community_cache", JSON.stringify(allList));
+        } catch (e) {}
 
         // If user is checked in on floor, ensure they appear in floorList
         if (isCheckedIn && !floorList.some((m) => m.id === currentAthlete.id)) {
@@ -491,7 +529,7 @@ export default function CheckinPage() {
               <div className="flex -space-x-2 overflow-hidden">
                 {allMembers.slice(0, 4).map((m, idx) => (
                   <div key={idx} className="w-8 h-8 rounded-full ring-2 ring-surface-container-low bg-surface-elevated overflow-hidden flex items-center justify-center text-[10px] font-bold text-primary">
-                    {m.avatar_url ? (
+                    {isRealPhoto(m.avatar_url) ? (
                       <img src={m.avatar_url} alt={m.name} className="w-full h-full object-cover" />
                     ) : (
                       getInitials(m.name)
@@ -656,7 +694,7 @@ export default function CheckinPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className="w-11 h-11 rounded-full bg-surface-elevated ring-2 ring-secondary/50 overflow-hidden flex items-center justify-center font-bold text-xs text-secondary shrink-0">
-                            {m.avatar_url ? (
+                            {isRealPhoto(m.avatar_url) ? (
                               <img src={m.avatar_url} alt={m.name} className="w-full h-full object-cover" />
                             ) : (
                               getInitials(m.name)
@@ -704,7 +742,7 @@ export default function CheckinPage() {
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-3">
                           <div className="w-11 h-11 rounded-full bg-surface-elevated ring-1 ring-white/10 overflow-hidden flex items-center justify-center font-bold text-xs text-primary shrink-0">
-                            {m.avatar_url ? (
+                            {isRealPhoto(m.avatar_url) ? (
                               <img src={m.avatar_url} alt={m.name} className="w-full h-full object-cover" />
                             ) : (
                               getInitials(m.name)

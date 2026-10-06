@@ -24,19 +24,29 @@ async function initialize() {
     try { run("ALTER TABLE users ADD COLUMN target_weight TEXT;"); } catch (e) {}
     try { run("ALTER TABLE users ADD COLUMN preferred_slot TEXT;"); } catch (e) {}
     try { run("ALTER TABLE users ADD COLUMN custom_split TEXT;"); } catch (e) {}
+    try { run("ALTER TABLE users ADD COLUMN is_active INTEGER DEFAULT 1;"); } catch (e) {}
+    try { run("UPDATE users SET is_active = 1 WHERE is_active IS NULL;"); } catch (e) {}
     
     console.log('Seeding initial data...');
     
     const seedAdmins = () => {
         const defaultPassword = bcrypt.hashSync('admin123', 10);
         run(`
-          INSERT OR IGNORE INTO users (name, phone, password_hash, role)
-          VALUES (?, ?, ?, ?)
+          INSERT OR IGNORE INTO users (name, phone, password_hash, role, is_active)
+          VALUES (?, ?, ?, ?, 1)
         `, ['Azhar Mohammed', '9591739969', defaultPassword, 'admin']);
         run(`
-          INSERT OR IGNORE INTO users (name, phone, password_hash, role)
-          VALUES (?, ?, ?, ?)
+          INSERT OR IGNORE INTO users (name, phone, password_hash, role, is_active)
+          VALUES (?, ?, ?, ?, 1)
         `, ['Syed Tabrez', '9999999999', defaultPassword, 'admin']);
+        run(`
+          INSERT OR IGNORE INTO users (name, phone, password_hash, role, goal, preferred_slot, is_active)
+          VALUES (?, ?, ?, ?, ?, ?, 1)
+        `, ['Syed Sufiyan', '9113648413', defaultPassword, 'member', 'Clean Hypertrophy', '07:00 AM']);
+        run(`
+          INSERT OR IGNORE INTO users (name, phone, password_hash, role, goal, preferred_slot, is_active)
+          VALUES (?, ?, ?, ?, ?, ?, 1)
+        `, ['Syed Idris', '9113648414', defaultPassword, 'member', 'Clean Hypertrophy', '08:00 PM']);
     };
     
     seedAdmins();

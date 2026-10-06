@@ -43,21 +43,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initAuth = async () => {
       const storedToken = localStorage.getItem('token');
       const storedUser = localStorage.getItem('user');
+      let localUserObj: User | null = null;
       if (storedUser) {
-        try { setUser(JSON.parse(storedUser)); } catch (e) {}
+        try { 
+          localUserObj = JSON.parse(storedUser);
+          setUser(localUserObj); 
+        } catch (e) {}
       }
       if (storedToken) {
         setToken(storedToken);
         try {
           const userData = await api.getMe();
-          const freshUser = userData.user || userData;
-          setUser(freshUser);
-          localStorage.setItem('user', JSON.stringify(freshUser));
+          let freshUser = userData.user || userData;
+          if (freshUser) {
+            // CRITICAL: Protect avatar_url!
+            // If local storage has a real photo (base64 or custom URL) and freshUser returned empty/null/ui-avatars,
+            // preserve the local photo and sync it to the backend!
+            const localAvatar = localUserObj?.avatar_url || (localUserObj as any)?.avatar;
+            const isLocalReal = localAvatar && typeof localAvatar === 'string' && (localAvatar.startsWith('data:image/') || (localAvatar.startsWith('http') && !localAvatar.includes('ui-avatars.com')));
+            const isFreshReal = freshUser.avatar_url && typeof freshUser.avatar_url === 'string' && (freshUser.avatar_url.startsWith('data:image/') || (freshUser.avatar_url.startsWith('http') && !freshUser.avatar_url.includes('ui-avatars.com')));
+
+            if (isLocalReal && !isFreshReal) {
+              freshUser.avatar_url = localAvatar;
+              // Silently sync to backend so server is also updated
+              api.updateProfile({ avatar_url: localAvatar }).catch(() => {});
+            }
+
+            setUser(freshUser);
+            localStorage.setItem('user', JSON.stringify(freshUser));
+          }
         } catch (error) {
           console.error('Failed to fetch user', error);
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          setToken(null);
+          if (!localUserObj) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setToken(null);
+          }
         }
       }
       setLoading(false);

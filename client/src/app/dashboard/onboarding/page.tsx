@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
+import { api } from '@/lib/api';
 import SelfieModal from '@/components/SelfieModal';
 
 export default function OnboardingPage() {
@@ -100,17 +101,25 @@ export default function OnboardingPage() {
     setIsSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const payload = {
+      const payload: any = {
         weight: formData.currentWeight.toString(),
         height: formData.height.toString(),
         goal: formData.primaryFocus || 'Clean Hypertrophy',
         targetWeight: formData.targetWeight.toString(),
         preferredSlot: formData.preferredSlot,
         customSplit: formData.customWeeklySplit,
-        avatarUrl: formData.avatarUrl,
-        avatar_url: formData.avatarUrl,
       };
+
+      if (formData.avatarUrl && formData.avatarUrl.trim().length > 0) {
+        payload.avatarUrl = formData.avatarUrl;
+        payload.avatar_url = formData.avatarUrl;
+      }
       
+      // Update local state and localStorage immediately
+      updateUser(payload);
+      localStorage.setItem('customSplit', JSON.stringify(formData.customWeeklySplit));
+      window.dispatchEvent(new Event('splitUpdated'));
+
       const res = await fetch('/api/auth/onboarding', {
         method: 'POST',
         headers: { 
@@ -119,29 +128,35 @@ export default function OnboardingPage() {
         },
         body: JSON.stringify(payload),
       });
+
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
         if (data.user) {
-          updateUser(data.user);
-        } else {
-          updateUser(payload);
+          const finalUser = {
+            ...data.user,
+            avatar_url: data.user.avatar_url || formData.avatarUrl,
+          };
+          updateUser(finalUser);
         }
-        localStorage.setItem('customSplit', JSON.stringify(formData.customWeeklySplit));
-        window.dispatchEvent(new Event('splitUpdated'));
-        window.location.href = '/dashboard';
       } else {
         const errorData = await res.json().catch(() => ({}));
         console.error('Failed to submit onboarding:', errorData);
-        // Fallback local update
-        updateUser(payload);
-        localStorage.setItem('customSplit', JSON.stringify(formData.customWeeklySplit));
-        window.location.href = '/dashboard';
       }
+
+      // Also ensure secondary avatar sync if photo is present
+      if (formData.avatarUrl) {
+        try {
+          await api.updateProfile({ avatar_url: formData.avatarUrl });
+        } catch (e) {}
+      }
+
+      router.push('/dashboard');
     } catch (e) {
       console.error(e);
-      alert('Network error. Please try again.');
+      router.push('/dashboard');
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   const trainingDaysCount = Object.values(formData.customWeeklySplit).filter(f => !f.toLowerCase().includes('rest') && !f.toLowerCase().includes('recovery')).length;
@@ -701,7 +716,10 @@ export default function OnboardingPage() {
         <SelfieModal
           isOpen={isSelfieModalOpen}
           onClose={() => setIsSelfieModalOpen(false)}
-          onPhotoSelected={(url) => updateFormData('avatarUrl', url)}
+          onPhotoSelected={(url) => {
+            updateFormData('avatarUrl', url);
+            updateUser({ avatar_url: url });
+          }}
           currentAvatar={formData.avatarUrl}
         />
       </div>

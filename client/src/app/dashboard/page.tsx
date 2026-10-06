@@ -9,7 +9,18 @@ export default function DashboardPage() {
 
   const userName = user?.name || "Athlete";
   const firstName = userName.split(" ")[0];
-  const userAvatar = user?.avatar_url || user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=2b2a28&color=ffb877&size=120`;
+
+  const isRealPhoto = (url?: string) => {
+    if (!url || typeof url !== 'string') return false;
+    if (url.startsWith('data:image/')) return true;
+    if (url.startsWith('http') && !url.includes('ui-avatars.com')) return true;
+    return false;
+  };
+
+  const rawAvatar = user?.avatar_url || (user as any)?.avatar;
+  const userAvatar = isRealPhoto(rawAvatar)
+    ? (rawAvatar as string)
+    : `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=2b2a28&color=ffb877&size=120`;
   const userStreak = user?.streak || 0;
   
   // Calculate current day index (0 = Monday, 6 = Sunday for this display)
