@@ -28,23 +28,27 @@ export default function DashboardPage() {
   };
 
   const dayName = dayNames[realDayIndex];
-  let todayFocus = defaultSplit[dayName] || "Training";
-  let isRestDay = dayName === "Sun";
+  const [splitData, setSplitData] = useState<Record<string, string>>(defaultSplit);
 
-  try {
-    const rawSplit = user?.customSplit || (typeof window !== "undefined" ? localStorage.getItem("customSplit") : null);
-    if (rawSplit) {
-      const splitObj = typeof rawSplit === "string" ? JSON.parse(rawSplit) : rawSplit;
-      if (splitObj && splitObj[dayName]) {
-        todayFocus = splitObj[dayName];
-        if (todayFocus.toLowerCase().includes("rest") || todayFocus.toLowerCase().includes("recovery")) {
-          isRestDay = true;
-        } else {
-          isRestDay = false;
+  useEffect(() => {
+    const loadSplit = () => {
+      try {
+        const rawSplit = user?.customSplit || (typeof window !== "undefined" ? localStorage.getItem("customSplit") : null);
+        if (rawSplit) {
+          const splitObj = typeof rawSplit === "string" ? JSON.parse(rawSplit) : rawSplit;
+          if (splitObj && typeof splitObj === "object") {
+            setSplitData(splitObj);
+          }
         }
-      }
-    }
-  } catch (e) {}
+      } catch (e) {}
+    };
+    loadSplit();
+    window.addEventListener("splitUpdated", loadSplit);
+    return () => window.removeEventListener("splitUpdated", loadSplit);
+  }, [user]);
+
+  const todayFocus = splitData[dayName] || defaultSplit[dayName] || "Training";
+  const isRestDay = todayFocus.toLowerCase().includes("rest") || todayFocus.toLowerCase().includes("recovery");
 
   const [queuedWorkouts, setQueuedWorkouts] = useState<any[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -181,7 +185,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Hero Card */}
-        {currentDayIndex === 6 ? (
+        {isRestDay ? (
           <section className="bg-surface-container-low border border-white/[0.04] rounded-2xl p-5 relative overflow-hidden shadow-[0px_12px_32px_rgba(141,164,180,0.12)]">
             <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
             <div className="flex justify-between items-center mb-3">
@@ -218,7 +222,7 @@ export default function DashboardPage() {
               </h2>
               <p className="font-body-md text-body-md text-outline mt-0.5">Ready to crush your goals today?</p>
             </div>
-            <Link href="/dashboard/workouts" style={{ textDecoration: "none" }}>
+            <Link href="/dashboard/workouts?tab=queue" style={{ textDecoration: "none" }}>
               <button className="w-full py-3.5 px-6 rounded-full bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0px_8px_24px_rgba(255,154,46,0.3)] active:scale-[0.98] transition-all duration-150">
                 <span>Start Workout</span>
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>

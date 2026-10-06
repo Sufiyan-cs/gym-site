@@ -35,8 +35,10 @@ export const api = {
   getMe: () => fetchWithAuth('/auth/me'),
   updateProfile: (data: any) => fetchWithAuth('/users/profile', { method: 'PUT', body: JSON.stringify(data) }),
   
-  // Members & Admin
+  // Members & Community
   getMembers: () => fetchWithAuth('/admin/members'),
+  getCommunityMembers: () => fetchWithAuth('/members/community'),
+  getActiveFloorMembers: () => fetchWithAuth('/checkins/active'),
   
   // Subscriptions
   getPlans: () => fetchWithAuth('/subscriptions/plans'),

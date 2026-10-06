@@ -51,11 +51,16 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/onboarding', authenticateToken, (req, res) => {
-    const { weight, height, goal, targetWeight, preferredSlot, customSplit } = req.body;
+    const { weight, height, goal, targetWeight, preferredSlot, customSplit, avatarUrl, avatar_url } = req.body;
+    const finalAvatar = avatar_url || avatarUrl;
     
     try {
         const userId = req.user.id;
-        run('UPDATE users SET weight = ?, height = ?, goal = ?, target_weight = ?, preferred_slot = ?, custom_split = ?, onboarding_completed = 1 WHERE id = ?', [weight, height, goal, targetWeight, preferredSlot, customSplit ? JSON.stringify(customSplit) : null, userId]);
+        if (finalAvatar) {
+            run('UPDATE users SET weight = ?, height = ?, goal = ?, target_weight = ?, preferred_slot = ?, custom_split = ?, avatar_url = ?, onboarding_completed = 1 WHERE id = ?', [weight, height, goal, targetWeight, preferredSlot, customSplit ? JSON.stringify(customSplit) : null, finalAvatar, userId]);
+        } else {
+            run('UPDATE users SET weight = ?, height = ?, goal = ?, target_weight = ?, preferred_slot = ?, custom_split = ?, onboarding_completed = 1 WHERE id = ?', [weight, height, goal, targetWeight, preferredSlot, customSplit ? JSON.stringify(customSplit) : null, userId]);
+        }
         
         const updatedUser = queryOne('SELECT id, name, phone, role, avatar_url, social_instagram, social_youtube, weight, height, goal, target_weight as targetWeight, preferred_slot as preferredSlot, custom_split as customSplit, onboarding_completed, social_links, joined_at, is_active FROM users WHERE id = ?', [userId]);
         

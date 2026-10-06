@@ -31,24 +31,43 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   try {
     let reqPath = decodeURIComponent(req.url.split('?')[0]);
-    if (reqPath === '/' || reqPath === '' || reqPath === '/index.html') {
-      reqPath = '/dashboard.html';
+    if (reqPath === '/' || reqPath === '') {
+      reqPath = '/index.html';
     }
 
-    let filePath = path.join(NEW_FRONTEND_DIR, reqPath);
+    // List of directories to search in order
+    const searchDirs = [
+      NEW_FRONTEND_DIR,
+      FALLBACK_DIR,
+      path.join(__dirname, 'client', 'public'),
+      __dirname
+    ];
+
+    let filePath = null;
     let found = false;
 
-    if (fs.existsSync(filePath)) {
+    // 1. Try exact file path
+    for (const dir of searchDirs) {
+      const candidate = path.join(dir, reqPath);
       try {
-        if (fs.statSync(filePath).isFile()) found = true;
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          filePath = candidate;
+          found = true;
+          break;
+        }
       } catch(e) {}
     }
 
-    if (!found) {
-      filePath = path.join(FALLBACK_DIR, reqPath);
-      if (fs.existsSync(filePath)) {
+    // 2. If not found and no extension, try appending .html
+    if (!found && !path.extname(reqPath)) {
+      for (const dir of searchDirs) {
+        const candidate = path.join(dir, reqPath + '.html');
         try {
-          if (fs.statSync(filePath).isFile()) found = true;
+          if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+            filePath = candidate;
+            found = true;
+            break;
+          }
         } catch(e) {}
       }
     }

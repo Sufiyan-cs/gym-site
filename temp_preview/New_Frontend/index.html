@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070605">
+  <meta name="description" content="AM-Tippu Fitness — The Tiger Room of Shampura, Bengaluru. Elite strength conditioning, heavy iron vault, cardio deck, morning & evening batches. Fees from ₹500/month.">
+  <title>AM-Tippu Fitness — The Tiger Room | Shampura, Bengaluru</title>
+
+  <!-- Google Fonts: Syne (Luxury Athletic Display) + Plus Jakarta Sans (Editorial) + IBM Plex Mono (Tactical Data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================================
+       00. RESET & LUXURY ATHLETIC TOKENS
+       ===================================================================== */
+    :root {
+      --bg: #070605;
+      --bg-alt: #0E0C0A;
+      --surface: rgba(18, 15, 13, 0.72);
+      --surface-solid: #14110E;
+      --surface-light: rgba(28, 24, 20, 0.65);
+      
+      --amber: #FF9A2E;
+      --amber-glow: rgba(255, 154, 46, 0.35);
+      --amber-soft: rgba(255, 154, 46, 0.12);
+      --amber-light: #FFB866;
+      --flame: #FF5E1E;
+
+      --emerald: #10B981;
+      --emerald-glow: rgba(16, 185, 129, 0.35);
+      --emerald-soft: rgba(16, 185, 129, 0.12);
+
+      --ink-primary: #F7F4EE;
+      --ink-secondary: #A39B8E;
+      --ink-muted: #615B51;
+
+      --line: rgba(247, 244, 238, 0.08);
+      --line-bright: rgba(255, 154, 46, 0.22);
+      --line-strong: rgba(247, 244, 238, 0.15);
+
+      --wa: #25D366;
+      --wa-glow: rgba(37, 211, 102, 0.25);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      background: var(--bg);
+      color: var(--ink-primary);
+      font-family: var(--font-body);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background: var(--bg);
+      overflow-x: hidden;
+      line-height: 1.6;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    ::selection { background: var(--amber); color: #070605; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* Film grain overlay */
+    #grain {
+      position: fixed; inset: 0; z-index: 99; pointer-events: none; opacity: 0.038;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='260' height='260' filter='url(%23n)'/></svg>");
+      background-size: 200px;
+    }
+
+    /* Ambient background glows */
+    .ambient-glow-1 {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 1000px; max-width: 100vw; height: 600px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255, 154, 46, 0.16) 0%, rgba(255, 94, 30, 0.05) 50%, transparent 80%);
+      pointer-events: none; z-index: 1; filter: blur(50px);
+    }
+    .ambient-glow-2 {
+      position: absolute; top: 1200px; right: -150px;
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(255, 154, 46, 0.08) 0%, transparent 70%);
+      pointer-events: none; z-index: 1; filter: blur(60px);
+    }
+
+    /* =====================================================================
+       01. STICKY TOPBAR / COMMAND DOCK
+       ===================================================================== */
+    #topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 72px; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(7, 6, 5, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #topbar.scrolled {
+      height: 64px;
+      background: rgba(7, 6, 5, 0.92);
+      border-bottom-color: rgba(255, 154, 46, 0.18);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .brand-wrap {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .brand-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 800; font-size: 19px; letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .brand-logo .tiger-symbol {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, #FF9A2E 0%, #FF5E1E 100%);
+      color: #070605; font-weight: 800; font-size: 15px;
+      box-shadow: 0 0 18px rgba(255, 154, 46, 0.45);
+    }
+    .brand-logo span.text-amber { color: var(--amber); }
+
+    .live-status-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 12px; border-radius: var(--radius-full);
+      background: var(--surface-light); border: 1px solid var(--line-strong);
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      color: var(--ink-secondary); letter-spacing: 0.05em;
+    }
+    .live-status-pill .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 24px;
+    }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--ink-secondary);
+      letter-spacing: 0.03em; transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--ink-primary); }
+
+    .nav-actions {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .btn-portal {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line-strong);
+      font-size: 12px; font-weight: 600; color: var(--ink-primary);
+      transition: all 0.2s;
+    }
+    .btn-portal:hover {
+      background: rgba(255, 154, 46, 0.1);
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: translateY(-1px);
+    }
+    .btn-primary-top {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--amber) 0%, var(--flame) 100%);
+      color: #070605; font-weight: 700; font-size: 12px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      box-shadow: 0 4px 18px var(--amber-glow);
+      transition: all 0.2s;
+    }
+    .btn-primary-top:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(255, 154, 46, 0.55);
+    }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .live-status-pill { display: none; }
+    }
+
+    /* =====================================================================
+       02. HERO SECTION — CINEMATIC LUXURY
+       ===================================================================== */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 130px 24px 80px; overflow: hidden;
+      background: radial-gradient(circle at 50% 30%, #15110D 0%, #070605 80%);
+    }
+    #heroCanvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 2;
+    }
+    .hero-content {
+      position: relative; z-index: 10; max-width: 1080px; margin: 0 auto;
+      text-align: center; display: flex; flex-direction: column; align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 7px 18px; border-radius: var(--radius-full);
+      background: rgba(255, 154, 46, 0.08);
+      border: 1px solid rgba(255, 154, 46, 0.25);
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      color: var(--amber); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge i {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--amber); box-shadow: 0 0 10px var(--amber);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8.5vw, 102px);
+      font-weight: 800; line-height: 0.95; letter-spacing: -0.02em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero-title span.glow-gradient {
+      background: linear-gradient(135deg, #FFF9F0 20%, #FFB866 60%, #FF9A2E 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .hero-title span.tiger-text {
+      color: var(--amber);
+      text-shadow: 0 0 40px rgba(255, 154, 46, 0.4);
+    }
+
+    .hero-tagline {
+      max-width: 680px; font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 400; color: var(--ink-secondary); line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .hero-tagline strong {
+      color: var(--ink-primary); font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 50px;
+    }
+    .btn-hero-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 18px 38px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--amber) 0%, var(--flame) 100%);
+      color: #070605; font-family: var(--font-mono); font-weight: 700;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(255, 154, 46, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(255, 154, 46, 0.6);
+    }
+    .btn-hero-wa {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 18px 32px; border-radius: var(--radius-sm);
+      background: rgba(37, 211, 102, 0.1);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #34D399; font-family: var(--font-mono); font-weight: 700;
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-hero-wa:hover {
+      background: rgba(37, 211, 102, 0.18);
+      border-color: var(--wa);
+      color: #6EE7B7;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px var(--wa-glow);
+    }
+
+    /* Floating Metric Strip */
+    .hero-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      width: 100%; max-width: 940px; margin-top: 10px;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px 16px; text-align: left;
+      backdrop-filter: blur(16px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-bright);
+    }
+    .kpi-val {
+      font-family: var(--font-display); font-size: 26px; font-weight: 800;
+      color: var(--ink-primary); line-height: 1; margin-bottom: 6px;
+    }
+    .kpi-val span.amber-unit { color: var(--amber); }
+    .kpi-lbl {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      color: var(--ink-secondary); letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .hero-kpis { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 110px; }
+    }
+
+    /* =====================================================================
+       03. SHARED SECTION STYLING
+       ===================================================================== */
+    .sec-wrap {
+      position: relative; max-width: 1200px; margin: 0 auto;
+      padding: 100px 24px;
+    }
+    .sec-header {
+      margin-bottom: 56px;
+    }
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      color: var(--amber); letter-spacing: 0.16em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .sec-title {
+      font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .sec-sub {
+      font-size: 16px; color: var(--ink-secondary); max-width: 580px; margin-top: 14px;
+    }
+
+    /* =====================================================================
+       04. PLANS & FEE BOARD (HONEST & TRANSPARENT)
+       ===================================================================== */
+    .plans-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .plan-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .plan-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 154, 46, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+    .plan-card.featured {
+      background: linear-gradient(180deg, rgba(35, 26, 18, 0.85) 0%, rgba(18, 15, 13, 0.95) 100%);
+      border: 1.5px solid var(--amber);
+      box-shadow: 0 10px 40px rgba(255, 154, 46, 0.2);
+    }
+    .plan-badge {
+      position: absolute; top: -12px; left: 24px;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--amber) 0%, var(--flame) 100%);
+      color: #070605; font-family: var(--font-mono); font-size: 10px;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      box-shadow: 0 4px 12px var(--amber-glow);
+    }
+
+    .plan-duration {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      color: var(--ink-primary); margin-bottom: 6px;
+    }
+    .plan-highlight {
+      font-family: var(--font-mono); font-size: 11px; color: var(--amber);
+      font-weight: 500; margin-bottom: 24px;
+    }
+    .plan-pricing {
+      margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line);
+    }
+    .plan-price-num {
+      font-family: var(--font-display); font-size: 42px; font-weight: 800;
+      color: var(--ink-primary); line-height: 1;
+    }
+    .plan-price-rate {
+      font-family: var(--font-mono); font-size: 12px; color: var(--ink-secondary);
+      margin-top: 6px;
+    }
+
+    .plan-features {
+      list-style: none; margin-bottom: 32px;
+    }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--ink-secondary); margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .plan-features li svg {
+      width: 16px; height: 16px; flex-shrink: 0; color: var(--amber);
+      margin-top: 2px;
+    }
+
+    .btn-plan-wa {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 14px; border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line-strong);
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-primary);
+      transition: all 0.2s;
+    }
+    .plan-card:hover .btn-plan-wa {
+      background: var(--amber); color: #070605; border-color: var(--amber);
+      box-shadow: 0 4px 20px var(--amber-glow);
+    }
+    .plan-card.featured .btn-plan-wa {
+      background: var(--amber); color: #070605; border-color: var(--amber);
+      box-shadow: 0 4px 20px var(--amber-glow);
+    }
+    .plan-card.featured .btn-plan-wa:hover {
+      background: #FFAF4D;
+    }
+
+    @media (max-width: 1024px) {
+      .plans-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .plans-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================================================================
+       05. THE VAULT — INTERACTIVE FACILITY & EQUIPMENT
+       ===================================================================== */
+    .vault-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .vault-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 30px; backdrop-filter: blur(16px);
+      transition: all 0.25s; display: flex; flex-direction: column;
+    }
+    .vault-card:hover {
+      border-color: var(--line-bright);
+      transform: translateY(-4px);
+    }
+    .vault-num {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      color: var(--amber); margin-bottom: 16px;
+    }
+    .vault-title {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      color: var(--ink-primary); margin-bottom: 10px; line-height: 1.2;
+    }
+    .vault-desc {
+      font-size: 14px; color: var(--ink-secondary); line-height: 1.6;
+      margin-bottom: 20px; flex-grow: 1;
+    }
+    .vault-spec-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: var(--radius-sm);
+      background: rgba(255, 154, 46, 0.07);
+      border: 1px solid rgba(255, 154, 46, 0.15);
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      color: var(--amber); width: fit-content;
+    }
+
+    @media (max-width: 900px) {
+      .vault-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================================================================
+       06. COACHES SHOWCASE (AZHAR & TABREZ)
+       ===================================================================== */
+    .coaches-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    .coach-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px; backdrop-filter: blur(20px);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .coach-card:hover {
+      border-color: rgba(255, 154, 46, 0.35);
+      transform: translateY(-4px);
+    }
+    .coach-card::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 154, 46, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .coach-top {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;
+    }
+    .coach-monogram {
+      width: 54px; height: 54px; border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(255, 154, 46, 0.2) 0%, rgba(255, 94, 30, 0.1) 100%);
+      border: 1px solid rgba(255, 154, 46, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 20px; font-weight: 800;
+      color: var(--amber);
+    }
+    .coach-role-pill {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      color: var(--amber); letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: var(--radius-full);
+      background: var(--surface-light); border: 1px solid var(--line);
+    }
+
+    .coach-name {
+      font-family: var(--font-display); font-size: 28px; font-weight: 800;
+      color: var(--ink-primary); margin-bottom: 8px;
+    }
+    .coach-quote {
+      font-size: 15px; font-style: italic; color: var(--amber-light);
+      margin-bottom: 18px; line-height: 1.5;
+    }
+    .coach-bio {
+      font-size: 14px; color: var(--ink-secondary); line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .btn-coach-wa {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: var(--radius-sm);
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      color: #34D399; font-family: var(--font-mono); font-size: 12px;
+      font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      width: fit-content; transition: all 0.2s;
+    }
+    .btn-coach-wa:hover {
+      background: rgba(37, 211, 102, 0.15);
+      border-color: var(--wa);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 800px) {
+      .coaches-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================================================================
+       07. LIVE TIMINGS & DAYLIGHT CROWD FLOW
+       ===================================================================== */
+    .hours-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 40px; backdrop-filter: blur(20px);
+    }
+    .batches-row {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+      margin-bottom: 36px;
+    }
+    .batch-box {
+      background: var(--surface-light);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .batch-box.active {
+      border-color: rgba(255, 154, 46, 0.35);
+      background: rgba(255, 154, 46, 0.04);
+    }
+    .batch-type {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+      color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .batch-time {
+      font-family: var(--font-display); font-size: 32px; font-weight: 800;
+      color: var(--ink-primary); line-height: 1.1; margin-bottom: 6px;
+    }
+    .batch-desc {
+      font-size: 13px; color: var(--ink-secondary);
+    }
+
+    /* 24-hr visual timeline */
+    .timeline-wrap {
+      position: relative; margin-top: 20px; padding-top: 10px;
+    }
+    .timeline-bar {
+      height: 12px; border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      position: relative; overflow: hidden;
+    }
+    .timeline-span {
+      position: absolute; top: 0; bottom: 0;
+      background: linear-gradient(90deg, #FF9A2E 0%, #FF5E1E 100%);
+      border-radius: var(--radius-full);
+      box-shadow: 0 0 10px rgba(255, 154, 46, 0.5);
+    }
+    .timeline-hours {
+      display: flex; justify-content: space-between;
+      margin-top: 10px; font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .sunday-notice {
+      margin-top: 24px; font-family: var(--font-mono); font-size: 12px;
+      color: var(--ink-secondary); display: flex; align-items: center; gap: 8px;
+    }
+
+    @media (max-width: 650px) {
+      .batches-row { grid-template-columns: 1fr; }
+      .hours-card { padding: 24px; }
+    }
+
+    /* =====================================================================
+       08. ASIAN-INDIAN BMI PRECISION SUITE
+       ===================================================================== */
+    .bmi-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 44px; backdrop-filter: blur(20px);
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+    }
+    .bmi-form-group {
+      margin-bottom: 24px;
+    }
+    .bmi-label {
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+      color: var(--ink-secondary); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .bmi-label span.bmi-val-readout {
+      color: var(--amber); font-weight: 700;
+    }
+    .bmi-slider {
+      width: 100%; height: 8px; border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1); outline: none;
+      -webkit-appearance: none; accent-color: var(--amber);
+    }
+
+    .bmi-results-box {
+      background: var(--surface-light);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 32px; display: flex; flex-direction: column;
+      justify-content: center; text-align: center;
+    }
+    .bmi-score-big {
+      font-family: var(--font-display); font-size: 58px; font-weight: 800;
+      color: var(--ink-primary); line-height: 1; margin-bottom: 8px;
+    }
+    .bmi-category-badge {
+      display: inline-block; padding: 6px 16px; border-radius: var(--radius-full);
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin: 0 auto 16px;
+    }
+    .bmi-category-badge.normal {
+      background: var(--emerald-soft); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .bmi-category-badge.warning {
+      background: var(--amber-soft); color: var(--amber); border: 1px solid rgba(255, 154, 46, 0.3);
+    }
+    .bmi-category-badge.alert {
+      background: rgba(239, 68, 68, 0.12); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .bmi-disclaimer {
+      font-size: 13px; color: var(--ink-secondary); line-height: 1.5;
+    }
+
+    @media (max-width: 850px) {
+      .bmi-card { grid-template-columns: 1fr; padding: 28px; }
+    }
+
+    /* =====================================================================
+       09. REVIEWS & TESTIMONIALS
+       ===================================================================== */
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 40px;
+    }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px; backdrop-filter: blur(16px);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .review-stars {
+      color: var(--amber); font-size: 14px; margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .review-text {
+      font-size: 14px; color: var(--ink-primary); line-height: 1.6;
+      margin-bottom: 20px; font-style: italic;
+    }
+    .review-author {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      color: var(--ink-secondary); text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================================================================
+       10. LOCATION, GOOGLE MAP & CONTACT
+       ===================================================================== */
+    .location-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      overflow: hidden; backdrop-filter: blur(20px);
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .location-info {
+      padding: 48px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .loc-addr {
+      font-size: 16px; color: var(--ink-primary); margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .loc-addr strong {
+      color: var(--amber); display: block; margin-bottom: 6px;
+      font-size: 18px; font-family: var(--font-display);
+    }
+    .loc-btns {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .btn-dir {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 22px; border-radius: var(--radius-sm);
+      background: var(--amber); color: #070605;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-dir:hover {
+      background: #FFAF4D; transform: translateY(-1px);
+    }
+    .btn-call {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 20px; border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line-strong);
+      color: var(--ink-primary); font-family: var(--font-mono);
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-call:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .map-frame {
+      width: 100%; height: 100%; min-height: 380px; border: 0;
+      filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(120%);
+    }
+
+    @media (max-width: 800px) {
+      .location-box { grid-template-columns: 1fr; }
+      .location-info { padding: 30px; }
+      .map-frame { min-height: 280px; }
+    }
+
+    /* =====================================================================
+       11. FOOTER & DOCK
+       ===================================================================== */
+    footer {
+      border-top: 1px solid var(--line);
+      background: #050403; padding: 60px 24px 100px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .footer-copy {
+      font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+      margin-bottom: 24px;
+    }
+    .footer-portals {
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-portal-link {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+      color: var(--amber); padding: 8px 16px; border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 154, 46, 0.2);
+      transition: all 0.2s;
+    }
+    .footer-portal-link:hover {
+      background: rgba(255, 154, 46, 0.1); border-color: var(--amber);
+    }
+
+    /* Persistent floating WhatsApp button */
+    #waFloat {
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 20px; border-radius: var(--radius-full);
+      background: #25D366; color: #070605;
+      font-family: var(--font-mono); font-weight: 700; font-size: 13px;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+      transition: all 0.25s;
+    }
+    #waFloat:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    }
+
+    @media (max-width: 600px) {
+      #waFloat span { display: none; }
+      #waFloat { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Film grain texture -->
+  <div id="grain"></div>
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- =====================================================================
+       01. TOPBAR / COMMAND DOCK
+       ===================================================================== -->
+  <header id="topbar">
+    <div class="brand-wrap">
+      <a href="#top" class="brand-logo">
+        <div class="tiger-symbol">बा</div>
+        <div>AM<span class="text-amber">-</span>TIPPU</div>
+      </a>
+      <div class="live-status-pill" id="livePill">
+        <span class="pulse-dot"></span>
+        <span id="pillText">CHECKING BATCH HOURS…</span>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#plans" class="nav-link">Fee Board</a>
+      <a href="#vault" class="nav-link">The Vault</a>
+      <a href="#coaches" class="nav-link">Coaches</a>
+      <a href="#hours" class="nav-link">Timings</a>
+      <a href="#bmi" class="nav-link">BMI Suite</a>
+      <a href="#location" class="nav-link">Location</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="login.html" class="btn-portal" title="Member & Staff Login">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>LOGIN</span>
+      </a>
+      <a href="#plans" class="btn-primary-top">JOIN NOW</a>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       02. HERO SECTION
+       ===================================================================== -->
+  <section class="hero" id="top">
+    <!-- Interactive kinetic particle canvas -->
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i></i>
+        <span>बाघ · SHAMPURA MAIN RD · BENGALURU 45</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="glow-gradient">FORGE YOUR</span><br>
+        <span class="tiger-text">LEGACY.</span>
+      </h1>
+
+      <p class="hero-tagline">
+        The tiger room of Shampura. Heavy cast iron, precision biomechanics, cardio, morning &amp; evening batches — 
+        <strong>fees on the board, not under the table.</strong>
+      </p>
+
+      <div class="hero-actions">
+        <a href="#plans" class="btn-hero-primary">
+          EXPLORE PLANS — FROM ₹500/MO
+        </a>
+        <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20know%20more%20about%20AM-Tippu%20Fitness%2C%20Shampura%20Main%20Road." target="_blank" rel="noopener" class="btn-hero-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.5-.3-3 .8.8-2.9-.3-.5A8 8 0 0 1 12 4zm-3.1 4.2c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 8.7c-.2-.4-.4-.4-.6-.4z"/></svg>
+          TALK TO COACH ON WHATSAPP
+        </a>
+      </div>
+
+      <!-- Live metrics strip -->
+      <div class="hero-kpis">
+        <div class="kpi-card">
+          <div class="kpi-val">₹292<span class="amber-unit">/MO</span></div>
+          <div class="kpi-lbl">STARTING RATE · HONEST BOARD</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">4.7<span class="amber-unit">★</span></div>
+          <div class="kpi-lbl">300+ VERIFIED ATHLETES</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">2<span class="amber-unit"> BATCHES</span></div>
+          <div class="kpi-lbl">6–11 AM &amp; 6–11 PM (MON–SAT)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">40<span class="amber-unit"> KG</span></div>
+          <div class="kpi-lbl">SOLID IRON DUMBBELL VAULT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       03. SECTION 01: TRANSPARENT PRICING & FEE BOARD
+       ===================================================================== -->
+  <section class="sec-wrap" id="plans">
+    <div class="sec-header">
+      <div class="sec-tag">01 / TRANSPARENT FEES</div>
+      <h2 class="sec-title">Pick Your Commitment</h2>
+      <p class="sec-sub">Fees on the board, not negotiated at the counter. Full gym floor access, morning &amp; evening batches, zero admission fees.</p>
+    </div>
+
+    <div class="plans-grid">
+      <!-- 1 Month -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-duration">1 MONTH</div>
+          <div class="plan-highlight">TRY US OUT · UPGRADE ANY TIME</div>
+          <div class="plan-pricing">
+            <div class="plan-price-num">₹500</div>
+            <div class="plan-price-rate">₹500 / month effective</div>
+          </div>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full floor &amp; weights access</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Both morning &amp; evening batches</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Cardio corner &amp; cycles</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Zero admission charge</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20join%20AM-Tippu%20Fitness%20on%20the%201%20month%20plan%20(%E2%82%B9500).%20Please%20share%20the%20details." target="_blank" rel="noopener" class="btn-plan-wa">
+          JOIN — 1 MONTH
+        </a>
+      </div>
+
+      <!-- 3 Months -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-duration">3 MONTHS</div>
+          <div class="plan-highlight">SAVE ₹300 VS PAYING MONTHLY</div>
+          <div class="plan-pricing">
+            <div class="plan-price-num">₹1,200</div>
+            <div class="plan-price-rate">₹400 / month effective</div>
+          </div>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full floor &amp; weights access</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Consistent 90-day progress</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Form correction guidance</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Counter supplements pricing</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20join%20AM-Tippu%20Fitness%20on%20the%203%20months%20plan%20(%E2%82%B91%2C200).%20Please%20share%20the%20details." target="_blank" rel="noopener" class="btn-plan-wa">
+          JOIN — 3 MONTHS
+        </a>
+      </div>
+
+      <!-- 6 Months -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-duration">6 MONTHS</div>
+          <div class="plan-highlight">SAVE ₹800 VS PAYING MONTHLY</div>
+          <div class="plan-pricing">
+            <div class="plan-price-num">₹2,200</div>
+            <div class="plan-price-rate">₹367 / month effective</div>
+          </div>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Complete body transformation</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Both morning &amp; evening batches</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Progressive overload coaching</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> High value long-term discipline</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20join%20AM-Tippu%20Fitness%20on%20the%206%20months%20plan%20(%E2%82%B92%2C200).%20Please%20share%20the%20details." target="_blank" rel="noopener" class="btn-plan-wa">
+          JOIN — 6 MONTHS
+        </a>
+      </div>
+
+      <!-- 12 Months VIP (Featured) -->
+      <div class="plan-card featured">
+        <div class="plan-badge">BEST ROI · ₹2,500 SAVED</div>
+        <div>
+          <div class="plan-duration">12 MONTHS</div>
+          <div class="plan-highlight">UNDER ₹10 A DAY · BEST VALUE</div>
+          <div class="plan-pricing">
+            <div class="plan-price-num">₹3,500</div>
+            <div class="plan-price-rate">₹292 / month effective</div>
+          </div>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full 365-day Tiger Room access</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Unrestricted batch flexibility</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Year-round coach support</li>
+            <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Lowest monthly rate in Shampura</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20join%20AM-Tippu%20Fitness%20on%20the%2012%20months%20plan%20(%E2%82%B93%2C500).%20Please%20share%20the%20details." target="_blank" rel="noopener" class="btn-plan-wa">
+          JOIN — 12 MONTHS VIP
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       04. SECTION 02: THE VAULT — EQUIPMENT & SPECIFICATIONS
+       ===================================================================== -->
+  <section class="sec-wrap" id="vault">
+    <div class="sec-header">
+      <div class="sec-tag">02 / THE VAULT</div>
+      <h2 class="sec-title">The Room, Listed</h2>
+      <p class="sec-sub">Engineered for serious lifting. Heavy knurled iron, plate-loaded machines, cardio engines, and counter supplements.</p>
+    </div>
+
+    <div class="vault-grid">
+      <div class="vault-card">
+        <div class="vault-num">01 / DUMBBELL VAULT</div>
+        <h3 class="vault-title">Heavy Iron Pairs up to 40 KG</h3>
+        <p class="vault-desc">Solid cast iron dumbbells in pairs from 2.5kg to 40kg. Knurled handles for heavy flat, incline, and overhead presses.</p>
+        <div class="vault-spec-pill">MAX DUMBBELL: 40 KG EACH</div>
+      </div>
+
+      <div class="vault-card">
+        <div class="vault-num">02 / OLYMPIC PLATFORM</div>
+        <h3 class="vault-title">Squat Cages &amp; Deadlift Zone</h3>
+        <p class="vault-desc">High-density shock-absorbing rubber flooring. 20kg Olympic barbells, collars, power cages, and cast iron plates.</p>
+        <div class="vault-spec-pill">BARBELLS: 20 KG OLYMPIC</div>
+      </div>
+
+      <div class="vault-card">
+        <div class="vault-num">03 / CABLE MATRIX</div>
+        <h3 class="vault-title">Dual Pulleys &amp; Lat Machines</h3>
+        <p class="vault-desc">Smooth cable crossover, seated rows, high lat pulldowns, tricep pushdowns, and cable crossovers with multiple attachments.</p>
+        <div class="vault-spec-pill">WEIGHT STACK: 80 KG+</div>
+      </div>
+
+      <div class="vault-card">
+        <div class="vault-num">04 / MACHINE CIRCUIT</div>
+        <h3 class="vault-title">45° Leg Press &amp; Chest Press</h3>
+        <p class="vault-desc">Pin-loaded and plate-loaded lever machinery designed for strict muscle isolation and controlled eccentrics.</p>
+        <div class="vault-spec-pill">STRICT ISOLATION ANGLE</div>
+      </div>
+
+      <div class="vault-card">
+        <div class="vault-num">05 / CARDIO CORNER</div>
+        <h3 class="vault-title">Treadmills &amp; Spin Cycles</h3>
+        <p class="vault-desc">High-velocity motorized treadmills and spin cycles for cardiovascular conditioning, fat loss, and intense warmups.</p>
+        <div class="vault-spec-pill">CALORIE &amp; HIIT READY</div>
+      </div>
+
+      <div class="vault-card">
+        <div class="vault-num">06 / RECEPTION DESK</div>
+        <h3 class="vault-title">Counter Supplements &amp; Fobs</h3>
+        <p class="vault-desc">Authentic whey protein, Creapure creatine, pre-workouts, chilled water, and RFID key fob access managed at the front counter.</p>
+        <div class="vault-spec-pill">GENUINE NUTRITION</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       05. SECTION 03: THE COACHES (AZHAR & TABREZ)
+       ===================================================================== -->
+  <section class="sec-wrap" id="coaches">
+    <div class="sec-header">
+      <div class="sec-tag">03 / LEADERSHIP</div>
+      <h2 class="sec-title">Two Names To Know</h2>
+      <p class="sec-sub">No absentee management. Both coaches are present on the floor every single day to guide your lifts.</p>
+    </div>
+
+    <div class="coaches-grid">
+      <!-- Azhar Mohammed -->
+      <div class="coach-card">
+        <div>
+          <div class="coach-top">
+            <div class="coach-monogram">AM</div>
+            <div class="coach-role-pill">OWNER &amp; HEAD COACH</div>
+          </div>
+          <h3 class="coach-name">Azhar Mohammed</h3>
+          <p class="coach-quote">"Form first — master the lift, then add the iron."</p>
+          <p class="coach-bio">
+            Founder of AM-Tippu Fitness. Sets the lifting standards in Shampura. Specializes in biomechanics, muscle hypertrophy, progressive overload, and personalized 1-on-1 diet roadmaps.
+          </p>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi%20Coach%20Azhar!%20I%20want%20to%20know%20more%20about%20personal%20training%20at%20AM-Tippu%20Fitness." target="_blank" rel="noopener" class="btn-coach-wa">
+          CONSULT COACH AZHAR ON WHATSAPP
+        </a>
+      </div>
+
+      <!-- Syed Tabrez -->
+      <div class="coach-card">
+        <div>
+          <div class="coach-top">
+            <div class="coach-monogram">ST</div>
+            <div class="coach-role-pill">IN-CHARGE · RUNS THE FLOOR</div>
+          </div>
+          <h3 class="coach-name">Syed Tabrez</h3>
+          <p class="coach-quote">"Discipline on the floor creates results outside."</p>
+          <p class="coach-bio">
+            Oversees daily operations and gym atmosphere. Present across both morning (6–11 AM) and evening (6–11 PM) batches. Primary contact for spotting, equipment setup, and member onboarding.
+          </p>
+        </div>
+        <a href="https://wa.me/919591739969?text=Hi%20Coach%20Tabrez!%20I%20want%20to%20ask%20about%20joining%20the%20batches%20at%20AM-Tippu%20Fitness." target="_blank" rel="noopener" class="btn-coach-wa">
+          CONSULT COACH TABREZ ON WHATSAPP
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       06. SECTION 04: TIMINGS & LIVE DAYLIGHT TRACKER
+       ===================================================================== -->
+  <section class="sec-wrap" id="hours">
+    <div class="sec-header">
+      <div class="sec-tag">04 / TIMINGS — LIVE</div>
+      <h2 class="sec-title">When We're Open</h2>
+      <p class="sec-sub">Dual high-energy batches designed around your workday. Mon–Sat. Sunday closed for deep cleaning and recovery.</p>
+    </div>
+
+    <div class="hours-card">
+      <div class="batches-row">
+        <div class="batch-box" id="morningBatchBox">
+          <div class="batch-type">
+            <span>MORNING BATCH</span>
+            <span id="morningStatusBadge"></span>
+          </div>
+          <div class="batch-time">6:00 AM – 11:00 AM</div>
+          <div class="batch-desc">Ideal for early risers, fast morning lifts, and cardio conditioning.</div>
+        </div>
+
+        <div class="batch-box" id="eveningBatchBox">
+          <div class="batch-type">
+            <span>EVENING BATCH</span>
+            <span id="eveningStatusBadge"></span>
+          </div>
+          <div class="batch-time">6:00 PM – 11:00 PM</div>
+          <div class="batch-desc">High energy evening rush, heavy barbell sessions, and post-work grinds.</div>
+        </div>
+      </div>
+
+      <!-- 24h Visual Daylight Bar -->
+      <div class="timeline-wrap">
+        <div class="timeline-bar">
+          <div class="timeline-span" style="left: 25%; width: 20.8%;"></div>
+          <div class="timeline-span" style="left: 75%; width: 20.8%;"></div>
+        </div>
+        <div class="timeline-hours">
+          <span>12 AM</span>
+          <span>6 AM (OPEN)</span>
+          <span>11 AM (CLOSE)</span>
+          <span>6 PM (OPEN)</span>
+          <span>11 PM (CLOSE)</span>
+          <span>12 AM</span>
+        </div>
+      </div>
+
+      <div class="sunday-notice">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span><strong>SUNDAY CLOSED:</strong> Floor maintenance &amp; heavy equipment sanitization. Re-opens Monday 6:00 AM sharp.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       07. SECTION 05: ASIAN-INDIAN BMI PRECISION SUITE
+       ===================================================================== -->
+  <section class="sec-wrap" id="bmi">
+    <div class="sec-header">
+      <div class="sec-tag">05 / FREE TOOL</div>
+      <h2 class="sec-title">Know Your Start Baseline</h2>
+      <p class="sec-sub">Calibrated strictly for South Asian clinical medical guidelines. Indian body composition cutoffs are stricter than Western charts to guard against visceral fat.</p>
+    </div>
+
+    <div class="bmi-card">
+      <div>
+        <div class="bmi-form-group">
+          <div class="bmi-label">
+            <span>HEIGHT</span>
+            <span class="bmi-val-readout" id="heightReadout">170 CM</span>
+          </div>
+          <input type="range" min="120" max="220" value="170" class="bmi-slider" id="bmiHeight">
+        </div>
+
+        <div class="bmi-form-group">
+          <div class="bmi-label">
+            <span>WEIGHT</span>
+            <span class="bmi-val-readout" id="weightReadout">70 KG</span>
+          </div>
+          <input type="range" min="30" max="160" value="70" class="bmi-slider" id="bmiWeight">
+        </div>
+
+        <p class="bmi-disclaimer">
+          <strong>Asian-Indian Medical Cutoffs:</strong><br>
+          Underweight: &lt; 18.5 • Healthy Range: 18.5 – 22.9<br>
+          Overweight: 23.0 – 27.4 • Obese / High Risk: &ge; 27.5
+        </p>
+      </div>
+
+      <div class="bmi-results-box">
+        <div class="bmi-score-big" id="bmiNumber">24.2</div>
+        <div class="bmi-category-badge warning" id="bmiPill">OVERWEIGHT (ASIAN-INDIAN)</div>
+        <p class="bmi-disclaimer" id="bmiAdvice">
+          Your number is your starting baseline. Coach Azhar and Tabrez will tailor your lifting split and cardio volume accordingly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       08. SECTION 06: VERIFIED REVIEWS
+       ===================================================================== -->
+  <section class="sec-wrap" id="reviews">
+    <div class="sec-header">
+      <div class="sec-tag">06 / FROM THE FLOOR</div>
+      <h2 class="sec-title">Members Talk</h2>
+      <p class="sec-sub">Verified feedback from real lifters at Shampura Main Road. 4.7 ★★★★★ across 300+ athletes.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Best gym on Shampura Road. The atmosphere is serious and the fee they tell you is the fee you pay — no surprises or fake admission fees."</p>
+        <div class="review-author">Mohammed Faisal · Regular Member</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Both Azhar sir and Tabrez sir are genuinely helpful with lifting technique. The dumbbells go up to 40kg which is rare for gyms around here."</p>
+        <div class="review-author">Manjunath S. · Strength Lifter</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I joined on the annual plan (₹3,500). That's under ₹10 per day for proper equipment and two batches. Best investment in Bengaluru."</p>
+        <div class="review-author">Imran P. · 12-Month Member</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       09. SECTION 07: LOCATION & DIRECTIONS
+       ===================================================================== -->
+  <section class="sec-wrap" id="location">
+    <div class="sec-header">
+      <div class="sec-tag">07 / LOCATION</div>
+      <h2 class="sec-title">Find The Tiger Room</h2>
+      <p class="sec-sub">Located prominently on Shampura Main Road, Coffee Board Colony, Kaval Bairasandra.</p>
+    </div>
+
+    <div class="location-box">
+      <div class="location-info">
+        <div class="loc-addr">
+          <strong>AM-TIPPU FITNESS</strong>
+          119, Shampura Main Rd, Coffee Board Colony,<br>
+          Kaval Bairasandra, Bengaluru, Karnataka 560045<br>
+          <span style="color:var(--ink-secondary); font-size:13px; margin-top:6px; display:inline-block;">Landmark: Opposite Coffee Board Colony Junction</span>
+        </div>
+
+        <div class="loc-btns">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=119%2C%20Shampura%20Main%20Rd%2C%20Coffee%20Board%20Colony%2C%20Kaval%20Bairasandra%2C%20Bengaluru%2C%20Karnataka%20560045" target="_blank" rel="noopener" class="btn-dir">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+            GET DIRECTIONS
+          </a>
+          <a href="tel:+919591739969" class="btn-call">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            CALL US
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <iframe 
+          class="map-frame"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.417036733979!2d77.60805177579471!3d13.009088913959187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16e7883e6015%3A0xe54e2f89f2136e05!2sAM-Tippu%20Fitness!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       10. FOOTER & PORTAL BRIDGES
+       ===================================================================== -->
+  <footer>
+    <div class="footer-brand">AM<span style="color:var(--amber);">-</span>TIPPU FITNESS · SHAMPURA</div>
+    <p class="footer-copy">© 2026 AM-Tippu Fitness. All rights reserved. Managed by Coach Azhar Mohammed &amp; Syed Tabrez.</p>
+    
+    <div class="footer-portals">
+      <a href="login.html" class="footer-portal-link">MEMBER &amp; ATHLETE LOGIN</a>
+      <a href="register.html" class="footer-portal-link">NEW MEMBER REGISTRATION</a>
+      <a href="admin_login.html" class="footer-portal-link">STAFF &amp; ADMIN OPS</a>
+    </div>
+  </footer>
+
+  <!-- Persistent floating WhatsApp badge -->
+  <a href="https://wa.me/919591739969?text=Hi!%20I%20want%20to%20know%20more%20about%20AM-Tippu%20Fitness%2C%20Shampura%20Main%20Road." target="_blank" rel="noopener" id="waFloat">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.5-.3-3 .8.8-2.9-.3-.5A8 8 0 0 1 12 4zm-3.1 4.2c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.2.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 8.7c-.2-.4-.4-.4-.6-.4z"/></svg>
+    <span>WHATSAPP US</span>
+  </a>
+
+  <!-- =====================================================================
+       11. JAVASCRIPT: PARTICLE KINETICS, TIMINGS & BMI SUITE
+       ===================================================================== -->
+  <script>
+    // --- TOPBAR SCROLL WATCHER ---
+    window.addEventListener('scroll', () => {
+      const topbar = document.getElementById('topbar');
+      if (window.scrollY > 40) {
+        topbar.classList.add('scrolled');
+      } else {
+        topbar.classList.remove('scrolled');
+      }
+    });
+
+    // --- REAL-TIME LIVE BATCH LOGIC ---
+    function updateLiveTimings() {
+      const now = new Date();
+      const day = now.getDay(); // 0 = Sunday
+      const hour = now.getHours();
+      const min = now.getMinutes();
+      const timeDecimal = hour + min / 60;
+
+      const pillText = document.getElementById('pillText');
+      const morningBox = document.getElementById('morningBatchBox');
+      const eveningBox = document.getElementById('eveningBatchBox');
+      const morningBadge = document.getElementById('morningStatusBadge');
+      const eveningBadge = document.getElementById('eveningStatusBadge');
+
+      if (day === 0) {
+        pillText.textContent = 'SUNDAY · CLOSED FOR RECOVERY';
+        morningBadge.textContent = 'CLOSED';
+        eveningBadge.textContent = 'CLOSED';
+        return;
+      }
+
+      // Morning Batch: 6:00 - 11:00
+      // Evening Batch: 18:00 - 23:00
+      if (timeDecimal >= 6.0 && timeDecimal < 11.0) {
+        pillText.textContent = 'OPEN NOW · MORNING BATCH ACTIVE (UNTIL 11:00 AM)';
+        morningBox.classList.add('active');
+        eveningBox.classList.remove('active');
+        morningBadge.textContent = '● ACTIVE NOW';
+        eveningBadge.textContent = 'OPENS 6:00 PM';
+      } else if (timeDecimal >= 18.0 && timeDecimal < 23.0) {
+        pillText.textContent = 'OPEN NOW · EVENING BATCH ACTIVE (UNTIL 11:00 PM)';
+        eveningBox.classList.add('active');
+        morningBox.classList.remove('active');
+        eveningBadge.textContent = '● ACTIVE NOW';
+        morningBadge.textContent = 'OPENS 6:00 AM';
+      } else if (timeDecimal < 6.0) {
+        pillText.textContent = 'OPENS AT 6:00 AM TODAY · MORNING BATCH';
+        morningBadge.textContent = 'OPENS 6:00 AM';
+        eveningBadge.textContent = 'OPENS 6:00 PM';
+      } else if (timeDecimal >= 11.0 && timeDecimal < 18.0) {
+        pillText.textContent = 'OPENS AT 6:00 PM TODAY · EVENING BATCH';
+        morningBadge.textContent = 'CLOSED (FINISHED)';
+        eveningBadge.textContent = 'OPENS 6:00 PM';
+      } else {
+        pillText.textContent = 'CLOSED FOR THE NIGHT · BACK AT 6:00 AM';
+        morningBadge.textContent = 'OPENS TOMORROW 6 AM';
+        eveningBadge.textContent = 'CLOSED';
+      }
+    }
+    updateLiveTimings();
+    setInterval(updateLiveTimings, 30000);
+
+    // --- ASIAN-INDIAN BMI CALCULATOR ---
+    const heightSlider = document.getElementById('bmiHeight');
+    const weightSlider = document.getElementById('bmiWeight');
+    const heightReadout = document.getElementById('heightReadout');
+    const weightReadout = document.getElementById('weightReadout');
+    const bmiNumber = document.getElementById('bmiNumber');
+    const bmiPill = document.getElementById('bmiPill');
+    const bmiAdvice = document.getElementById('bmiAdvice');
+
+    function calculateBmi() {
+      const h = parseFloat(heightSlider.value);
+      const w = parseFloat(weightSlider.value);
+      heightReadout.textContent = h + ' CM';
+      weightReadout.textContent = w + ' KG';
+
+      const hM = h / 100;
+      const bmi = (w / (hM * hM)).toFixed(1);
+      bmiNumber.textContent = bmi;
+
+      // Asian-Indian WHO Guidelines:
+      // < 18.5: Underweight
+      // 18.5 - 22.9: Normal Range
+      // 23.0 - 27.4: Overweight
+      // >= 27.5: Obese
+      if (bmi < 18.5) {
+        bmiPill.className = 'bmi-category-badge warning';
+        bmiPill.textContent = 'UNDERWEIGHT (ASIAN-INDIAN)';
+        bmiAdvice.textContent = 'Focus on a caloric surplus with progressive heavy compound lifts to pack on lean muscular density.';
+      } else if (bmi <= 22.9) {
+        bmiPill.className = 'bmi-category-badge normal';
+        bmiPill.textContent = 'HEALTHY RANGE (ASIAN-INDIAN)';
+        bmiAdvice.textContent = 'Prime physiological baseline. Focus on progressive overload across the 40kg dumbbell vault and barbell squats.';
+      } else if (bmi <= 27.4) {
+        bmiPill.className = 'bmi-category-badge warning';
+        bmiPill.textContent = 'OVERWEIGHT (ASIAN-INDIAN)';
+        bmiAdvice.textContent = 'Slight surplus in visceral baseline. Balanced strength training plus post-workout cardio on the treadmills will lean you out.';
+      } else {
+        bmiPill.className = 'bmi-category-badge alert';
+        bmiPill.textContent = 'HIGH VISCERAL RISK (ASIAN-INDIAN)';
+        bmiAdvice.textContent = 'High health risk under Asian-Indian standards. Coach Azhar will structure a strict deficit nutrition protocol with strength circuits.';
+      }
+    }
+    heightSlider.addEventListener('input', calculateBmi);
+    weightSlider.addEventListener('input', calculateBmi);
+    calculateBmi();
+
+    // --- INTERACTIVE KINETIC PARTICLES (HERO CANVAS) ---
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    let mouse = { x: -1000, y: -1000, radius: 150 };
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 2 + 1;
+        this.baseAlpha = Math.random() * 0.5 + 0.2;
+        this.color = Math.random() > 0.3 ? '255, 154, 46' : '255, 94, 30';
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+
+        // Mouse repelling interaction
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 4;
+          this.y -= (dy / dist) * force * 4;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.baseAlpha})`;
+        ctx.shadowColor = `rgba(${this.color}, 0.8)`;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    const particleCount = Math.min(Math.floor(window.innerWidth / 18), 70);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Connect near particles
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 154, 46, ${0.15 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>

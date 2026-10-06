@@ -48,6 +48,13 @@ export default function WorkoutsPage() {
     setMounted(true);
     const q = localStorage.getItem('todaysQueue');
     if (q) setTodaysQueue(JSON.parse(q));
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('tab') === 'queue') {
+        setActiveTab('queue');
+      }
+    }
   }, []);
   
   const addToQueueWithConfig = (ex: Exercise, sets: number, reps: string, e?: React.MouseEvent) => {

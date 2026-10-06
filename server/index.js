@@ -23,6 +23,11 @@ app.use((req, res, next) => {
     next();
 });
 
+// Health check endpoints for production deployments
+app.get(['/health', '/api/health'], (req, res) => {
+    res.json({ status: 'ok', service: 'AM-Tippu Fitness API', timestamp: new Date().toISOString() });
+});
+
 // Mount routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);

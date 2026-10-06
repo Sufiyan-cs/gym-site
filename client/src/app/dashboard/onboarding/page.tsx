@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import SelfieModal from '@/components/SelfieModal';
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -9,8 +10,10 @@ export default function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 7;
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSelfieModalOpen, setIsSelfieModalOpen] = useState(false);
 
   const [formData, setFormData] = useState({
+    avatarUrl: '',
     gender: '',
     age: 18,
     height: 170,
@@ -99,9 +102,10 @@ export default function OnboardingPage() {
         weight: formData.currentWeight.toString(),
         height: formData.height.toString(),
         goal: formData.primaryFocus || 'Fitness',
-          targetWeight: formData.targetWeight.toString(),
-          preferredSlot: formData.preferredSlot,
-          customSplit: formData.customWeeklySplit
+        targetWeight: formData.targetWeight.toString(),
+        preferredSlot: formData.preferredSlot,
+        customSplit: formData.customWeeklySplit,
+        avatarUrl: formData.avatarUrl,
       };
       
       const res = await fetch('/api/auth/onboarding', {
@@ -200,6 +204,42 @@ export default function OnboardingPage() {
                 </span>
               </div>
               <div className="bg-surface-container-low rounded-2xl p-4 border border-white/5 space-y-4">
+                {/* ATHLETE PHOTO & LIVE SELFIE SELECTION */}
+                <div className="bg-surface-container rounded-2xl p-3.5 border border-white/5 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div 
+                      onClick={() => setIsSelfieModalOpen(true)}
+                      className="relative w-14 h-14 rounded-full p-[2px] bg-gradient-to-tr from-primary to-surface-card shadow-[0_0_16px_rgba(255,154,46,0.3)] cursor-pointer hover:scale-105 transition-transform shrink-0"
+                    >
+                      {formData.avatarUrl ? (
+                        <img src={formData.avatarUrl} alt="Athlete Selfie" className="w-full h-full rounded-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-surface-container-high flex items-center justify-center text-outline">
+                          <span className="material-symbols-outlined text-[24px] text-primary">add_a_photo</span>
+                        </div>
+                      )}
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary text-black flex items-center justify-center shadow-md">
+                        <span className="material-symbols-outlined text-[12px]">camera_alt</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xs font-bold text-white">Athlete Photo / Selfie</h4>
+                      <p className="text-[10px] text-outline mt-0.5">
+                        {formData.avatarUrl ? "✓ Photo set! Tap to change" : "Take live selfie or upload photo"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsSelfieModalOpen(true)}
+                    className="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold hover:bg-primary hover:text-black transition-all shrink-0 active:scale-95"
+                  >
+                    {formData.avatarUrl ? "Change" : "+ Add"}
+                  </button>
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Biological Profile</label>
                   <div className="grid grid-cols-3 gap-2">
@@ -643,6 +683,13 @@ export default function OnboardingPage() {
             </div>
           </div>
         </div>
+
+        <SelfieModal
+          isOpen={isSelfieModalOpen}
+          onClose={() => setIsSelfieModalOpen(false)}
+          onPhotoSelected={(url) => updateFormData('avatarUrl', url)}
+          currentAvatar={formData.avatarUrl}
+        />
       </div>
     </div>
   );

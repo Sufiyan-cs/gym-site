@@ -3,10 +3,27 @@ const router = express.Router();
 const { query, queryOne, run } = require('../db/connection');
 const { authenticateToken, isAdmin } = require('../middleware/auth');
 
-// All routes here require admin access
-router.use(authenticateToken, isAdmin);
+// Community directory accessible to all authenticated members
+router.get('/community', authenticateToken, (req, res) => {
+    try {
+        const members = query(`
+            SELECT u.id, u.name, u.role, u.avatar_url, u.goal, u.weight, u.height,
+                   u.preferred_slot as preferredSlot, u.custom_split as customSplit,
+                   u.social_instagram, u.social_youtube, u.social_links, u.joined_at,
+                   (SELECT COUNT(*) FROM check_ins c WHERE c.user_id = u.id AND c.check_out_time IS NULL) as is_on_floor
+            FROM users u
+            WHERE u.is_active = 1
+            ORDER BY is_on_floor DESC, u.name ASC
+        `);
+        res.json(members);
+    } catch (err) {
+        console.error('Community directory error:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
-router.get('/', (req, res) => {
+// Admin management routes require admin access
+router.get('/', authenticateToken, isAdmin, (req, res) => {
     try {
         const members = query(`
             SELECT u.id, u.name, u.phone, u.role, u.is_active, u.joined_at,

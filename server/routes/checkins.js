@@ -58,13 +58,16 @@ router.post('/out', authenticateToken, (req, res) => {
     }
 });
 
-router.get('/active', authenticateToken, isAdmin, (req, res) => {
+router.get('/active', authenticateToken, (req, res) => {
     try {
         const active = query(`
-            SELECT c.id, c.check_in_time, u.name, u.avatar_url 
+            SELECT c.id as checkin_id, c.check_in_time, u.id, u.name, u.avatar_url,
+                   u.goal, u.preferred_slot as preferredSlot, u.social_instagram, u.social_youtube,
+                   u.role, u.custom_split as customSplit
             FROM check_ins c 
             JOIN users u ON c.user_id = u.id 
             WHERE c.check_out_time IS NULL
+            ORDER BY c.check_in_time DESC
         `);
         res.json(active);
     } catch (err) {
