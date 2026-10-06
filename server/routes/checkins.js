@@ -3,7 +3,7 @@ const router = express.Router();
 const { query, queryOne, run } = require('../db/connection');
 const { authenticateToken, isAdmin } = require('../middleware/auth');
 
-router.post('/in', authenticateToken, (req, res) => {
+router.post(['/in', '/', '/checkin'], authenticateToken, (req, res) => {
     try {
         const existing = queryOne('SELECT id FROM check_ins WHERE user_id = ? AND check_out_time IS NULL', [req.user.id]);
         if (existing) {
@@ -18,7 +18,7 @@ router.post('/in', authenticateToken, (req, res) => {
     }
 });
 
-router.post('/out', authenticateToken, (req, res) => {
+router.post(['/out', '/checkout'], authenticateToken, (req, res) => {
     try {
         const active = queryOne('SELECT id, check_in_time FROM check_ins WHERE user_id = ? AND check_out_time IS NULL', [req.user.id]);
         if (!active) {

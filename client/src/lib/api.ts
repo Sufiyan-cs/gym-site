@@ -45,9 +45,9 @@ export const api = {
   createSubscription: (data: any) => fetchWithAuth('/subscriptions', { method: 'POST', body: JSON.stringify(data) }),
   
   // Check-ins
-  checkIn: () => fetchWithAuth('/checkin', { method: 'POST' }),
-  checkOut: () => fetchWithAuth('/checkin/checkout', { method: 'POST' }),
-  getLeaderboard: () => fetchWithAuth('/checkin/leaderboard'),
+  checkIn: () => fetchWithAuth('/checkins/in', { method: 'POST' }),
+  checkOut: () => fetchWithAuth('/checkins/out', { method: 'POST' }),
+  getLeaderboard: () => fetchWithAuth('/checkins/leaderboard'),
   
   // Workouts
   getExercises: () => fetchWithAuth('/workouts/exercises'),

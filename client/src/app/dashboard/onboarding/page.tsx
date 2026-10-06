@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
 import SelfieModal from '@/components/SelfieModal';
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { updateUser } = useAuth();
 
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 7;
@@ -101,11 +103,12 @@ export default function OnboardingPage() {
       const payload = {
         weight: formData.currentWeight.toString(),
         height: formData.height.toString(),
-        goal: formData.primaryFocus || 'Fitness',
+        goal: formData.primaryFocus || 'Clean Hypertrophy',
         targetWeight: formData.targetWeight.toString(),
         preferredSlot: formData.preferredSlot,
         customSplit: formData.customWeeklySplit,
         avatarUrl: formData.avatarUrl,
+        avatar_url: formData.avatarUrl,
       };
       
       const res = await fetch('/api/auth/onboarding', {
@@ -117,11 +120,22 @@ export default function OnboardingPage() {
         body: JSON.stringify(payload),
       });
       if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (data.user) {
+          updateUser(data.user);
+        } else {
+          updateUser(payload);
+        }
+        localStorage.setItem('customSplit', JSON.stringify(formData.customWeeklySplit));
+        window.dispatchEvent(new Event('splitUpdated'));
         window.location.href = '/dashboard';
       } else {
         const errorData = await res.json().catch(() => ({}));
         console.error('Failed to submit onboarding:', errorData);
-        alert('Failed to submit onboarding. Please try again.');
+        // Fallback local update
+        updateUser(payload);
+        localStorage.setItem('customSplit', JSON.stringify(formData.customWeeklySplit));
+        window.location.href = '/dashboard';
       }
     } catch (e) {
       console.error(e);

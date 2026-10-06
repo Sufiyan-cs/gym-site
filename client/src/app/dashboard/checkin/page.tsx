@@ -48,15 +48,45 @@ export default function CheckinPage() {
         api.getCommunityMembers(),
       ]);
 
+      let floorList: MemberItem[] = [];
       if (floorRes.status === "fulfilled" && Array.isArray(floorRes.value)) {
-        setFloorMembers(floorRes.value);
-        if (user?.id) {
-          setIsCheckedIn(floorRes.value.some((m: any) => m.id === user.id));
+        floorList = floorRes.value;
+      }
+
+      let allList: MemberItem[] = [];
+      if (allRes.status === "fulfilled" && Array.isArray(allRes.value)) {
+        allList = allRes.value;
+      }
+
+      // If current athlete is logged in, ensure they are present in allMembers directory
+      if (user) {
+        const currentAthlete: MemberItem = {
+          id: Number(user.id) || 1,
+          name: user.name || "Athlete",
+          avatar_url: user.avatar_url,
+          role: user.role,
+          goal: user.goal || "Clean Hypertrophy",
+          preferredSlot: (user as any).preferredSlot || "Morning",
+          social_instagram: (user as any).social_instagram,
+          social_youtube: (user as any).social_youtube,
+          is_on_floor: isCheckedIn ? 1 : 0,
+        };
+
+        if (!allList.some((m) => m.id === currentAthlete.id || m.name === currentAthlete.name)) {
+          allList = [currentAthlete, ...allList];
+        }
+
+        // If user is checked in on floor, ensure they appear in floorList
+        if (isCheckedIn && !floorList.some((m) => m.id === currentAthlete.id)) {
+          floorList = [{ ...currentAthlete, is_on_floor: 1 }, ...floorList];
         }
       }
 
-      if (allRes.status === "fulfilled" && Array.isArray(allRes.value)) {
-        setAllMembers(allRes.value);
+      setFloorMembers(floorList);
+      setAllMembers(allList);
+
+      if (user?.id) {
+        setIsCheckedIn(floorList.some((m) => m.id === Number(user.id) || m.id === (user.id as any)));
       }
     } catch (e) {
       console.error("Failed to fetch members:", e);
@@ -162,10 +192,10 @@ export default function CheckinPage() {
             className="w-9 h-9 rounded-full ring-1 ring-white/10 overflow-hidden bg-surface-container-high flex items-center justify-center active:scale-95 transition-transform"
             title="View Profile"
           >
-            {user?.avatar_url ? (
+            {user?.avatar_url || (user as any)?.avatar ? (
               <img
                 className="w-full h-full object-cover"
-                src={user.avatar_url}
+                src={user?.avatar_url || (user as any)?.avatar}
                 alt="Profile"
               />
             ) : (
@@ -226,8 +256,8 @@ export default function CheckinPage() {
           <div className="relative flex items-center justify-between pb-5 border-b border-white/[0.06]">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-surface-container-high ring-2 ring-primary/40 overflow-hidden flex items-center justify-center text-primary font-bold text-sm shadow-md">
-                {user?.avatar_url ? (
-                  <img src={user.avatar_url} alt={user.name} className="w-full h-full object-cover" />
+                {user?.avatar_url || (user as any)?.avatar ? (
+                  <img src={user?.avatar_url || (user as any)?.avatar} alt={user?.name || "Athlete"} className="w-full h-full object-cover" />
                 ) : (
                   getInitials(user?.name || "Athlete")
                 )}

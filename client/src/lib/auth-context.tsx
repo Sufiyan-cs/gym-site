@@ -42,14 +42,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const initAuth = async () => {
       const storedToken = localStorage.getItem('token');
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try { setUser(JSON.parse(storedUser)); } catch (e) {}
+      }
       if (storedToken) {
         setToken(storedToken);
         try {
           const userData = await api.getMe();
-          setUser(userData.user || userData);
+          const freshUser = userData.user || userData;
+          setUser(freshUser);
+          localStorage.setItem('user', JSON.stringify(freshUser));
         } catch (error) {
           console.error('Failed to fetch user', error);
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
           setToken(null);
         }
       }
@@ -61,24 +68,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = (newToken: string, newUser: User) => {
     localStorage.setItem('token', newToken);
+    localStorage.setItem('user', JSON.stringify(newUser));
     setToken(newToken);
     setUser(newUser);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setToken(null);
     setUser(null);
   };
 
   const updateUser = (updated: Partial<User>) => {
-    setUser(prev => prev ? { ...prev, ...updated } : null);
+    setUser(prev => {
+      if (!prev) return null;
+      const merged = { ...prev, ...updated };
+      localStorage.setItem('user', JSON.stringify(merged));
+      return merged;
+    });
   };
 
   const refreshUser = async () => {
     try {
       const userData = await api.getMe();
-      if (userData?.user) setUser(userData.user);
+      const freshUser = userData.user || userData;
+      if (freshUser) {
+        setUser(freshUser);
+        localStorage.setItem('user', JSON.stringify(freshUser));
+      }
     } catch (e) {
       console.error('Failed to refresh user', e);
     }

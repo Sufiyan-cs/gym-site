@@ -13,6 +13,9 @@ async function initialize() {
     exec(schema);
 
     // ALTER TABLE to add new columns if they don't exist
+    try { run("ALTER TABLE users ADD COLUMN avatar_url TEXT;"); } catch (e) {}
+    try { run("ALTER TABLE users ADD COLUMN social_instagram TEXT;"); } catch (e) {}
+    try { run("ALTER TABLE users ADD COLUMN social_youtube TEXT;"); } catch (e) {}
     try { run("ALTER TABLE users ADD COLUMN weight TEXT;"); } catch (e) {}
     try { run("ALTER TABLE users ADD COLUMN height TEXT;"); } catch (e) {}
     try { run("ALTER TABLE users ADD COLUMN goal TEXT;"); } catch (e) {}
@@ -73,7 +76,11 @@ async function initialize() {
     console.log('Database initialization complete.');
 }
 
-initialize().catch(err => {
-    console.error(err);
-    process.exit(1);
-});
+module.exports = { initialize };
+
+if (require.main === module) {
+    initialize().catch(err => {
+        console.error(err);
+        process.exit(1);
+    });
+}

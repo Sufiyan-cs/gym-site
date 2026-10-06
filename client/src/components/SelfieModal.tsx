@@ -80,19 +80,20 @@ export default function SelfieModal({
     if (!videoRef.current) return;
     const video = videoRef.current;
     const canvas = document.createElement("canvas");
-    const size = Math.min(video.videoWidth, video.videoHeight) || 400;
-    canvas.width = size;
-    canvas.height = size;
+    const sourceSize = Math.min(video.videoWidth, video.videoHeight) || 400;
+    const targetSize = 360;
+    canvas.width = targetSize;
+    canvas.height = targetSize;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Crop centered square
-    const startX = (video.videoWidth - size) / 2;
-    const startY = (video.videoHeight - size) / 2;
-    ctx.drawImage(video, startX, startY, size, size, 0, 0, size, size);
+    // Crop centered square and scale to optimal avatar size
+    const startX = (video.videoWidth - sourceSize) / 2;
+    const startY = (video.videoHeight - sourceSize) / 2;
+    ctx.drawImage(video, startX, startY, sourceSize, sourceSize, 0, 0, targetSize, targetSize);
 
-    const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
     stopCamera();
     setPreviewUrl(dataUrl);
     setMode("preview");
@@ -107,17 +108,17 @@ export default function SelfieModal({
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        const maxDim = 512;
+        const targetSize = 360;
         let w = img.width;
         let h = img.height;
 
-        // Crop to square
+        // Crop to square and scale
         const minDim = Math.min(w, h);
         const startX = (w - minDim) / 2;
         const startY = (h - minDim) / 2;
 
-        canvas.width = Math.min(minDim, maxDim);
-        canvas.height = Math.min(minDim, maxDim);
+        canvas.width = targetSize;
+        canvas.height = targetSize;
 
         const ctx = canvas.getContext("2d");
         if (ctx) {
@@ -129,10 +130,10 @@ export default function SelfieModal({
             minDim,
             0,
             0,
-            canvas.width,
-            canvas.height
+            targetSize,
+            targetSize
           );
-          const compressed = canvas.toDataURL("image/jpeg", 0.85);
+          const compressed = canvas.toDataURL("image/jpeg", 0.82);
           setPreviewUrl(compressed);
           setMode("preview");
         }

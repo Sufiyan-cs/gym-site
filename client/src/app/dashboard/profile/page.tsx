@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const firstName = userName.split(" ")[0];
   const userAvatar =
     user?.avatar_url ||
+    (user as any)?.avatar ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=141210&color=FF9A2E&size=160&bold=true`;
 
   // Settings State
@@ -181,6 +182,7 @@ export default function ProfilePage() {
         weight: editForm.weight,
         targetWeight: editForm.targetWeight,
         preferredSlot: editForm.preferredSlot,
+        avatar_url: user?.avatar_url || userAvatar,
         social_instagram: editForm.instagram,
         social_youtube: editForm.youtube,
         social_links: {
@@ -693,6 +695,56 @@ export default function ProfilePage() {
           </p>
         </section>
       </main>
+
+      {/* BOTTOM NAVIGATION DOCK */}
+      <nav
+        aria-label="Primary Navigation"
+        className="fixed bottom-0 left-0 right-0 z-40 flex justify-around items-center px-4 py-2 pb-safe max-w-md mx-auto pointer-events-none"
+      >
+        <div className="w-full bg-[#1c1917]/90 backdrop-blur-xl rounded-full shadow-[0px_12px_32px_rgba(255,154,46,0.15)] flex justify-around items-center px-3 py-1.5 pointer-events-auto border border-white/[0.06]">
+          <Link
+            aria-label="Home"
+            href="/dashboard"
+            className="flex flex-col items-center justify-center text-zinc-400 p-2 hover:text-white transition-colors duration-200 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-[23px]">home</span>
+          </Link>
+          <Link
+            aria-label="Workouts"
+            href="/dashboard/workouts"
+            className="flex flex-col items-center justify-center text-zinc-400 p-2 hover:text-white transition-colors duration-200 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-[23px]">fitness_center</span>
+          </Link>
+          <Link
+            aria-label="Check-in"
+            href="/dashboard/checkin"
+            className="flex flex-col items-center justify-center text-zinc-400 p-2 hover:text-white transition-colors duration-200 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-[23px]">qr_code_scanner</span>
+          </Link>
+          <Link
+            aria-label="Progress"
+            href="/dashboard/progress"
+            className="flex flex-col items-center justify-center text-zinc-400 p-2 hover:text-white transition-colors duration-200 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-[23px]">monitoring</span>
+          </Link>
+          <Link
+            aria-current="page"
+            aria-label="Profile"
+            href="/dashboard/profile"
+            className="flex flex-col items-center justify-center text-white p-2 after:content-[''] after:w-1.5 after:h-1.5 after:bg-[#FF9A2E] after:rounded-full after:mt-1 active:scale-90 transition-transform duration-200"
+          >
+            <span
+              className="material-symbols-outlined text-[23px] text-[#FF9A2E]"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
+              person
+            </span>
+          </Link>
+        </div>
+      </nav>
 
       {/* ========================================== */}
       {/* 8. SELFIE / PHOTO MODAL */}
