@@ -10,20 +10,28 @@ router.post('/register', (req, res) => {
     if (!name || !phone || !password) return res.status(400).json({ error: 'Missing required fields' });
 
     try {
-        const existingUser = queryOne('SELECT id FROM users WHERE phone = ?', [phone]);
-        if (existingUser) {
+        const existingUser = queryOne('SELECT id, is_active FROM users WHERE phone = ?', [phone]);
+        if (existingUser && (existingUser.is_active === 1 || existingUser.is_active === null)) {
             return res.status(400).json({ error: 'Phone number already registered' });
         }
 
         const password_hash = bcrypt.hashSync(password, 10);
-        const result = run('INSERT INTO users (name, phone, password_hash, is_active) VALUES (?, ?, ?, 1)', [name, phone, password_hash]);
+        let userId;
+
+        if (existingUser && existingUser.is_active === 0) {
+            run('UPDATE users SET name = ?, password_hash = ?, avatar_url = NULL, goal = NULL, weight = NULL, height = NULL, onboarding_completed = 0, is_active = 1 WHERE id = ?', [name, password_hash, existingUser.id]);
+            userId = existingUser.id;
+            run('DELETE FROM streaks WHERE user_id = ?', [userId]);
+            run('INSERT INTO streaks (user_id) VALUES (?)', [userId]);
+        } else {
+            const result = run('INSERT INTO users (name, phone, password_hash, is_active) VALUES (?, ?, ?, 1)', [name, phone, password_hash]);
+            userId = result.lastInsertRowid;
+            run('INSERT INTO streaks (user_id) VALUES (?)', [userId]);
+        }
         
-        // Also create streaks row
-        run('INSERT INTO streaks (user_id) VALUES (?)', [result.lastInsertRowid]);
+        const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
         
-        const token = jwt.sign({ id: result.lastInsertRowid }, process.env.JWT_SECRET, { expiresIn: '7d' });
-        
-        res.status(201).json({ token, user: { id: result.lastInsertRowid, name, phone, role: 'member', is_active: 1 } });
+        res.status(201).json({ token, user: { id: userId, name, phone, role: 'member', is_active: 1 } });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
