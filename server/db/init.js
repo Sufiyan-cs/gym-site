@@ -39,14 +39,6 @@ async function initialize() {
           INSERT OR IGNORE INTO users (name, phone, password_hash, role, is_active)
           VALUES (?, ?, ?, ?, 1)
         `, ['Syed Tabrez', '9999999999', defaultPassword, 'admin']);
-        run(`
-          INSERT OR IGNORE INTO users (name, phone, password_hash, role, goal, preferred_slot, is_active)
-          VALUES (?, ?, ?, ?, ?, ?, 1)
-        `, ['Syed Sufiyan', '9113648413', defaultPassword, 'member', 'Clean Hypertrophy', '07:00 AM']);
-        run(`
-          INSERT OR IGNORE INTO users (name, phone, password_hash, role, goal, preferred_slot, is_active)
-          VALUES (?, ?, ?, ?, ?, ?, 1)
-        `, ['Syed Idris', '9113648414', defaultPassword, 'member', 'Clean Hypertrophy', '08:00 PM']);
     };
     
     seedAdmins();
